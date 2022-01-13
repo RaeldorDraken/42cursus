@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 15:03:55 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/13 14:21:47 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/01/13 12:05:22 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/01/13 14:51:23 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	l;
+#include"libft.h"
 
+size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
+{
+	size_t	l;
+	size_t	srclen;
+
+	srclen = ft_strlen(src);
 	l = 0;
-	if (c > 127)
-		c = c - 256;
-	while (s[l] && s[l] != c)
-		l++;
-	if (s[l] == c)
-		return ((char *)(s + l));
-	return (0);
+	if (dstsize != 0)
+	{
+		while (src[l] && l < dstsize - 1)
+		{
+			dst[l] = src[l];
+			l++;
+		}
+	dst[l] = '\0';
+	}
+	return (srclen);
 }

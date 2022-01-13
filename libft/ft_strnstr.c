@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 15:03:55 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/13 14:21:47 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/01/13 15:26:26 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/01/13 15:42:33 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
-{
-	int	l;
+#include"libft.h"
 
-	l = 0;
-	if (c > 127)
-		c = c - 256;
-	while (s[l] && s[l] != c)
-		l++;
-	if (s[l] == c)
-		return ((char *)(s + l));
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	hs;
+	size_t	ns;
+
+	hs = 0;
+	if (needle[0] == '\0')
+		return ((char *)haystack);
+	while (haystack[hs] && hs < len)
+	{
+		ns = 0;
+		while (haystack[hs + ++ns] && haystack[hs + ns] == needle[ns])
+		{
+			if (neddle[ns + 1] == '\0' || (hs + ns) == len)
+				return ((char *)haystack[hs]);
+			ns++;
+		}
+		hs++;
+	}
 	return (0);
 }

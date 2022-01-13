@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 15:03:55 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/13 14:21:47 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/01/13 11:42:17 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/01/13 12:01:02 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
+#include"libft.h"
+
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	int	l;
+	size_t	l;
 
 	l = 0;
-	if (c > 127)
-		c = c - 256;
-	while (s[l] && s[l] != c)
+	if (n == 0)
+		return (0);
+	while (str1[l] == str2[l] && l < n - 1 && str1[l])
 		l++;
-	if (s[l] == c)
-		return ((char *)(s + l));
-	return (0);
+	return (str1[l] - str2[l]);
 }

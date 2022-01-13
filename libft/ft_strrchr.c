@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 15:46:58 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/11 15:54:06 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/01/13 14:22:14 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@ char	*ft_strrchr(const char *s, int c)
 	int	l;
 
 	l = 0;
-	if (!s)
-		return (0);
+	if (c > 127)
+		c = c - 256;
 	while (s[l])
 		l++;
 	while (l > 0 && s[l] != c)
