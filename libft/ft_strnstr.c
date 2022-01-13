@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 15:26:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/13 15:42:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/01/13 15:58:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	while (haystack[hs] && hs < len)
 	{
 		ns = 0;
-		while (haystack[hs + ++ns] && haystack[hs + ns] == needle[ns])
+		while (haystack[hs + ns]
+			&& haystack[hs + ns] == needle[ns]
+			&& (hs + ns) < len)
 		{
-			if (neddle[ns + 1] == '\0' || (hs + ns) == len)
-				return ((char *)haystack[hs]);
+			if (needle[ns + 1] == '\0')
+				return ((char *)(haystack + hs));
 			ns++;
 		}
 		hs++;
