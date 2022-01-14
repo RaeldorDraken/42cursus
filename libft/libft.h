@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:54:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/13 15:40:28 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/01/14 19:26:25 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include<stdlib.h>
 # include<unistd.h>
 # include<limits.h>
+
+void	ft_bzero(void *s, size_t n);
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

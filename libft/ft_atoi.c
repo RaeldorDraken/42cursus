@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:17:03 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/14 14:48:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/01/14 18:53:24 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int		len;
-	int		sign;
+	int			len;
+	int			sign;
 	long int	result;
 
 	len = 0;
 	sign = 1;
 	result = 0;
-	if (nptr[0] == '-')
-	{
-		sign = -1;
+	while (nptr[len] == ' ' || nptr[len] == '\n' || nptr[len] == '\t'
+		|| nptr[len] == '\v' || nptr[len] == '\r' || nptr[len] == '\f')
 		len++;
+	if (nptr[len] == '-' || nptr[len] == '+')
+	{
+		if (nptr[len++] == '-')
+			sign *= -1;
 	}
 	while (nptr[len] >= 48 && nptr[len] <= 57)
 	{
@@ -36,5 +39,5 @@ int	ft_atoi(const char *nptr)
 	result = result * sign;
 	if (result > INT_MAX || result < INT_MIN)
 		return (0);
-	return (result);
+	return ((int)result);
 }
