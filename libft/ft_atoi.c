@@ -34,7 +34,7 @@ int	ft_atoi(const char *nptr)
 		len++;
 	}
 	result = result * sign;
-	if (result > MAX_INT || result < MIN_INT)
+	if (result > INT_MAX || result < INT_MIN)
 		return (0);
 	return (result);
 }

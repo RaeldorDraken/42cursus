@@ -15,6 +15,7 @@
 
 # include<stdlib.h>
 # include<unistd.h>
+# include<limits.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -24,6 +25,7 @@ int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
+int		ft_atoi(const char *nptr);
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
