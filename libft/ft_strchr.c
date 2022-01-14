@@ -15,7 +15,7 @@ char	*ft_strchr(const char *s, int c)
 	int	l;
 
 	l = 0;
-	if (c > 127)
+	while (c > 127)
 		c = c - 256;
 	while (s[l] && s[l] != c)
 		l++;
