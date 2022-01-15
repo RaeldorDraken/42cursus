@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 15:46:58 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/15 13:19:26 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/01/15 12:30:52 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/01/15 13:27:03 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *s, int c)
+#include"libft.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	l;
+	size_t			l;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
 	l = 0;
-	while (c > 127)
-		c = c - 256;
-	while (c < 0)
-		c = c + 256;
-	while (s[l])
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (str1[l] == str2[l] && l < n)
 		l++;
-	while (l > 0 && s[l] != c)
-		l--;
-	if (s[l] == c)
-		return ((char *)(s + l));
-	return (0);
+	if (l == n)
+		return (0);
+	else
+		return (str1[l] - str2[l]);
 }

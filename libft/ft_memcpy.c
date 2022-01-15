@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 15:46:58 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/15 13:19:26 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/01/15 12:12:42 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/01/15 12:30:44 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *s, int c)
+#include"libft.h"
+
+void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
-	int	l;
+	size_t			l;
+	unsigned char	*s;
+	unsigned char	*d;
 
 	l = 0;
-	while (c > 127)
-		c = c - 256;
-	while (c < 0)
-		c = c + 256;
-	while (s[l])
-		l++;
-	while (l > 0 && s[l] != c)
-		l--;
-	if (s[l] == c)
-		return ((char *)(s + l));
-	return (0);
+	s = (unsigned char *)src;
+	d = (unsigned char *)dst;
+	if (n != 0)
+	{
+		while (l < n)
+		{
+			d[l] = s[l];
+				l++;
+		}
+	}
+	return (dst);
 }

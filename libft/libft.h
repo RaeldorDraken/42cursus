@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:54:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/14 19:26:25 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/01/15 13:16:59 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include<unistd.h>
 # include<limits.h>
 
+void	*ft_memset(void *b, int c, size_t len);
+void	*ft_memchr(const void *s, int c, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	ft_bzero(void *s, size_t n);
 
 int		ft_isalpha(int c);
@@ -28,6 +31,7 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
 int		ft_atoi(const char *nptr);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
