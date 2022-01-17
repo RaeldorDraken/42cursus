@@ -13,18 +13,18 @@
 #include"libft.h"
 #include<stdio.h>
 #include<string.h>
-
+/*
 int	main(int count, char **v)
 {
 	char	*c;
 	char	*s;
-	char	*s2;
+//	char	*s2;
 	int		i;
 
 	if (count != 2)
 		return (1);
 	s = v[2];
-	s2 =v[3];
+//	s2 =v[3];
 	c = v[1] + 1;
 //	if (ft_isalnum(c))
 //		printf("YES\n");
@@ -36,4 +36,4 @@ int	main(int count, char **v)
 	printf("result: %d\n", i);
 //	c = ft_tolower(c);
 //	printf("a: %c", c);;
-}
+}*/

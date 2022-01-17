@@ -16,12 +16,17 @@ char	*ft_strdup(const char *s)
 {
 	char	*sr;
 	size_t	len;
+	size_t	l;
 
+	l = 0;
 	len = (size_t)ft_strlen(s);
 	sr = ft_calloc(sizeof(char), len);
 	if (!sr)
 		return (0);
-	while (s)
-		sr++ = s++;
+	while (s[l])
+	{
+		sr[l] = s[l];
+		l++;
+	}
 	return (sr);
 }
