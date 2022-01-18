@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 11:42:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/18 11:07:19 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/01/18 11:23:38 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/01/18 12:08:28 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	size_t			l;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	size_t	lo;
+	size_t	lr;
+	size_t	maxlo;
+	char	*sr;
 
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	l = 0;
-	if (n == 0)
+	lo = start;
+	maxlo = ft_strlen(s);
+	lr = 0;
+	sr = ft_calloc(sizeof(char), len + 1);
+	if (!sr)
 		return (0);
-	while (s1[l] == s2[l] && l < n - 1 && s1[l])
-		l++;
-	return (s1[l] - s2[l]);
+	while (lr < len && lo < maxlo)
+		sr[lr++] = s[lo++];
+	sr[lr] = '\0';
+	return (sr);
 }

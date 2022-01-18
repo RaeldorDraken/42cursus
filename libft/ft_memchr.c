@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 15:03:55 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/15 13:21:06 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/01/18 11:23:31 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (l < n)
 	{
 		if (str[l] == p)
-			return ((str + l));
+			return (((void *)s) + l);
 		l++;
-	}	
+	}
 	return (0);
 }

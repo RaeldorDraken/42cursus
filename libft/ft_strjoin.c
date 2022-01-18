@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 11:42:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/18 11:07:19 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/01/18 12:08:45 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/01/18 12:19:26 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	size_t			l;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	size_t	l1;
+	size_t	l2;
+	size_t	len;
+	char	*sr;
 
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	l = 0;
-	if (n == 0)
+	l1 = ft_strlen(s1);
+	l2 = ft_strlen(s2);
+	len = 0;
+	sr = ft_calloc(sizeof(char), l1 + l2 + 1);
+	if (!sr)
 		return (0);
-	while (s1[l] == s2[l] && l < n - 1 && s1[l])
-		l++;
-	return (s1[l] - s2[l]);
+	while (s1[len])
+	{
+		sr[len] = s1[len];
+		len++;
+	}
+	len = 0;
+	while (s2[len])
+	{
+		sr[l1 + len] = s2[len];
+		len++;
+	}
+	sr[l1 + len] = '\0';
+	return (sr);
 }

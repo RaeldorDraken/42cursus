@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 18:59:59 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/17 19:15:27 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/01/18 11:08:50 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s)
 
 	l = 0;
 	len = (size_t)ft_strlen(s);
-	sr = ft_calloc(sizeof(char), len);
+	sr = ft_calloc(sizeof(char), len + 1);
 	if (!sr)
 		return (0);
 	while (s[l])
@@ -28,5 +28,6 @@ char	*ft_strdup(const char *s)
 		sr[l] = s[l];
 		l++;
 	}
+	sr[l] = '\0';
 	return (sr);
 }

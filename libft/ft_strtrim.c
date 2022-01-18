@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 11:42:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/18 11:07:19 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/01/18 12:19:42 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/01/18 13:01:33 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	size_t			l;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	size_t	sl;
+	size_t	ss;
+	size_t	len;
+	char	*sr;
 
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	l = 0;
-	if (n == 0)
+	len = 0;
+	sl = ft_strlen(s1);
+	sr = ft_calloc(sizeof(char), sl + 1);
+	if (!sr)
 		return (0);
-	while (s1[l] == s2[l] && l < n - 1 && s1[l])
-		l++;
-	return (s1[l] - s2[l]);
+	sl = 0;
+	while (s1[sl])
+	{
+		ss = 0;
+		while (set[ss++])
+			sl++;
+		sr[len++] = s1[sl++];
+	}
+	sr[len] = '\0';
+	return (sr);
 }
