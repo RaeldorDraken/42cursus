@@ -24,7 +24,7 @@ size_t	ft_strnum(char const *s, char c)
 			numb++;
 		len++;
 	}
-	return (len);
+	return (numb);
 }
 
 char	**ft_split(const char *s, char c)
@@ -39,16 +39,18 @@ char	**ft_split(const char *s, char c)
 	n = -1;
 	strn = ft_strnum(s, c);
 	strings = ft_calloc(sizeof(char *), strn + 1);
+	if (!strings)
+		return (0);
 	while (++n < (long int)strn && strings)
 	{
 		strl = 0;
 		while (s[l] == c)
 			l++;
-		while (s[l] != c)
+		while (s[l + strl] != c)
 			strl++;
 		strings[n] = ft_calloc(sizeof(**strings), strl + 1);
-		ft_strlcpy(strings[n], &s[l], strl);
-		strings[n][strl] = '\0';
+		ft_strlcpy(strings[n], &s[l], strl + 1);
+		strings[n][strl + 1] = '\0';
 		while (s[l] != c)
 			l++;
 	}
