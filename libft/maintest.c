@@ -13,27 +13,25 @@
 #include"libft.h"
 #include<stdio.h>
 #include<string.h>
-/*
+
 int	main(int count, char **v)
 {
-	char	*c;
+	char	c;
 	char	*s;
 //	char	*s2;
-	int		i;
+	char	**sr;
+	int	i;
 
 	if (count != 2)
 		return (1);
-	s = v[2];
+	s = v[1];
 //	s2 =v[3];
-	c = v[1] + 1;
-//	if (ft_isalnum(c))
-//		printf("YES\n");
-//	else
-//		printf("NO\n");
-	i = ft_atoi(c);
-//	printf("s1 = %s\n s2 = %s\n", s, s2);
-//	printf("%zu\n", ft_strlcat(s, s2, i));
-	printf("result: %d\n", i);
-//	c = ft_tolower(c);
-//	printf("a: %c", c);;
-}*/
+	c = v[2][0];
+	i = 0;
+	sr = ft_split(s, c);
+	while (sr[i])
+	{
+		printf("result: %s\n", sr[i]);
+		i++;
+	}
+}
