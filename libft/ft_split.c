@@ -12,7 +12,7 @@
 
 #include"libft.h"
 
-size_t	ft_strnum(char const *s, char c)
+size_t	ft_strnum(const char *s, char c)
 {	
 	size_t	len;
 	size_t	numb;
@@ -27,6 +27,16 @@ size_t	ft_strnum(char const *s, char c)
 	return (numb);
 }
 
+size_t	ft_substrlen(const char *s, size_t start, char c)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[start + len] != c)
+		len++;
+	return (len);
+}
+
 char	**ft_split(const char *s, char c)
 {
 	char		**strings;
@@ -36,21 +46,19 @@ char	**ft_split(const char *s, char c)
 	size_t		strl;
 
 	l = 0;
-	n = -1;
+	n = 0;
 	strn = ft_strnum(s, c);
 	strings = ft_calloc(sizeof(char *), strn + 1);
 	if (!strings)
 		return (0);
-	while (++n < (long int)strn && strings)
+	while (n < (long int)strn && strings)
 	{
-		strl = 0;
 		while (s[l] == c)
 			l++;
-		while (s[l + strl] != c)
-			strl++;
+		strl = ft_substrlen(s, l, c);
 		strings[n] = ft_calloc(sizeof(**strings), strl + 1);
 		ft_strlcpy(strings[n], &s[l], strl + 1);
-		strings[n][strl + 1] = '\0';
+		strings[n++][strl + 1] = '\0';
 		while (s[l] != c)
 			l++;
 	}
