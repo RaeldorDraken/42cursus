@@ -42,11 +42,11 @@ size_t	ft_substrlen(const char *s, size_t start, char c)
 
 char	**ft_split(const char *s, char c)
 {
-	char		**strings;
-	size_t		l;
-	size_t		n;
-	size_t		strn;
-	size_t		strl;
+	char	**strings;
+	size_t	l;
+	size_t	n;
+	size_t	strn;
+	size_t	strl;
 
 	l = 0;
 	n = 0;

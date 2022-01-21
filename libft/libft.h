@@ -17,6 +17,12 @@
 # include<unistd.h>
 # include<limits.h>
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memchr(const void *s, int c, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
@@ -54,5 +60,7 @@ char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_itoa(int n);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char	**ft_split(const char *s, char c);
+
+t_list	*ft_lstnew(void *content);
 
 #endif
