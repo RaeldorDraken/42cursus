@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,10 +14,10 @@
 
 size_t	ft_getintsize(int n)
 {
-	int	count;
+	size_t	count;
 
-	count = 1;
-	while (n >= 10)
+	count = 0;
+	while (n)
 	{
 		count++;
 		n = n / 10;
@@ -27,60 +27,62 @@ size_t	ft_getintsize(int n)
 
 char	*ft_revstr(char *s)
 {
-	char	*sr;
+	size_t	l;
+	size_t	len;
 	char	temp;
-	size_t	c1;
-	size_t	c2;
 
-	c1 = 0;
-	c2 = ft_strlen(s);
-	sr = s;
-	if (s[c1] == '-')
-		c1++;
-	while (c1 < c2)
+	len = ft_strlen(s);
+	if (s[len] == '\0')
+		len--;
+	l = 0;
+	while (l < len)
 	{
-		temp = s[c1];
-		s[c1] = s[c2];
-		s[c2] = temp;
+		temp = s[l];
+		s[l++] = s[len];
+		s[len--] = temp;
 	}
-	return (sr);
+	return (s);
 }
 
-char	*ft_strnbr(int nb)
+int	ft_abs(int n)
 {
-	char	*sr;
-	int		len;
+	if (n < 0)
+		return (-n);
+	return (n);
+}
 
-	len = ft_getintsize(nb);
-	sr = ft_calloc(sizeof(char), len + 1);
-	if (!sr)
-		return (0);
-	sr[len + 1] = '\0';
-	if (nb < 0)
-	{
-		nb = -nb;
-		sr[0] = '-';
-	}
-	while (len)
-	{
-		sr[len--] = (nb % 10) + 48;
-		nb = nb / 10;
-	}
-	return (sr);
+char	ft_sign(int n)
+{
+	if (n < 0)
+		return ('-');
+	return ('\0');
 }
 
 char	*ft_itoa(int n)
 {
 	char	*itoa;
+	size_t	len;
+	char	sign;
+	size_t	l;
 
-	if (n == 0)
-		return (ft_strdup("0"));
-	else if (n == INT_MAX)
+	if (n == 2147483647)
 		return (ft_strdup("2147483647"));
-	else if (n == INT_MIN)
+	else if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	itoa = ft_strnbr(n);
+	sign = ft_sign(n);
+	n = ft_abs(n);
+	len = ft_getintsize(n);
+	itoa = ft_calloc(sizeof(char), len + 2);
+	l = 0;
 	if (!itoa)
 		return (0);
-	return (itoa);
+	itoa[0] = '0';
+	while (l < len)
+	{
+		itoa[l++] = (n % 10) + 48;
+		n = n / 10;
+	}
+	if (sign)
+		itoa[l] = sign;
+	return (ft_revstr(itoa));
 }

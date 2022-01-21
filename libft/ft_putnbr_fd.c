@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/16 18:59:59 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/17 19:15:27 by eros-gir         ###   ########.fr       */
+/*   Created: 2021/12/18 19:48:13 by eros-gir          #+#    #+#             */
+/*   Updated: 2021/12/18 19:56:16 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include<unistd.h>
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t		len;
-	size_t		fsize;
-	void		*result;
-	char		*setzero;
+	long	num;
 
-	fsize = (long int)(nmemb * size);
-	if (fsize == 0)
+	num = n;
+	if (n < 0)
 	{
-		return (0);
+		write(fd, "-", 1);
+		num = -num;
 	}
-	result = malloc(nmemb * size);
-	if (!result)
-		return (0);
-	setzero = (char *)result;
-	if (fsize != 0)
-	{
-		len = -1;
-		while (++len < fsize)
-			setzero[len] = 0;
-	}
-	result = (void *)setzero;
-	return (result);
+	if (num >= 10)
+		ft_putnbr_fd(num / 10, fd);
+	num = num % 10 + 48;
+	write(fd, &num, 1);
 }
