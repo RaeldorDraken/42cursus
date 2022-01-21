@@ -44,7 +44,7 @@ char	**ft_split(const char *s, char c)
 {
 	char		**strings;
 	size_t		l;
-	long int	n;
+	size_t		n;
 	size_t		strn;
 	size_t		strl;
 
@@ -54,13 +54,12 @@ char	**ft_split(const char *s, char c)
 	strings = ft_calloc(sizeof(char *), strn + 1);
 	if (!strings)
 		return (0);
-	while (n < (long int)strn && strings && s[l])
+	while (n < strn && s[l])
 	{
 		while (s[l] == c)
 			l++;
 		strl = ft_substrlen(s, l, c);
-		strings[n] = ft_calloc(sizeof(**strings), strl + 1);
-		ft_strlcpy(strings[n], &s[l], strl + 1);
+		strings[n] = ft_substr(s, l, strl + 1);
 		strings[n++][strl] = 0;
 		while (s[l] != c)
 			l++;

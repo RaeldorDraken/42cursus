@@ -13,7 +13,7 @@
 #include"libft.h"
 #include<stdio.h>
 #include<string.h>
-
+/*
 int	main(int count, char **v)
 {
 	char	c;
@@ -35,3 +35,4 @@ int	main(int count, char **v)
 		i++;
 	}
 }
+*/
