@@ -1,0 +1,3 @@
+Trying out the read funciton
+and seeing if it changes line or
+not!
