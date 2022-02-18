@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:03:41 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/02/16 19:09:19 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/02/18 18:42:59 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,49 @@ struct	s_line {
 	char			*string;
 	struct s_line	*next;
 };
+
+char	*ft_strdup(char *s)
+{
+	char	*sr;
+	size_t	len;
+	size_t	l;
+
+	l = 0;
+	len = (size_t)ft_strlen(s);
+	sr = ft_calloc(sizeof(char), len + 1);
+	if (!sr)
+		return (0);
+	while (s[l])
+	{
+		sr[l] = s[l];
+		l++;
+	}
+	sr[l] = '\0';
+	return (sr);
+}
+
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	size_t	lo;
+	size_t	lr;
+	size_t	maxlo;
+	char	*sr;
+
+	lo = start;
+	maxlo = ft_strlen(s);
+	lr = 0;
+	if (!s || maxlo <= lo)
+		return (ft_strdup(""));
+	if (len >= maxlo)
+		len = maxlo;
+	sr = ft_calloc(sizeof(char), len + 1);
+	if (!sr)
+		return (0);
+	while (lr < len && lo < maxlo)
+		sr[lr++] = s[lo++];
+	sr[lr] = '\0';
+	return (sr);
+}
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -46,7 +89,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (result);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	int	l;
 
@@ -56,46 +99,46 @@ size_t	ft_strlen(const char *s)
 	return (l);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
-	int	l;
-
-	l = 0;
-	while (c > 127)
-		c = c - 256;
-	while (c < 0)
-		c = c + 256;
-	while (s[l] && s[l] != c)
-		l++;
-	if (s[l] == c)
-		return ((char *)(s + l));
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if ((char)c == '\0')
+		return ((char *)s);
 	return (NULL);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	l1;
 	size_t	l2;
-	size_t	len;
 	char	*sr;
 
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
-	len = 0;
-	sr = ft_calloc(sizeof(char), l1 + l2 + 1);
+	l1 = 0;
+	l2 = 0;
+	if (!s1)
+	{
+		s1 = ft_calloc(sizeof (char), 2);
+		s1[0] = '\0';
+	}
+	sr = ft_calloc(sizeof(char), ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!sr)
 		return (0);
-	while (s1[len])
+	while (s1[l1])
 	{
-		sr[len] = s1[len];
-		len++;
+		sr[l1] = s1[l1];
+		l1++;
 	}
-	len = 0;
-	while (s2[len])
+	while (s2[l2])
 	{
-		sr[l1 + len] = s2[len];
-		len++;
+		sr[l1 + l2] = s2[l2];
+		l2++;
 	}
-	sr[l1 + len] = '\0';
+	sr[l1 + l2] = '\0';
+	free(s1);
 	return (sr);
 }
