@@ -29,6 +29,7 @@ int	main(void)
 	if (!str_char)
 	{
 		printf("NULL Return");
+		printf("\n");
 		close(fd);
 		return (0);
 	}
@@ -37,6 +38,7 @@ int	main(void)
 	if (!str_char)
 	{
 		printf("NULL Return");
+		printf("\n");
 		close(fd);
 		return (0);
 	}
@@ -45,6 +47,7 @@ int	main(void)
 	if (!str_char)
 	{
 		printf("NULL Return");
+		printf("\n");
 		close(fd);
 		return (0);
 	}

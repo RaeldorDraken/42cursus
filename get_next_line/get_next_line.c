@@ -12,41 +12,67 @@
 
 #include"get_next_line.h"
 
+char	*get_current_line(char *s)
+{
+	int		i;
+	char	*current;
+
+	i = 0;
+	if (!s[i])
+		return (NULL);
+	while (s[i] && s[i] != '\n')
+		i++;
+	current = (char *)malloc((sizeof (char)) * (i + 2));
+	if (!current)
+		return (NULL);
+	i = -1;
+	while (s[++i] && s[i] != '\n')
+		current[i] = s[i];
+	if (s[i] == '\n')
+		current[i] = s[i];
+	if (current[i] == '\n')
+		i++;
+	current[i] = '\0';
+	return (current);
+}
+
+char	*get_read_line(int fd, char *readline)
+{
+	char		*buffer;
+	int			flag;
+
+	flag = 1;
+	buffer = malloc((sizeof (char)) * (BUFFER_SIZE +1));
+	if (!buffer)
+		return (NULL);
+	while (!ft_strchr(readline, '\n') && flag > 0)
+	{
+		flag = read(fd, buffer, BUFFER_SIZE);
+		if (flag == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		buffer[flag] = '\0';
+		readline = ft_strjoin(readline, buffer);
+	}
+	free(buffer);
+	return (readline);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*line;
-	char		*buffer;
 	static char	*line_next;
-	int			read_flag;
 
 	line = NULL;
-	buffer = NULL;
-	read_flag = 1;
 	if (fd < 0)
 		return (NULL);
-	if ((line_next &&  !ft_strchr(line_next, '\n')) || !line_next)
-	{
-		buffer = (char *)ft_calloc(sizeof (char), BUFFER_SIZE + 1);
-		while (ft_strchr(buffer, '\n') == NULL && read_flag > 0)
-		{
-			read_flag = read(fd, buffer, BUFFER_SIZE);
-			if (read_flag <= 0)
-			{
-				free(buffer);
-				return (NULL);
-			}
-			else
-			{
-				buffer[read_flag] = '\0';
-				line_next = ft_strjoin(line_next, buffer);
-			}
-		}
-	}
+	line_next = get_read_line(fd, line_next);
 	if (!line_next)
 	{
 		return (NULL);
 	}
-	line = buffer;
-	free(buffer);
+	line = get_current_line(line_next);
 	return (line);
 }
