@@ -42,10 +42,10 @@ char	*get_read_line(int fd, char *readline)
 	int			flag;
 
 	flag = 1;
-	buffer = malloc((sizeof (char)) * (BUFFER_SIZE +1));
+	buffer = malloc((sizeof (char)) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	while (!ft_strchr(readline, '\n') && flag > 0)
+	while (!ft_strchr(buffer, '\n') && flag > 0)
 	{
 		flag = read(fd, buffer, BUFFER_SIZE);
 		if (flag == -1)
