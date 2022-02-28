@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include"get_next_line_bonus.h"
 
 char	*get_current_line(char *s)
 {
@@ -92,17 +92,17 @@ char	*update_line(char *line)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*line_next;
+	static char	*line_next[128];
 
 	line = NULL;
-	if (fd < 0)
+	if (fd < 0 || fd > 128)
 		return (NULL);
-	line_next = get_read_line(fd, line_next);
-	if (!line_next)
+	line_next[fd] = get_read_line(fd, line_next[fd]);
+	if (!line_next[fd])
 	{
 		return (NULL);
 	}
-	line = get_current_line(line_next);
-	line_next = update_line(line_next);
+	line = get_current_line(line_next[fd]);
+	line_next[fd] = update_line(line_next[fd]);
 	return (line);
 }

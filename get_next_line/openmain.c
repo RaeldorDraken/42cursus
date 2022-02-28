@@ -16,6 +16,19 @@
 #include<unistd.h>
 #include"get_next_line.h"
 
+char	*test_lines(int fd)
+{
+	char	*str_char;
+
+	str_char = get_next_line(fd);
+	if (!str_char)
+	{
+		str_char = "NULL Return\n";
+		close(fd);
+	}
+	return (str_char);
+}
+
 int	main(void)
 {
 	char	*file;
@@ -25,32 +38,13 @@ int	main(void)
 	file = "./test_text.txt";
 	fd = open(file, O_RDONLY);
 	printf("Aqui funciona bien\n");
-	str_char = get_next_line(fd);
-	if (!str_char)
-	{
-		printf("NULL Return");
-		printf("\n");
-		close(fd);
-		return (0);
-	}
-	printf("Esta es la linea 1: %s\n", str_char);
-	str_char = get_next_line(fd);
-	if (!str_char)
-	{
-		printf("NULL Return");
-		printf("\n");
-		close(fd);
-		return (0);
-	}
-	printf("Esta es la linea 2: %s\n", str_char);
-	str_char = get_next_line(fd);
-	if (!str_char)
-	{
-		printf("NULL Return");
-		printf("\n");
-		close(fd);
-		return (0);
-	}
-	printf("Esta es la linea 3: %s\n", str_char);
+	str_char = test_lines(fd);
+	printf("Esta es la linea 1: %s", str_char);
+	str_char = test_lines(fd);
+	printf("Esta es la linea 2: %s", str_char);
+	str_char = test_lines(fd);
+	printf("Esta es la linea 3: %s", str_char);
+	str_char = test_lines(fd);
+	printf("Esta es la linea 4: %s", str_char);
 	close(fd);
 }

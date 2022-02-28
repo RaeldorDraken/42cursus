@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maintest.c                                         :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/11 10:51:09 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/14 15:43:31 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/02/07 18:05:04 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/02/18 18:43:11 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
-#include<stdio.h>
-#include<string.h>
-/*
-int	main(int count, char **v)
-{
-	char	c;
-	char	*s;
-//	char	*s2;
-	char	**sr;
-	int	i;
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
-	if (count != 2)
-		return (1);
-	s = v[1];
-//	s2 =v[3];
-	c = v[2][0];
-	i = 0;
-	sr = ft_split(s, c);
-	while (sr[i])
-	{
-		printf("result: %s\n", sr[i]);
-		i++;
-	}
-}
-*/
+# include<unistd.h>
+# include<stdlib.h>
+
+char	*get_next_line(int fd);
+
+void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_bzero(void *s, size_t n);
+size_t	ft_strlen(char *s);
+char	*ft_strchr(char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_strdup(char *s);
+
+#endif
