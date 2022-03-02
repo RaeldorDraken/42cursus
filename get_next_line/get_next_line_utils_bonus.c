@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 18:03:41 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/02/18 18:42:59 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:59:32 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,23 @@ size_t	ft_strlen(char *s)
 	return (l);
 }
 
-char	*ft_strdup(char *s)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*sr;
+	void	*mem;
+	size_t	i;
 	size_t	len;
-	size_t	l;
 
-	l = 0;
-	len = (size_t)ft_strlen(s);
-	sr = malloc((sizeof(char)) * (len + 1));
-	if (!sr)
-		return (0);
-	while (s[l])
+	i = 0;
+	len = size * nmemb;
+	mem = malloc(len + 1);
+	if (!mem)
+		return (NULL);
+	while (i < len)
 	{
-		sr[l] = s[l];
-		l++;
+		((char *)mem)[i] = 0;
+		i++;
 	}
-	sr[l] = '\0';
-	return (sr);
+	return (mem);
 }
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
@@ -55,15 +54,14 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	maxlo = ft_strlen(s);
 	lr = 0;
 	if (!s || maxlo <= lo)
-		return (ft_strdup(""));
+		return (NULL);
 	if (len >= maxlo)
 		len = maxlo;
-	sr = malloc((sizeof(char)) * (len + 1));
+	sr = ft_calloc(sizeof(char), (len + 1));
 	if (!sr)
-		return (0);
+		return (NULL);
 	while (lr < len && lo < maxlo)
 		sr[lr++] = s[lo++];
-	sr[lr] = '\0';
 	return (sr);
 }
 
@@ -82,27 +80,24 @@ char	*ft_strchr(char *s, int c)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	size_t	l1;
-	size_t	l2;
+	int		l1;
+	int		l2;
 	char	*sr;
 
-	l1 = 0;
-	l2 = 0;
+	l1 = -1;
+	l2 = -1;
 	if (!s1)
-		s1 = malloc((sizeof (char) * 2));
-	sr = malloc((sizeof(char)) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	{
+		s1 = ft_calloc(sizeof (char), 2);
+		s1[0] = '\0';
+	}
+	sr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!sr)
 		return (0);
-	while (s1[l1])
-	{
+	while (s1[++l1])
 		sr[l1] = s1[l1];
-		l1++;
-	}
-	while (s2[l2])
-	{
+	while (s2[++l2])
 		sr[l1 + l2] = s2[l2];
-		l2++;
-	}
 	sr[l1 + l2] = '\0';
 	free(s1);
 	return (sr);
