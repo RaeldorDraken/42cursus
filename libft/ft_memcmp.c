@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 12:30:52 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/15 13:33:11 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:32:26 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	str2 = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	while (str1[l] == str2[l] && l < n)
+	while (str1[l] == str2[l] && l < n - 1)
 		l++;
 	if (l == n)
 		return (0);

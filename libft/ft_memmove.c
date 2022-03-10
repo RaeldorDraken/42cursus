@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 12:12:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/01/15 13:45:43 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:46:04 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,17 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	unsigned char	*s;
 	unsigned char	*d;
 
-	l = 0;
+	l = -1;
 	s = (unsigned char *)src;
 	d = (unsigned char *)dst;
+	if (!s && !d)
+		return (NULL);
 	if (d < s)
 	{
 		if (len != 0)
 		{
-			while (l < len)
-			{
+			while (++l < len)
 				d[l] = s[l];
-					l++;
-			}
 		}
 	}
 	else
