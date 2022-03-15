@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   maintest.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 17:01:25 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/15 12:54:50 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/03/15 10:28:38 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/03/15 11:32:45 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include<stdio.h>
 
-# include"libft.h"
-# include<stdarg.h>
-
-int		ft_printf(const char *string, ...);
-int		sp_putstr(char *str);
 void	ft_putstr(char *str);
-char	*printable_string(char *string);
-int		format_percent(void);
 
-#endif
+int	main(void)
+{
+	char	*str;
+
+	str = "This is a test string with %d all %x and a double %% here.";
+	ft_putstr("This many arguments the line has: %d.\n");
+}
