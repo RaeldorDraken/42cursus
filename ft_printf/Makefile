@@ -6,15 +6,15 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 16:23:21 by eros-gir          #+#    #+#              #
-#    Updated: 2022/03/10 17:07:10 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/03/17 12:32:54 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = *.c
+SRC = ft_printf.c ft_printf_utils.c ft_printf_formats.c
 
-SRC2 = *.o
+SRC2 = ft_printf.o ft_printf_utils.o ft_printf_formats.o
 
 all: $(NAME)
 
@@ -26,7 +26,11 @@ $(NAME):
 	ar rc $(NAME) $(SRC2)
 
 clean:
-	/bin/rm -f *.o
+	make clean -C libft
+	/bin/rm -f $(SRC2)
 
 fclean: clean
+	make fclean -C libft
 	/bin/rm -f $(NAME)
+
+re: fclean all

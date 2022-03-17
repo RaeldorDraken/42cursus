@@ -6,58 +6,49 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 16:43:08 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/15 12:57:35 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/17 12:30:43 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"ft_printf.h"
 
-int	read_format(char c)
+t_printf	*initialize_tab(t_printf *tab)
 {
-	if (c == '%')
-		return (format_percent());
-	else
-		return (0);
+	tab->width = 0;
+	tab->precise = 0;
+	tab->nopad = 0;
+	tab->fstop = 0;
+	tab->score = 0;
+	tab->len = 0;
+	tab->sign = 0;
+	tab->zero = 0;
+	tab->percent = 0;
+	tab->space = 0;
+	return (tab);
 }
 
 int	ft_printf(const char *string, ...)
 {
-	int			lenght;
-	int			len;
-	va_list		arg_count;
-	static char	*str;
+	int		i;
+	int		lenght;
+	t_print	*tab;
 
 	lenght = 0;
-	len = 0;
-	va_start(arg_count, string);
-	if (!string)
-		return (0);
-	else
-		lenght = ft_strlen(string);
-	str = ft_strdup(string);
-	while (len < lenght)
+	i = -1;
+	tab = (t_print *)malloc(sizeof(t_print));
+	if (!tab)
+		return (-1);
+	initialize_tab(tab);
+	va_start(tab->args, string);
+	while (string[++i] != '\0')
 	{
-		len += sp_putstr(str + len);
-		len ++;
-	}
-	free(str);
-	return (lenght);
-}
-
-int	get_arg_count(char *str)
-{
-	int	result;
-
-	result = 0;
-	while (str)
-	{
-		if (*str == '%')
-		{
-			result ++;
-			str += 2;
-		}
+		if (string[i] == '%')
+			i = get_formatting(tab, string, i + 1);
 		else
-			str = ft_strchr(str, '%');
+			lenght += write(1, &string[i], 1);
 	}
-	return (result);
+	va_end(tab->args);
+	lenght += tab->len;
+	free(tab);
+	return (lenght);
 }

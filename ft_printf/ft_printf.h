@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:01:25 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/15 12:54:50 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/17 11:24:17 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # include<stdarg.h>
 
 int		ft_printf(const char *string, ...);
-int		sp_putstr(char *str);
+char	*sp_putstr(char *str);
 void	ft_putstr(char *str);
 char	*printable_string(char *string);
-int		format_percent(void);
 
 #endif

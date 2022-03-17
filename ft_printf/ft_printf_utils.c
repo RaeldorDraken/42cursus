@@ -6,26 +6,32 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:49:18 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/15 12:54:39 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/17 12:30:51 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	sp_putstr(char *str)
+char	*sp_putstr(char *str)
 {
 	int	len;
 
-	len = 0;
-	while (str[len])
+	len = -1;
+	if (str[0] == '%')
 	{
-		if (str[len] != '%')
-			write(1, &str[len], 1);
-		else
-			return (len);
+		write(1, &str[0], 1);
 		len ++;
 	}
-	return (len);
+	while (str[++len])
+	{
+		if (str[len] != '%')
+		{
+			write(1, &str[len], 1);
+		}
+		else
+			return ((char *)(str + len));
+	}
+	return ((char *)(str + len));
 }
 
 void	ft_putstr(char *str)
