@@ -27,6 +27,53 @@ t_printf	*initialize_tab(t_printf *tab)
 	return (tab);
 }
 
+int	get_formatting(t_print tab, char *string, int position)
+{
+	while (ft_strchr("udcsupxX%", string[position]) == '\0')
+	{
+		if(string[position] == '-')
+		{
+			tab->score = 1;
+			position ++;
+		}
+		else if (string[position] == '0')
+		{
+			tab->nopad = 1;
+			position ++;
+		}
+		else if (string[position] == '.')
+		{
+			tab->fstop = 1;
+			position ++;
+		}
+		else if (string[position] >= '1' && string[position] <= '9')
+		{
+			tab->width = (tab->width *10) + string[position];
+			position ++;
+		}
+		else if (string[position] == '#')
+		{
+			tab->precise = 1;
+			position ++;
+		}
+		else if (string[position] == ' ')
+		{
+			tab->space = 1;
+			position ++;
+		}
+		else if (string[position] == '+')
+		{
+			tab->sign = 1;
+			position ++;
+		}
+	}
+	if (string[position] == 'c')
+	{
+		
+	}
+	return (position);
+}
+
 int	ft_printf(const char *string, ...)
 {
 	int		i;
