@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 10:28:38 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/17 12:25:50 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/21 12:29:56 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,5 @@
 
 int	main(void)
 {
-	char	*str;
-
-	str = "This is a test string with %% all %s and a %% double here.\n";
-	while (*str != '\0')
-	{
-		str = sp_putstr(str);
-		str ++;
-	}
+	ft_printf("A test string with %%%d  %%%% double here.\n", 1);
 }

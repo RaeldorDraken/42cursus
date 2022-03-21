@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:01:25 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/17 11:24:17 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/21 12:28:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,34 @@
 # include"libft.h"
 # include<stdarg.h>
 
+typedef struct s_printf
+{
+	va_list	args;
+	int		width;
+	int		precise;
+	int		nopad;
+	int		fstop;
+	int		score;
+	int		len;
+	int		sign;
+	int		zero;
+	int		percent;
+	int		space;
+}	t_print;
+
 int		ft_printf(const char *string, ...);
-char	*sp_putstr(char *str);
-void	ft_putstr(char *str);
-char	*printable_string(char *string);
+void	ft_print_tab(t_print *tab, char *string, int position);
+int		get_formatting(t_print *tab, char *string, int position);
+int		first_format(t_print *tab, char *string, int position);
+int		second_format(t_print *tab, char *string, int position);
+
+void	ft_tab_char(t_print *tab);
+void	ft_tab_string(t_print *tab);
+void	ft_tab_pointer(t_print *tab);
+void	ft_tab_decimal(t_print *tab);
+void	ft_tab_integer(t_print *tab);
+void	ft_tab_unsigned(t_print *tab);
+void	ft_tab_hexmin(t_print *tab);
+void	ft_tab_hexmax(t_print *tab);
 
 #endif

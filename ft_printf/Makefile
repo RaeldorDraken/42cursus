@@ -6,15 +6,15 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 16:23:21 by eros-gir          #+#    #+#              #
-#    Updated: 2022/03/17 12:32:54 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/03/21 12:06:43 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c ft_printf_utils.c ft_printf_formats.c
+SRC = ft_printf.c ft_printf_formats.c ft_tab_args.c ft_tab_args_two.c
 
-SRC2 = ft_printf.o ft_printf_utils.o ft_printf_formats.o
+SRC2 = ft_printf.o ft_printf_formats.o ft_tab_args.o ft_tab_args_two.o
 
 all: $(NAME)
 
