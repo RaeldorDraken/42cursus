@@ -15,5 +15,11 @@
 
 int	main(void)
 {
-	ft_printf("A test string with %%%d  %%%% double here.\n", 1);
+	int	s1;
+	int	s2;
+
+	s1 = ft_printf("A test string with a pointer p: %x \n", 123456);
+	printf("%d\n", s1);
+	s2 = printf("A test string with a pointer p: %x \n", 123456);
+	printf("%d\n", s2);
 }

@@ -12,9 +12,11 @@
 
 NAME = libftprintf.a
 
-SRC = ft_printf.c ft_printf_formats.c ft_tab_args.c ft_tab_args_two.c
+SRC = ft_printf.c ft_printf_formats.c ft_tab_args.c ft_tab_args_two.c \
+ft_printf_utils.c
 
-SRC2 = ft_printf.o ft_printf_formats.o ft_tab_args.o ft_tab_args_two.o
+SRC2 = ft_printf.o ft_printf_formats.o ft_tab_args.o ft_tab_args_two.o \
+ft_printf_utils.o
 
 all: $(NAME)
 

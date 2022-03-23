@@ -22,18 +22,20 @@ void	ft_tab_char(t_print *tab)
 
 void	ft_tab_string(t_print *tab)
 {
-	char	arg;
+	char	*arg;
 
-	arg = va_arg(tab->args, int);
-	tab->len += write(1, &arg, 1);
+	arg = va_arg(tab->args, char *);
+	if (!arg)
+		arg = "(null)";
+	tab->len += ft_putstr_len(arg);
 }
 
 void	ft_tab_pointer(t_print *tab)
 {
-	char	arg;
+	unsigned long	arg;
 
-	arg = va_arg(tab->args, int);
-	tab->len += write(1, &arg, 1);
+	arg = (unsigned long)va_arg(tab->args, void *);
+	tab->len += ft_putnbr_hex(arg, 1, 0, 0);
 }
 
 void	ft_tab_decimal(t_print *tab)

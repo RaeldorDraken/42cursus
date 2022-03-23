@@ -12,33 +12,46 @@
 
 #include "ft_printf.h"
 
-char	*sp_putstr(char *str)
+void	ft_putchar(char c)
 {
-	int	len;
-
-	len = -1;
-	if (str[0] == '%')
-	{
-		write(1, &str[0], 1);
-		len ++;
-	}
-	while (str[++len])
-	{
-		if (str[len] != '%')
-		{
-			write(1, &str[len], 1);
-		}
-		else
-			return ((char *)(str + len));
-	}
-	return ((char *)(str + len));
+	write (1, &c, 1);
 }
 
-void	ft_putstr(char *str)
+int	ft_putstr_len(char *str)
 {
 	int	len;
 
 	len = 0;
 	while (str[len])
-		write(1, &str[len++], 1);
+	{
+		ft_putchar(str[len]);
+		len ++;
+	}
+	return (len);
+}
+
+int	ft_putnbr_hex(long long int nbr, int ptr, int cap, int len)
+{
+	char	*hexbase;
+
+	if (nbr < 0)
+	{
+		if (!ptr)
+		{
+			len ++;
+			ft_putchar('-');
+		}
+		nbr = -nbr;
+	}
+	if (!cap)
+		hexbase = "0123456789abcdef";
+	else
+		hexbase = "0123456789ABCDEF";
+	if (ptr)
+		len += write(1, "0x", 2);
+	if (nbr >= 16)
+		len += ft_putnbr_hex(nbr / 16, 0, cap, len);
+	nbr = nbr % 16;
+	ft_putchar(hexbase[nbr]);
+	return (len);
 }
