@@ -30,28 +30,23 @@ int	ft_putstr_len(char *str)
 	return (len);
 }
 
-int	ft_putnbr_hex(long long int nbr, int ptr, int cap, int len)
+//arg len is used to pass into the recursive function, always start it at 1
+int	ft_putnbr_base(long long int nbr, char *base, int len)
 {
-	char	*hexbase;
+	int		bsize;
+	char	*decimal;
 
-	if (nbr < 0)
+	decimal = "0123456789";
+	bsize = ft_strlen(base);
+	if (nbr < 0 && base == decimal)
 	{
-		if (!ptr)
-		{
-			len ++;
-			ft_putchar('-');
-		}
+		len ++;
+		ft_putchar('-');
 		nbr = -nbr;
 	}
-	if (!cap)
-		hexbase = "0123456789abcdef";
-	else
-		hexbase = "0123456789ABCDEF";
-	if (ptr)
-		len += write(1, "0x", 2);
-	if (nbr >= 16)
-		len += ft_putnbr_hex(nbr / 16, 0, cap, len);
-	nbr = nbr % 16;
-	ft_putchar(hexbase[nbr]);
+	if (nbr >= bsize)
+		len += ft_putnbr_base(nbr / bsize, base, len);
+	nbr = nbr % bsize;
+	ft_putchar(base[nbr]);
 	return (len);
 }

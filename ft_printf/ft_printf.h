@@ -36,7 +36,7 @@ int		ft_putstr_len(char *str);
 int		get_formatting(t_print *tab, char *string, int position);
 int		first_format(t_print *tab, char *string, int position);
 int		second_format(t_print *tab, char *string, int position);
-int		ft_putnbr_hex(long long int nbr, int ptr, int cap, int len);
+int		ft_putnbr_base(long long int nbr, char *base, int len);
 
 void	ft_print_tab(t_print *tab, char *string, int position);
 void	ft_tab_char(t_print *tab);

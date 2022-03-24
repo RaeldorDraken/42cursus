@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include"ft_printf.h"
+#include<stdio.h>
 
 void	ft_tab_char(t_print *tab)
 {
@@ -35,7 +36,9 @@ void	ft_tab_pointer(t_print *tab)
 	unsigned long	arg;
 
 	arg = (unsigned long)va_arg(tab->args, void *);
-	tab->len += ft_putnbr_hex(arg, 1, 0, 0);
+	tab->len += write(1, "0x", 2);
+	tab->len += ft_putnbr_base(arg, "0123456789abcdef", 1);
+	printf("\n%d\n", tab->len);
 }
 
 void	ft_tab_decimal(t_print *tab)

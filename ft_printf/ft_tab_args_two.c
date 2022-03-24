@@ -33,7 +33,7 @@ void	ft_tab_hexmin(t_print *tab)
 	int	arg;
 
 	arg = va_arg(tab->args, unsigned int);
-	tab->len += ft_putnbr_hex(arg, 0, 0, 0);
+	tab->len += ft_putnbr_base(arg, "0123456789abcdef", 1);
 }
 
 void	ft_tab_hexmax(t_print *tab)
@@ -41,5 +41,5 @@ void	ft_tab_hexmax(t_print *tab)
 	int	arg;
 
 	arg = va_arg(tab->args, unsigned int);
-	tab->len += ft_putnbr_hex(arg, 0, 1, 0);
+	tab->len += ft_putnbr_base(arg, "0123456789ABCDEF", 1);
 }
