@@ -18,8 +18,8 @@ int	main(void)
 	int	s1;
 	int	s2;
 
-	s1 = ft_printf("A test string with a pointer p: %p \n", (void *)3456);
-	printf("%d\n", s1);
-	s2 = printf("A test string with a pointer p: %p \n", (void *)3456);
-	printf("%d\n", s2);
+	s1 = ft_printf("Test with a pointer: %p \n", (void *)-1);
+	printf("printf return: %d\n", s1);
+	s2 = printf("Test with a pointer: %p \n", (void *)-1);
+	printf("printf return: %d\n", s2);
 }

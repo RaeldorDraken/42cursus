@@ -35,16 +35,16 @@ void	ft_tab_pointer(t_print *tab)
 {
 	unsigned long	arg;
 
-	arg = (unsigned long)va_arg(tab->args, void *);
+	arg = va_arg(tab->args, unsigned long);
 	tab->len += write(1, "0x", 2);
 	tab->len += ft_putnbr_base(arg, "0123456789abcdef", 1);
-	printf("\n%d\n", tab->len);
 }
 
 void	ft_tab_decimal(t_print *tab)
 {
-	char	arg;
+	char	*arg;
 
-	arg = va_arg(tab->args, int);
-	tab->len += write(1, &arg, 1);
+	arg = ft_itoa(va_arg(tab->args, int));
+	tab->len += ft_putstr_len(arg);
+	free (arg);
 }

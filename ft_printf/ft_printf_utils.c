@@ -50,3 +50,26 @@ int	ft_putnbr_base(long long int nbr, char *base, int len)
 	ft_putchar(base[nbr]);
 	return (len);
 }
+
+char	*ft_uitoa(unsigned int n)
+{
+	char	*itoa;
+	size_t	len;
+	size_t	l;
+
+	if ((int)n < 0)
+		len = 10;
+	else
+		len = ft_getintsize(n);
+	itoa = ft_calloc(sizeof(char), len + 2);
+	l = 0;
+	if (!itoa)
+		return (0);
+	itoa[0] = '0';
+	while (l < len)
+	{
+		itoa[l++] = (n % 10) + 48;
+		n = n / 10;
+	}
+	return (ft_revstr(itoa));
+}

@@ -38,6 +38,11 @@ int		first_format(t_print *tab, char *string, int position);
 int		second_format(t_print *tab, char *string, int position);
 int		ft_putnbr_base(long long int nbr, char *base, int len);
 
+char	*ft_uitoa(unsigned int n);
+char	*ft_revstr(char *s);
+
+size_t	ft_getintsize(int n);
+
 void	ft_print_tab(t_print *tab, char *string, int position);
 void	ft_tab_char(t_print *tab);
 void	ft_tab_string(t_print *tab);
