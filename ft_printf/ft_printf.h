@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:01:25 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/21 12:28:58 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/29 10:28:00 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		ft_putstr_len(char *str);
 int		get_formatting(t_print *tab, char *string, int position);
 int		first_format(t_print *tab, char *string, int position);
 int		second_format(t_print *tab, char *string, int position);
-int		ft_putnbr_base(long long int nbr, char *base, int len);
+int		ft_putnbr_base(unsigned long int nbr, char *base, int len);
 
 char	*ft_uitoa(unsigned int n);
 char	*ft_revstr(char *s);

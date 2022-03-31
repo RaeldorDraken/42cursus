@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 17:49:18 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/17 12:30:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/29 10:52:14 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,11 @@ int	ft_putstr_len(char *str)
 }
 
 //arg len is used to pass into the recursive function, always start it at 1
-int	ft_putnbr_base(long long int nbr, char *base, int len)
+int	ft_putnbr_base(unsigned long int nbr, char *base, int len)
 {
-	int		bsize;
-	char	*decimal;
+	unsigned long		bsize;
 
-	decimal = "0123456789";
 	bsize = ft_strlen(base);
-	if (nbr < 0 && base == decimal)
-	{
-		len ++;
-		ft_putchar('-');
-		nbr = -nbr;
-	}
 	if (nbr >= bsize)
 		len += ft_putnbr_base(nbr / bsize, base, len);
 	nbr = nbr % bsize;
@@ -64,7 +56,7 @@ char	*ft_uitoa(unsigned int n)
 	itoa = ft_calloc(sizeof(char), len + 2);
 	l = 0;
 	if (!itoa)
-		return (0);
+		return (NULL);
 	itoa[0] = '0';
 	while (l < len)
 	{

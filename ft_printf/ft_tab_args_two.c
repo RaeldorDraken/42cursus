@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 11:43:24 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/21 12:07:25 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/03/29 10:51:09 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_tab_integer(t_print *tab)
 	char	*arg;
 
 	arg = ft_itoa(va_arg(tab->args, int));
+	if (!arg)
+		return ;
 	tab->len += ft_putstr_len(arg);
 	free (arg);
 }
@@ -28,6 +30,8 @@ void	ft_tab_unsigned(t_print *tab)
 
 	argn = va_arg(tab->args, unsigned int);
 	arg = ft_uitoa(argn);
+	if (!arg)
+		return ;
 	tab->len += ft_putstr_len(arg);
 	free (arg);
 }

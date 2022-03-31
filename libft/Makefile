@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:00:26 by eros-gir          #+#    #+#              #
-#    Updated: 2022/03/10 16:42:11 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/03/17 12:32:23 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ $(NAME):
 	gcc -Wall -Wextra -Werror -c $(SRC)
 	ar rc $(NAME) $(SRC2)
 clean:
-	/bin/rm -f *.o
+	/bin/rm -f $(SRC2)
 
 fclean: clean
 	/bin/rm -f $(NAME)
