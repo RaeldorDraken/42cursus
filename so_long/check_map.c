@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/12 11:48:27 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:18:05 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,4 @@ int	check_map(char *filename)
 		return (errorno);
 	free(map);
 	return (0);
-}
-
-int	main(int ac, char **av)
-{
-	int	errorno;
-
-	if (ac < 2)
-	{
-		printf("No map argument given!\n");
-		return (1);
-	}
-	errorno = check_map(av[1]);
-	if (errorno < 0)
-	{
-		error_handle(errorno);
-		return (1);
-	}
 }

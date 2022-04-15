@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/12 11:34:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/04/15 11:56:24 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,46 @@ int	check_walls(char **map, int count)
 	return (0);
 }
 
+int	check_conditions2(char **map, int height)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < height)
+	{
+		while (j < ((int)ft_strlen(map[i]) - 1))
+		{
+			if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'P' ||
+			map[i][j] == 'C' || map[i][j] == 'E')
+				j ++;
+			else
+				return (0);
+		}
+		j = 0;
+		i ++;
+	}
+	return (1);
+}
+
 int	check_conditions(char **map, int height)
 {
 	int	i;
 	int	pl;
 	int	co;
-	int	ex;
 
 	i = -1;
 	pl = 0;
 	co = 0;
-	ex = 0;
+	if (!check_conditions2(map, height))
+		return (-3);
 	while (++i < height)
 	{
-		pl += ft_strchk(map[i], 'P');
+		pl += ft_strchk(map[i], 'P') + ft_strchk(map[i], 'E');
 		co += ft_strchk(map[i], 'C');
-		ex += ft_strchk(map[i], 'E');
 	}
-	if (pl != 1 || co == 0 || ex != 1)
+	if (pl != 2 || co == 0)
 		return (-3);
 	return (0);
 }
@@ -95,6 +117,8 @@ void	error_handle(int number)
 		printf("\tThere is a gap on at least one side!");
 	else if (number == -3)
 		printf("\tThe player/collectible/exit condition is not met!");
+	else if (number == -5)
+		printf("\tNo map argument given!");
 	else
 		printf("\tUNDEFINED ERROR!");
 	printf("\n");

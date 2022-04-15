@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/05 13:09:00 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/04/15 12:27:35 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,36 @@ void	draw_gradient(t_data *data, int w, int h)
 
 //void	draw_circle(t_data *data, int x, int y, int rad, int color)
 
-int	main(void)
+int	check_filename(char *str)
 {
-	void	*mlxptr;
-	void	*mlx_win;
-	t_data	img;
+	char	*chks;
+	char	*cmps;
+	int		len;
 
-	mlxptr = mlx_init();
-	mlx_win = mlx_new_window(mlxptr, 1280, 720, "TEST WINDOW");
-	img.img = mlx_new_image(mlxptr, 1280, 720);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.linelen, &img.endian);
-	draw_gradient(&img, 1280, 720);
-	draw_square(&img, 640, 360, 64, 64, 0x00FF0000);
-	mlx_put_image_to_window(mlxptr, mlx_win, img.img, 0, 0);
-	mlx_loop(mlxptr);
+	cmps = ".ber";
+	len = ft_strlen(str);
+	chks = ft_substr(str, len - 4, len);
+	if (ft_strncmp(chks, cmps, 5))
+		return (-5);
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	int	errorno;
+
+	if (ac < 2)
+	{
+		error_handle(-5);
+		return (1);
+	}
+	else
+		errorno = check_filename(av[1]);
+	if (errorno == 0)
+		errorno = check_map(av[1]);
+	if (errorno < 0)
+	{
+		error_handle(errorno);
+		return (1);
+	}
 }
