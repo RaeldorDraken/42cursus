@@ -38,7 +38,7 @@ void	print_bits(unsigned char octet)
 
 int	main(void)
 {
-	int i = 209;
+	int i = 170;
 	printf("Input: %d\n", i);
 	printf("Original: \n");
 	print_bits(i);
