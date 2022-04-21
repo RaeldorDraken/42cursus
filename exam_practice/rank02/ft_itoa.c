@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,43 +10,76 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<unistd.h>
 #include<stdio.h>
+#include<stdlib.h>
 
-unsigned char	reverse_bits(unsigned char b)
+int	ft_numlen(int n)
 {
-	b =  (b & 0xF0) >> 4 | (b & 0x0F) << 4;
-	b =  (b & 0xCC) >> 2 | (b & 0x33) << 2;
-	b =  (b & 0xAA) >> 1 | (b & 0x55) << 1;
-	return (b);
-}
+	int len;
 
-unsigned char	swap_bits(unsigned char b)
-{
-	return ((b >> 4) | (b << 4));
-}
-
-void	print_bits(unsigned char octet)
-{
-	int	i = 256;
-	while (i >>= 1)
+	len = 1;
+	if (n < 0)
 	{
-		if (octet & i)
-			write(1, "1", 1);
-		else
-			write(1, "0", 1);
+		n *= -1;
+		len ++;
 	}
+	while (n >= 10)
+	{
+		len ++;
+		n /= 10;
+	}
+	return (len);
+}
+
+int	ft_pwr(int pwr)
+{
+	int	i;
+
+	i = 1;
+	if (pwr == 1)
+		return (1);
+	while (pwr > 1)
+	{
+		i *= 10;
+		pwr --;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*sr;
+	int		i;
+	int		len;
+	int		len2;
+
+	i = 0;
+	len = ft_numlen(n);
+	len2 = len;
+	sr = malloc(sizeof(char) * (len + 1));
+	if (!sr)
+		return (NULL);
+	if (n < 0)
+	{
+		n *= -1;
+		sr[i] = '-';
+		i ++;
+		len --;
+	}
+	while (i < len2)
+	{
+		sr[i] =  ((n / ft_pwr(len)) % 10) + '0';
+		len --;
+		i ++;
+	}
+	sr[++i] = '\0';
+	return (sr);
 }
 
 int	main(void)
 {
-	int i = 170;
-	printf("Input: %d\n", i);
-	printf("Original: \n");
-	print_bits(i);
-	printf("\nSwap: \n");
-	print_bits(swap_bits(i));
-	printf("\nReverse: \n");
-	print_bits(reverse_bits(i));
-	printf("\n");
+	int n = -4321598;
+
+	printf("number: %d\nstring: %s\n", n, ft_itoa(n));
+	return (0);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bitwise.c                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,43 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<unistd.h>
 #include<stdio.h>
 
-unsigned char	reverse_bits(unsigned char b)
+int	ft_atoi(const char *str)
 {
-	b =  (b & 0xF0) >> 4 | (b & 0x0F) << 4;
-	b =  (b & 0xCC) >> 2 | (b & 0x33) << 2;
-	b =  (b & 0xAA) >> 1 | (b & 0x55) << 1;
-	return (b);
-}
+	int	i;
+	int	sign;
+	int result;
 
-unsigned char	swap_bits(unsigned char b)
-{
-	return ((b >> 4) | (b << 4));
-}
-
-void	print_bits(unsigned char octet)
-{
-	int	i = 256;
-	while (i >>= 1)
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (str[i] < 32)
+		i ++;
+	if (str[i] == '-')
 	{
-		if (octet & i)
-			write(1, "1", 1);
-		else
-			write(1, "0", 1);
+		sign = -1;
+		i ++;
 	}
+	else if (str[i] == '+')
+		i ++;
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		result = (result * 10) + (str[i] - 48);
+		i ++;
+	}
+	return (sign * result);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
-	int i = 170;
-	printf("Input: %d\n", i);
-	printf("Original: \n");
-	print_bits(i);
-	printf("\nSwap: \n");
-	print_bits(swap_bits(i));
-	printf("\nReverse: \n");
-	print_bits(reverse_bits(i));
+	if (ac == 2)
+		printf("String: %s\nNumber: %d\n", av[1], ft_atoi(av[1]));
 	printf("\n");
+	return (0);
 }
