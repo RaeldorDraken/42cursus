@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/15 12:27:35 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/04/26 12:51:16 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_square(t_data *data, int x, int y, int w, int h, int color)
 {
-	int startx;
+	int	startx;
 
 	startx = x;
 	w = w + x;
@@ -36,14 +36,15 @@ void	draw_gradient(t_data *data, int w, int h)
 	int	color;
 	int	x;
 	int	y;
+	int	alpha = 255;
 	int	red = 0;
 	int	green = 0;
 	int	blue = 0;
 
-	color = rgbencode(red, green, blue);
+	color = rgbencode(alpha, red, green, blue);
 	x = 0;
 	y = 0;
-	while(x < w)
+	while (x < w)
 	{
 		while (y < h)
 		{
@@ -54,12 +55,10 @@ void	draw_gradient(t_data *data, int w, int h)
 		green ++;
 		blue ++;
 		y = 0;
-		color = rgbencode(red, green, blue);
+		color = rgbencode(alpha, red, green, blue);
 		x ++;
 	}
 }
-
-//void	draw_circle(t_data *data, int x, int y, int rad, int color)
 
 int	check_filename(char *str)
 {
@@ -77,7 +76,11 @@ int	check_filename(char *str)
 
 int	main(int ac, char **av)
 {
-	int	errorno;
+	int		errorno;
+	void	*mlx;
+	void	*mlx_window;
+	t_data	surface;
+	t_vars	vars;
 
 	if (ac < 2)
 	{
@@ -93,4 +96,15 @@ int	main(int ac, char **av)
 		error_handle(errorno);
 		return (1);
 	}
+	mlx = mlx_init();
+	vars.mlx = mlx;
+	mlx_window = mlx_new_window(mlx, 1920, 1080, "so_long");
+	vars.win = mlx_window;
+	surface.img = mlx_new_image(mlx, 1920, 1080);
+	surface.addr = mlx_get_data_addr(surface.img, &surface.bpp,
+			&surface.linelen, &surface.endian);
+	draw_square(&surface, 930, 510, 60, 60, rgbencode(0, 255, 0, 0));
+	mlx_put_image_to_window(mlx, mlx_window, surface.img, 0, 0);
+	mlx_hook(vars.win, 2, 1L<<0, exit_game, &vars);
+	mlx_loop(mlx);
 }

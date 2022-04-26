@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:13:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/12 11:49:44 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/04/26 10:53:15 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,20 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	rgbencode(uint8_t red, uint8_t green, uint8_t blue)
+int	rgbencode(int alpha, int red, int green, int blue)
 {
-	return (red << 16 | green << 8 | blue);
+	return (alpha << 24 | red << 16 | green << 8 | blue);
+}
+
+int	rgbdecode(char type, int value)
+{
+	if (type == 'a')
+		return ((value >> 24) & 0xFF);
+	else if (type == 'r')
+		return ((value >> 16) & 0xFF);
+	else if (type == 'g')
+		return ((value >> 8) & 0xFF);
+	else if (type == 'b')
+		return (value & 0xFF);
+	return (-1);
 }
