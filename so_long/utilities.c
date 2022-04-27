@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:13:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/26 10:53:15 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/04/27 10:20:30 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	ft_strchk(char *s, int c)
 	return (result);
 }	
 
-void	put_pixel(t_data *data, int x, int y, int color)
+void	put_pixel(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->linelen + x * (data->bpp / 8));
+	dst = vars->addr + (y * vars->linelen + x * (vars->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 

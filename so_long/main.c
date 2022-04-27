@@ -6,13 +6,13 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/26 12:51:16 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/04/27 12:49:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"utilslib.h"
 
-void	draw_square(t_data *data, int x, int y, int w, int h, int color)
+void	draw_square(t_vars *vars, int x, int y, int w, int h, int color)
 {
 	int	startx;
 
@@ -23,7 +23,7 @@ void	draw_square(t_data *data, int x, int y, int w, int h, int color)
 	{
 		while (x < w)
 		{
-			put_pixel(data, x, y, color);
+			put_pixel(vars, x, y, color);
 			x ++;
 		}
 		x = startx;
@@ -31,7 +31,7 @@ void	draw_square(t_data *data, int x, int y, int w, int h, int color)
 	}		
 }
 
-void	draw_gradient(t_data *data, int w, int h)
+void	draw_gradient(t_vars *vars, int w, int h)
 {
 	int	color;
 	int	x;
@@ -48,7 +48,7 @@ void	draw_gradient(t_data *data, int w, int h)
 	{
 		while (y < h)
 		{
-			put_pixel(data, x, y, color);
+			put_pixel(vars, x, y, color);
 			y ++;
 		}
 		red ++;
@@ -77,9 +77,6 @@ int	check_filename(char *str)
 int	main(int ac, char **av)
 {
 	int		errorno;
-	void	*mlx;
-	void	*mlx_window;
-	t_data	surface;
 	t_vars	vars;
 
 	if (ac < 2)
@@ -96,15 +93,14 @@ int	main(int ac, char **av)
 		error_handle(errorno);
 		return (1);
 	}
-	mlx = mlx_init();
-	vars.mlx = mlx;
-	mlx_window = mlx_new_window(mlx, 1920, 1080, "so_long");
-	vars.win = mlx_window;
-	surface.img = mlx_new_image(mlx, 1920, 1080);
-	surface.addr = mlx_get_data_addr(surface.img, &surface.bpp,
-			&surface.linelen, &surface.endian);
-	draw_square(&surface, 930, 510, 60, 60, rgbencode(0, 255, 0, 0));
-	mlx_put_image_to_window(mlx, mlx_window, surface.img, 0, 0);
-	mlx_hook(vars.win, 2, 1L<<0, exit_game, &vars);
-	mlx_loop(mlx);
+	vars.mlx = mlx_init();
+	vars.plx = 64;
+	vars.ply = 64;
+	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "so_long");
+	vars.img = mlx_new_image(vars.mlx, 1920, 1080);
+	vars.addr = mlx_get_data_addr(vars.img, &vars.bpp,
+			&vars.linelen, &vars.endian);
+	mlx_loop_hook(vars.mlx, render_frame, &vars);
+	mlx_hook(vars.win, 2, 1L<<0, key_inputs, &vars);
+	mlx_loop(vars.mlx);
 }
