@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:13:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/27 10:20:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:27:29 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,23 @@ int	ft_strchk(char *s, int c)
 	return (result);
 }	
 
-void	put_pixel(t_vars *vars, int x, int y, int color)
+int	check_filename(char	*str)
 {
-	char	*dst;
+	char	*chks;
+	char	*cmps;
+	int		len;
 
-	dst = vars->addr + (y * vars->linelen + x * (vars->bpp / 8));
-	*(unsigned int *)dst = color;
+	cmps = ".ber";
+	len = ft_strlen(str);
+	chks = ft_substr(str, len -4, len);
+	if (ft_strncmp(chks, cmps, 5))
+		return (-5);
+	return (0);
 }
 
-int	rgbencode(int alpha, int red, int green, int blue)
+int	check_tile(char c)
 {
-	return (alpha << 24 | red << 16 | green << 8 | blue);
-}
-
-int	rgbdecode(char type, int value)
-{
-	if (type == 'a')
-		return ((value >> 24) & 0xFF);
-	else if (type == 'r')
-		return ((value >> 16) & 0xFF);
-	else if (type == 'g')
-		return ((value >> 8) & 0xFF);
-	else if (type == 'b')
-		return (value & 0xFF);
-	return (-1);
+	if (c == '1')
+		return (1);
+	return (0);
 }

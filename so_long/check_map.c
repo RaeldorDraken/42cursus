@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/15 12:18:05 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:29:57 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,28 @@ char	**map_buffer(char *filename, int height)
 //	-1 error in check_size.
 //	-2 error in side walls.
 //	-3 error in player/exit/collectible count.
-int	check_map(char *filename)
+int	check_map(char *filename, t_vars *vars)
 {
-	int		height;
 	int		fd;
 	int		errorno;
-	char	**map;
 
 	fd = open(filename, O_RDONLY);
 	errorno = 0;
 	if (!fd)
 		return (-4);
-	height = check_size(fd);
+	vars->maph = check_size(fd);
 	close(fd);
-	if (height < 0)
+	if (vars->maph < 0)
 		return (-1);
-	map = map_buffer(filename, height);
-	if (!map)
+	vars->level = map_buffer(filename, vars->maph);
+	if (!vars->level)
 		return (-4);
-	errorno = check_walls(map, height);
+	errorno = check_walls(vars->level, vars->maph);
 	if (errorno < 0)
 		return (errorno);
-	errorno = check_conditions(map, height);
+	errorno = check_conditions(vars->level, vars->maph);
 	if (errorno < 0)
 		return (errorno);
-	free(map);
+	vars->mapw = ft_strlen(vars->level[0]) - 1;
 	return (0);
 }

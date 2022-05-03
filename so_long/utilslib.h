@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:14:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/27 11:48:09 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/03 12:27:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,23 @@ typedef struct s_vars {
 	int		endian;
 	int		plx;
 	int		ply;
+	char	**level;
+	int		mapw;
+	int		maph;
+	void	**spr;
 }	t_vars;
 
 int		render_frame(t_vars *vars);
-void	put_pixel(t_vars *vars, int x, int y, int color);
-int		rgbencode(int alpha, int red, int green, int blue);
-int		rgbdecode(char type, int value);
 char	*get_next_line(int fd);
 int		ft_strchk(char *s, int c);
 int		check_conditions(char **map, int height);
-int		check_map(char *filename);
+int		check_filename(char *str);
+int		check_map(char *filename, t_vars *vars);
 char	**map_buffer(char *filename, int height);
 int		check_walls(char **map, int count);
 int		check_size(int fd);
 void	error_handle(int number);
 int		key_inputs(int keycode, t_vars *vars);
-void	draw_square(t_vars *vars, int x, int y, int w, int h, int color);
+int		check_tile(char c);
 
 #endif
