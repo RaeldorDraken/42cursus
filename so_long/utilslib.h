@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:14:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/03 12:27:37 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/04 12:32:40 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ typedef struct s_vars {
 	void	*win;
 	void	*img;
 	char	*addr;
+	int		plx;
+	int		ply;
 	int		bpp;
 	int		linelen;
 	int		endian;
-	int		plx;
-	int		ply;
 	char	**level;
 	int		mapw;
 	int		maph;
@@ -46,5 +46,9 @@ int		check_size(int fd);
 void	error_handle(int number);
 int		key_inputs(int keycode, t_vars *vars);
 int		check_tile(char c);
+int		destroy_mlx(t_vars *vars);
+int		move_player(t_vars *vars, int keycode);
+int		move_player2(t_vars *vars, int keycode);
+void	swap_tiles(t_vars *vars, int y, int x);
 
 #endif

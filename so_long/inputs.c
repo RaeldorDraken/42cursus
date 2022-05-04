@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/03 12:28:37 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/04 12:12:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,43 @@ int	key_inputs(int keycode, t_vars *vars)
 {
 	if (keycode == 53)
 	{	
-		free(vars->level);
-		mlx_destroy_window(vars->mlx, vars->win);
+		destroy_mlx(vars);
 	}
-	else if (keycode == 2)
-		vars->plx += 64;
-	else if (keycode == 0)
-		vars->plx -= 64;
-	else if (keycode == 1)
-		vars->ply += 64;
-	else if (keycode == 13)
-		vars->ply -= 64;
-	else
-	{
-		printf("KeyPressed %d\n", keycode);
-		printf("x:%d y:%d\n", vars->plx, vars->ply);
-	}
+	else if ((keycode >= 0 && keycode <= 2) || keycode == 13)
+		move_player(vars, keycode);
 	return (0);
+}
+
+int	destroy_mlx(t_vars *vars)
+{
+	free(vars->level);
+	free(vars->spr);
+	mlx_destroy_window(vars->mlx, vars->win);
+	exit(0);
+	return (0);
+}
+
+void	redraw_level(t_vars *vars, int tile_x, int tile_y)
+{
+	if (check_tile(vars->level[tile_y / 64][tile_x / 64]) == 4)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[4],
+			tile_x, tile_y);
+	else if (check_tile(vars->level[tile_y / 64][tile_x / 64]) == 2)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[2],
+			tile_x, tile_y);
+	else
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[0],
+			tile_x, tile_y);
+	if (check_tile(vars->level[tile_y / 64][tile_x / 64]) == 1)
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[1],
+			tile_x, tile_y);
+		vars->plx = tile_x / 64;
+		vars->ply = tile_y / 64;
+	}
+	if (check_tile(vars->level[tile_y / 64][tile_x / 64]) == 3)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[3],
+			tile_x, tile_y);
 }
 
 int	render_frame(t_vars *vars)
@@ -46,14 +66,7 @@ int	render_frame(t_vars *vars)
 		tile_x = 0;
 		while (tile_x < (vars->mapw * 64))
 		{
-			if (check_tile(vars->level[tile_y / 64][tile_x / 64]))
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[2],
-					tile_x, tile_y);
-			else
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[0],
-					tile_x, tile_y);
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[1],
-				vars->plx, vars->ply);
+			redraw_level(vars, tile_x, tile_y);
 			tile_x += 64;
 		}
 		tile_y += 64;
