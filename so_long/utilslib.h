@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:14:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/04 12:32:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:14:39 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef struct s_vars {
 	int		mapw;
 	int		maph;
 	void	**spr;
+	int		movcount;
+	int		score;
+	char	ppos;
 }	t_vars;
 
 int		render_frame(t_vars *vars);

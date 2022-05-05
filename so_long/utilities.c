@@ -6,29 +6,11 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:13:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/04 12:34:35 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:50:47 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"utilslib.h"
-
-int	ft_strchk(char *s, int c)
-{
-	int	l;
-	int	i;
-	int	result;
-
-	l = ft_strlen(s)-1;
-	i = 0;
-	result = 0;
-	while (i < l)
-	{
-		if (s[i] == c)
-			result ++;
-		i ++;
-	}
-	return (result);
-}	
 
 //Checktile returns:
 //return 0 = empty tile;
@@ -54,8 +36,22 @@ int	check_tile(char c)
 
 void	swap_tiles(t_vars *vars, int y, int x)
 {
+	if (vars->level[y][x] == 'C')
+		vars->score ++;
+	else if (vars->level[y][x] == 'E' && vars->score <= 0)
+		destroy_mlx(vars);
+	if (vars->ppos == 'E')
+		vars->level[vars->ply][vars->plx] = 'E';
+	else
+		vars->level[vars->ply][vars->plx] = '0';
+	if (vars->level[y][x] == 'E')
+		vars->ppos = vars->level[y][x];
+	else
+		vars->ppos = '0';
 	vars->level[y][x] = 'P';
-	vars->level[vars->ply][vars->plx] = '0';
+	vars->movcount ++;
+	ft_putnbr_fd(vars->movcount, 1);
+	write(1, "\n", 1);
 }
 
 int	move_player2(t_vars *vars, int keycode)

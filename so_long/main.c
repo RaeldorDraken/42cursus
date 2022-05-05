@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/04 12:35:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:36:49 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	set_vars(t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, (vars->mapw * 64), (vars->maph * 64));
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bpp,
 			&vars->linelen, &vars->endian);
+	vars->movcount = 0;
+	vars->score = 0;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/15 11:56:24 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:46:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int	check_walls(char **map, int count)
 	{
 		if (i == 0 || i == (count - 1))
 		{
-			if (ft_strchk(map[i], '0') > 0)
+			if ((ft_strchk(map[i], '0') > 0) || (ft_strchk(map[i], 'E') > 0)
+				|| (ft_strchk(map[i], 'P') > 0) || (ft_strchk(map[i], 'C') > 0)
+				|| (ft_strchk(map[i], 'M') > 0))
 				return (-2);
 		}
 		else
@@ -110,17 +112,17 @@ int	check_conditions(char **map, int height)
 //	-3 error in player/exit/collectible count.
 void	error_handle(int number)
 {
-	printf("Error\n");
+	ft_putstr_fd("Error\n", 1);
 	if (number == -1)
-		printf("\tThe map has the incorrect format size!");
+		ft_putstr_fd("\tThe map has the incorrect format size!", 1);
 	else if (number == -2)
-		printf("\tThere is a gap on at least one side!");
+		ft_putstr_fd("\tThere is a gap on at least one side!", 1);
 	else if (number == -3)
-		printf("\tThe player/collectible/exit condition is not met!");
+		ft_putstr_fd("\tThe playable conditions are not met!", 1);
 	else if (number == -5)
-		printf("\tNo map argument given!");
+		ft_putstr_fd("\tNo map argument given!", 1);
 	else
-		printf("\tUNDEFINED ERROR!");
-	printf("\n");
+		ft_putstr_fd("\tUNDEFINED ERROR!", 1);
+	ft_putstr_fd("\n", 1);
 	return ;
 }

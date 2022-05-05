@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/04 12:12:37 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:07:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	key_inputs(int keycode, t_vars *vars)
 		destroy_mlx(vars);
 	}
 	else if ((keycode >= 0 && keycode <= 2) || keycode == 13)
+	{
 		move_player(vars, keycode);
+	}
 	return (0);
 }
 
@@ -61,12 +63,15 @@ int	render_frame(t_vars *vars)
 	int		tile_y;
 
 	tile_y = 0;
+	vars->score = 0;
 	while (tile_y < (vars->maph * 64))
 	{
 		tile_x = 0;
 		while (tile_x < (vars->mapw * 64))
 		{
 			redraw_level(vars, tile_x, tile_y);
+			if (check_tile(vars->level[tile_y / 64][tile_x / 64]) == 3)
+				vars->score ++;
 			tile_x += 64;
 		}
 		tile_y += 64;

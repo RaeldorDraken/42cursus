@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/03 12:29:57 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/05 11:50:12 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,22 @@ int	check_map(char *filename, t_vars *vars)
 		return (errorno);
 	vars->mapw = ft_strlen(vars->level[0]) - 1;
 	return (0);
+}
+
+int	ft_strchk(char *s, int c)
+{
+	int	l;
+	int	i;
+	int	result;
+
+	l = ft_strlen(s) - 1;
+	i = 0;
+	result = 0;
+	while (i < l)
+	{
+		if (s[i] == c)
+			result ++;
+		i ++;
+	}
+	return (result);
 }
