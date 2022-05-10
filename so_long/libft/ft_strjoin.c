@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:08:45 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/07 11:28:06 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/10 12:17:42 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		l1;
 	int		l2;
 	char	*sr;
+	int		secur;
 
 	l1 = -1;
 	l2 = -1;
+	secur = 0;
 	if (!s1)
 	{
 		s1 = ft_calloc(sizeof(char), 2);
 		s1[0] = '\0';
+		secur = 1;
 	}
 	sr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!sr)
@@ -33,6 +36,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++l2])
 		sr[l1 + l2] = s2[l2];
 	sr[l1 + l2] = '\0';
-	free(s1);
+	if (secur)
+		free(s1);
 	return (sr);
 }

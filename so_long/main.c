@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/05 11:36:49 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/10 11:51:11 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	set_sprites(t_vars *vars)
 			&img_width, &img_height);
 	vars->spr[4] = mlx_png_file_to_image(vars->mlx, "./sprites/Ehole.png",
 			&img_width, &img_height);
-	vars->spr[5] = mlx_png_file_to_image(vars->mlx, "./sprites/up_00.png",
+	vars->spr[5] = mlx_png_file_to_image(vars->mlx, "./sprites/mine_0.png",
 			&img_width, &img_height);
 }
 

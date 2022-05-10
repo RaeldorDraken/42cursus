@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/10 12:27:21 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/10 12:29:49 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	check_conditions2(char **map, int height)
 		while (j < ((int)ft_strlen(map[i]) - 1))
 		{
 			if (map[i][j] == '1' || map[i][j] == '0' || map[i][j] == 'P' ||
-			map[i][j] == 'C' || map[i][j] == 'E')
+			map[i][j] == 'C' || map[i][j] == 'E' || map[i][j] == 'M')
 				j ++;
 			else
 				return (0);
