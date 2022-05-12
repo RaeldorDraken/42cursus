@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/31 10:39:30 by eros-gir          #+#    #+#              #
-#    Updated: 2022/05/10 13:51:34 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/05/12 12:11:01 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ NAME = so_long
 SRC = main.c utilities.c inputs.c check_map.c get_next_line.c check_errors.c
 SRC2 = main.o utilities.o inputs.o check_map.o get_next_line.o check_errors.o
 SRCB = main.c utilities_bonus.c inputs_bonus.c check_map.c get_next_line.c \
-check_errors_bonus.c
+check_errors_bonus.c utilities2_bonus.c
 SRCB2 = main.o utilities_bonus.o inputs_bonus.o check_map.o get_next_line.o \
-check_errors_bonus.o
+check_errors_bonus.o utilities2_bonus.o
 
 GC = gcc -Wall -Wextra -Werror
 AR = ar rcs

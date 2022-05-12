@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:14:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/05 11:14:39 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/12 13:18:43 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct s_vars {
 	int		movcount;
 	int		score;
 	char	ppos;
+	int		frame;
+	int		fps;
+	char	*pdir;
+	int		edir;
 }	t_vars;
 
 int		render_frame(t_vars *vars);
@@ -53,5 +57,11 @@ int		destroy_mlx(t_vars *vars);
 int		move_player(t_vars *vars, int keycode);
 int		move_player2(t_vars *vars, int keycode);
 void	swap_tiles(t_vars *vars, int y, int x);
+void	frame_cycle(t_vars *vars);
+void	animate_frame(char *filename, t_vars *vars, int obj);
+void	bonus_operators(t_vars *vars, char *movstr);
+void	enemymove(t_vars *vars);
+void	swap_tiles2(t_vars *vars, int y, int x);
+void	swap_tiles3(t_vars *vars, int y, int x);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/10 11:51:11 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/12 12:32:48 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,16 @@ int	set_vars(t_vars *vars)
 	if (!vars->spr)
 		return (0);
 	set_sprites(vars);
-	vars->win = mlx_new_window(vars->mlx, (vars->mapw * 64),
-			(vars->maph * 64), "so_long");
-	vars->img = mlx_new_image(vars->mlx, (vars->mapw * 64), (vars->maph * 64));
+	vars->win = mlx_new_window(vars->mlx, (vars->mapw * 63),
+			(vars->maph * 63), "so_long");
+	vars->img = mlx_new_image(vars->mlx, (vars->mapw * 63), (vars->maph * 63));
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bpp,
 			&vars->linelen, &vars->endian);
 	vars->movcount = 0;
 	vars->score = 0;
+	vars->frame = 0;
+	vars->fps = 8;
+	vars->pdir = "up_0";
 	return (1);
 }
 

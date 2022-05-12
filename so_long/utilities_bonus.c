@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:13:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/10 12:21:07 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/12 13:16:36 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,27 @@ int	move_player(t_vars *vars, int keycode)
 			return (0);
 	}
 	return (0);
+}
+
+//put the filename up until the number that changes.
+//obj is the sprite group used
+//1 is the player
+//3 is the coin
+//5 is the enemy
+void	animate_frame(char *filename, t_vars *vars, int obj)
+{
+	char	*sprite;
+	int		img_width;
+	int		img_height;
+
+	if (obj == 1)
+	{
+		sprite = ft_strjoin(filename, vars->pdir);
+		sprite = ft_strjoin(sprite, ft_itoa(vars->frame));
+	}
+	else
+		sprite = ft_strjoin(filename, ft_itoa(vars->frame));
+	sprite = ft_strjoin(sprite, ".png");
+	vars->spr[obj] = mlx_png_file_to_image(vars->mlx, sprite, &img_width,
+			&img_height);
 }
