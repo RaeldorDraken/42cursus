@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/12 12:32:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:32:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	set_vars(t_vars *vars)
 	vars->frame = 0;
 	vars->fps = 8;
 	vars->pdir = "up_0";
+	vars->eframe = 401;
 	return (1);
 }
 

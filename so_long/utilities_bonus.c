@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:13:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/12 13:16:36 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:32:38 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,30 @@ int	check_tile(char c)
 	return (0);
 }
 
+void	bonus_operators(t_vars *vars, char *movstr)
+{
+	frame_cycle(vars);
+	animate_frame("./sprites/", vars, 1);
+	animate_frame("./sprites/coin_", vars, 3);
+	animate_frame("./sprites/mine_", vars, 5);
+	mlx_string_put(vars->mlx, vars->win, 31, 31, 0x00C00000, movstr);
+	enemymove(vars);
+}
+
 void	swap_tiles(t_vars *vars, int y, int x)
 {
 	if (vars->level[y][x] == 'C')
 		vars->score ++;
-	else if ((vars->level[y][x] == 'E' && vars->score <= 0)
-		|| vars->level[y][x] == 'M')
+	else if (vars->level[y][x] == 'E' && vars->score <= 0)
+	{
+		ft_putstr_fd("Congratulations! You got all the coins!\nSo long!\n", 1);
 		destroy_mlx(vars);
+	}
+	else if (vars->level[y][x] == 'M')
+	{
+		ft_putstr_fd("Game Over! A mine exploded you! :(\n", 1);
+		destroy_mlx(vars);
+	}
 	if (vars->ppos == 'E')
 		vars->level[vars->ply][vars->plx] = 'E';
 	else

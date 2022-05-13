@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:14:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/12 13:18:43 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:15:15 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_vars {
 	int		fps;
 	char	*pdir;
 	int		edir;
+	int		eframe;
 }	t_vars;
 
 int		render_frame(t_vars *vars);
@@ -61,7 +62,8 @@ void	frame_cycle(t_vars *vars);
 void	animate_frame(char *filename, t_vars *vars, int obj);
 void	bonus_operators(t_vars *vars, char *movstr);
 void	enemymove(t_vars *vars);
-void	swap_tiles2(t_vars *vars, int y, int x);
-void	swap_tiles3(t_vars *vars, int y, int x);
+int		swap_tiles2(t_vars *vars, int y, int x);
+int		swap_tiles3(t_vars *vars, int y, int x);
+void	change_edir(t_vars *vars, int mode);
 
 #endif
