@@ -38,6 +38,7 @@ typedef struct s_vars {
 	int		frame;
 	int		fps;
 	char	*pdir;
+	int		pdup;
 	int		edir;
 	int		eframe;
 }	t_vars;

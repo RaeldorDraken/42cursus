@@ -47,12 +47,14 @@ void	redraw_level(t_vars *vars, int tile_x, int tile_y)
 	else
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[0],
 			tile_x, tile_y);
-	if (check_tile(vars->level[tile_y / 63][tile_x / 63]) == 1)
+	if (check_tile(vars->level[tile_y / 63][tile_x / 63]) == 1
+		&& vars->pdup == 0)
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[1],
 			tile_x, tile_y);
 		vars->plx = tile_x / 63;
 		vars->ply = tile_y / 63;
+		vars->pdup = 1;
 	}
 	if (check_tile(vars->level[tile_y / 63][tile_x / 63]) == 3)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->spr[3],
@@ -78,5 +80,6 @@ int	render_frame(t_vars *vars)
 		}
 		tile_y += 63;
 	}
+	vars->pdir == 1;
 	return (0);
 }

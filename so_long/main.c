@@ -51,6 +51,7 @@ int	set_vars(t_vars *vars)
 	vars->fps = 8;
 	vars->pdir = "up_0";
 	vars->eframe = 401;
+	vars->pdup = 0;
 	return (1);
 }
 

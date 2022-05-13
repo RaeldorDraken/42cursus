@@ -53,7 +53,10 @@ int	check_map(char *filename, t_vars *vars)
 	fd = open(filename, O_RDONLY);
 	errorno = 0;
 	if (!fd)
+	{
+		close(fd);
 		return (-4);
+	}
 	vars->maph = check_size(fd);
 	close(fd);
 	if (vars->maph < 0)
