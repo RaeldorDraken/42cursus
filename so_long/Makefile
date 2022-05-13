@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/31 10:39:30 by eros-gir          #+#    #+#              #
-#    Updated: 2022/05/12 12:11:01 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/05/13 13:31:35 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRCB = main.c utilities_bonus.c inputs_bonus.c check_map.c get_next_line.c \
 check_errors_bonus.c utilities2_bonus.c
 SRCB2 = main.o utilities_bonus.o inputs_bonus.o check_map.o get_next_line.o \
 check_errors_bonus.o utilities2_bonus.o
+HDRS = utilslib.h ./libft/libft.h ./minilibx/mlx.h
 
 GC = gcc -Wall -Wextra -Werror
 AR = ar rcs
@@ -34,7 +35,7 @@ OBJSB = $(SRCB:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HDRS)
 	make -C $(LIBFTDIR)
 	make -C $(MLXDIR)
 	cp $(MLXDIR)/libmlx.dylib .
@@ -52,7 +53,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(OBJSB)
+bonus: $(OBJSB) $(HDRS)
 	make -C $(LIBFTDIR)
 	make -C $(MLXDIR)
 	cp $(MLXDIR)/libmlx.dylib .

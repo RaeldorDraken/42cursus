@@ -6,11 +6,21 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/13 10:44:14 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/13 13:10:54 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"utilslib.h"
+
+void	bonus_operators(t_vars *vars, char *movstr)
+{
+	frame_cycle(vars);
+	animate_frame("./sprites/", vars, 1);
+	animate_frame("./sprites/coin_", vars, 3);
+	animate_frame("./sprites/mine_", vars, 5);
+	mlx_string_put(vars->mlx, vars->win, 31, 31, 0x00C00000, movstr);
+	enemymove(vars);
+}
 
 int	key_inputs(int keycode, t_vars *vars)
 {	

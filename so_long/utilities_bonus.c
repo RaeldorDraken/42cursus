@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:13:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/13 11:32:38 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/13 13:29:07 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,6 @@ int	check_tile(char c)
 	else if (c == 'M')
 		return (5);
 	return (0);
-}
-
-void	bonus_operators(t_vars *vars, char *movstr)
-{
-	frame_cycle(vars);
-	animate_frame("./sprites/", vars, 1);
-	animate_frame("./sprites/coin_", vars, 3);
-	animate_frame("./sprites/mine_", vars, 5);
-	mlx_string_put(vars->mlx, vars->win, 31, 31, 0x00C00000, movstr);
-	enemymove(vars);
 }
 
 void	swap_tiles(t_vars *vars, int y, int x)
