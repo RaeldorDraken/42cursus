@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/14 17:13:15 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/14 18:34:05 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ int	destroy_mlx(t_vars *vars)
 {
 	int	i;
 
-//	i = -1;
-//	while (vars->spr[++i])
-//		free(vars->spr[i]);
 	i = -1;
 	while (vars->level[++i])
 		free(vars->level[i]);
