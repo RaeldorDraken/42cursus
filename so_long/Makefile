@@ -6,19 +6,23 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/31 10:39:30 by eros-gir          #+#    #+#              #
-#    Updated: 2022/05/13 13:31:35 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/05/14 15:56:57 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRC = main.c utilities.c inputs.c check_map.c get_next_line.c check_errors.c
-SRC2 = main.o utilities.o inputs.o check_map.o get_next_line.o check_errors.o
-SRCB = main.c utilities_bonus.c inputs_bonus.c check_map.c get_next_line.c \
-check_errors_bonus.c utilities2_bonus.c
-SRCB2 = main.o utilities_bonus.o inputs_bonus.o check_map.o get_next_line.o \
-check_errors_bonus.o utilities2_bonus.o
-HDRS = utilslib.h ./libft/libft.h ./minilibx/mlx.h
+SRC = ./src/main.c ./src/utilities.c ./src/inputs.c ./src/check_map.c \
+./src/get_next_line.c ./src/check_errors.c
+SRC2 = ./src/main.o ./src/utilities.o ./src/inputs.o ./src/check_map.o \
+./src/get_next_line.o ./src/check_errors.o
+SRCB = ./src/main.c ./src/utilities_bonus.c ./src/inputs_bonus.c \
+./src/check_map.c ./src/get_next_line.c ./src/check_errors_bonus.c \
+./src/utilities2_bonus.c
+SRCB2 = ./src/main.o ./src/utilities_bonus.o ./src/inputs_bonus.o \
+./src/check_map.o ./src/get_next_line.o ./src/check_errors_bonus.o \
+./src/utilities2_bonus.o
+HDRS = ./src/utilslib.h ./libft/libft.h ./minilibx/mlx.h
 
 GC = gcc -Wall -Wextra -Werror
 AR = ar rcs

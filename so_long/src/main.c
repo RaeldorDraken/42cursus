@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/13 11:32:37 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/14 18:20:14 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ int	check_filename(char *str)
 	len = ft_strlen(str);
 	chks = ft_substr(str, len -4, len);
 	if (ft_strncmp(chks, cmps, 5))
+	{	
+		free(chks);
 		return (-5);
+	}
+	free(chks);
 	return (0);
 }
 

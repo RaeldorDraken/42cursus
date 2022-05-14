@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:13:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/13 13:29:07 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/14 18:23:19 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,13 @@ void	animate_frame(char *filename, t_vars *vars, int obj)
 
 	if (obj == 1)
 	{
-		sprite = ft_strjoin(filename, vars->pdir);
-		sprite = ft_strjoin(sprite, ft_itoa(vars->frame));
+		sprite = ft_joinloc(filename, vars->pdir);
+		sprite = ft_joinloc(sprite, ft_itoa(vars->frame));
 	}
 	else
-		sprite = ft_strjoin(filename, ft_itoa(vars->frame));
-	sprite = ft_strjoin(sprite, ".png");
+		sprite = ft_joinloc(filename, ft_itoa(vars->frame));
+	sprite = ft_joinloc(sprite, ft_strdup(".png"));
 	vars->spr[obj] = mlx_png_file_to_image(vars->mlx, sprite, &img_width,
 			&img_height);
+	free(sprite);
 }

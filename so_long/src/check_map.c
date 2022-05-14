@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/05 11:50:12 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/14 17:48:48 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ char	**map_buffer(char *filename, int height)
 	map = ft_calloc(sizeof(char *), height);
 	fd = open(filename, O_RDONLY);
 	if (!map)
-	{
-		free(map);
 		return (NULL);
-	}
 	while (i < height)
 	{
 		map[i] = get_next_line(fd);
@@ -52,7 +49,7 @@ int	check_map(char *filename, t_vars *vars)
 
 	fd = open(filename, O_RDONLY);
 	errorno = 0;
-	if (!fd)
+	if (fd < 0)
 	{
 		close(fd);
 		return (-4);

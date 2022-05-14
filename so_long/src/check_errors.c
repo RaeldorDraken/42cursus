@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/10 12:27:21 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/14 18:29:57 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int	check_size(int fd)
 
 	height = 0;
 	line = get_next_line(fd);
+	if (!line)
+		return (-1);
 	width = ft_strlen(line);
 	while (line)
 	{
+		free(line);
 		cwidth = ft_strlen(line);
 		line = get_next_line(fd);
 		if (width != cwidth)
@@ -32,6 +35,7 @@ int	check_size(int fd)
 		}
 		height ++;
 	}
+	free(line);
 	return (height);
 }
 

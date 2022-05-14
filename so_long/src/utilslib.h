@@ -6,15 +6,15 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 11:14:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/13 11:15:15 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/14 16:59:30 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILSLIB_H
 # define UTILSLIB_H
 
-# include"libft/libft.h"
-# include"minilibx/mlx.h"
+# include"../libft/libft.h"
+# include"../minilibx/mlx.h"
 # include<stdio.h>
 # include<fcntl.h>
 

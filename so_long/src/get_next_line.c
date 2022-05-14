@@ -6,11 +6,11 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 18:04:01 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/07 11:15:28 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/14 15:54:55 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft/libft.h"
+#include"utilslib.h"
 
 #define BUFFER_SIZE 42
 
