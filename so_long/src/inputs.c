@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/14 18:34:05 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:41:48 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ int	key_inputs(int keycode, t_vars *vars)
 
 int	destroy_mlx(t_vars *vars)
 {
-	int	i;
-
-	i = -1;
-	while (vars->level[++i])
-		free(vars->level[i]);
-	free(vars->level);
-	free(vars->spr);
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit(0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/26 10:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/14 18:22:58 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:06:03 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	bonus_operators(t_vars *vars, char *movstr)
 {
 	frame_cycle(vars);
-	animate_frame("./sprites/", vars, 1);
-	animate_frame("./sprites/coin_", vars, 3);
-	animate_frame("./sprites/mine_", vars, 5);
+	animate_frame(ft_strdup("./sprites/"), vars, 1);
+	animate_frame(ft_strdup("./sprites/coin_"), vars, 3);
+	animate_frame(ft_strdup("./sprites/mine_"), vars, 5);
 	mlx_string_put(vars->mlx, vars->win, 31, 31, 0x00C00000, movstr);
 	enemymove(vars);
 }
@@ -51,13 +51,6 @@ int	key_inputs(int keycode, t_vars *vars)
 
 int	destroy_mlx(t_vars *vars)
 {
-	int	i;
-
-	i = -1;
-	while (vars->spr[++i])
-		free(vars->spr[i]);
-	free(vars->level);
-	free(vars->spr);
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit(0);
 	return (0);

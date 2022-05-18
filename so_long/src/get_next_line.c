@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 18:04:01 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/14 15:54:55 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:58:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*get_read_line(int fd, char *readline)
 {
 	char		*buffer;
 	int			flag;
+	char		*sr;
 
 	flag = 1;
 	buffer = ft_calloc(sizeof (char), BUFFER_SIZE + 1);
@@ -56,10 +57,11 @@ char	*get_read_line(int fd, char *readline)
 			return (NULL);
 		}
 		buffer[flag] = '\0';
-		readline = ft_strjoin(readline, buffer);
+		sr = ft_strjoin(readline, buffer);
 	}
 	free(buffer);
-	return (readline);
+	free(readline);
+	return (sr);
 }
 
 char	*update_line(char *line)

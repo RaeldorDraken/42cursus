@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/14 18:29:57 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:42:35 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int	check_size(int fd)
 		}
 		height ++;
 	}
-	free(line);
+	if (line != NULL)
+		free(line);
 	return (height);
 }
 

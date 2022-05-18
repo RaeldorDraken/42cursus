@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:08:45 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/10 12:17:42 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:11:02 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		s1[0] = '\0';
 		secur = 1;
 	}
-	sr = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	sr = ft_calloc(sizeof(char), ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!sr)
 		return (0);
 	while (s1[++l1])

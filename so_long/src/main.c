@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/14 18:20:14 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:43:18 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	set_sprites(t_vars *vars)
 int	set_vars(t_vars *vars)
 {
 	vars->mlx = mlx_init();
-	vars->spr = ft_calloc(sizeof(void **), 6);
 	if (!vars->spr)
 		return (0);
 	set_sprites(vars);
@@ -90,7 +89,7 @@ int	main(int ac, char **av)
 	if (errorno < 0)
 	{
 		error_handle(errorno);
-		return (1);
+		exit(0);
 	}
 	if (!set_vars(&vars))
 		return (1);
