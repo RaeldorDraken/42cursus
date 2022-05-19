@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:27:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/18 13:43:18 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:07:18 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int ac, char **av)
 		exit(0);
 	}
 	if (!set_vars(&vars))
-		return (1);
+		exit(0);
 	mlx_loop_hook(vars.mlx, render_frame, &vars);
 	mlx_hook(vars.win, 2, 1L << 0, key_inputs, &vars);
 	mlx_hook(vars.win, 17, 0, destroy_mlx, &vars);

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 10:22:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/18 13:42:24 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:11:14 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	check_size(int fd)
 
 	height = 0;
 	line = get_next_line(fd);
+	if (!line)
+		return (-1);
 	width = ft_strlen(line);
 	while (line)
 	{
@@ -29,6 +31,7 @@ int	check_size(int fd)
 		line = get_next_line(fd);
 		if (width != cwidth)
 		{
+			free(line);
 			return (-1);
 		}
 		height ++;
@@ -90,18 +93,21 @@ int	check_conditions(char **map, int height)
 	int	i;
 	int	pl;
 	int	co;
+	int	ex;
 
 	i = -1;
 	pl = 0;
+	ex = 0;
 	co = 0;
 	if (!check_conditions2(map, height))
 		return (-3);
 	while (++i < height)
 	{
-		pl += ft_strchk(map[i], 'P') + ft_strchk(map[i], 'E');
+		pl += ft_strchk(map[i], 'P');
+		ex += ft_strchk(map[i], 'E');
 		co += ft_strchk(map[i], 'C');
 	}
-	if (pl != 2 || co == 0)
+	if (pl != 1 || co == 0 || ex == 0)
 		return (-3);
 	return (0);
 }
