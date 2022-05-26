@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:00:26 by eros-gir          #+#    #+#              #
-#    Updated: 2022/05/21 12:35:57 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/05/26 10:51:28 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,37 +20,27 @@ ft_memcmp.c ft_putstr_fd.c ft_strlcpy.c ft_substr.c ft_isalpha.c \
 ft_memcpy.c ft_split.c ft_strlen.c ft_tolower.c ft_isascii.c \
 ft_memmove.c ft_strchr.c ft_strmapi.c ft_toupper.c ft_joinloc.c
 
-SRC2 = ft_isdigit.o ft_memset.o ft_strdup.o ft_strncmp.o ft_atoi.o \
-ft_isprint.o ft_putchar_fd.o ft_striteri.o ft_strnstr.o ft_bzero.o \
-ft_itoa.o ft_putendl_fd.o ft_strjoin.o ft_strrchr.o ft_calloc.o \
-ft_memchr.o ft_putnbr_fd.o ft_strlcat.o ft_strtrim.o ft_isalnum.o \
-ft_memcmp.o ft_putstr_fd.o ft_strlcpy.o ft_substr.o ft_isalpha.o \
-ft_memcpy.o ft_split.o ft_strlen.o ft_tolower.o ft_isascii.o \
-ft_memmove.o ft_strchr.o ft_strmapi.o ft_toupper.o ft_joinloc.o
-
 SRCB = ft_lstlast.c	ft_lstmap.c ft_lstnew.c	ft_lstsize.c  ft_lstadd_back.c \
 ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c
 
-SRCB2 = ft_lstlast.o ft_lstmap.o ft_lstnew.o ft_lstsize.o ft_lstadd_back.o \
-ft_lstadd_front.o ft_lstclear.o ft_lstdelone.o ft_lstiter.o
+OBJ = $(SRC:.c=.o)
+OBJB = $(SRCB:.c=.o)
 
 HDRS = libft.h
 
 all: $(NAME)
 
-$(NAME): $(HDRS)
-	gcc -Wall -Wextra -Werror -c $(SRC)
-	ar rc $(NAME) $(SRC2)
+$(NAME): $(OBJ) $(HDRS)
+	ar rc $(NAME) $(OBJ)
 clean:
-	/bin/rm -f $(SRC2)
-	/bin/rm -f $(SRCB2)
+	/bin/rm -f $(OBJ)
+	/bin/rm -f $(OBJB)
 
 fclean: clean
 	/bin/rm -f $(NAME)
 
-bonus: $(HDRS)
-	gcc -Wall -Wextra -Werror -c $(SRC) $(SRCB)
-	ar rc $(NAME) $(SRC2) $(SRCB2)
+bonus: $(HDRS) $(OBJ) $(OBJB)
+	ar rc $(NAME) $(OBJ) $(OBJB)
 	touch bonus
 
 re: fclean all
