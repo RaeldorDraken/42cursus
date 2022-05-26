@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:00:26 by eros-gir          #+#    #+#              #
-#    Updated: 2022/05/26 10:51:28 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/05/26 10:54:04 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,5 @@ fclean: clean
 
 bonus: $(HDRS) $(OBJ) $(OBJB)
 	ar rc $(NAME) $(OBJ) $(OBJB)
-	touch bonus
 
 re: fclean all
