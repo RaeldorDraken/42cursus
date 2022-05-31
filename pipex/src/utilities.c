@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:51:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/26 12:01:50 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/31 10:58:00 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ void	parse(t_pipex *pobj, char **envp, char **av)
 	while (pobj->paths[++i])
 		pobj->paths[i] = ft_joinloc(pobj->paths[i], ft_strdup("/"));
 	pobj->infile = open(av[1], O_RDONLY);
+	if (pobj->infile < 0)
+		exit (0);
 	pobj->outfile = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (pobj->outfile < 0)
+		exit (0);
 	pobj->command1 = ft_split(av[2], ' ');
 	pobj->command2 = ft_split(av[3], ' ');
 }

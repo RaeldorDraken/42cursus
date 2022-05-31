@@ -6,13 +6,13 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:50:56 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/26 12:25:53 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/05/31 13:03:43 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"pipexlib.h"
 
-void	child_process(t_pipex *pobj, char **av, char **envp)
+void	child_process(t_pipex *pobj, char **envp)
 {
 	int		i;
 	char	*cmd;
@@ -21,12 +21,12 @@ void	child_process(t_pipex *pobj, char **av, char **envp)
 	if (dup2(pobj->infile, STDIN_FILENO) < 0)
 	{
 		close(pobj->infile);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	dup2(pobj->end[1], STDOUT_FILENO);
 	while (pobj->paths[++i])
 	{
-		cmd = ft_strjoin(pobj->paths[i], av[2]);
+		cmd = ft_strjoin(pobj->paths[i], pobj->command1[0]);
 		execve(cmd, pobj->command1, envp);
 		perror("exeve ERROR");
 		free(cmd);
@@ -43,14 +43,14 @@ void	parent_process(t_pipex *pobj)
 	if (dup2(pobj->outfile, STDOUT_FILENO) < 0)
 	{
 		close(pobj->outfile);
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	dup2(pobj->end[0], STDIN_FILENO);
 	close(pobj->end[1]);
 	close(pobj->outfile);
 }
 
-void	pipex(t_pipex *pobj, char **av, char **envp)
+void	pipex(t_pipex *pobj, char **envp)
 {
 	pid_t	parent;
 
@@ -59,7 +59,7 @@ void	pipex(t_pipex *pobj, char **av, char **envp)
 	if (parent < 0)
 		return (perror("Fork: "));
 	if (!parent)
-		child_process(pobj, av, envp);
+		child_process(pobj, envp);
 	else
 		parent_process(pobj);
 }
@@ -74,7 +74,7 @@ int	main(int ac, char **av, char **envp)
 		argerror(ac);
 	parse(&pobj, envp, av);
 	while (pobj.paths[i])
-		ft_putendl_fd(pobj.paths[i++], 1);
+		ft_putendl_fd(ft_strjoin(pobj.paths[i++], pobj.command1[0]), 1);
 	i = 0;
 	while (pobj.command1[i])
 		ft_putendl_fd(pobj.command1[i++], 1);
@@ -82,7 +82,7 @@ int	main(int ac, char **av, char **envp)
 	while (pobj.command2[i])
 		ft_putendl_fd(pobj.command2[i++], 1);
 	if (pobj.infile < 0 || pobj.outfile < 0)
-		exit(0);
-	pipex(&pobj, av, envp);
+		exit(EXIT_FAILURE);
+	pipex(&pobj, envp);
 	return (0);
 }
