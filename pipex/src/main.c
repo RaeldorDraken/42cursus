@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:50:56 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/02 12:36:19 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/02 12:45:16 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ int	main(int ac, char **av, char **envp)
 	if (pobj.infile < 0 || pobj.outfile < 0)
 		exit(EXIT_FAILURE);
 	pipex(&pobj, envp);
+	exit(0);
 	return (0);
 }
