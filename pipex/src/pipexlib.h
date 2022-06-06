@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:46:43 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/03 12:29:32 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/06 11:30:02 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ typedef struct s_pipex {
 	int		end[2];
 }	t_pipex;
 
+void	close_fds(t_pipex *pobj);
 char	*final_path(char **paths, char *cmd);
 void	cmd_error(char **cmd);
-void	error_terminate(char *e);
+void	error_terminate(char *e, t_pipex *pobj);
 void	argerror(int ac);
 void	parse(t_pipex *pobj, char **envp, char **av);
 char	*get_path_line(char **envp);

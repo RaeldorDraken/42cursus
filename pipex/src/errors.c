@@ -6,18 +6,16 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:42:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/03 12:32:16 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:04:30 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"pipexlib.h"
 
-void	error_terminate(char *e)
+void	error_terminate(char *e, t_pipex *pobj)
 {
-	if (errno == 0)
-		write(2, "Error\n", 6);
-	else
-		perror(e);
+	perror(e);
+	close_fds(pobj);
 	exit(EXIT_FAILURE);
 }
 

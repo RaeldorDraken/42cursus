@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 09:31:50 by eros-gir          #+#    #+#              #
-#    Updated: 2022/05/26 10:57:51 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/06/06 14:12:04 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,17 @@ LIBFTDIR = ./libft/
 
 OBJ = $(SRC:.c=.o)
 
-GC = gcc -Wall -Wextra -Werror
+GC = gcc
+FLAGS = -Wall -Wextra -Werror
 
 .c.o :
-	$(GC) -o $@ -c $?
+	$(GC) $(FLAGS) -o $@ -c $?
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HDR)
 	make -C $(LIBFTDIR)
-	$(GC) -o $(NAME) $(OBJ) -L $(LIBFTDIR) -lft
+	$(GC) $(FLAGS) -o $(NAME) $(OBJ) -L $(LIBFTDIR) -lft
 
 clean:
 	make clean -C $(LIBFTDIR)

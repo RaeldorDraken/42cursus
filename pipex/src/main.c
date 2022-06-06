@@ -6,25 +6,18 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:50:56 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/03 12:28:22 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/06 12:14:24 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"pipexlib.h"
-
-void	close_fds(t_pipex *pobj)
-{
-	close(pobj->end[0]);
-	close(pobj->infile);
-	close(pobj->end[1]);
-	close(pobj->outfile);
-}
 
 void	child1_process(t_pipex *pobj, char **envp)
 {
 	char	*cmd;
 
 	close(pobj->end[0]);
+	close(pobj->outfile);
 	cmd = final_path(pobj->paths, pobj->command1[0]);
 	dup2(pobj->infile, STDIN_FILENO);
 	dup2(pobj->end[1], STDOUT_FILENO);
@@ -45,6 +38,7 @@ void	child2_process(t_pipex *pobj, char **envp)
 	char	*cmd;
 
 	close(pobj->end[1]);
+	close(pobj->infile);
 	cmd = final_path(pobj->paths, pobj->command2[0]);
 	dup2(pobj->outfile, STDOUT_FILENO);
 	dup2(pobj->end[0], STDIN_FILENO);
@@ -67,15 +61,15 @@ void	pipex(t_pipex *pobj, char **envp)
 	pid_t	child2;
 
 	if (pipe(pobj->end) < 0)
-		error_terminate(NULL);
+		error_terminate("ERROR", pobj);
 	child1 = fork();
 	if (child1 < 0)
-		error_terminate("Fork: ");
+		error_terminate("fork", pobj);
 	if (child1 == 0)
 		child1_process(pobj, envp);
 	child2 = fork();
 	if (child2 < 0)
-		error_terminate("Fork: ");
+		error_terminate("fork", pobj);
 	if (child2 == 0)
 		child2_process(pobj, envp);
 	close_fds(pobj);
@@ -90,9 +84,10 @@ int	main(int ac, char **av, char **envp)
 	if (ac != 5)
 		argerror(ac);
 	parse(&pobj, envp, av);
-	if (pobj.infile < 0 || pobj.outfile < 0)
-		exit(EXIT_FAILURE);
+	if (pobj.infile < 0)
+		error_terminate(av[1], &pobj);
+	if (pobj.outfile < 0)
+		error_terminate(av[4], &pobj);
 	pipex(&pobj, envp);
-	exit(0);
 	return (0);
 }
