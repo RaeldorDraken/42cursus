@@ -24,7 +24,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	lr = 0;
 	if (!s || maxlo <= lo)
 		return (ft_strdup(""));
-	if (len >= maxlo)
+	if (len > maxlo)
 		len = maxlo;
 	sr = ft_calloc(sizeof(char), len + 1);
 	if (!sr)
