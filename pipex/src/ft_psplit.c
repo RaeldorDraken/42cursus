@@ -1,65 +1,84 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   ft_psplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:19:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/09 10:56:05 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/09 13:06:30 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include"pipexlib.h"
 
-size_t	ft_strnum(const char *s, char c)
+size_t	ft_pstrnum(const char *s, char c)
 {	
 	size_t	len;
 	size_t	numb;
+	int		quotes;
 
 	len = 0;
 	numb = 0;
+	quotes = 0;
 	while (s[len])
 	{
-		while (s[len] == c)
+		if (s[len] == '\'' || s[len] == '\"')
+			quotes ++;
+		while (s[len] == c || s[len] == '\'' || s[len] == '\"')
+		{
+			if (s[len] == '\'' || s[len] == '\"')
+				quotes ++;
 			len++;
-		if (s[len] && s[len] != c)
+		}
+		if (s[len] && (s[len] != c && quotes <= 0))
 			numb++;
-		while (s[len] != 0 && (s[len] != c))
+		while (s[len] != 0 && s[len] != c)
+		{
+			if (s[len] == '\'' || s[len] == '\"')
+				quotes --;
 			len++;
+		}
 	}
 	return (numb);
 }
 
-char	*ft_strset(const char *s, char c)
+char	*ft_pstrset(const char *s, char c)
 {
 	char	*sr;
 	size_t	len;
+	int		quotes;
 
+	quotes = 0;
 	len = 0;
 	while (s[len] != c && s[len])
 		len++;
+	while (s[len] == '\'' || s[len] == '\"')
+		quotes ++;
 	sr = ft_calloc(sizeof(char), len + 1);
 	if (!sr)
 		return (0);
 	len = 0;
-	while (s[len] != c && s[len])
+	while ((s[len] != c || quotes > 0) && s[len])
 	{
-		sr[len] = s[len];
+		if (s[len] == '\'' || s[len] == '\"')
+			quotes --;
+		else
+			sr[len] = s[len];
 		len++;
 	}
 	sr[len] = '\0';
 	return (sr);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_psplit(const char *s, char c)
 {
 	char	**strings;
 	size_t	n;
 	size_t	strn;
 
 	n = 0;
-	strn = ft_strnum(s, c);
+	strn = ft_pstrnum(s, c);
 	strings = ft_calloc(sizeof(char **), strn + 1);
 	if (!strings)
 		return (0);
@@ -67,7 +86,7 @@ char	**ft_split(const char *s, char c)
 	{
 		while (*s == c)
 			s++;
-		strings[n] = ft_strset(s, c);
+		strings[n] = ft_pstrset(s, c);
 		if (!strings[n])
 		{
 			while (n > 0)

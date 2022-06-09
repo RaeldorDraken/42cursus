@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:46:43 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/06 11:30:02 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/09 11:31:54 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	error_terminate(char *e, t_pipex *pobj);
 void	argerror(int ac);
 void	parse(t_pipex *pobj, char **envp, char **av);
 char	*get_path_line(char **envp);
+char	**ft_psplit(const char *s, char c);
 #endif
