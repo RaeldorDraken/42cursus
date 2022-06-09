@@ -12,11 +12,19 @@ size_t  ft_pstrnum(const char *s, char c)
 	while (s[len])
 	{
 		if (s[len] == '\'' || s[len] == '\"')
-			quotes ++;
-		while (s[len] == c || s[len] == '\'' || s[len] == '\"')
 		{
+			if (quotes <= 0)
+				numb ++;
+			quotes ++;
+		}
+		while (s[len] == c || s[len] == '\'' || s[len] == '\"')
+		{	
 			if (s[len] == '\'' || s[len] == '\"')
+			{
+				if (quotes <= 0)
+					numb ++;
 				quotes ++;
+			}
 			len++;
 		}
 		if (s[len] && (s[len] != c && quotes <= 0))
@@ -42,6 +50,5 @@ int	main(void)
 	printf("%s : %zu\n", str, ft_pstrnum(str, ' '));
 	str = "This string has double \'\"quotes in it\"\'";
 	printf("%s : %zu\n", str, ft_pstrnum(str, ' '));
-	printf("Need to find a way to count the quoted word");
 	return (0);
 }
