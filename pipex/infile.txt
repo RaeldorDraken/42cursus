@@ -1,3 +1,5 @@
 This is a file with
 some lines of text
 And an end of file
+But has some s
+s
