@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:19:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/14 12:27:14 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:22:40 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,17 @@ size_t	ft_pstrnum(const char *s, char c)
 	set_vars(&len, &numb, &quotes);
 	while (s[len])
 	{
-		while (s[len] == c || s[len] == '\'' || s[len] == '\"')
+		while (s[len] == c || ((s[len] == '\'' || s[len] == '\"') && s[len - 1] != '\\'))
 		{
-			if (s[len] == '\'' || s[len] == '\"')
-				numb += add_numb(quotes);
-			if (s[len] == '\'' || s[len] == '\"')
-				quotes ++;
+			if ((s[len] == '\'' || s[len] == '\"') && s[len - 1] != '\\')
+				numb += add_numb(quotes++);
 			len++;
 		}
 		if (s[len] && (s[len] != c && quotes <= 0))
 			numb++;
 		while (s[len] != 0 && s[len] != c)
 		{
-			if (s[len] == '\'' || s[len] == '\"')
+			if ((s[len] == '\'' || s[len] == '\"') && s[len - 1] != '\\')
 				quotes --;
 			len++;
 		}
@@ -59,24 +57,25 @@ char	*ft_pstrset2(const char *s, char c)
 {
 	char	*sr;
 	size_t	len;
+	size_t	len2;
 
 	len = 0;
-	ft_putendl_fd((char*)s, 2);
-	while (s[len] != c && s[len - 1] != '\\' && s[len])
-		len++;
-	sr = ft_calloc(sizeof(char), len + 1);
+	len2 = 0;
+	while (s[len] != c && (s[len - 1] == '\\' && s[len] == c) && s[len++])
+		len2++;
+	sr = ft_calloc(sizeof(char), len);
 	if (!sr)
 		return (0);
 	len = 0;
 	while (s[len])
 	{
-		if (s[len] == c && ((s[len - 1] != '\\' && s[len - 1] != ' ')))
+		if (s[len] == c && s[len - 1] != '\\')
 			break ;
-		sr[len] = s[len];
-		len++;
+		else if (s[len] == c && s[len - 1] == '\\')
+			len2 --;
+		sr[len2++] = s[len++];
 	}
 	sr[len] = '\0';
-	ft_putendl_fd((char*)sr, 2);
 	return (sr);
 }
 
@@ -124,9 +123,11 @@ char	**ft_psplit(const char *s, char c)
 	strings = ft_calloc(sizeof(char **), strn + 1);
 	if (!strings)
 		return (0);
+//	strings[0] = ft_itoa(strn);
+//	ft_putendl_fd(strings[0], 2);
+//	free(strings[0]);
 	while (n < strn)
 	{
-		ft_putendl_fd((char*)s, 2);
 		while (*s == c || *s == '\'' || *s == '\"')
 		{
 			if (*s == '\'')
@@ -145,6 +146,8 @@ char	**ft_psplit(const char *s, char c)
 		}
 		s += ft_strlen(strings[n++]);
 	}
-	strings[n] = 0;
+	n = 0;
+//	while (strings[n])
+//		ft_putendl_fd(strings[n++], 2);
 	return (strings);
 }

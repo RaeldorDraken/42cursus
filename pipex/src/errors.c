@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:42:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/06 12:04:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/15 12:32:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ void	argerror(int ac)
 	char	*arg;
 
 	arg = ft_itoa(ac - 1);
-	ft_putstr_fd("ERROR: wrong number of arguments. \n", 1);
-	ft_putstr_fd("expected: 4 got: ", 1);
-	ft_putstr_fd(arg, 1);
-	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("ERROR: wrong number of arguments. \n", 2);
+	ft_putstr_fd("expected: 4 got: ", 2);
+	ft_putstr_fd(arg, 2);
+	ft_putstr_fd("\n", 2);
 	free(arg);
 	exit(EXIT_FAILURE);
 }
