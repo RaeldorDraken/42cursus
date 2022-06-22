@@ -6,11 +6,18 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:50:56 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/09 11:30:28 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/22 12:11:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"pipexlib.h"
+
+void	set_vars(size_t *len, size_t *num, int *quotes)
+{
+	*len = 0;
+	*num = 0;
+	*quotes = 0;
+}
 
 void	child1_process(t_pipex *pobj, char **envp)
 {
@@ -89,5 +96,6 @@ int	main(int ac, char **av, char **envp)
 	if (pobj.outfile < 0)
 		error_terminate(av[4], &pobj);
 	pipex(&pobj, envp);
+	exit(EXIT_SUCCESS);
 	return (0);
 }

@@ -6,11 +6,18 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:51:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/15 12:33:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/22 12:10:53 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"pipexlib.h"
+
+size_t	add_numb(int quotes)
+{
+	if (quotes <= 0)
+		return (1);
+	return (0);
+}
 
 char	*final_path(char **paths, char *cmd)
 {
@@ -30,20 +37,6 @@ char	*final_path(char **paths, char *cmd)
 
 void	close_fds(t_pipex *pobj)
 {
-	int	i;
-
-	i = -1;
-	while (pobj->paths[++i])
-		free(pobj->paths[i]);
-	free(pobj->paths);
-	i = -1;
-	while (pobj->command1[++i])
-		free(pobj->command1[i]);
-	free(pobj->command1);
-	i = -1;
-	while (pobj->command2[++i])
-		free(pobj->command2[i]);
-	free(pobj->command2);
 	close(pobj->end[0]);
 	close(pobj->end[1]);
 	close(pobj->infile);
@@ -77,6 +70,6 @@ void	parse(t_pipex *pobj, char **envp, char **av)
 		pobj->paths[i] = ft_joinloc(pobj->paths[i], ft_strdup("/"));
 	pobj->infile = open(av[1], O_RDONLY);
 	pobj->outfile = open(av[4], O_CREAT | O_RDWR | O_TRUNC, 0644);
-	pobj->command1 = ft_psplit(av[2], ' ');
-	pobj->command2 = ft_psplit(av[3], ' ');
+	pobj->command1 = ft_psplit(av[2], ' ', pobj);
+	pobj->command2 = ft_psplit(av[3], ' ', pobj);
 }

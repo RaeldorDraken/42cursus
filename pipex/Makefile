@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 09:31:50 by eros-gir          #+#    #+#              #
-#    Updated: 2022/06/09 11:31:24 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/06/20 10:19:02 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFTDIR = ./libft/
 OBJ = $(SRC:.c=.o)
 
 GC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 
 .c.o :
 	$(GC) $(FLAGS) -o $@ -c $?

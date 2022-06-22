@@ -6,14 +6,37 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:42:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/15 12:32:37 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/22 11:52:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"pipexlib.h"
 
+void	ft_string_error(char **strings, size_t n, t_pipex *pobj)
+{
+	if (!strings[n])
+	{
+		while (n >= 0)
+			free(strings[n--]);
+		free(strings);
+		error_terminate(NULL, pobj);
+	}
+}
+
+int	ft_check_quotes(char c)
+{
+	if (c == '\'')
+		return (1);
+	else if (c == '\"')
+		return (2);
+	return (0);
+}
+
 void	error_terminate(char *e, t_pipex *pobj)
 {
+	t_pipex	pobj2;
+
+	pobj2 = *pobj;
 	perror(e);
 	close_fds(pobj);
 	exit(EXIT_FAILURE);
