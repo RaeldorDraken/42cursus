@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:54:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/05/14 18:06:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/28 10:36:08 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_strncmp(const char *str1, const char *str2, size_t n);
+int		ft_strrcmp(const char *str1, const char *str2, size_t n);
 int		ft_atoi(const char *nptr);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_lstsize(t_list *lst);
@@ -67,6 +68,7 @@ char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_itoa(int n);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char	**ft_split(const char *s, char c);
+char	*ft_strrev(char *s);
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
