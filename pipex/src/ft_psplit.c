@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:19:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/22 12:18:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/29 12:10:29 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,43 @@ char	*ft_pgetset(const char *s, char c, int qt)
 		return (ft_pstrset(s, c));
 }
 
+char	*ft_pscript(const char *s)
+{
+	int		len;
+	char	*se;
+
+	se = ft_strdup(s);
+	len = ft_strlen(se) - 1;
+	while ((se[len] == '\'' || se[len] == '\"') && len >= 0)
+	{
+		len--;
+	}
+	se[++len] = '\0';
+	ft_putendl_fd(se, 2);
+	if (ft_strrcmp(se, ".sh", 2) == 0)
+		return (se);
+	else
+	{
+		free(se);
+		return (NULL);
+	}
+}
+
 char	**ft_psplit(const char *s, char c, t_pipex *pobj)
 {
 	char	**strings;
 	size_t	n;
 	size_t	strn;
 	int		quotes;
+	char	*strsh;
 
 	n = 0;
 	quotes = 0;
+	strsh = ft_pscript(s);
+	if (strsh != NULL)
+		ft_putendl_fd("is an .sh", 2);
+	else
+		ft_putendl_fd("is not an .sh", 2);
 	strn = ft_pstrnum(s, c);
 	strings = ft_calloc(sizeof(char **), strn + 1);
 	if (!strings)

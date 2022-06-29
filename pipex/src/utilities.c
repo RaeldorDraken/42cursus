@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:51:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/28 10:48:21 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/06/29 11:05:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,21 @@ char	*final_path(char **paths, char *cmd)
 	char	*path;
 
 	i = -1;
-	while (paths[++i])
+	if (ft_strrcmp(cmd, ".sh", 2) != 0)
 	{
-		path = ft_strjoin(paths[i], cmd);
-		if (!access(path, F_OK))
+		while (paths[++i])
+		{
+			path = ft_strjoin(paths[i], cmd);
+			if (!access(path, F_OK))
+				return (path);
+			free(path);
+		}
+	}
+	else
+	{
+		path = ft_strdup(cmd);
+		if (!access(path, X_OK))
 			return (path);
-		free(path);
 	}
 	return (0);
 }
