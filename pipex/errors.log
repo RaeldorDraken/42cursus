@@ -1,51 +1,3 @@
-For: ./pipex infile.txt ./script.sh wc outfile.txt
-Error: Command that is in the same folder
-                 ╷                          ╷                          
-                 │ native                   │ pipex                    
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━╸
- outfile content │        4      16      87 │        0       0       0 
-                 │                          │                          
-                 ╵                          ╵                          
-
-For: ./pipex infile.txt './"script space.sh"' wc outfile.txt
-Error: The script is in the same folder, but has a name that contains a space with double
-quotes
-                 ╷                          ╷                          
-                 │ native                   │ pipex                    
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━╸
- outfile content │        1       9      38 │        0       0       0 
-                 │                          │                          
-                 ╵                          ╵                          
-
-For: ./pipex infile.txt './"script\"quote.sh"' wc outfile.txt
-Error: The script is in the same folder, but has a name that contains an escaped quote
-                 ╷                          ╷                          
-                 │ native                   │ pipex                    
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━╸
- outfile content │        1       9      38 │        0       0       0 
-                 │                          │                          
-                 ╵                          ╵                          
-
-For: ./pipex infile.txt './'"'"'script space.sh'"'"'' wc outfile.txt
-Error: The script is in the same folder, but has a name that contains a space with single
-quotes
-                 ╷                          ╷                          
-                 │ native                   │ pipex                    
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━╸
- outfile content │        1       9      38 │        0       0       0 
-                 │                          │                          
-                 ╵                          ╵                          
-
-For: ./pipex infile.txt /Users/eros-gir/francinette/tests/pipex/fsoares/script.sh wc 
-outfile.txt
-Error: Command that contains the complete path
-                 ╷                          ╷                          
-                 │ native                   │ pipex                    
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━╸
- outfile content │        4      16      87 │        0       0       0 
-                 │                          │                          
-                 ╵                          ╵                          
-
 For: ./pipex no_in cat wc outfile.txt
 Error: Input files does not exist
                  ╷                          ╷       
@@ -68,41 +20,6 @@ Error: Input files does not have read permissions
                  │                          │       
                  ╵                          ╵       
 
-For: ./pipex infile.txt ./middle_fail.sh wc outfile.txt
-Error: The first commands fails in the middle of executing, but produces some output
-                 ╷                          ╷                          
-                 │ native                   │ pipex                    
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━╸
- outfile content │        4      16      89 │        0       0       0 
-                 │                          │                          
-                 ╵                          ╵                          
-
-For: ./pipex infile.txt cat ./middle_fail.sh outfile.txt
-Error: The second commands fails in the middle of executing, but produces some output
-                 ╷                              ╷       
-                 │ native                       │ pipex 
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━╸
- outfile content │ Teste file with stuff inside │       
-                 │ That does nothing            │       
-                 │ And also have some lines     │       
-                 │ some other stuff             │       
-                 │                              │       
-                 ╵                              ╵       
-
-For: ./pipex infile.txt ./script.sh ./script.sh outfile.txt
-with PATH: ""
-Error: The PATH variable is empty, but the scrips are local
-                 ╷                              ╷       
-                 │ native                       │ pipex 
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━╸
- outfile content │ Teste file with stuff inside │       
-                 │ That does nothing            │       
-                 │ And also have some lines     │       
-                 │ Some more text               │       
-                 │ Some more text               │       
-                 │                              │       
-                 ╵                              ╵       
-
 For: ./pipex infile.txt ./script.sh ./script.sh outfile.txt
 with no PATH set
 Error: The PATH variable does not exist with local scripts
@@ -119,12 +36,15 @@ Error: The PATH variable does not exist with local scripts
                  │                              │                     
                  ╵                              ╵                     
 
-For: ./pipex infile.txt subdir/script.sh wc outfile.txt
-Error: It should execute commands in the subdirectory
-                 ╷                          ╷                          
-                 │ native                   │ pipex                    
-╺━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━╸
- outfile content │        4      16      87 │        0       0       0 
-                 │                          │                          
-                 ╵                          ╵                          
+For: ./pipex infile.txt cat script.sh outfile.txt
+Error: Should not match local script if it does not have a dot before the name
+                 ╷        ╷                              
+                 │ native │ pipex                        
+╺━━━━━━━━━━━━━━━━┿━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╸
+ outfile content │        │ Teste file with stuff inside 
+                 │        │ That does nothing            
+                 │        │ And also have some lines     
+                 │        │ Some more text               
+                 │        │                              
+                 ╵        ╵                              
 

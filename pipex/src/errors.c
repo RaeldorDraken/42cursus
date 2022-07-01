@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:42:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/28 09:59:03 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/01 12:19:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_check_quotes(char c)
 		return (1);
 	else if (c == '\"')
 		return (2);
+	else if (c == '.')
+		return (3);
 	return (0);
 }
 

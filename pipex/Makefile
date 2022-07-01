@@ -6,13 +6,14 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/24 09:31:50 by eros-gir          #+#    #+#              #
-#    Updated: 2022/06/20 10:19:02 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/07/01 10:19:23 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SRC = ./src/main.c ./src/utilities.c ./src/errors.c ./src/ft_psplit.c
+SRC = ./src/main.c ./src/utilities.c ./src/errors.c ./src/ft_psplit.c \
+	  ./src/ft_pscript.c
 HDR = ./src/pipexlib.h ./libft/libft.h
 
 LIBFTDIR = ./libft/

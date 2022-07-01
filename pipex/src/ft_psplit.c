@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:19:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/29 12:10:29 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/01 12:25:32 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,62 +93,36 @@ char	*ft_pgetset(const char *s, char c, int qt)
 		return (ft_pstrset2(s, '\''));
 	else if (qt == 2)
 		return (ft_pstrset2(s, '\"'));
-	else
-		return (ft_pstrset(s, c));
+	else if (qt == 3)
+		return (ft_pscript(s));
+	return (ft_pstrset(s, c));
 }
 
-char	*ft_pscript(const char *s)
-{
-	int		len;
-	char	*se;
-
-	se = ft_strdup(s);
-	len = ft_strlen(se) - 1;
-	while ((se[len] == '\'' || se[len] == '\"') && len >= 0)
-	{
-		len--;
-	}
-	se[++len] = '\0';
-	ft_putendl_fd(se, 2);
-	if (ft_strrcmp(se, ".sh", 2) == 0)
-		return (se);
-	else
-	{
-		free(se);
-		return (NULL);
-	}
-}
-
-char	**ft_psplit(const char *s, char c, t_pipex *pobj)
+char	**ft_psplit(const char *s, char c, t_pipex *pobj, int quotes)
 {
 	char	**strings;
 	size_t	n;
 	size_t	strn;
-	int		quotes;
-	char	*strsh;
 
 	n = 0;
-	quotes = 0;
-	strsh = ft_pscript(s);
-	if (strsh != NULL)
-		ft_putendl_fd("is an .sh", 2);
-	else
-		ft_putendl_fd("is not an .sh", 2);
 	strn = ft_pstrnum(s, c);
 	strings = ft_calloc(sizeof(char **), strn + 1);
 	if (!strings)
 		return (0);
 	while (n < strn)
 	{
-		while (*s == c || *s == '\'' || *s == '\"')
+		quotes = ft_check_quotes(*s);
+		if (quotes != 3)
 		{
-			quotes = ft_check_quotes(*s);
-			s++;
+			while (*s == c || *s == '\'' || *s == '\"')
+			{
+				quotes = ft_check_quotes(*s);
+				s++;
+			}
 		}
 		strings[n] = ft_pgetset(s, c, quotes);
 		ft_string_error(strings, n, pobj);
 		s += ft_strlen(strings[n++]);
 	}
-	n = 0;
 	return (strings);
 }
