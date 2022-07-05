@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 10:42:07 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/01 12:19:06 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/05 11:52:25 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ int	ft_check_quotes(char c)
 
 void	error_terminate(char *e, t_pipex *pobj)
 {
-	t_pipex	pobj2;
-
-	pobj2 = *pobj;
 	perror(e);
 	close_fds(pobj);
 	exit(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:50:56 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/28 12:35:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:28:40 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	child1_process(t_pipex *pobj, char **envp)
 	cmd = final_path(pobj->paths, pobj->command1[0]);
 	dup2(pobj->infile, STDIN_FILENO);
 	dup2(pobj->end[1], STDOUT_FILENO);
+	ft_putendl_fd(cmd, 2);
 	if (cmd && pobj->command1[0])
 	{
 		execve(cmd, pobj->command1, envp);
@@ -47,6 +48,7 @@ void	child2_process(t_pipex *pobj, char **envp)
 	close(pobj->end[1]);
 	close(pobj->infile);
 	cmd = final_path(pobj->paths, pobj->command2[0]);
+	ft_putendl_fd(cmd, 2);
 	dup2(pobj->outfile, STDOUT_FILENO);
 	dup2(pobj->end[0], STDIN_FILENO);
 	if (cmd && pobj->command2[0])
@@ -69,18 +71,22 @@ void	pipex(t_pipex *pobj, char **envp)
 
 	if (pipe(pobj->end) < 0)
 		error_terminate("ERROR", pobj);
-	child1 = fork();
-	if (child1 < 0)
-		error_terminate("fork", pobj);
-	if (child1 == 0)
-		child1_process(pobj, envp);
+	if (pobj->infile >= 0)
+	{
+		child1 = fork();
+		if (child1 < 0)
+			error_terminate("fork", pobj);
+		if (child1 == 0)
+			child1_process(pobj, envp);
+	}
 	child2 = fork();
 	if (child2 < 0)
 		error_terminate("fork", pobj);
 	if (child2 == 0)
 		child2_process(pobj, envp);
 	close_fds(pobj);
-	waitpid(child1, &status, 0);
+	if (pobj->infile >= 0)
+		waitpid(child1, &status, 0);
 	waitpid(child2, &status, 0);
 }
 
@@ -91,10 +97,6 @@ int	main(int ac, char **av, char **envp)
 	if (ac != 5)
 		argerror(ac);
 	parse(&pobj, envp, av);
-	if (pobj.infile < 0)
-		error_terminate(av[1], &pobj);
-	if (pobj.outfile < 0)
-		error_terminate(av[4], &pobj);
 	pipex(&pobj, envp);
 	exit(EXIT_SUCCESS);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:51:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/01 12:25:29 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/05 12:22:18 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	*final_path(char **paths, char *cmd)
 	}
 	else
 	{
+		if (ft_strchr(cmd, '/') == NULL)
+			return (0);
 		path = ft_strdup(cmd);
 		if (!access(path, X_OK))
 			return (path);
