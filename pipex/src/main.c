@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:50:56 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/05 12:28:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/07 12:09:16 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	child1_process(t_pipex *pobj, char **envp)
 	cmd = final_path(pobj->paths, pobj->command1[0]);
 	dup2(pobj->infile, STDIN_FILENO);
 	dup2(pobj->end[1], STDOUT_FILENO);
-	ft_putendl_fd(cmd, 2);
 	if (cmd && pobj->command1[0])
 	{
 		execve(cmd, pobj->command1, envp);
@@ -48,7 +47,6 @@ void	child2_process(t_pipex *pobj, char **envp)
 	close(pobj->end[1]);
 	close(pobj->infile);
 	cmd = final_path(pobj->paths, pobj->command2[0]);
-	ft_putendl_fd(cmd, 2);
 	dup2(pobj->outfile, STDOUT_FILENO);
 	dup2(pobj->end[0], STDIN_FILENO);
 	if (cmd && pobj->command2[0])
