@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:51:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/23 14:13:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:31:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char	*get_path_line(char **envp)
 	i --;
 	while (ft_strncmp(envp[i], "PATH=", 5) != 0 && i != 0)
 		i --;
-	ft_putendl_fd(envp[i], 2);
 	if (i == 0)
 		return (NULL);
 	return (envp[i]);
