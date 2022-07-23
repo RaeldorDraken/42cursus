@@ -6,11 +6,19 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 10:15:41 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/07 12:17:52 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:19:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"pipexlib.h"
+
+void	set_pobj(t_pipex *pobj)
+{
+	pobj->infile = 0;
+	pobj->outfile = 0;
+	pobj->end[0] = 0;
+	pobj->end[1] = 0;
+}
 
 char	*ft_pscript(const char *s)
 {

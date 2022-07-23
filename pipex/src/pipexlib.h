@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:46:43 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/01 12:22:50 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:10:28 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_pipex {
 }	t_pipex;
 
 void	close_fds(t_pipex *pobj);
+void	set_pobj(t_pipex *pobj);
 char	*final_path(char **paths, char *cmd);
 void	cmd_error(char **cmd);
 void	error_terminate(char *e, t_pipex *pobj);

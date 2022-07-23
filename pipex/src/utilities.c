@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:51:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/07 12:17:53 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:13:33 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,14 @@ char	*get_path_line(char **envp)
 	int	i;
 
 	i = 0;
-	while (ft_strncmp(envp[i], "PATH=", 5) != 0)
+	while (envp[i] != NULL)
 		i ++;
+	i --;
+	while (ft_strncmp(envp[i], "PATH=", 5) != 0 && i != 0)
+		i --;
+	ft_putendl_fd(envp[i], 2);
+	if (i == 0)
+		return (NULL);
 	return (envp[i]);
 }
 
@@ -68,7 +74,7 @@ void	parse(t_pipex *pobj, char **envp, char **av)
 
 	pathline = get_path_line(envp);
 	if (!pathline)
-		error_terminate("ERROR: nopath", pobj);
+		pathline = "PATH=./";
 	i = ft_strlen(pathline);
 	pathline = ft_substr(pathline, 5, i);
 	i = -1;

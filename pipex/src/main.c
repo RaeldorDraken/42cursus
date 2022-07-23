@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 09:50:56 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/07 12:09:16 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/07/23 14:20:04 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	child1_process(t_pipex *pobj, char **envp)
 	dup2(pobj->end[1], STDOUT_FILENO);
 	if (cmd && pobj->command1[0])
 	{
-		execve(cmd, pobj->command1, envp);
+		if (cmd == pobj->command1[0])
+			execve(cmd, pobj->command1, NULL);
+		else
+			execve(cmd, pobj->command1, envp);
 		free(cmd);
 	}
 	else
@@ -51,7 +54,10 @@ void	child2_process(t_pipex *pobj, char **envp)
 	dup2(pobj->end[0], STDIN_FILENO);
 	if (cmd && pobj->command2[0])
 	{
-		execve(cmd, pobj->command2, envp);
+		if (cmd == pobj->command2[0])
+			execve(cmd, pobj->command2, NULL);
+		else
+			execve(cmd, pobj->command2, envp);
 		free(cmd);
 	}
 	else
@@ -94,6 +100,7 @@ int	main(int ac, char **av, char **envp)
 
 	if (ac != 5)
 		argerror(ac);
+	set_pobj(&pobj);
 	parse(&pobj, envp, av);
 	pipex(&pobj, envp);
 	exit(EXIT_SUCCESS);
