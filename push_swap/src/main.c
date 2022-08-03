@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/02 17:04:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:14:45 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ void	error_terminate(void)
 	exit(1);
 }
 
-int		*ft_convert_input(int ac, char **av)
+void	ft_convert_input(int ac, char **av, t_list *list)
 {
-	int	*list;
+	int	i;
 
-	list = ft_calloc(sizeof(int*), ac);
-	while (--ac > 0)
-		list[ac - 1] = ft_atoi(av[ac]);
-	return (list);
+	i = 1;
+	list = ft_lstnew(ft_atoi(av[i]));
+	while (++i > ac)
+		ft_lstadd_back(&list, ft_lstnew(ft_atoi(av[i])));
+	ft_lstiter_put(list);
 }
 
 void	ft_check_input(int ac, char **av)
@@ -57,19 +58,13 @@ void	ft_check_input(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	int	i;
-	int	*list;
+	int		i;
+	t_list	list;
 
 	i = 0;
 	if (ac == 1)
 		exit(0);
 	ft_check_input(ac, av);
-	list = ft_convert_input(ac, av);
-	while (i < ac)
-	{
-		ft_putnbr_fd(list[i++], 1);
-		ft_putchar_fd('\t', 1);
-	}
-	ft_putchar_fd('\n', 1);
+	ft_convert_input(ac, av, &list);
 	return (0);
 }
