@@ -18,15 +18,15 @@ void	error_terminate(void)
 	exit(1);
 }
 
-void	ft_convert_input(int ac, char **av, t_list *list)
+t_list	*ft_convert_input(int ac, char **av, t_list *list)
 {
 	int	i;
 
 	i = 1;
 	list = ft_lstnew(ft_atoi(av[i]));
-	while (++i > ac)
+	while (++i < ac)
 		ft_lstadd_back(&list, ft_lstnew(ft_atoi(av[i])));
-	ft_lstiter_put(list);
+	return (list);
 }
 
 void	ft_check_input(int ac, char **av)
@@ -58,13 +58,12 @@ void	ft_check_input(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	int		i;
 	t_list	list;
 
-	i = 0;
 	if (ac == 1)
 		exit(0);
 	ft_check_input(ac, av);
-	ft_convert_input(ac, av, &list);
+	list = *ft_convert_input(ac, av, &list);
+	ft_lstiter_put(&list);
 	return (0);
 }
