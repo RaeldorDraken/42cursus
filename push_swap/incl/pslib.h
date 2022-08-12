@@ -16,4 +16,7 @@ typedef struct s_stks
 {
 	int *a;
 	int	*b;
+
+	int	size_a;
+	int	size_b;
 }	t_stks;

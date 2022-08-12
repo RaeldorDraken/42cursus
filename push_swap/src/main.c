@@ -24,7 +24,8 @@ int	*ft_convert_input(int ac, char **av)
 	int	*list;
 
 	i = -1;
-	list = ft_calloc(sizeof(int), ac - 1);	
+	
+	list = ft_calloc(sizeof(int), (ac - 1) * 2);	
 	while (++i < (ac - 1))
 	{
 		list[i]	= ft_atoi(av[i + 1]);
@@ -32,45 +33,157 @@ int	*ft_convert_input(int ac, char **av)
 	return(list);
 }
 
-void	ft_ra(t_stks *lists, int ac)
+void	ft_pa(t_stks *lists)
+{
+	int	temp;
+	int	i;
+
+	if (lists->size_b < 1)
+		return ;
+	i = lists->size_a;
+	temp = lists->b[0];
+	while (i >= 0)
+	{
+		lists->a[i] = lists->a[i - 1];
+		i --;
+	}
+	lists->a[0] = temp;
+	i = -1;	
+	while (++i < lists->size_b - 1)
+		lists->b[i] = lists->b[i + 1];
+	lists->size_b --;
+	lists->size_a ++;
+	ft_putendl_fd("pa", 1);
+}
+
+void	ft_pb(t_stks *lists)
+{
+	int	temp;
+	int	i;
+
+	if (lists->size_a < 1)
+		return ;
+	i = lists->size_b;
+	temp = lists->a[0];
+	while (i >= 0)
+	{
+		lists->b[i] = lists->b[i - 1];
+		i --;
+	}
+	lists->b[0] = temp;
+	i = -1;	
+	while (++i < lists->size_a - 1)
+		lists->a[i] = lists->a[i + 1];
+	lists->size_a --;
+	lists->size_b ++;
+	ft_putendl_fd("pb", 1);
+}
+
+void	ft_rra(t_stks *lists)
+{
+	int	temp;
+	int	i;
+	
+	if (lists->size_a <= 1)
+		return ;
+	i = lists->size_a - 1;
+	temp = lists->a[i];
+	while (i >= 0)
+	{
+		lists->a[i] = lists->a[i - 1];
+		i --;
+	}
+	lists->a[0] = temp;
+	ft_putendl_fd("rra", 1);
+}
+
+void	ft_rrb(t_stks *lists)
+{
+	int	temp;
+	int	i;
+	
+	if (lists->size_b <= 1)
+		return ;
+	i = lists->size_b - 1;
+	temp = lists->b[i];
+	while (i >= 0)
+	{
+		lists->b[i] = lists->b[i - 1];
+		i --;
+	}
+	lists->b[0] = temp;
+	ft_putendl_fd("rrb", 1);
+}
+
+void	ft_rrr(t_stks *lists)
+{
+	int	temp;
+	int	i;
+	
+	if (lists->size_a > 1)
+	{
+		i = lists->size_a - 1;
+		temp = lists->a[i];
+		while (i >= 0)
+		{
+			lists->a[i] = lists->a[i - 1];
+			i --;
+		}
+		lists->a[0] = temp;
+	}
+	if (lists->size_b > 1)
+	{
+		i = lists->size_b - 1;
+		temp = lists->b[i];
+		while (i >= 0)
+		{
+			lists->b[i] = lists->b[i - 1];
+			i --;
+		}
+		lists->b[0] = temp;
+	}
+	ft_putendl_fd("rrr", 1);
+}
+
+void	ft_ra(t_stks *lists)
 {
 	int	temp;
 	int	i;
 	
 	i = -1;
 	temp = lists->a[0];
-	while (++i < ac - 2)
+	while (++i < lists->size_a - 1)
 		lists->a[i] = lists->a[i + 1];
 	lists->a[i] = temp;
 	ft_putendl_fd("ra", 1);
 }
 
-void	ft_rb(t_stks *lists, int ac)
+void	ft_rb(t_stks *lists)
 {
 	int	temp;
 	int	i;
 	
 	i = -1;
 	temp = lists->b[0];
-	while (++i < ac - 2)
+	while (++i < lists->size_b - 1)
 		lists->b[i] = lists->b[i + 1];
 	lists->b[i] = temp;
 	ft_putendl_fd("rb", 1);
 }
 
-void	ft_rr(t_stks *lists, int ac)
+void	ft_rr(t_stks *lists)
 {
 	int	temp;
 	int	i;
 	
 	i = -1;
 	temp = lists->a[0];
-	while (++i < ac - 2)
+	while (++i < lists->size_a - 1)
 		lists->a[i] = lists->a[i + 1];
 	lists->a[i] = temp;
 	i = -1;
 	temp = lists->b[0];
-	while (++i < ac - 2)
+	while (++i < lists->size_b - 1)
 		lists->b[i] = lists->b[i + 1];
 	lists->b[i] = temp;
 	ft_putendl_fd("rr", 1);
@@ -79,6 +192,8 @@ void	ft_sa(t_stks *lists)
 {
 	int temp;
 
+	if (lists->size_a <= 1) 
+		return ;
 	temp = lists->a[1];
 	lists->a[1] = lists->a[0];
 	lists->a[0] = temp;
@@ -89,6 +204,9 @@ void	ft_sb(t_stks *lists)
 {
 	int temp;
 
+	
+	if (lists->size_b <= 1) 
+		return ;
 	temp = lists->b[1];
 	lists->b[1] = lists->b[0];
 	lists->b[0] = temp;
@@ -99,12 +217,18 @@ void	ft_ss(t_stks *lists)
 {
 	int temp;
 
-	temp = lists->a[1];
-	lists->a[1] = lists->a[0];
-	lists->a[0] = temp;
-	temp = lists->b[1];
-	lists->b[1] = lists->b[0];
-	lists->b[0] = temp;
+	if (lists->size_a <= 1) 
+	{
+		temp = lists->a[1];
+		lists->a[1] = lists->a[0];
+		lists->a[0] = temp;
+	}
+	if (lists->size_b > 1) 
+	{
+		temp = lists->b[1];
+		lists->b[1] = lists->b[0];
+		lists->b[0] = temp;
+	}
 	ft_putendl_fd("ss", 1);
 }
 
@@ -144,17 +268,20 @@ int	main(int ac, char **av)
 		exit(0);
 	i = -1;
 	ft_check_input(ac, av);
-	lists.b = ft_calloc(sizeof(int), ac);	
+//	lists.b = ft_calloc(sizeof(int), (ac - 1) * 2);	
 	lists.a = ft_convert_input(ac, av);
-	while (++i < ac - 1)
+	lists.b = ft_convert_input(ac, av);
+	lists.size_a = ac - 1;
+	lists.size_b = ac - 1;
+	while (++i < lists.size_a)
 	{
 		ft_putnbr_fd(lists.a[i], 1);
 		ft_putchar_fd(' ', 1);
 	}
 	ft_putchar_fd('\n', 1);
 	i = -1;
-	ft_ra(&lists, ac);
-	while (++i < ac - 1)
+	ft_pb(&lists);
+	while (++i < lists.size_a)
 	{
 		ft_putnbr_fd(lists.a[i], 1);
 		ft_putchar_fd(' ', 1);
