@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:54:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/03 15:55:26 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/15 11:37:46 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		ft_striteri(const char *s, void (*f)(unsigned int, char*));
 void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
-void		ft_putnbr_fd(int n, int fd);
+void		ft_putnbr_fd(long int n, int fd);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_lstdelone(t_list *lst, void (*del)(int *));

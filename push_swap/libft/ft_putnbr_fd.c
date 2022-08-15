@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 19:48:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/02 16:25:20 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/15 11:38:47 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(long int n, int fd)
 {
-	long	num;
+	long int	num;
 
 	num = n;
 	if (n < 0)

@@ -6,13 +6,13 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2022/08/02 16:07:03 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/08/15 12:45:57 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-SRC = ./src/main.c
+SRC = ./src/main.c ./src/swaps1.c ./src/swaps2.c ./src/swaps3.c ./src/cases.c
 
 HDR = ./incl/pslib.h ./libft/libft.h
 
