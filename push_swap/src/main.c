@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/18 18:26:29 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:56:24 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,15 @@ void	ft_test_check_result(t_stks *lists)
 	int	i;
 
 	i = -1;
+	ft_putstr_fd("result: ", 1);
 	while (++i < lists->size_a)
 	{
 		ft_putnbr_fd(lists->a[i], 1);
 		ft_putchar_fd(' ', 1);
 	}
+	ft_putchar_fd('\n', 1);
+	ft_putstr_fd("steps taken: ", 1);
+	ft_putnbr_fd(lists->steps, 1);
 	ft_putchar_fd('\n', 1);
 }
 
@@ -82,6 +86,7 @@ int	main(int ac, char **av)
 	lists.a = ft_convert_input(ac, av);
 	lists.size_a = ac - 1;
 	lists.size_b = 0;
+	lists.steps = 0;
 	ft_check_cases(&lists);
 	ft_test_check_result(&lists);
 	exit(0);

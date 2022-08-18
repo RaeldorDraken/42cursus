@@ -6,18 +6,22 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:31:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/18 18:15:56 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:53:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../libft/libft.h"
+#ifndef PSLIB_H
+# define PSLIB_H
+
+# include"../libft/libft.h"
 
 typedef struct s_stks
 {
 	long int	*a;
 	long int	*b;
-	int		size_a;
-	int		size_b;
+	int			size_a;
+	int			size_b;
+	int			steps;
 }	t_stks;
 
 void	ft_pa(t_stks *lists);
@@ -39,3 +43,4 @@ void	ft_check_cases(t_stks *lists);
 void	ft_case_three(t_stks *lists);
 void	ft_case_five(t_stks *lists);
 void	ft_case_algorithmic(t_stks *lists);
+#endif

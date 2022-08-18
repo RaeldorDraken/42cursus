@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 10:05:50 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/15 12:30:39 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:49:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_sa(t_stks *lists)
 	temp = lists->a[1];
 	lists->a[1] = lists->a[0];
 	lists->a[0] = temp;
+	lists->steps ++;
 	ft_putendl_fd("sa", 1);
 }
 
@@ -33,6 +34,7 @@ void	ft_sb(t_stks *lists)
 	temp = lists->b[1];
 	lists->b[1] = lists->b[0];
 	lists->b[0] = temp;
+	lists->steps ++;
 	ft_putendl_fd("sb", 1);
 }
 
@@ -52,6 +54,7 @@ void	ft_ss(t_stks *lists)
 		lists->b[1] = lists->b[0];
 		lists->b[0] = temp;
 	}
+	lists->steps ++;
 	ft_putendl_fd("ss", 1);
 }
 
@@ -75,6 +78,7 @@ void	ft_pa(t_stks *lists)
 		lists->b[i] = lists->b[i + 1];
 	lists->size_b --;
 	lists->size_a ++;
+	lists->steps ++;
 	ft_putendl_fd("pa", 1);
 }
 
@@ -98,5 +102,6 @@ void	ft_pb(t_stks *lists)
 		lists->a[i] = lists->a[i + 1];
 	lists->size_a --;
 	lists->size_b ++;
+	lists->steps ++;
 	ft_putendl_fd("pb", 1);
 }
