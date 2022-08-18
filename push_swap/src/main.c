@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/15 13:03:58 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:26:29 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,12 @@ void	ft_test_check_result(t_stks *lists)
 	int	i;
 
 	i = -1;
-	while (++i < lists_->size_a)
+	while (++i < lists->size_a)
 	{
 		ft_putnbr_fd(lists->a[i], 1);
 		ft_putchar_fd(' ', 1);
 	}
 	ft_putchar_fd('\n', 1);
-}
-
-void	ft_check_cases(t_stks *lists)
-{
-	if (lists->size_a < 3)
-		ft_sa(lists);
-	else if (lists->size_a == 3)
-		ft_case_three(lists);
-	else if (lists->size_a < 6)
-		ft_case_five(lists);
-	else
-		ft_case_algorithmic(lists);
 }
 
 int	main(int ac, char **av)
