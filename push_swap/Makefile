@@ -12,7 +12,8 @@
 
 NAME = push_swap
 
-SRC = ./src/main.c ./src/swaps1.c ./src/swaps2.c ./src/swaps3.c ./src/cases.c
+SRC = ./src/main.c ./src/swaps1.c ./src/swaps2.c ./src/swaps3.c ./src/swaps4.c \
+./src/cases.c ./src/algorithmic.c
 
 HDR = ./incl/pslib.h ./libft/libft.h
 

@@ -24,7 +24,7 @@ void	ft_check_cases(t_stks *lists)
 		ft_case_algorithmic(lists);
 }
 
-int	ft_check_list(t_stks *lists, int type)
+int	ft_check_list_a(t_stks *lists, int type)
 {
 	int	i;
 	int	result;
@@ -50,11 +50,34 @@ int	ft_check_list(t_stks *lists, int type)
 	return (result);
 }
 
-void	ft_case_three(t_stks *lists)
+int	ft_check_list_b(t_stks *lists, int type)
 {
 	int	i;
+	int	result;
 
 	i = -1;
+	result = 0;
+	if (type == 0)
+	{
+		while (++i < lists->size_b)
+		{
+			if (lists->b[result] > lists->b[i])
+				result = i;
+		}
+	}
+	else
+	{
+		while (++i < lists->size_b)
+		{
+			if (lists->b[result] < lists->b[i])
+				result = i;
+		}
+	}
+	return (result);
+}
+
+void	ft_case_three(t_stks *lists)
+{
 	if (lists->a[0] > lists->a[1])
 	{
 		if (lists->a[1] > lists->a[2])
@@ -81,10 +104,10 @@ void	ft_case_three(t_stks *lists)
 
 void	ft_case_five(t_stks *lists)
 {
-	while (ft_check_list(lists, 0) != 0)
+	while (ft_check_list_a(lists, 0) != 0)
 		ft_ra(lists);
 	ft_pb(lists);
-	while (ft_check_list(lists, 1) != 0)
+	while (ft_check_list_a(lists, 1) != 0)
 		ft_rra(lists);
 	ft_pb(lists);
 	ft_case_three(lists);
@@ -94,7 +117,20 @@ void	ft_case_five(t_stks *lists)
 }
 
 void	ft_case_algorithmic(t_stks *lists)
-{	
-	ft_sa(lists);
-	ft_sa(lists);
+{
+//	int	i;
+//	i = 0;
+	while (lists->size_a != 0)
+	{
+		while (ft_check_list_a(lists, 0) != 0)
+			ft_ra(lists);
+		ft_pb(lists);
+	}
+//	while (lists->size_b != i)
+//	{
+//		while (ft_check_list_b(lists, 1) != 0)
+//			ft_rb(lists);
+//		i ++;
+//		ft_pa(lists);
+//	}
 }

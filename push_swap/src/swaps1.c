@@ -73,4 +73,12 @@ void	ft_rrr(t_stks *lists)
 	}
 	lists->steps ++;
 	ft_putendl_fd("rrr", 1);
-}		
+}
+
+void	ft_rrx(t_stks *lists, char stack)
+{
+	if (stack == 'a')
+		ft_rra(lists);
+	else if (stack == 'b')
+		ft_rrb(lists);
+}

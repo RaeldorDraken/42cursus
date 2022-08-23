@@ -1,68 +1,69 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaps2.c                                           :+:      :+:    :+:   */
+/*   swaps3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 10:05:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/18 18:49:35 by eros-gir         ###   ########.fr       */
+/*   Created: 2022/08/15 10:05:50 by eros-gir          #+#    #+#             */
+/*   Updated: 2022/08/18 18:49:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/pslib.h"
 
-void	ft_ra(t_stks *lists)
+void	ft_pa(t_stks *lists)
 {
 	int	temp;
 	int	i;
 
-	i = 0;
-	temp = lists->a[0];
-	while (++i < lists->size_a)
-		lists->a[i - 1] = lists->a[i];
-	lists->a[i - 1] = temp;
-	lists->steps ++;
-	ft_putendl_fd("ra", 1);
-}
-
-void	ft_rb(t_stks *lists)
-{
-	int	temp;
-	int	i;
-
-	i = 0;
+	if (lists->size_b < 1)
+		return ;
+	i = lists->size_a;
 	temp = lists->b[0];
-	while (++i < lists->size_b)
-		lists->b[i - 1] = lists->b[i];
-	lists->b[i - 1] = temp;
-	lists->steps ++;
-	ft_putendl_fd("rb", 1);
-}
-
-void	ft_rr(t_stks *lists)
-{
-	int	temp;
-	int	i;
-
+	while (i > 0)
+	{
+		lists->a[i] = lists->a[i - 1];
+		i --;
+	}
+	lists->a[0] = temp;
 	i = -1;
-	temp = lists->a[0];
-	while (++i < lists->size_a - 1)
-		lists->a[i] = lists->a[i + 1];
-	lists->a[i] = temp;
-	i = -1;
-	temp = lists->b[0];
 	while (++i < lists->size_b - 1)
 		lists->b[i] = lists->b[i + 1];
-	lists->b[i] = temp;
+	lists->size_b --;
+	lists->size_a ++;
 	lists->steps ++;
-	ft_putendl_fd("rr", 1);
+	ft_putendl_fd("pa", 1);
 }
 
-void	ft_rx(t_stks *lists, char stack)
+void	ft_pb(t_stks *lists)
+{
+	int	temp;
+	int	i;
+
+	if (lists->size_a < 1)
+		return ;
+	i = lists->size_b;
+	temp = lists->a[0];
+	while (i >= 0)
+	{
+		lists->b[i] = lists->b[i - 1];
+		i --;
+	}
+	lists->b[0] = temp;
+	i = -1;
+	while (++i < lists->size_a - 1)
+		lists->a[i] = lists->a[i + 1];
+	lists->size_a --;
+	lists->size_b ++;
+	lists->steps ++;
+	ft_putendl_fd("pb", 1);
+}
+
+void	ft_px(t_stks *lists, char stack)
 {
 	if (stack == 'a')
-		ft_ra(lists);
+		ft_pa(lists);
 	else if (stack == 'b')
-		ft_rb(lists);
+		ft_pb(lists);
 }

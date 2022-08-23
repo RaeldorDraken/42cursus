@@ -70,6 +70,13 @@ void	ft_test_check_result(t_stks *lists)
 		ft_putchar_fd(' ', 1);
 	}
 	ft_putchar_fd('\n', 1);
+	i = -1;
+	while (++i < lists->size_b)
+	{
+		ft_putnbr_fd(lists->b[i], 1);
+		ft_putchar_fd(' ', 1);
+	}
+	ft_putchar_fd('\n', 1);
 	ft_putstr_fd("steps taken: ", 1);
 	ft_putnbr_fd(lists->steps, 1);
 	ft_putchar_fd('\n', 1);

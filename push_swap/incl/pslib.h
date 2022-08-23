@@ -26,16 +26,19 @@ typedef struct s_stks
 
 void	ft_pa(t_stks *lists);
 void	ft_pb(t_stks *lists);
-void	ft_pp(t_stks *lists);
+void	ft_px(t_stks *lists, char stack);
 void	ft_rra(t_stks *lists);
 void	ft_rrb(t_stks *lists);
 void	ft_rrr(t_stks *lists);
+void	ft_rrx(t_stks *lists, char stack);
 void	ft_ra(t_stks *lists);
 void	ft_rb(t_stks *lists);
 void	ft_rr(t_stks *lists);
+void	ft_rx(t_stks *lists, char stack);
 void	ft_sa(t_stks *lists);
 void	ft_sb(t_stks *lists);
 void	ft_ss(t_stks *lists);
+void	ft_sx(t_stks *lists, char stack);
 
 int		ft_check_list(t_stks *lists, int type);
 void	ft_test_check_result(t_stks *lists);
@@ -43,4 +46,5 @@ void	ft_check_cases(t_stks *lists);
 void	ft_case_three(t_stks *lists);
 void	ft_case_five(t_stks *lists);
 void	ft_case_algorithmic(t_stks *lists);
+void	ft_basic_al(t_stks *lists);
 #endif

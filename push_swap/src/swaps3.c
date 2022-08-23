@@ -58,50 +58,10 @@ void	ft_ss(t_stks *lists)
 	ft_putendl_fd("ss", 1);
 }
 
-void	ft_pa(t_stks *lists)
+void	ft_sx(t_stks *lists, char stack)
 {
-	int	temp;
-	int	i;
-
-	if (lists->size_b < 1)
-		return ;
-	i = lists->size_a;
-	temp = lists->b[0];
-	while (i > 0)
-	{
-		lists->a[i] = lists->a[i - 1];
-		i --;
-	}
-	lists->a[0] = temp;
-	i = -1;
-	while (++i < lists->size_b - 1)
-		lists->b[i] = lists->b[i + 1];
-	lists->size_b --;
-	lists->size_a ++;
-	lists->steps ++;
-	ft_putendl_fd("pa", 1);
-}
-
-void	ft_pb(t_stks *lists)
-{
-	int	temp;
-	int	i;
-
-	if (lists->size_a < 1)
-		return ;
-	i = lists->size_b;
-	temp = lists->a[0];
-	while (i >= 0)
-	{
-		lists->b[i] = lists->b[i - 1];
-		i --;
-	}
-	lists->b[0] = temp;
-	i = -1;
-	while (++i < lists->size_a - 1)
-		lists->a[i] = lists->a[i + 1];
-	lists->size_a --;
-	lists->size_b ++;
-	lists->steps ++;
-	ft_putendl_fd("pb", 1);
+	if (stack == 'a')
+		ft_sa(lists);
+	else if (stack == 'b')
+		ft_sb(lists);
 }
