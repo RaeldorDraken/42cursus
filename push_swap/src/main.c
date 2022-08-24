@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		exit(0);
 	ft_check_input(ac, av);
-	lists.b = ft_calloc(sizeof(int), (ac - 1));
+	lists.b = ft_calloc(sizeof(long int), (ac - 1));
 	lists.a = ft_convert_input(ac, av);
 	lists.size_a = ac - 1;
 	lists.size_b = 0;

@@ -119,18 +119,34 @@ void	ft_case_five(t_stks *lists)
 void	ft_case_algorithmic(t_stks *lists)
 {
 //	int	i;
+
 //	i = 0;
-	while (lists->size_a != 0)
+//	ft_putstr_fd("a: ", 1);
+//	while (++i < lists->size_a)
+//		ft_putnbr_fd(lists->a[i], 1);
+//	ft_putstr_fd("\nb: ", 1);
+//	i = -1;
+//	while (++i < lists->size_b)
+//		ft_putnbr_fd(lists->b[i], 1);
+	while (lists->size_a > 0)
 	{
+//		i = -1;
 		while (ft_check_list_a(lists, 0) != 0)
 			ft_ra(lists);
 		ft_pb(lists);
+//		ft_putstr_fd("a: ", 1);
+//		while (++i < lists->size_a)
+//			ft_putnbr_fd(lists->a[i], 1);
+//		ft_putstr_fd("\nb: ", 1);
+//		i = -1;
+//		while (++i < lists->size_b)
+//			ft_putnbr_fd(lists->b[i], 1);
+//		ft_putchar_fd('\n', 1);
 	}
-//	while (lists->size_b != i)
-//	{
-//		while (ft_check_list_b(lists, 1) != 0)
-//			ft_rb(lists);
-//		i ++;
-//		ft_pa(lists);
-//	}
+	while (lists->size_b > 0)
+	{
+		while (ft_check_list_b(lists, 1) != 0)
+			ft_rb(lists);
+		ft_pa(lists);
+	}
 }
