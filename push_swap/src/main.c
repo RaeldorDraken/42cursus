@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/18 18:56:24 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/25 13:10:46 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,22 @@ void	ft_check_input(int ac, char **av)
 	}
 }
 
+void	ft_set_struct(t_stks *lists, int ac, char **av)
+{
+	lists->b = ft_calloc(sizeof(long int), (ac - 1));
+	lists->a = ft_convert_input(ac, av);
+	lists->chunk = ft_calloc(sizeof(long int), 20);
+	lists->size_a = ac - 1;
+	lists->size_b = 0;
+	lists->steps = 0;
+	lists->hold_top = 0;
+	lists->hold_bot = 0;
+}
+
 //this function must be eliminated when finished testing results
 void	ft_test_check_result(t_stks *lists)
 {
+//this function must be eliminated when finished testing results
 	int	i;
 
 	i = -1;
@@ -89,13 +102,9 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		exit(0);
 	ft_check_input(ac, av);
-	lists.b = ft_calloc(sizeof(long int), (ac - 1));
-	lists.a = ft_convert_input(ac, av);
-	lists.size_a = ac - 1;
-	lists.size_b = 0;
-	lists.steps = 0;
+	ft_set_struct(&lists, ac, av);
 	ft_check_cases(&lists);
-	ft_test_check_result(&lists);
+//	ft_test_check_result(&lists);//remove this
 	exit(0);
 	return (0);
 }

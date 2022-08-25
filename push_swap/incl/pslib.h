@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:31:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/18 18:53:34 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/25 12:37:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ typedef struct s_stks
 {
 	long int	*a;
 	long int	*b;
+	long int	*chunk;
 	int			size_a;
 	int			size_b;
 	int			steps;
+	int			hold_top;
+	int			hold_bot;
 }	t_stks;
 
 void	ft_pa(t_stks *lists);
@@ -40,7 +43,8 @@ void	ft_sb(t_stks *lists);
 void	ft_ss(t_stks *lists);
 void	ft_sx(t_stks *lists, char stack);
 
-int		ft_check_list(t_stks *lists, int type);
+int		ft_check_list_a(t_stks *lists, int type);
+int		ft_check_list_b(t_stks *lists, int type);
 void	ft_test_check_result(t_stks *lists);
 void	ft_check_cases(t_stks *lists);
 void	ft_case_three(t_stks *lists);
