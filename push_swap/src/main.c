@@ -59,9 +59,14 @@ void	ft_check_input(int ac, char **av)
 
 void	ft_set_struct(t_stks *lists, int ac, char **av)
 {
+	int	i;
+
+	i = -1;
 	lists->b = ft_calloc(sizeof(long int), (ac - 1));
 	lists->a = ft_convert_input(ac, av);
 	lists->chunk = ft_calloc(sizeof(long int), 20);
+	while (++i < 21)
+		lists->chunk[i] = 9999999999;
 	lists->size_a = ac - 1;
 	lists->size_b = 0;
 	lists->steps = 0;

@@ -16,38 +16,43 @@ int		ft_check_position_top(t_stks *lists, char stack)
 {
 	int size;
 	int	i;
-	
-	size = -1;
-	i = 0;
+	int	j;
+
 	if (stack == 'a')
 	{
-		lists->chunk[i] = lists->a[0];
-		while (++size < lists->size_a / 2)
+		i = -1;
+		while (++i < 21)
 		{
-			write(1, "entro\n", 6);
-		
-			ft_putnbr_fd(lists->chunk[i], 1);
-			ft_putchar_fd(' ', 1);
-			ft_putnbr_fd(lists->a[size], 1);
-			ft_putchar_fd('\n', 1);
-			if (lists->chunk[i] > lists->a[size])
+			size = -1;
+			while (++size < lists->size_a / 2)
 			{
-
-				write(1, "incremento\n", 12);
-				lists->chunk[i] = lists->a[size];
-				i ++;
+				j = i + 1;
+				while (--j >= 0)
+				{
+					ft_putnbr_fd(j, 1);
+					ft_putchar_fd(' ', 1);
+					ft_putnbr_fd(size, 1);
+					ft_putchar_fd(' ', 1);
+					ft_putnbr_fd(i, 1);
+					ft_putendl_fd("Entra", 1);
+					ft_putnbr_fd(lists->chunk[j], 1);
+					ft_putchar_fd(' ', 1);
+					ft_putnbr_fd(lists->a[size], 1);
+					ft_putchar_fd('\n', 1);
+					if (lists->chunk[i] > lists->a[size] &&
+						lists->chunk[j] != lists->a[size])
+					{
+						ft_putendl_fd("Intercambia", 1);
+						lists->chunk[i] = lists->a[size];
+					}
+				}
 			}
-			if (lists->size_a / 2 < 20)
-			{
-				write(1, "salida\n", 7);
-				if (i == lists->size_a / 2)
-					return (i);
-			}
-			else if (i > 20)
+			if (lists->size_a / 2 < 20 && i == lists->size_a / 2)
 				return (i - 1);
+			ft_putendl_fd("sale", 1);
 		}
 	}
-	return (-1);
+	return (i - 1);
 }
 
 void	ft_case_algorithmic(t_stks *lists)
