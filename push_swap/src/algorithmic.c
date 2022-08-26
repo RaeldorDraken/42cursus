@@ -29,22 +29,23 @@ int		ft_check_position_top(t_stks *lists, char stack)
 				j = i + 1;
 				while (--j >= 0)
 				{
-					ft_putnbr_fd(j, 1);
-					ft_putchar_fd(' ', 1);
-					ft_putnbr_fd(size, 1);
-					ft_putchar_fd(' ', 1);
-					ft_putnbr_fd(i, 1);
-					ft_putendl_fd("Entra", 1);
-					ft_putnbr_fd(lists->chunk[j], 1);
-					ft_putchar_fd(' ', 1);
-					ft_putnbr_fd(lists->a[size], 1);
-					ft_putchar_fd('\n', 1);
-					if (lists->chunk[i] > lists->a[size] &&
-						lists->chunk[j] != lists->a[size])
-					{
-						ft_putendl_fd("Intercambia", 1);
-						lists->chunk[i] = lists->a[size];
-					}
+					if (lists->chunk[j] == lists->a[size])
+						size ++;
+				}
+				ft_putnbr_fd(j, 1);
+				ft_putchar_fd(' ', 1);
+				ft_putnbr_fd(size, 1);
+				ft_putchar_fd(' ', 1);
+				ft_putnbr_fd(i, 1);
+				ft_putendl_fd("Entra", 1);
+				ft_putnbr_fd(lists->chunk[j], 1);
+				ft_putchar_fd(' ', 1);
+				ft_putnbr_fd(lists->a[size], 1);
+				ft_putchar_fd('\n', 1);
+				if (lists->chunk[i] > lists->a[size])
+				{
+					ft_putendl_fd("Intercambia", 1);
+					lists->chunk[i] = lists->a[size];
 				}
 			}
 			if (lists->size_a / 2 < 20 && i == lists->size_a / 2)
