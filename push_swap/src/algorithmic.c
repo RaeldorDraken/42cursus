@@ -12,48 +12,35 @@
 
 #include"../incl/pslib.h"
 
-int		ft_check_position_top(t_stks *lists, char stack)
+int	ft_check_position_top(t_stks *lists, char stack)
 {
-	int size;
+	int	size;
 	int	i;
 	int	j;
 
+	j = -1;
 	if (stack == 'a')
 	{
-		i = -1;
-		while (++i < 21)
+		if (lists->size_a / 2 < 20)
+			size = lists->size_a;
+		else
+			size = 20;
+		while (++j <= size)
 		{
-			size = -1;
-			while (++size < lists->size_a / 2)
+			i = -1;
+			while (++i <= size)
 			{
-				j = i + 1;
-				while (--j >= 0)
+				if (lists->chunk[j - 1] == lists->a[i])
 				{
-					if (lists->chunk[j] == lists->a[size])
-						size ++;
+					ft_putendl_fd(" entra", 1);
+					i ++;
 				}
-				ft_putnbr_fd(j, 1);
-				ft_putchar_fd(' ', 1);
-				ft_putnbr_fd(size, 1);
-				ft_putchar_fd(' ', 1);
-				ft_putnbr_fd(i, 1);
-				ft_putendl_fd("Entra", 1);
-				ft_putnbr_fd(lists->chunk[j], 1);
-				ft_putchar_fd(' ', 1);
-				ft_putnbr_fd(lists->a[size], 1);
-				ft_putchar_fd('\n', 1);
-				if (lists->chunk[i] > lists->a[size])
-				{
-					ft_putendl_fd("Intercambia", 1);
-					lists->chunk[i] = lists->a[size];
-				}
+				if (lists->chunk[j] > lists->a[i])
+					lists->chunk[j] = lists->a[i];
 			}
-			if (lists->size_a / 2 < 20 && i == lists->size_a / 2)
-				return (i - 1);
-			ft_putendl_fd("sale", 1);
 		}
 	}
-	return (i - 1);
+	return (size);
 }
 
 void	ft_case_algorithmic(t_stks *lists)
