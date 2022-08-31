@@ -12,32 +12,39 @@
 
 #include"../incl/pslib.h"
 
-int	ft_check_position_top(t_stks *lists, char stack)
+int	ft_set_size(t_stks *lists, int *j)
+{
+	*j = -1;
+	if (lists->size_a / 2 < 20)
+		return (lists->size_a / 2);
+	else
+		return (20);
+}
+
+int	ft_check_position_top(t_stks *lists)
 {
 	int	size;
 	int	i;
 	int	j;
+	int	k;
 
-	j = -1;
-	if (stack == 'a')
+	size = ft_set_size(lists, &j);
+	while (++j <= size)
 	{
-		if (lists->size_a / 2 < 20)
-			size = lists->size_a;
-		else
-			size = 20;
-		while (++j <= size)
+		i = -1;
+		while (++i <= lists->size_a / 2)
 		{
-			i = -1;
-			while (++i <= size)
+			k = 20;
+			while (--k > 0)
 			{
-				if (lists->chunk[j - 1] == lists->a[i])
+				if (lists->chunk[k] == lists->a[i])
 				{
-					ft_putendl_fd(" entra", 1);
+					k = 20;
 					i ++;
 				}
-				if (lists->chunk[j] > lists->a[i])
-					lists->chunk[j] = lists->a[i];
 			}
+			if (lists->chunk[j] > lists->a[i])
+				lists->chunk[j] = lists->a[i];
 		}
 	}
 	return (size);
@@ -53,7 +60,7 @@ void	ft_case_algorithmic(t_stks *lists)
 //		if ()
 //	}
 //	ft_basic_al(lists);
-	i = ft_check_position_top(lists, 'a');
+	i = ft_check_position_top(lists);
 	ft_putnbr_fd(i, 1);
 	ft_putchar_fd('\n', 1);
 	while (i > 0)
