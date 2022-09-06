@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:31:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/09/02 11:57:08 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/09/04 11:56:44 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ void	ft_sx(t_stks *lists, char stack);
 
 int		ft_check_list_a(t_stks *lists, int type);
 int		ft_check_list_b(t_stks *lists, int type);
+int		ft_check_chunk(t_stks *lists);
 void	ft_test_check_result(t_stks *lists);
 void	ft_check_cases(t_stks *lists);
 void	ft_case_three(t_stks *lists);
 void	ft_case_five(t_stks *lists);
 void	ft_case_algorithmic(t_stks *lists);
 void	ft_basic_al(t_stks *lists);
-void	ft_set_hold_top(t_stks *lists);
-void	ft_set_hold_bottom(t_stks *lists);
+void	ft_set_hold_top(t_stks *lists, int size);
+void	ft_set_hold_bottom(t_stks *lists, int size);
 #endif
