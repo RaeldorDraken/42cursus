@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/09/04 14:31:25 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/09/06 11:55:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,16 @@ int	ft_rra_nbr_moves(t_stks *lists)
 	return (lists->size_a);
 }
 
-void	ft_pa_bottom(t_stks *lists)
+void	ft_sort_b(t_stks *lists, int hold)
 {
 	int	bs;
 
 	bs = lists->size_b;
-	while (lists->a[0] != lists->hold_bot)
-	{
-		if (lists->b[0] > lists->hold_bot && bs > 1)
-			ft_rrr(lists);
-		else
-			ft_rra(lists);
-	}
 	if (bs > 1)
 	{
 		while (bs > 0)
 		{
-			if (lists->b[0] > lists->hold_bot
-				&& lists->b[lists->size_b - 1] < lists->hold_bot)
+			if (lists->b[0] > hold)
 			{
 				ft_putnbr_fd(lists->b[0], 1);
 				ft_rrb(lists);
@@ -75,34 +67,31 @@ void	ft_pa_bottom(t_stks *lists)
 			bs --;
 		}
 	}
+}
+
+void	ft_pa_bottom(t_stks *lists)
+{
+	while (lists->a[0] != lists->hold_bot)
+	{
+		if (lists->b[0] > lists->hold_bot && lists->size_b > 1)
+			ft_rrr(lists);
+		else
+			ft_rra(lists);
+	}
+	ft_sort_b(lists, lists->hold_bot);
 	ft_pb(lists);
 }
 
 void	ft_pa_top(t_stks *lists)
 {
-	int	bs;
-
-	bs = lists->size_b;
 	while (lists->a[0] != lists->hold_top)
 	{
-		if (lists->b[0] > lists->hold_top && bs > 1)
+		if (lists->b[0] > lists->hold_top && lists->size_b > 1)
 			ft_rr(lists);
 		else
 			ft_ra(lists);
 	}
-	if (bs > 1)
-	{
-		while (bs > 0)
-		{
-			if (lists->b[0] > lists->hold_top
-				&& lists->b[lists->size_b - 1] < lists->hold_top)
-			{
-				ft_putnbr_fd(lists->b[0], 1);
-				ft_rb(lists);
-			}
-			bs --;
-		}
-	}
+	ft_sort_b(lists, lists->hold_top);
 	ft_pb(lists);
 }
 

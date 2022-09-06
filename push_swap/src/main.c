@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/09/04 14:31:27 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/09/06 10:35:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_test_check_result(t_stks *lists)
 	int	i;
 
 	i = -1;
-	ft_putstr_fd("result: ", 1);
+	ft_putstr_fd("result a: ", 1);
 	while (++i < lists->size_a)
 	{
 		ft_putnbr_fd(lists->a[i], 1);
@@ -89,6 +89,7 @@ void	ft_test_check_result(t_stks *lists)
 	}
 	ft_putchar_fd('\n', 1);
 	i = -1;
+	ft_putstr_fd("result b: ", 1);
 	while (++i < lists->size_b)
 	{
 		ft_putnbr_fd(lists->b[i], 1);
