@@ -49,7 +49,11 @@ int	ft_rra_nbr_moves(t_stks *lists)
 	}
 	return (lists->size_a);
 }
+//do a sort b after pb, with hcecking if its the biggest numberand making sa
+//and rb or rrb to move round the number to the right position.
 
+//or i can check for the biggest or smallest of the chunk and push that number
+//so can be pushed on top of the stack correctly that will be easier
 void	ft_sort_b(t_stks *lists, int hold)
 {
 	int	bs;
@@ -62,7 +66,7 @@ void	ft_sort_b(t_stks *lists, int hold)
 			if (lists->b[0] > hold)
 			{
 				ft_putnbr_fd(lists->b[0], 1);
-				ft_rrb(lists);
+				ft_rb(lists);
 			}
 			bs --;
 		}
@@ -78,8 +82,8 @@ void	ft_pa_bottom(t_stks *lists)
 		else
 			ft_rra(lists);
 	}
-	ft_sort_b(lists, lists->hold_bot);
 	ft_pb(lists);
+	ft_sort_b(lists);
 }
 
 void	ft_pa_top(t_stks *lists)
