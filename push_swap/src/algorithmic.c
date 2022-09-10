@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/09/06 11:55:06 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/09/10 16:28:57 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_rra_nbr_moves(t_stks *lists)
 	}
 	return (lists->size_a);
 }
-//do a sort b after pb, with hcecking if its the biggest numberand making sa
+//do a sort b after pb, with checking if its the biggest numberand making sa
 //and rb or rrb to move round the number to the right position.
 
 //or i can check for the biggest or smallest of the chunk and push that number
@@ -82,8 +82,8 @@ void	ft_pa_bottom(t_stks *lists)
 		else
 			ft_rra(lists);
 	}
+	ft_sort_b(lists, lists->hold_bot);
 	ft_pb(lists);
-	ft_sort_b(lists);
 }
 
 void	ft_pa_top(t_stks *lists)
