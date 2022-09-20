@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:54:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/09/10 16:27:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:52:24 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_check_chunk(t_stks *lists)
 	int	j;
 	int	k;
 
+	ft_putstr_fd("chunk: ", 1);
 	size = ft_set_size(lists, &j);
 	while (++j <= size)
 	{
@@ -51,7 +52,10 @@ int	ft_check_chunk(t_stks *lists)
 			if (lists->chunk[j] > lists->a[i])
 				lists->chunk[j] = lists->a[i];
 		}
+		ft_putnbr_fd(lists->chunk[j], 1);
+		ft_putchar_fd(' ', 1);
 	}
+	ft_putchar_fd('\n', 1);
 	return (size);
 }
 

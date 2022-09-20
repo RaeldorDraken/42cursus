@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/09/10 16:28:57 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/09/20 11:52:22 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,114 @@ int	ft_rra_nbr_moves(t_stks *lists)
 //so can be pushed on top of the stack correctly that will be easier
 void	ft_sort_b(t_stks *lists, int hold)
 {
-	int	bs;
+	int		bs;
+	int		pos;
+	long int temp;
 
 	bs = lists->size_b;
-	if (bs > 1)
+	pos = 0;
+	if (bs <= 1)
+		return ;
+	while (bs > 0)
 	{
+		if (lists->b[bs] > hold)
+			pos --;
+		else if (lists->b[bs] < hold)
+			pos ++;
+		bs --;
+	}
+	bs = lists->size_b;
+
+	ft_putchar_fd(' ', 1);
+	ft_putnbr_fd(pos, 1);
+	ft_putchar_fd(' ', 1);
+	ft_putnbr_fd(lists->size_b, 1);
+	ft_putchar_fd('|', 1);
+
+/*	if (pos == lists->size_b - 1)
+	{
+		pos = 0;
+		temp = -2147483649;
 		while (bs > 0)
 		{
-			if (lists->b[0] > hold)
-			{
-				ft_putnbr_fd(lists->b[0], 1);
-				ft_rb(lists);
-			}
+			if (lists->chunk[bs] > temp)
+				temp = lists->chunk[bs];
 			bs --;
 		}
+		while (lists->chunk[bs++] != temp)
+			pos ++;
+		if (pos > lists->size_b / 2)
+		{
+			while (pos-- > 0)
+				ft_rb(lists);
+		}
+		else
+		{
+			while (pos-- > 0)
+				ft_rrb(lists);
+		}
 	}
+	else if (pos == -(lists->size_b - 1))
+	{
+		pos = 0;
+		temp = 2147483648;
+		while (bs > 0)
+		{
+			if (lists->chunk[bs] < temp)
+				temp = lists->chunk[bs];
+			bs --;
+		}
+		while (lists->chunk[bs++] != temp)
+			pos ++;
+		if (pos > lists->size_b / 2)
+		{
+			while (pos-- > 0)
+				ft_rb(lists);
+		}
+		else
+		{
+			while (pos-- > 0)
+				ft_rrb(lists);
+		}
+	}
+	else
+	{*/
+		temp = hold;
+		while(--temp <= -2147483649)
+		{
+			pos = 0;
+			while (bs > 0)
+			{
+				if (lists->chunk[bs] == temp)
+					break ;
+				pos ++;
+			}
+		}
+//		if (temp == -2147483649)
+//		{
+//			temp = hold;
+//			while(++temp <= 2147483648)
+//			{
+//				pos = 0;
+//				while (bs > 0)
+//				{
+//					if (lists->chunk[bs] == temp)
+//						break ;
+//					pos ++;
+//				}
+//			}
+//		}
+		if (pos > lists->size_b / 2)
+		{
+			while (pos-- > 1)
+				ft_rb(lists);
+		}
+		else
+		{
+			while (pos-- > 0)
+				ft_rrb(lists);
+		}
+//	}
 }
 
 void	ft_pa_bottom(t_stks *lists)
