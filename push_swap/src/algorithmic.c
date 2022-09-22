@@ -62,7 +62,7 @@ void	ft_sort_b(t_stks *lists, int hold)
 
 	bs = lists->size_b;
 	pos = 0;
-	if (bs <= 1)
+	if (bs < 3)
 		return ;
 	while (bs > 0)
 	{
@@ -70,100 +70,97 @@ void	ft_sort_b(t_stks *lists, int hold)
 			pos --;
 		else if (lists->b[bs] < hold)
 			pos ++;
+		ft_putnbr_fd(lists->b[bs], 1);
+		ft_putchar_fd('\n', 1);
 		bs --;
 	}
 	bs = lists->size_b;
-
+//
 	ft_putchar_fd(' ', 1);
 	ft_putnbr_fd(pos, 1);
 	ft_putchar_fd(' ', 1);
 	ft_putnbr_fd(lists->size_b, 1);
 	ft_putchar_fd('|', 1);
-
-/*	if (pos == lists->size_b - 1)
+//
+	if (pos == lists->size_b - 2)
 	{
-		pos = 0;
-		temp = -2147483649;
+		temp = -9999999999;
 		while (bs > 0)
 		{
 			if (lists->chunk[bs] > temp)
 				temp = lists->chunk[bs];
 			bs --;
 		}
-		while (lists->chunk[bs++] != temp)
-			pos ++;
-		if (pos > lists->size_b / 2)
+		while (lists->chunk[bs] != temp)
 		{
-			while (pos-- > 0)
+			ft_putnbr_fd(bs, 1);
+			ft_putendl_fd(" entra", 1);
+			ft_putnbr_fd(lists->size_b, 1);
+			ft_putchar_fd('\n', 1);
+			bs ++;
+		}
+		if (bs < lists->size_b / 2)
+		{
+			while (bs-- > 0)
 				ft_rb(lists);
 		}
 		else
 		{
-			while (pos-- > 0)
+			while (bs++ <= lists->size_b)
 				ft_rrb(lists);
 		}
 	}
-	else if (pos == -(lists->size_b - 1))
+	else if (pos == -(lists->size_b - 2))
 	{
-		pos = 0;
-		temp = 2147483648;
+		temp = 9999999999;
 		while (bs > 0)
 		{
 			if (lists->chunk[bs] < temp)
 				temp = lists->chunk[bs];
 			bs --;
 		}
-		while (lists->chunk[bs++] != temp)
-			pos ++;
-		if (pos > lists->size_b / 2)
+		while (lists->chunk[bs] != temp)
+			bs ++;
+		if (bs < lists->size_b / 2)
 		{
-			while (pos-- > 0)
+			while (bs-- > 0)
 				ft_rb(lists);
 		}
 		else
 		{
-			while (pos-- > 0)
+			while (pos++ <= lists->size_b)
 				ft_rrb(lists);
 		}
 	}
 	else
-	{*/
+	{
 		temp = hold;
-		while(--temp <= -2147483649)
+		while (temp < 9999999999)
 		{
-			pos = 0;
-			while (bs > 0)
+			pos = lists->size_b - 1;
+			while (pos >= 0)
 			{
-				if (lists->chunk[bs] == temp)
+				if (lists->b[pos] == temp)
+				{
 					break ;
-				pos ++;
+				}
+				pos --;
 			}
+			if (lists->b[pos] == temp)
+				break ;
+			temp ++;
 		}
-//		if (temp == -2147483649)
-//		{
-//			temp = hold;
-//			while(++temp <= 2147483648)
-//			{
-//				pos = 0;
-//				while (bs > 0)
-//				{
-//					if (lists->chunk[bs] == temp)
-//						break ;
-//					pos ++;
-//				}
-//			}
-//		}
-		if (pos > lists->size_b / 2)
+		if (pos < lists->size_b / 2)
 		{
-			while (pos-- > 1)
+			while (pos-- >= 0)
 				ft_rb(lists);
 		}
 		else
 		{
-			while (pos-- > 0)
+			while (pos++ < lists->size_b)
 				ft_rrb(lists);
 		}
-//	}
+	}
 }
 
 void	ft_pa_bottom(t_stks *lists)
