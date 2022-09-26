@@ -56,121 +56,71 @@ int	ft_rra_nbr_moves(t_stks *lists)
 //so can be pushed on top of the stack correctly that will be easier
 void	ft_sort_b(t_stks *lists, int hold)
 {
-	int		bs;
-	int		pos;
-	long int temp;
+	int	i;
 
-	bs = lists->size_b;
-	pos = 0;
-	if (bs < 3)
-		return ;
-	while (bs > 0)
-	{
-		if (lists->b[bs] > hold)
-			pos --;
-		else if (lists->b[bs] < hold)
-			pos ++;
-		ft_putnbr_fd(lists->b[bs], 1);
-		ft_putchar_fd('\n', 1);
-		bs --;
-	}
-	bs = lists->size_b;
-//
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(pos, 1);
-	ft_putchar_fd(' ', 1);
-	ft_putnbr_fd(lists->size_b, 1);
-	ft_putchar_fd('|', 1);
-//
-	if (pos == lists->size_b - 2)
-	{
-		temp = -9999999999;
-		while (bs > 0)
-		{
-			if (lists->chunk[bs] > temp)
-				temp = lists->chunk[bs];
-			bs --;
-		}
-		while (lists->chunk[bs] != temp)
-		{
-			ft_putnbr_fd(bs, 1);
-			ft_putendl_fd(" entra", 1);
-			ft_putnbr_fd(lists->size_b, 1);
-			ft_putchar_fd('\n', 1);
-			bs ++;
-		}
-		if (bs < lists->size_b / 2)
-		{
-			while (bs-- > 0)
-				ft_rb(lists);
-		}
-		else
-		{
-			while (bs++ <= lists->size_b)
-				ft_rrb(lists);
-		}
-	}
-	else if (pos == -(lists->size_b - 2))
-	{
-		temp = 9999999999;
-		while (bs > 0)
-		{
-			if (lists->chunk[bs] < temp)
-				temp = lists->chunk[bs];
-			bs --;
-		}
-		while (lists->chunk[bs] != temp)
-			bs ++;
-		if (bs < lists->size_b / 2)
-		{
-			while (bs-- > 0)
-				ft_rb(lists);
-		}
-		else
-		{
-			while (pos++ <= lists->size_b)
-				ft_rrb(lists);
-		}
-	}
-	else
-	{
-		temp = hold;
-		while (temp < 9999999999)
-		{
-			pos = lists->size_b - 1;
-			while (pos >= 0)
-			{
-				if (lists->b[pos] == temp)
-				{
-					break ;
-				}
-				pos --;
-			}
-			if (lists->b[pos] == temp)
-				break ;
-			temp ++;
-		}
-		if (pos < lists->size_b / 2)
-		{
-			while (pos-- >= 0)
-				ft_rb(lists);
-		}
-		else
-		{
-			while (pos++ < lists->size_b)
-				ft_rrb(lists);
-		}
-	}
+	i = 0;
+	while (i < lists->size_b && hold != lists->b[0])
+		i ++;
 }
 
-void	ft_pa_bottom(t_stks *lists)
+int	ft_check_biggest_b(t_stks *lists, int half)
 {
+	int	i;
+	int	temp;
+
+	i = -1;
+	temp = lists->b[0];
+	if (lists->size_b < 2)
+		return (i);
+	while (++i < lists->size_b)
+	{
+		if (lists->b[i] > temp)
+			temp = lists->b[i];
+	}
+	i = -1;
+	while (lists->b[i] != temp)
+		i ++;
+	if (half == 1)
+		return (lists->size_b - i);
+	else
+		return (i);
+}
+
+void	test_funct(t_stks *lists)
+{
+	int	i;
+
+	i = -1;
+	while (++i < lists->size_b)
+	{
+		ft_putnbr_fd(lists->b[i], 1);
+		ft_putchar_fd('\n', 1);
+	}
+	ft_putendl_fd("sale", 1);
+}
+
+void    ft_pa_bottom(t_stks *lists)
+{
+    int i;
+
+	i = ft_check_biggest_b(lists, 1);
 	while (lists->a[0] != lists->hold_bot)
 	{
-		if (lists->b[0] > lists->hold_bot && lists->size_b > 1)
+		if (i -- > 0)
+		{
 			ft_rrr(lists);
+			ft_putendl_fd("Entra rrr", 1);
+			test_funct(lists);
+		}
 		else
 			ft_rra(lists);
+	}
+	while (i -- > 0)
+	{
+		ft_rrb(lists);
+		ft_putchar_fd('\n', 1);
+		ft_putendl_fd("Entra rrb", 1);
+		test_funct(lists);
 	}
 	ft_sort_b(lists, lists->hold_bot);
 	ft_pb(lists);
@@ -178,12 +128,25 @@ void	ft_pa_bottom(t_stks *lists)
 
 void	ft_pa_top(t_stks *lists)
 {
+	int	i;
+
+	i = ft_check_biggest_b(lists, 0);
 	while (lists->a[0] != lists->hold_top)
 	{
-		if (lists->b[0] > lists->hold_top && lists->size_b > 1)
+		if (i -- > 0)
+		{
 			ft_rr(lists);
+			ft_putendl_fd("Entra rr", 1);
+			test_funct(lists);
+		}
 		else
 			ft_ra(lists);
+	}
+	while (i -- > 0)
+	{
+		ft_rb(lists);
+		ft_putendl_fd("Entra rb", 1);
+		test_funct(lists);
 	}
 	ft_sort_b(lists, lists->hold_top);
 	ft_pb(lists);
