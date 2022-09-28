@@ -99,6 +99,35 @@ void	test_funct(t_stks *lists)
 	ft_putendl_fd("sale", 1);
 }
 
+long int	ft_check_nearest(t_stks *lists, hold)
+{
+	int			i;
+	long int	result;
+	long int	temp;
+
+	i = -1;
+	while (++i < lists->size_b)
+	{
+		if (temp > lists->b[i])
+			temp = lists->b[i];
+	}
+	if (temp > hold)
+		return (9999999999);
+	else
+	{
+		result = hold;
+		while (--result > temp)
+		{
+			i = -1;
+			while (++i < lists->size_b)
+			{
+				if (lists->b[i] == result)
+					return (result);
+			}
+		}
+	}	
+}
+
 void    ft_pa_bottom(t_stks *lists)
 {
     int i;
@@ -128,8 +157,10 @@ void    ft_pa_bottom(t_stks *lists)
 
 void	ft_pa_top(t_stks *lists)
 {
-	int	i;
+	int			i;
+	long int	temp;
 
+	temp = ft_check_nearest(lists);
 	i = ft_check_biggest_b(lists, 0);
 	while (lists->a[0] != lists->hold_top)
 	{
