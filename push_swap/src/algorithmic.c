@@ -54,33 +54,29 @@ int	ft_rra_nbr_moves(t_stks *lists)
 
 //or i can check for the biggest or smallest of the chunk and push that number
 //so can be pushed on top of the stack correctly that will be easier
-void	ft_sort_b(t_stks *lists, int hold)
+
+int	ft_sort_b(t_stks *lists, long int target)
 {
 	int	i;
-
-	i = 0;
-	while (i < lists->size_b && hold != lists->b[0])
-		i ++;
-}
-
-int	ft_check_biggest_b(t_stks *lists, int half)
-{
-	int	i;
-	int	temp;
 
 	i = -1;
-	temp = lists->b[0];
 	if (lists->size_b < 2)
 		return (i);
-	while (++i < lists->size_b)
+	if (target == 9999999999)
 	{
-		if (lists->b[i] > temp)
-			temp = lists->b[i];
+		while (++i < lists->size_b)
+		{
+			if (lists->b[i] < target)
+				target = lists->b[i];
+		}
 	}
 	i = -1;
-	while (lists->b[i] != temp)
-		i ++;
-	if (half == 1)
+	while (++i < lists->size_b)
+	{
+		if (lists->b[i] == target)
+			break ;
+	}
+	if (i > lists->size_b / 2)
 		return (lists->size_b - i);
 	else
 		return (i);
@@ -99,7 +95,7 @@ void	test_funct(t_stks *lists)
 	ft_putendl_fd("sale", 1);
 }
 
-long int	ft_check_nearest(t_stks *lists, hold)
+long int	ft_check_nearest(t_stks *lists, long int hold)
 {
 	int			i;
 	long int	result;
@@ -125,14 +121,17 @@ long int	ft_check_nearest(t_stks *lists, hold)
 					return (result);
 			}
 		}
-	}	
+	}
+	return (9999999999);
 }
 
 void    ft_pa_bottom(t_stks *lists)
 {
     int i;
+	long int	temp;
 
-	i = ft_check_biggest_b(lists, 1);
+	temp = ft_check_nearest(lists, lists->hold_bot);
+	i = ft_sort_b(lists, temp);
 	while (lists->a[0] != lists->hold_bot)
 	{
 		if (i -- > 0)
@@ -151,7 +150,6 @@ void    ft_pa_bottom(t_stks *lists)
 		ft_putendl_fd("Entra rrb", 1);
 		test_funct(lists);
 	}
-	ft_sort_b(lists, lists->hold_bot);
 	ft_pb(lists);
 }
 
@@ -160,8 +158,8 @@ void	ft_pa_top(t_stks *lists)
 	int			i;
 	long int	temp;
 
-	temp = ft_check_nearest(lists);
-	i = ft_check_biggest_b(lists, 0);
+	temp = ft_check_nearest(lists, lists->hold_top);
+	i = ft_sort_b(lists, temp);
 	while (lists->a[0] != lists->hold_top)
 	{
 		if (i -- > 0)
@@ -179,7 +177,6 @@ void	ft_pa_top(t_stks *lists)
 		ft_putendl_fd("Entra rb", 1);
 		test_funct(lists);
 	}
-	ft_sort_b(lists, lists->hold_top);
 	ft_pb(lists);
 }
 
