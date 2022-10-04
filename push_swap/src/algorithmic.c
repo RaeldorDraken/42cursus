@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/09/20 11:52:22 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:43:09 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,9 @@ void	ft_pa_top(t_stks *lists)
 	long int	temp;
 
 	temp = ft_check_nearest(lists, lists->hold_top);
+	ft_putnbr_fd(temp, 1);
+	ft_putnbr_fd(lists->hold_top, 1);
+	exit(0);
 	i = ft_sort_b(lists, temp);
 	while (lists->a[0] != lists->hold_top)
 	{

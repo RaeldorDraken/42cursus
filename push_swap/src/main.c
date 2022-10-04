@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/09/06 10:35:37 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:01:29 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	main(int ac, char **av)
 	ft_check_input(ac, av);
 	ft_set_struct(&lists, ac, av);
 	ft_check_cases(&lists);
-	ft_test_check_result(&lists);//remove this
+//	ft_test_check_result(&lists);//remove this
 	exit(0);
 	return (0);
 }
