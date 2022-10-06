@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 12:32:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/25 11:24:01 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/06 10:53:22 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,30 +50,32 @@ int	ft_check_list_a(t_stks *lists, int type)
 	return (result);
 }
 
-int	ft_check_list_b(t_stks *lists, int type)
+//type: 0 = smallest, 1 = biggest;
+long int	ft_look_for_nbr(t_stks *lists, int type)
 {
-	int	i;
-	int	result;
+	long int	nbr;
+	int			i;
 
 	i = -1;
-	result = 0;
+	nbr = 9999999999;
 	if (type == 0)
 	{
-		while (++i < lists->size_b)
+		while (++i < lists->size_a)
 		{
-			if (lists->b[result] > lists->b[i])
-				result = i;
+			if (lists->a[i] < nbr)
+				nbr = lists->a[i];
 		}
 	}
-	else
+	else if (type == 1)
 	{
-		while (++i < lists->size_b)
+		nbr = -9999999999;
+		while (++i < lists->size_a)
 		{
-			if (lists->b[result] < lists->b[i])
-				result = i;
+			if (lists->a[i] > nbr)
+				nbr = lists->a[i];
 		}
 	}
-	return (result);
+	return (nbr);
 }
 
 void	ft_case_three(t_stks *lists)
@@ -105,10 +107,22 @@ void	ft_case_three(t_stks *lists)
 void	ft_case_five(t_stks *lists)
 {
 	while (ft_check_list_a(lists, 0) != 0)
-		ft_ra(lists);
+	{
+		if (lists->a[1] == ft_look_for_nbr(lists, 0)
+			|| lists->a[2] == ft_look_for_nbr(lists, 0))
+			ft_ra(lists);
+		else
+			ft_rra(lists);
+	}
 	ft_pb(lists);
 	while (ft_check_list_a(lists, 1) != 0)
-		ft_rra(lists);
+	{
+		if (lists->a[1] == ft_look_for_nbr(lists, 1)
+			|| lists->a[2] == ft_look_for_nbr(lists, 1))
+			ft_ra(lists);
+		else
+			ft_rra(lists);
+	}
 	ft_pb(lists);
 	ft_case_three(lists);
 	ft_pa(lists);
