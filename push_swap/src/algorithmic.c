@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/06 12:29:23 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/09 11:13:19 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,9 @@ long int	ft_check_nearest(t_stks *lists, long int hold)
 
 void    ft_pa_bottom(t_stks *lists)
 {
-    int i;
+    int 		i;
 	long int	temp;
+	char		mode;
 
 	temp = ft_check_nearest(lists, lists->hold_bot);
 	ft_putnbr_fd(temp, 1);
@@ -143,9 +144,13 @@ void    ft_pa_bottom(t_stks *lists)
 	ft_putchar_fd('\t', 1);
 	ft_putnbr_fd(i, 1);
 	ft_putchar_fd('\n', 1);
+	if (i > lists->size_b / 2)
+		mode = 'b';
+	else
+		mode = 't';
 	while (lists->a[0] != lists->hold_bot)
 	{
-		if (i -- >= 0)
+		if (i -- >= 0 && mode == 'b')
 		{
 			ft_rrr(lists);
 			test_funct(lists, 'b');
@@ -155,7 +160,10 @@ void    ft_pa_bottom(t_stks *lists)
 	}
 	while (i -- >= 0)
 	{
-		ft_rrb(lists);
+		if (mode == 'b')
+			ft_rrb(lists);
+		else
+			ft_rb(lists);
 		test_funct(lists, 'b');
 	}
 	ft_pb(lists);
@@ -165,6 +173,7 @@ void	ft_pa_top(t_stks *lists)
 {
 	int			i;
 	long int	temp;
+	char		mode;
 
 	temp = ft_check_nearest(lists, lists->hold_top);
 	ft_putnbr_fd(temp, 1);
@@ -174,9 +183,13 @@ void	ft_pa_top(t_stks *lists)
 	ft_putchar_fd('\t', 1);
 	ft_putnbr_fd(i, 1);
 	ft_putchar_fd('\n', 1);
+	if (i > lists->size_b / 2)
+		mode = 'b';
+	else
+		mode = 't';
 	while (lists->a[0] != lists->hold_top)
 	{
-		if (i -- >= 0)
+		if (i -- >= 0 && mode == 't')
 		{
 			ft_rr(lists);
 			test_funct(lists, 't');
@@ -186,7 +199,10 @@ void	ft_pa_top(t_stks *lists)
 	}
 	while (i -- >= 0)
 	{
-		ft_rb(lists);
+		if (mode == 't')
+			ft_rb(lists);
+		else
+			ft_rrb(lists);
 		test_funct(lists, 't');
 	}
 	ft_pb(lists);
