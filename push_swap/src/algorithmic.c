@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/09 11:13:19 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:37:11 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,22 @@ int	ft_rra_nbr_moves(t_stks *lists)
 int	ft_sort_b(t_stks *lists, long int target)
 {
 	int	i;
+	int	buffer;
 
 	i = -1;
+	buffer = 0;
 	if (lists->size_b < 2)
 		return (i);
-	if (target == -9999999999)
+	if (target == 9999999999)
 	{
+		buffer = 1;
+		ft_putchar_fd('\n', 1);
 		while (++i < lists->size_b)
 		{
 			if (lists->b[i] < target)
 				target = lists->b[i];
+			ft_putnbr_fd(target, 1);
+			ft_putchar_fd('\t', 1);
 		}
 	}
 	i = -1;
@@ -76,10 +82,9 @@ int	ft_sort_b(t_stks *lists, long int target)
 		if (lists->b[i] == target)
 			break ;
 	}
-	if (i > lists->size_b / 2)
-		return (lists->size_b - i);
-	else
-		return (i);
+	if (buffer == 0)
+		i++;
+	return (i - buffer);
 }
 
 void	test_funct(t_stks *lists, char type)
@@ -145,15 +150,18 @@ void    ft_pa_bottom(t_stks *lists)
 	ft_putnbr_fd(i, 1);
 	ft_putchar_fd('\n', 1);
 	if (i > lists->size_b / 2)
+	{
+		i = lists->size_b - i - 1;
 		mode = 'b';
+	}
 	else
 		mode = 't';
+	test_funct(lists, 'b');
 	while (lists->a[0] != lists->hold_bot)
 	{
 		if (i -- >= 0 && mode == 'b')
 		{
 			ft_rrr(lists);
-			test_funct(lists, 'b');
 		}
 		else
 			ft_rra(lists);
@@ -164,9 +172,9 @@ void    ft_pa_bottom(t_stks *lists)
 			ft_rrb(lists);
 		else
 			ft_rb(lists);
-		test_funct(lists, 'b');
 	}
 	ft_pb(lists);
+	test_funct(lists, 'b');
 }
 
 void	ft_pa_top(t_stks *lists)
@@ -184,15 +192,18 @@ void	ft_pa_top(t_stks *lists)
 	ft_putnbr_fd(i, 1);
 	ft_putchar_fd('\n', 1);
 	if (i > lists->size_b / 2)
+	{
+		i = lists->size_b - i - 1;
 		mode = 'b';
+	}
 	else
 		mode = 't';
+	test_funct(lists, 't');
 	while (lists->a[0] != lists->hold_top)
 	{
 		if (i -- >= 0 && mode == 't')
 		{
 			ft_rr(lists);
-			test_funct(lists, 't');
 		}
 		else
 			ft_ra(lists);
@@ -203,9 +214,9 @@ void	ft_pa_top(t_stks *lists)
 			ft_rb(lists);
 		else
 			ft_rrb(lists);
-		test_funct(lists, 't');
 	}
 	ft_pb(lists);
+	test_funct(lists, 't');
 }
 
 void	ft_case_algorithmic(t_stks *lists)
