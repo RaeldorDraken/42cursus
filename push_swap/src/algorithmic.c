@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/13 11:19:35 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:26:13 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ long int	ft_check_nearest(t_stks *lists, long int hold)
 	{
 		if (temp > lists->b[i])
 			temp = lists->b[i];
+		//Cuando quedan 2 elementos en a aqui entra en bucle infinito
 	}
+	ft_putnbr_fd(temp, 1);
+	ft_putendl_fd(" temp", 1);
 	if (temp > hold)
 		return (9999999999);
 	else
@@ -114,6 +117,10 @@ long int	ft_check_nearest(t_stks *lists, long int hold)
 		result = hold;
 		while (--result > temp)
 		{
+			//Cuando quedan 2 elementos en a aqui entra en bucle infinito
+			//El infinite loop es cuando intenta buscar numeros inferiores al minimo
+			//Solucion es en lugar de buscar el siguiente inferior, es buscar
+			//el siguiente superior.
 			i = -1;
 			while (++i < lists->size_b)
 			{
@@ -136,6 +143,7 @@ void    ft_pa_bottom(t_stks *lists)
 		ft_rra(lists);
 	while (i -- > 0)
 		ft_rb(lists);
+	ft_putendl_fd("chivato", 1);
 	ft_pb(lists);
 }
 
@@ -160,23 +168,36 @@ void	ft_pa_top(t_stks *lists)
 		ft_rb(lists);
 	}
 	ft_pb(lists);
+	ft_putnbr_fd(lists->size_a, 1);
 }
 
 void	ft_case_algorithmic(t_stks *lists)
 {
 	int	i;
 	int	size;
+	int	j;
 
-	i = -1;
-	size = ft_check_chunk(lists);
-	while (++i < size)
+	j = 5;
+	//	while (lists->size_a > 0)
+	while (j > 0)
 	{
-		ft_set_hold_top(lists, size);
-		ft_set_hold_bottom(lists, size);
-		if (ft_ra_nbr_moves(lists) > ft_rra_nbr_moves(lists))
-			ft_pa_bottom(lists);
-		else
-			ft_pa_top(lists);
+		i = -1;
+		size = ft_check_chunk(lists);
+		while (++i < size)
+		{
+			ft_set_hold_top(lists, size);
+			ft_set_hold_bottom(lists, size);
+			if (ft_ra_nbr_moves(lists) > ft_rra_nbr_moves(lists))
+				ft_pa_bottom(lists);
+			else
+				ft_pa_top(lists);
+		}
+		ft_putchar_fd('\t', 1);
+		ft_putnbr_fd(lists->size_a, 1);
+		ft_putchar_fd('\t', 1);
+		ft_putnbr_fd(lists->hold_top, 1);
+		ft_putchar_fd('\n', 1);
+		j --;
 	}
 }
 

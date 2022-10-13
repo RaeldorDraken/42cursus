@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/13 11:03:13 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:03:04 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	ft_set_struct(t_stks *lists, int ac, char **av)
 	lists->size_a = ac - 1;
 	lists->size_b = 0;
 	lists->steps = 0;
-	lists->hold_top = 0;
-	lists->hold_bot = 0;
+	lists->hold_top = INT_MAX;
+	lists->hold_bot = INT_MAX;
 }
 
 //this function must be eliminated when finished testing results
