@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:54:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/13 12:26:47 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:09:41 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int	ft_check_chunk(t_stks *lists)
 	while (++j <= size)
 	{
 		i = -1;
-		while (++i <= lists->size_a)
+		while (++i < lists->size_a)
 		{
 			k = 20;
-			while (--k > 0)
+			while (--k >= 0)
 			{
 				if (lists->chunk[k] == lists->a[i])
 				{
@@ -72,7 +72,7 @@ void	ft_set_hold_top(t_stks *lists, int size)
 	while (j <= lists->size_a / 2)
 	{
 		i = size;
-		while (i > 0)
+		while (i >= 0)
 		{
 			if (lists->chunk[i] == lists->a[j])
 			{
@@ -96,7 +96,7 @@ void	ft_set_hold_bottom(t_stks *lists, int size)
 	while (j > lists->size_a / 2)
 	{
 		i = size;
-		while (i > 0)
+		while (i >= 0)
 		{
 			if (lists->chunk[i] == lists->a[j])
 			{
