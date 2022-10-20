@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:54:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/18 12:09:41 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:21:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_check_chunk(t_stks *lists)
 	int	j;
 	int	k;
 
-	ft_putstr_fd("chunk: ", 1);
+//	ft_putstr_fd("chunk: ", 1);
 	size = ft_set_size(lists, &j);
 	while (++j <= size)
 	{
@@ -55,10 +55,10 @@ int	ft_check_chunk(t_stks *lists)
 			if (lists->chunk[j] > lists->a[i])
 				lists->chunk[j] = lists->a[i];
 		}
-		ft_putnbr_fd(lists->chunk[j], 1);
-		ft_putchar_fd(' ', 1);
+//		ft_putnbr_fd(lists->chunk[j], 1);
+//		ft_putchar_fd(' ', 1);
 	}
-	ft_putchar_fd('\n', 1);
+//	ft_putchar_fd('\n', 1);
 	return (size);
 }
 
@@ -68,7 +68,7 @@ void	ft_set_hold_top(t_stks *lists, int size)
 	int	j;
 
 	j = 0;
-	lists->hold_top = INT_MAX;
+	lists->hold_top = ft_look_for_nbr(lists, 1);
 	while (j <= lists->size_a / 2)
 	{
 		i = size;
@@ -92,7 +92,7 @@ void	ft_set_hold_bottom(t_stks *lists, int size)
 	int	j;
 
 	j = lists->size_a;
-	lists->hold_bot = INT_MAX;
+	lists->hold_bot = ft_look_for_nbr(lists, 1);
 	while (j > lists->size_a / 2)
 	{
 		i = size;

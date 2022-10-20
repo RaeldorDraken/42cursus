@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/18 12:09:39 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/20 11:22:44 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,33 @@ int	ft_rra_nbr_moves(t_stks *lists)
 	return (lists->size_a);
 }
 
-int	ft_sort_b(t_stks *lists, long int target)
+int	ft_sort_b(t_stks *lists, long int target, long int hold)
 {
 	int	i;
+	int	buffer;
 
 	i = -1;
+	buffer = 1;
 	if (lists->size_b < 2)
 		return (i);
+	while (++i < lists->size_b)
+	{
+		if (lists->b[i] < hold)
+		{
+			buffer = 0;
+			break ;
+		}
+	}
+	i = -1;
 	if (target == 9999999999)
 	{
-		ft_putchar_fd('\n', 1);
+//		ft_putchar_fd('\n', 1);
 		while (++i < lists->size_b)
 		{
 			if (lists->b[i] < target)
 				target = lists->b[i];
-			ft_putnbr_fd(target, 1);
-			ft_putchar_fd('\t', 1);
+//			ft_putnbr_fd(target, 1);
+//			ft_putchar_fd('\t', 1);
 		}
 	}
 	i = -1;
@@ -74,7 +85,7 @@ int	ft_sort_b(t_stks *lists, long int target)
 		if (lists->b[i] == target)
 			break ;
 	}
-	return (i);
+	return (i + buffer);
 }
 
 void	test_funct(t_stks *lists, char type)
@@ -98,6 +109,7 @@ long int	ft_check_nearest(t_stks *lists, long int hold)
 {
 	int			i;
 	long int	result;
+//	int			k;
 	long int	temp;
 
 	i = -1;
@@ -106,10 +118,16 @@ long int	ft_check_nearest(t_stks *lists, long int hold)
 	{
 		if (temp > lists->b[i])
 			temp = lists->b[i];
-		//Cuando quedan 2 elementos en a aqui entra en bucle infinito
 	}
-	ft_putnbr_fd(temp, 1);
-	ft_putendl_fd(" temp", 1);
+//	ft_putnbr_fd(temp, 1);
+//	ft_putendl_fd(" temp", 1);
+//	k = 0;
+//	while (k < lists->size_a)
+//	{
+//		ft_putnbr_fd(lists->a[k], 1);
+//		ft_putchar_fd('/', 1);
+//		k ++;
+//	}
 	if (temp > hold)
 		return (9999999999);
 	else
@@ -134,12 +152,12 @@ void    ft_pa_bottom(t_stks *lists)
 	long int	temp;
 
 	temp = ft_check_nearest(lists, lists->hold_bot);
-	i = ft_sort_b(lists, temp);
+	i = ft_sort_b(lists, temp, lists->hold_bot);
 	while (lists->a[0] != lists->hold_bot)
 		ft_rra(lists);
 	while (i -- > 0)
 		ft_rb(lists);
-	ft_putendl_fd("chivato", 1);
+//	ft_putendl_fd("chivato", 1);
 	ft_pb(lists);
 }
 
@@ -149,7 +167,7 @@ void	ft_pa_top(t_stks *lists)
 	long int	temp;
 
 	temp = ft_check_nearest(lists, lists->hold_top);
-	i = ft_sort_b(lists, temp);
+	i = ft_sort_b(lists, temp, lists->hold_top);
 	while (lists->a[0] != lists->hold_top)
 	{
 		if (i -- > 0)
@@ -164,14 +182,40 @@ void	ft_pa_top(t_stks *lists)
 		ft_rb(lists);
 	}
 	ft_pb(lists);
-	ft_putnbr_fd(lists->size_a, 1);
+//	ft_putnbr_fd(lists->size_a, 1);
+}
+
+void	ft_return_to_a(t_stks *lists, int i, long int temp)
+{
+	while (++i < lists->size_b)
+	{
+		if (temp < lists->b[i])
+		{
+			temp = lists->b[i];
+		}
+	}
+	i = 0;
+	while (temp != lists->b[i])
+		i ++;
+	if (i <= lists->size_b / 2)
+	{
+		while (temp != lists->b[0])
+			ft_rb(lists);
+	}
+	else
+	{
+		while (temp != lists->b[0])
+			ft_rrb(lists);
+	}
+	while (lists->size_b > 0)
+		ft_pa(lists);
 }
 
 void	ft_case_algorithmic(t_stks *lists)
 {
 	int	i;
 	int	size;
-	int k;
+//	int k;
 
 	while (lists->size_a > 0)
 	{
@@ -179,46 +223,49 @@ void	ft_case_algorithmic(t_stks *lists)
 		size = ft_check_chunk(lists);
 		while (++i < size)
 		{
-			k = 0;
-			while (k < lists->size_b)
-			{
-				ft_putnbr_fd(lists->b[k], 1);
-				ft_putchar_fd('\t', 1);
-				k ++;
-			}
-			ft_putchar_fd('\n', 1);
-			ft_putchar_fd('\n', 1);
+//			k = 0;
+//			while (k < lists->size_b)
+//			{
+//				ft_putnbr_fd(lists->b[k], 1);
+//				ft_putchar_fd('\\', 1);
+//				k ++;
+//			}
+//			ft_putchar_fd('\n', 1);
+//			ft_putchar_fd('\n', 1);
+
 			ft_set_hold_top(lists, size);
 			ft_set_hold_bottom(lists, size);
-			ft_putchar_fd('\t', 1);
-			ft_putnbr_fd(ft_ra_nbr_moves(lists), 1);
-			ft_putchar_fd('\t', 1);
-			ft_putnbr_fd(lists->hold_top, 1);
-			ft_putchar_fd('\n', 1);
-			ft_putchar_fd('\t', 1);
-			ft_putnbr_fd(ft_rra_nbr_moves(lists), 1);
-			ft_putchar_fd('\t', 1);
-			ft_putnbr_fd(lists->hold_bot, 1);
-			ft_putchar_fd('\n', 1);
+
+//			ft_putchar_fd('\t', 1);
+//			ft_putnbr_fd(ft_ra_nbr_moves(lists), 1);
+//			ft_putchar_fd('\t', 1);
+//			ft_putnbr_fd(lists->hold_top, 1);
+//			ft_putchar_fd('\n', 1);
+//			ft_putchar_fd('\t', 1);
+//			ft_putnbr_fd(ft_rra_nbr_moves(lists), 1);
+//			ft_putchar_fd('\t', 1);
+//			ft_putnbr_fd(lists->hold_bot, 1);
+//			ft_putchar_fd('\n', 1);
 			if (ft_ra_nbr_moves(lists) > ft_rra_nbr_moves(lists)
 				|| lists->hold_top == INT_MAX)
 				ft_pa_bottom(lists);
 			else
 				ft_pa_top(lists);
 		}
-		k = 0;
-		while (k < 20)
-		{
-			ft_putnbr_fd(lists->chunk[k], 1);
-			ft_putchar_fd('\t', 1);
-			k ++;
-		}
-		ft_putchar_fd('a', 1);
-		ft_putnbr_fd(lists->size_a, 1);
-		ft_putchar_fd('b', 1);
-		ft_putnbr_fd(lists->size_b, 1);
-		ft_putchar_fd('\n', 1);
+//		k = 0;
+//		while (k < 20)
+//		{
+//			ft_putnbr_fd(lists->chunk[k], 1);
+//			ft_putchar_fd('\t', 1);
+//			k ++;
+//		}
+//		ft_putchar_fd('a', 1);
+//		ft_putnbr_fd(lists->size_a, 1);
+//		ft_putchar_fd('b', 1);
+//		ft_putnbr_fd(lists->size_b, 1);
+//		ft_putchar_fd('\n', 1);
 	}
+	ft_return_to_a(lists, -1, -9999999999);
 }
 
 void	ft_basic_al(t_stks *lists)
