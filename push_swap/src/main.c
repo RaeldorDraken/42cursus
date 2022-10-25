@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/20 11:34:08 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:33:56 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,33 +74,6 @@ void	ft_set_struct(t_stks *lists, int ac, char **av)
 	lists->hold_bot = INT_MAX;
 }
 
-//this function must be eliminated when finished testing results
-void	ft_test_check_result(t_stks *lists)
-{
-//this function must be eliminated when finished testing results
-	int	i;
-
-	i = -1;
-	ft_putstr_fd("result a: ", 1);
-	while (++i < lists->size_a)
-	{
-		ft_putnbr_fd(lists->a[i], 1);
-		ft_putchar_fd(' ', 1);
-	}
-	ft_putchar_fd('\n', 1);
-	i = -1;
-	ft_putstr_fd("result b: ", 1);
-	while (++i < lists->size_b)
-	{
-		ft_putnbr_fd(lists->b[i], 1);
-		ft_putchar_fd(' ', 1);
-	}
-	ft_putchar_fd('\n', 1);
-	ft_putstr_fd("steps taken: ", 1);
-	ft_putnbr_fd(lists->steps, 1);
-	ft_putchar_fd('\n', 1);
-}
-
 int	main(int ac, char **av)
 {
 	t_stks	lists;
@@ -110,7 +83,6 @@ int	main(int ac, char **av)
 	ft_check_input(ac, av);
 	ft_set_struct(&lists, ac, av);
 	ft_check_cases(&lists);
-//	ft_test_check_result(&lists);//remove this
 	exit(0);
 	return (0);
 }

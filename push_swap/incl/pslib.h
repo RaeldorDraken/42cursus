@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:31:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/20 11:34:19 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:51:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,13 @@ void		ft_sx(t_stks *lists, char stack);
 int			ft_check_list_a(t_stks *lists, int type);
 int			ft_check_list_b(t_stks *lists, int type);
 int			ft_check_chunk(t_stks *lists);
+int			ft_ra_nbr_moves(t_stks *lists);
+int			ft_rra_nbr_moves(t_stks *lists);
+int			ft_sort_b(t_stks *lists, long int target, long int hold);
+
 long int	ft_look_for_nbr(t_stks *lists, int type);
+long int	ft_check_nearest(t_stks *lists, long int hold, long int t, int i);
+
 void		ft_test_check_result(t_stks *lists);
 void		ft_check_cases(t_stks *lists);
 void		ft_case_three(t_stks *lists);
