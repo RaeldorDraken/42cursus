@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/25 11:33:56 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:20:35 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ void	ft_set_struct(t_stks *lists, int ac, char **av)
 		lists->chunk[i] = 9999999999;
 	lists->size_a = ac - 1;
 	lists->size_b = 0;
+	lists->ga = ft_calloc(sizeof(int), (ac - 1));
+	i = -1;
+	while (++i < (ac - 1))
+		lists->ga[i] = -1;
+	lists->gb = ft_calloc(sizeof(int), (ac - 1));
+	i = -1;
+	while (++i < (ac - 1))
+		lists->gb[i] = -1;
 	lists->steps = 0;
 	lists->hold_top = INT_MAX;
 	lists->hold_bot = INT_MAX;
@@ -77,11 +85,21 @@ void	ft_set_struct(t_stks *lists, int ac, char **av)
 int	main(int ac, char **av)
 {
 	t_stks	lists;
+	int		i;
 
+	i = -1;
 	if (ac == 1)
 		exit(0);
 	ft_check_input(ac, av);
 	ft_set_struct(&lists, ac, av);
+	ft_set_game_list(&lists);
+//	while (++i < lists.size_a)
+//	{
+//		ft_putnbr_fd(lists.ga[i], 1);
+//		ft_putchar_fd(' ', 1);
+//	}
+//	ft_putchar_fd('\n', 1);
+//	exit(0);
 	ft_check_cases(&lists);
 	exit(0);
 	return (0);

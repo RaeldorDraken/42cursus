@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 11:54:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/10/25 11:33:09 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/01 16:18:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,26 @@ void	ft_set_hold_bottom(t_stks *lists, int size)
 			i --;
 		}
 		j --;
+	}
+}
+
+void	ft_set_game_list(t_stks *lists)
+{
+	int	i;
+	int	j;
+	int	result;
+
+	j = -1;
+	while (++j < lists->size_a)
+	{
+		i = -1;
+		result = ft_check_list_a(lists, 1);
+		while (++i < lists->size_a)
+		{
+			if (lists->ga[i] == -1 && lists->a[result] > lists->a[i])
+				result = i;
+		}
+		if (result >= 0)
+			lists->ga[result] = j;
 	}
 }
