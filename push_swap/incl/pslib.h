@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:31:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/01 12:48:34 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/04 12:13:51 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void		ft_check_cases(t_stks *lists);
 void		ft_case_three(t_stks *lists);
 void		ft_case_five(t_stks *lists);
 void		ft_case_algorithmic(t_stks *lists);
+void		ft_radix_sort(t_stks *lists);
 void		ft_basic_al(t_stks *lists);
 void		ft_set_hold_top(t_stks *lists, int size);
 void		ft_set_hold_bottom(t_stks *lists, int size);
