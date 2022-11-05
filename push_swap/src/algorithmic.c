@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 11:22:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/04 12:13:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:46:33 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,31 +108,4 @@ void	ft_basic_al(t_stks *lists)
 	}
 	while (lists->size_b > 0)
 		ft_pa(lists);
-}
-
-void	ft_radix_sort(t_stks *lists)
-{
-	int	steps;
-	int	max_size;
-	int	i;
-	int	j;
-
-	steps = 0;
-	i = 0;
-	max_size = lists->size_a - 1;
-	while (max_size >> steps != 0)
-		++steps;
-	while(++i < steps)
-	{
-		j = 0;
-		while (++j < lists->size_a)
-		{
-			if (((lists->ga[0] >> i)&1) == 1)
-				ft_ra(lists);
-			else
-				ft_pb(lists);
-		}
-		while (lists->size_b > 0)
-			ft_pa(lists);
-	}
 }
