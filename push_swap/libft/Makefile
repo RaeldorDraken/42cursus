@@ -6,11 +6,13 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:00:26 by eros-gir          #+#    #+#              #
-#    Updated: 2022/08/03 15:09:29 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/11/05 18:14:42 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+CFLAGS	= -Wall -Werror -Wextra -W
 
 SRC = ft_isdigit.c ft_memset.c ft_strdup.c ft_strncmp.c ft_atoi.c \
 ft_isprint.c ft_putchar_fd.c ft_striteri.c ft_strnstr.c ft_bzero.c \
@@ -27,11 +29,14 @@ OBJ = $(SRC:.c=.o)
 
 HDRS = libft.h
 
-AR = ar rc
+%.o: %.c $(HDRS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+AR = ar rcs
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HDRS)
+$(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
 clean:

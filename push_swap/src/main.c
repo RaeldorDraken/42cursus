@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/05 17:44:00 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:18:30 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ long int	*ft_convert_input(int ac, char **av)
 	return (list);
 }
 
-void	ft_check_each_input(int ac, char **av)
-{
+//void	ft_check_each_input(int ac, char **av)
+//{
 	//hacer un doble loop para comprobar que dentro de cada argumento no hay simbolos negativos despues de el numero.
-}
+//}
 
 void	ft_check_input(int ac, char **av)
 {

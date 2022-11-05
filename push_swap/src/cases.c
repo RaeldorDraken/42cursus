@@ -6,16 +6,17 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 12:32:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/05 18:01:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:18:50 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/pslib.h"
 
-int		ft__is_ordered(int *input)
+int		ft_is_ordered(long int *input)
 {
 	int	ord;
 	
+	ord = input[0];
 	ord = 1;
 	//mirar aqui si esta ordenada la lista, y tambien el ehcho de numeros repetidos si no se detectan antes
 	return (ord);
@@ -23,8 +24,8 @@ int		ft__is_ordered(int *input)
 
 void	ft_check_cases(t_stks *lists)
 {
-	if(ft_is_ordered())
-		return(0);
+	if(ft_is_ordered(lists->a))
+		exit(0);
 	if (lists->size_a == 2 && lists->a[0] > lists->a[1])
 		ft_sa(lists);
 	else if (lists->size_a == 3)
