@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2022/11/05 16:04:37 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/11/05 18:02:58 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,8 @@ OBJ = $(SRC:.c=.o)
 GC = gcc
 FLAGS = -g -Wall -Wextra -Werror
 
-.c.o :
-	$(GC) $(FLAGS) -o $@ -c $?
+%.o: %.c $(HDR)
+	$(GC) $(FLAGS) -o $@ -c $<
 
 all: make_lib $(NAME)
 
