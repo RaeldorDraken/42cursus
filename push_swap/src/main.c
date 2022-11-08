@@ -30,6 +30,45 @@ long int	*ft_convert_input(int ac, char **av)
 	return (list);
 }
 
+<<<<<<< HEAD
+void	ft_check_each_input(char *input)
+{
+	size_t		i;
+
+	i = 0;
+	while (i < ft_strlen(input))
+	{
+		if (ft_isdigit(input[i]) == 0 && input[i] != '-' && input[i] != '+')
+			error_terminate();
+		else if ((input[i] == '-' || input[i] == '+') && i != 0)
+			error_terminate();
+		i++;
+	}
+}
+
+void	ft_check_input(int ac, char **av)
+{
+	int		i;
+	size_t	j;
+
+	i = 0;
+	while (++i < ac)
+	{
+		ft_check_each_input(av[i]);
+		if (ft_latoi(av[i]) > (long int)INT_MAX
+			|| ft_latoi(av[i]) < (long int)INT_MIN)
+			error_terminate();
+		j = 0;
+		while (av[++j] != NULL)
+		{
+			if (!ft_strncmp(av[i], av[j], 11) && i != (int)j)
+				error_terminate();
+		}
+	}
+}
+
+=======
+>>>>>>> 450642576bc395df95e0174b6302d1fec136f6d9
 void	ft_set_struct(t_stks *lists, int ac, char **av)
 {
 	int	i;
@@ -53,6 +92,17 @@ void	ft_set_struct(t_stks *lists, int ac, char **av)
 	lists->steps = 0;
 	lists->hold_top = INT_MAX;
 	lists->hold_bot = INT_MAX;
+}
+
+void	ft_check_result(t_stks *lists)
+{
+	int i = -1;
+	while (++i < lists->size_a)
+	{
+		ft_putnbr_fd(lists->a[i], 1);
+		ft_putchar_fd(' ', 1);
+	}
+	ft_putchar_fd('\n', 1);
 }
 
 int	main(int ac, char **av)

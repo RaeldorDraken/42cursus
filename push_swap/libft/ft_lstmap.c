@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include"libft.h"
-
+/*
 t_list	*ft_lstmap(t_list *lst, void *(*f)(int *), void (*del)(int *))
 {
 	t_list	*tempcont;
@@ -30,4 +30,4 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(int *), void (*del)(int *))
 		lst = lst->next;
 	}
 	return (nlst);
-}
+}*/
