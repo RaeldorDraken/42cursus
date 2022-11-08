@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:31:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/04 12:13:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:57:24 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		ft_ss(t_stks *lists);
 void		ft_set_game_list(t_stks *lists);
 void		error_terminate(void);
 
+int			ft_is_ordered(t_stks *lists);
 int			ft_check_list_a(t_stks *lists, int type);
 int			ft_check_list_b(t_stks *lists, int type);
 int			ft_check_chunk(t_stks *lists);
@@ -55,6 +56,8 @@ long int	ft_check_nearest(t_stks *lists, long int hold, long int t, int i);
 
 void		ft_test_check_result(t_stks *lists);
 void		ft_check_cases(t_stks *lists);
+void		ft_check_each_input(char *input);	
+void		ft_check_input(int ac, char **av);
 void		ft_case_three(t_stks *lists);
 void		ft_case_five(t_stks *lists);
 void		ft_case_algorithmic(t_stks *lists);

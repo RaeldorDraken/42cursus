@@ -6,12 +6,13 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 12:32:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/05 18:18:50 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:43:53 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/pslib.h"
 
+<<<<<<< HEAD
 int		ft_is_ordered(t_stks *lists)
 {
 	int	i;
@@ -44,6 +45,26 @@ void	ft_check_cases(t_stks *lists)
 		ft_case_five(lists);
 	else if (lists->size_a > 5)
 		ft_radix_sort(lists);
+=======
+int	ft_is_ordered(t_stks *lists)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < lists->size_a)
+	{
+		j = i;
+		while (++j < lists->size_a)
+		{
+			if (lists->a[i] > lists->a[j])
+				return (0);
+			else if (lists->a[i] == lists->a[j])
+				error_terminate();
+		}
+	}
+	return (1);
+>>>>>>> 450642576bc395df95e0174b6302d1fec136f6d9
 }
 
 int	ft_check_list_a(t_stks *lists, int type)

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/05 18:18:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:38:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ long int	*ft_convert_input(int ac, char **av)
 	return (list);
 }
 
+<<<<<<< HEAD
 void	ft_check_each_input(char *input)
 {
 	size_t		i;
@@ -66,6 +67,8 @@ void	ft_check_input(int ac, char **av)
 	}
 }
 
+=======
+>>>>>>> 450642576bc395df95e0174b6302d1fec136f6d9
 void	ft_set_struct(t_stks *lists, int ac, char **av)
 {
 	int	i;
