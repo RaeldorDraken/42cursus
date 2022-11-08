@@ -30,10 +30,20 @@ long int	*ft_convert_input(int ac, char **av)
 	return (list);
 }
 
-//void	ft_check_each_input(int ac, char **av)
-//{
-	//hacer un doble loop para comprobar que dentro de cada argumento no hay simbolos negativos despues de el numero.
-//}
+void	ft_check_each_input(char *input)
+{
+	size_t		i;
+
+	i = 0;
+	while (i < ft_strlen(input))
+	{
+		if (ft_isdigit(input[i]) == 0 && input[i] != '-' && input[i] != '+')
+			error_terminate();
+		else if ((input[i] == '-' || input[i] == '+') && i != 0)
+			error_terminate();
+		i++;
+	}
+}
 
 void	ft_check_input(int ac, char **av)
 {
@@ -43,13 +53,7 @@ void	ft_check_input(int ac, char **av)
 	i = 0;
 	while (++i < ac)
 	{
-		j = 0;
-		while (av[i] != NULL && j < ft_strlen(av[i]))
-		{
-			if (ft_isdigit(av[i][j]) == 0 && av[i][j] != '-')
-				error_terminate();
-			j++;
-		}
+		ft_check_each_input(av[i]);
 		if (ft_latoi(av[i]) > (long int)INT_MAX
 			|| ft_latoi(av[i]) < (long int)INT_MIN)
 			error_terminate();
@@ -85,6 +89,17 @@ void	ft_set_struct(t_stks *lists, int ac, char **av)
 	lists->steps = 0;
 	lists->hold_top = INT_MAX;
 	lists->hold_bot = INT_MAX;
+}
+
+void	ft_check_result(t_stks *lists)
+{
+	int i = -1;
+	while (++i < lists->size_a)
+	{
+		ft_putnbr_fd(lists->a[i], 1);
+		ft_putchar_fd(' ', 1);
+	}
+	ft_putchar_fd('\n', 1);
 }
 
 int	main(int ac, char **av)

@@ -12,20 +12,30 @@
 
 #include"../incl/pslib.h"
 
-int		ft_is_ordered(long int *input)
+int		ft_is_ordered(t_stks *lists)
 {
-	int	ord;
-	
-	ord = input[0];
-	ord = 1;
-	//mirar aqui si esta ordenada la lista, y tambien el ehcho de numeros repetidos si no se detectan antes
-	return (ord);
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < lists->size_a)
+	{
+		j = i;
+		while (++j < lists->size_a)
+		{
+			if (lists->a[i] > lists->a[j])
+				return (0);
+			else if (lists->a[i] == lists->a[j])
+				error_terminate();
+		}
+	}
+	return (1);
 }
 
 void	ft_check_cases(t_stks *lists)
 {
-	if(ft_is_ordered(lists->a))
-		exit(0);
+	if(ft_is_ordered(lists))
+		return ;
 	if (lists->size_a == 2 && lists->a[0] > lists->a[1])
 		ft_sa(lists);
 	else if (lists->size_a == 3)

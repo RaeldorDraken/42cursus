@@ -41,6 +41,7 @@ void		ft_sa(t_stks *lists);
 void		ft_sb(t_stks *lists);
 void		ft_ss(t_stks *lists);
 void		ft_set_game_list(t_stks *lists);
+void		error_terminate(void);
 
 int			ft_check_list_a(t_stks *lists, int type);
 int			ft_check_list_b(t_stks *lists, int type);
