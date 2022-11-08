@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 15:30:54 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/05 18:18:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:38:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,6 @@ long int	*ft_convert_input(int ac, char **av)
 	while (++i < (ac - 1))
 		list[i] = ft_latoi(av[i + 1]);
 	return (list);
-}
-
-//void	ft_check_each_input(int ac, char **av)
-//{
-	//hacer un doble loop para comprobar que dentro de cada argumento no hay simbolos negativos despues de el numero.
-//}
-
-void	ft_check_input(int ac, char **av)
-{
-	int		i;
-	size_t	j;
-
-	i = 0;
-	while (++i < ac)
-	{
-		j = 0;
-		while (av[i] != NULL && j < ft_strlen(av[i]))
-		{
-			if (ft_isdigit(av[i][j]) == 0 && av[i][j] != '-')
-				error_terminate();
-			j++;
-		}
-		if (ft_latoi(av[i]) > (long int)INT_MAX
-			|| ft_latoi(av[i]) < (long int)INT_MIN)
-			error_terminate();
-		j = 0;
-		while (av[++j] != NULL)
-		{
-			if (!ft_strncmp(av[i], av[j], 11) && i != (int)j)
-				error_terminate();
-		}
-	}
 }
 
 void	ft_set_struct(t_stks *lists, int ac, char **av)
