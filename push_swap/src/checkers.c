@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:31:59 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/08 12:01:05 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:09:57 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	ft_check_each_input(char *input)
 	size_t	i;
 
 	i = 0;
+	if (input[0] == '\0')
+		error_terminate();
 	while (input[i] != '\0' && i < ft_strlen(input))
 	{
 		if (ft_isdigit(input[i]) == 0 && input[i] != '-')
@@ -38,6 +40,8 @@ void	ft_check_each_input(char *input)
 		if (i > 0 && input[i] == '-')
 			error_terminate();
 		if (input[0] == '-' && input[1] == '0')
+			error_terminate();
+		if (input[0] == '0' && input[1] != '\0')
 			error_terminate();
 		i++;
 	}
