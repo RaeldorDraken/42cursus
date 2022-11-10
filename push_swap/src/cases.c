@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 12:32:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/08 11:43:53 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:46:25 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	ft_is_ordered(t_stks *lists)
 		{
 			if (lists->a[i] > lists->a[j])
 				return (0);
-			else if (lists->a[i] == lists->a[j])
-				error_terminate();
 		}
 	}
 	return (1);

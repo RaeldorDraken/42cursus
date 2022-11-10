@@ -6,14 +6,32 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 11:31:59 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/09 11:09:57 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:49:13 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/pslib.h"
 
+void	ft_check_dups(t_stks *lists)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < lists->size_a)
+	{
+		j = i;
+		while (++j < lists->size_a)
+		{
+			if (lists->a[i] == lists->a[j])
+				error_terminate();
+		}
+	}
+}
+
 void	ft_check_cases(t_stks *lists)
 {
+	ft_check_dups(lists);
 	if (ft_is_ordered(lists))
 		return ;
 	if (lists->size_a == 2 && lists->a[0] > lists->a[1])
@@ -35,13 +53,11 @@ void	ft_check_each_input(char *input)
 		error_terminate();
 	while (input[i] != '\0' && i < ft_strlen(input))
 	{
-		if (ft_isdigit(input[i]) == 0 && input[i] != '-')
+		if (ft_isdigit(input[i]) == 0 && input[i] != '-' && input[i] != '+')
 			error_terminate();
-		if (i > 0 && input[i] == '-')
+		if (i > 0 && (input[i] == '-' || input[i] == '+'))
 			error_terminate();
-		if (input[0] == '-' && input[1] == '0')
-			error_terminate();
-		if (input[0] == '0' && input[1] != '\0')
+		if ((input[0] == '-' || input[0] == '+') && input[1] == '\0')
 			error_terminate();
 		i++;
 	}

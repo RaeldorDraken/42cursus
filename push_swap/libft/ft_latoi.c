@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:17:03 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/08/15 11:45:01 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/10 11:31:59 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ long int	ft_latoi(const char *nptr)
 		if (nptr[len++] == '-')
 			sign *= -1;
 	}
-	if (nptr[len] == '0')
-		return (0);
+	while (nptr[len] == '0')
+		len++;
 	while (nptr[len] >= 48 && nptr[len] <= 57)
 	{
 		result = (nptr[len] - 48) + (result * 10);
 		len++;
 	}
-	result = result * sign;
+	if (result != 0)
+		result = result * sign;
 	return (result);
 }
