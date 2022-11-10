@@ -75,6 +75,6 @@ char		*ft_strrev(char *s);
 
 t_list		*ft_lstnew(int content);
 t_list		*ft_lstlast(t_list *lst);
-t_list		*ft_lstmap(t_list *lst, void *(*f)(int *), void (*del)(int *));
+//t_list		*ft_lstmap(t_list *lst, void *(*f)(int *), void (*del)(int *));
 
 #endif

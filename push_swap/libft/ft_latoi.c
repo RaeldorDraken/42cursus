@@ -31,14 +31,11 @@ long int	ft_latoi(const char *nptr)
 		if (nptr[len++] == '-')
 			sign *= -1;
 	}
-	while (nptr[len] == '0')
-		len++;
 	while (nptr[len] >= 48 && nptr[len] <= 57)
 	{
 		result = (nptr[len] - 48) + (result * 10);
 		len++;
 	}
-	if (result != 0)
-		result = result * sign;
+	result = result * sign;
 	return (result);
 }
