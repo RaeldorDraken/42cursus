@@ -6,18 +6,18 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:10:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/27 15:57:52 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/11/27 16:45:19 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 
-int			ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	else
-		return(0);
+		return (0);
 }
 
 long int	ft_atol(char *input)
