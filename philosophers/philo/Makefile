@@ -6,15 +6,15 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2022/11/27 12:53:46 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/11/27 15:03:42 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC = ./philo_main.c
+SRC = ./src/philo_main.c ./src/philo_utils.c
 
-HDR = ./philolib.h
+HDR = ./incl/philolib.h
 
 OBJ = $(SRC:.c=.o)
 
