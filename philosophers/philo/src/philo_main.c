@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:55:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/27 16:44:57 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/12/03 12:38:40 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,17 @@ void	convert_input(int ac, char **av, t_args *args)
 
 void	philo_looping(t_args *args)
 {
-	printf("arguments: %ld %ld %ld %ld %ld\n", args->nbr_phil, args->t_to_die,
-		args->t_to_eat, args->t_to_slp, args->nb_t_eat);
+	long int	d_time;
+
+	d_time = ft_set_delta_time(args);
 }
 
 int	main(int ac, char **av)
 {
 	t_args	args;
 
+	args.s_timer = ft_get_time();
+	args.timer = ft_get_time();
 	if (ac < 5 || ac > 6)
 		end_program(1);
 	check_input(ac, av);

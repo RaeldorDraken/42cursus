@@ -6,11 +6,11 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:10:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/11/27 16:45:19 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/12/03 12:35:20 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
+#include"../incl/philolib.h"
 
 int	ft_isdigit(int c)
 {
@@ -45,4 +45,23 @@ long int	ft_atol(char *input)
 	}
 	result = result * sign;
 	return (result);
+}
+
+long int	ft_set_delta_time(t_args *args)
+{
+	long int	d_time;
+
+	args->timer = ft_get_time();
+	d_time = (args->timer - args->s_timer) / 1000;
+	return (d_time);
+}
+
+long int	ft_get_time(void)
+{
+	struct timeval	tv;
+	long int		fulltime;
+
+	gettimeofday(&tv, NULL);
+	fulltime = (tv.tv_sec * 1000000) + tv.tv_usec;
+	return (fulltime);
 }

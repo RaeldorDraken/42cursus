@@ -6,13 +6,13 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2022/11/27 15:03:42 by eros-gir         ###   ########.fr        #
+#    Updated: 2022/12/03 12:05:48 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRC = ./src/philo_main.c ./src/philo_utils.c
+SRC = ./src/philo_main.c ./src/philo_utils.c ./src/philo_print.c
 
 HDR = ./incl/philolib.h
 
