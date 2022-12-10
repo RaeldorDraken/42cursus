@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 15:10:05 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/03 12:35:20 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:37:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ long int	ft_atol(char *input)
 	return (result);
 }
 
+//delta time updates the time the program has been running
 long int	ft_set_delta_time(t_args *args)
 {
 	long int	d_time;
@@ -54,6 +55,12 @@ long int	ft_set_delta_time(t_args *args)
 	args->timer = ft_get_time();
 	d_time = (args->timer - args->s_timer) / 1000;
 	return (d_time);
+}
+
+//get the time difference in miliseconds
+long int	ft_time_dif(long int first, long int second)
+{
+	return ((second - first) / 1000);
 }
 
 long int	ft_get_time(void)

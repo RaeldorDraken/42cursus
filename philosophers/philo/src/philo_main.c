@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:55:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/03 12:38:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:46:20 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void	end_program(int errno)
 	if (errno == 1)
 		write(2, "Error: Wrong number of arguments\n", 33);
 	else if (errno == 2)
-		write(2, "Error: Arguments are invalid, only unsigned int accepted\n",
-			57);
+		write(2, "Error: Arguments are invalid\n", 29);
+	else if (errno == 3)
+		write(2, "Error: Mutex uninitialized\n", 27);
 	printf("%s%s%s", s[0], s[1], s[2]);
 	exit(errno);
 }
@@ -47,27 +48,27 @@ void	check_input(int ac, char **av)
 	}
 }
 
-void	convert_input(int ac, char **av, t_args *args)
-{
-	args->nbr_phil = ft_atol(av[1]);
-	args->t_to_die = ft_atol(av[2]);
-	args->t_to_eat = ft_atol(av[3]);
-	args->t_to_slp = ft_atol(av[4]);
-	if (ac == 6)
-		args->nb_t_eat = ft_atol(av[5]);
-	else
-		args->nb_t_eat = -1;
-}
-
 void	philo_looping(t_args *args)
 {
 	long int	d_time;
+	long int	i;
+	t_philo		*philo;
 
+	i = 0;
+	philo = args->philos;
 	d_time = ft_set_delta_time(args);
+	while (i < args->nbr_phil)
+	{
+		if (pthread_create(&(philo[i].thread_id), NULL, phil_proc, &(philo[i])))
+			return ;
+		philo[i].t_death = ft_get_time();
+		i ++;
+	}
 }
 
 int	main(int ac, char **av)
 {
+	int		resv;
 	t_args	args;
 
 	args.s_timer = ft_get_time();
@@ -75,7 +76,9 @@ int	main(int ac, char **av)
 	if (ac < 5 || ac > 6)
 		end_program(1);
 	check_input(ac, av);
-	convert_input(ac, av, &args);
+	resv = initialize_structures(&args, av, ac);
+	if (resv)
+		end_program(resv);
 	philo_looping(&args);
 	return (0);
 }
