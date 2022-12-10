@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/10 20:47:39 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:51:14 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	*phil_proc(void *void_philosopher)
 	args = philo->args;
 	if (philo->phil_id % 2)
 		usleep(15000);
-	while (!args->death)
+	while (!args->deaths)
 	{
+		break ;
 	}
 	return (NULL);
 }
