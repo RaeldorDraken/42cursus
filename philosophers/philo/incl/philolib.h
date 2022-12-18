@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:59:12 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/10 20:44:09 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/12/18 18:34:22 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,16 @@ typedef struct s_args
 	int				tummy_full;
 	pthread_mutex_t	ate_chk;
 	pthread_mutex_t	forks[255];
-	pthread_mutex_t	write;
+	pthread_mutex_t	printing;
 	t_philo			philos[255];
 }	t_args;
 
-void		ft_print_phil(long int time, long int philnum, char action);
+void		eat_sleep_think(long int time, t_args *args);
+void		ft_print_phil(t_args *a, long int pnum, char action);
 void		*phil_proc(void *void_philosopher);
 void		init_philos(t_args *args);
+void		end_loop(t_args *args, t_philo *philo);
+void		death_check(t_args *args, t_philo *philo);
 int			ft_isdigit(int c);
 int			convert_input(int ac, char **av, t_args *args);
 int			initialize_structures(t_args *args, char **av, int ac);

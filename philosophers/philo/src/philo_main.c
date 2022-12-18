@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:55:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/10 20:46:20 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/12/18 18:33:22 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	philo_looping(t_args *args)
 		philo[i].t_death = ft_get_time();
 		i ++;
 	}
+	death_check(args, args->philos);
+	end_loop(args, philo);
 }
 
 int	main(int ac, char **av)

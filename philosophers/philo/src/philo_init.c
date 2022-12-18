@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:05:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/10 20:56:44 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/12/18 16:33:28 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	start_mutex(t_args *args)
 	}
 	if (pthread_mutex_init(&(args->ate_chk), NULL))
 		return (1);
-	if (pthread_mutex_init(&(args->write), NULL))
+	if (pthread_mutex_init(&(args->printing), NULL))
 		return (1);
 	return (0);
 }
