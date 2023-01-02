@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2022/12/10 19:24:26 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/01/02 10:30:07 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ FLAGS = -g -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HDR)
-	$(GC) $(FLAGS) -o $(NAME) $(OBJ)
+	$(GC) $(FLAGS) -o $(NAME) $(OBJ) -lpthread
 
 clean:
 	rm -f $(OBJ)

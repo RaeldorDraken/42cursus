@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:05:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/18 16:33:28 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:49:48 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,20 @@ int	convert_input(int ac, char **av, t_args *args)
 		args->nb_t_eat = -1;
 	if (args->nbr_phil < 2 || args->t_to_die < 0 || args->t_to_eat < 0
 		|| args->t_to_slp < 0 || (ac == 6 && args->nb_t_eat < 0)
-		|| args->nbr_phil > 250)
+		|| args->nbr_phil > 255)
 		return (1);
 	return (0);
 }
 
-int	start_mutex(t_args *args)
+int	start_semaphore(t_args *args)
 {
-	int	i;
-
-	i = args->nbr_phil;
-	while (--i >= 0)
-	{
-		if (pthread_mutex_init(&(args->forks[i]), NULL))
-			return (1);
-	}
-	if (pthread_mutex_init(&(args->ate_chk), NULL))
-		return (1);
-	if (pthread_mutex_init(&(args->printing), NULL))
+	sem_unlink("ph_forks");
+	sem_unlink("ph_print");
+	sem_unlink("ph_ate");
+	args->ate_check = sem_open("ph_ate", O_CREAT, S_IRWXU, rules->nbr_phil);
+	args->forks = sem_open("ph_forks", O_CREAT, S_IRWXU, rules->nbr_phil);
+	args->print = sem_open("ph_print", O_CREAT, S_IRWXU, rules->nbr_phil);
+	if (rules->fork <= 0 || rules->print <= 0 || rules->ate_check <= 0)
 		return (1);
 	return (0);
 }
@@ -53,8 +49,6 @@ void	init_philos(t_args *args)
 	i = args->nbr_phil;
 	while (--i >= 0)
 	{
-		args->philos[i].l_fork = i;
-		args->philos[i].r_fork = (i + 1) % args->nbr_phil;
 		args->philos[i].phil_id = i;
 		args->philos[i].t_death = 0;
 		args->philos[i].eat_count = 0;
@@ -68,7 +62,7 @@ int	initialize_structures(t_args *args, char **av, int ac)
 		return (2);
 	args->deaths = 0;
 	args->tummy_full = 0;
-	if (start_mutex(args))
+	if (start_semaphore(args))
 		return (3);
 	init_philos(args);
 	return (0);

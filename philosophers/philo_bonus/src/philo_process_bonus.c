@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/18 18:33:49 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:49:38 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,26 @@ void	eat_action(t_philo *philo)
 void	end_loop(t_args *args, t_philo *philo)
 {
 	int	i;
-
+	int	pwt;
+	
 	i = -1;
 	while (++i < args->nbr_phil)
-		pthread_join(philo[i].thread_id, NULL);
-	i = -1;
-	while (++i < args->nbr_phil)
-		pthread_mutex_destroy(&args->forks[i]);
-	pthread_mutex_destroy(&args->printing);
+	{
+		waitpid(-1, &pwt, 0);
+		if(ret != 0)
+		{
+			i = -1;
+			while (++i < args->nbr_phil)
+				kill(args->philos[i].prc_id, 15);
+			break ;
+		}
+	}
+	sem_close(args->ate_check);
+	sem_close(args->forks);
+	sem_close(args->print);
+	sem_unlink("ph_forks");
+	sem_unlink("ph_ate");
+	sem_unlink("ph_print");
 }
 
 void	death_check(t_args *args, t_philo *philo)

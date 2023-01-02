@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philolib.h                                         :+:      :+:    :+:   */
+/*   philolib_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:59:12 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/18 18:34:22 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:36:41 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOLIB_H
-# define PHILOLIB_H
+#ifndef PHILOLIB_BONUS_H
+# define PHILOLIB_BONUS_H
 
 # include<stdio.h>
 # include<string.h>
@@ -19,6 +19,9 @@
 # include<unistd.h>
 # include<sys/time.h>
 # include<pthread.h>
+# include<sys/wait.h>
+# include<signal.h>
+# include<semaphore.h>
 
 struct	s_args;
 
@@ -30,7 +33,8 @@ typedef struct s_philo
 	long int		t_death;
 	long int		eat_count;
 	struct s_args	*args;
-	pthread_t		thread_id;
+	pthread_t		death;
+	pid_t			prc_id;
 }	t_philo;
 
 typedef struct s_args
@@ -44,9 +48,9 @@ typedef struct s_args
 	long int		timer;
 	int				deaths;
 	int				tummy_full;
-	pthread_mutex_t	ate_chk;
-	pthread_mutex_t	forks[255];
-	pthread_mutex_t	printing;
+	sem_t			*ate_check;
+	sem_t			*forks;
+	sem_t			*print;
 	t_philo			philos[255];
 }	t_args;
 

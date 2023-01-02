@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:55:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/18 18:33:22 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:49:25 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	end_program(int errno)
 	else if (errno == 2)
 		write(2, "Error: Arguments are invalid\n", 29);
 	else if (errno == 3)
-		write(2, "Error: Mutex uninitialized\n", 27);
+		write(2, "Error: No Semaphores avaiable\n", 27);
 	printf("%s%s%s", s[0], s[1], s[2]);
 	exit(errno);
 }
