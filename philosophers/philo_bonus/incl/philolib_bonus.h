@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:59:12 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/02 11:36:41 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:02:55 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ typedef struct s_args
 
 void		eat_sleep_think(long int time, t_args *args);
 void		ft_print_phil(t_args *a, long int pnum, char action);
-void		*phil_proc(void *void_philosopher);
+void		*phil_proc(void *void_phil);
 void		init_philos(t_args *args);
 void		end_loop(t_args *args, t_philo *philo);
-void		death_check(t_args *args, t_philo *philo);
+void		*death_check(void *void_phil);
 int			ft_isdigit(int c);
 int			convert_input(int ac, char **av, t_args *args);
 int			initialize_structures(t_args *args, char **av, int ac);

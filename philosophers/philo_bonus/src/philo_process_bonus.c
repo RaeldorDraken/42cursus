@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/02 12:49:38 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:02:53 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,55 +56,56 @@ void	end_loop(t_args *args, t_philo *philo)
 	sem_unlink("ph_print");
 }
 
-void	death_check(t_args *args, t_philo *philo)
+void	*death_check(void *void_phil)
 {
-	int	i;
+	t_philo	*phil;
+	t_args	*args;
 
-	while (!args->tummy_full)
+	phil = (t_philo *)void_phil;
+	args = phil->args;
+	while (true)
 	{
-		i = -1;
-		while (++i < args->nbr_phil && !args->deaths)
+		sem_mait(args->ate->check);
+		if (ft_time_dif(phil->t_death, ft_get_time()) > args->t_to_die)
 		{
-			pthread_mutex_lock(&args->ate_chk);
-			if (ft_time_dif(philo->t_death, ft_get_time()) > args->t_to_die)
-			{
-				ft_print_phil(args, i, 'D');
-				args->deaths ++;
-			}
-			pthread_mutex_unlock(&args->ate_chk);
-			usleep(100);
+			ft_print_phil(args, phil->phil_id, 'D');
+			args->deaths ++;
+			sem_wait(args->print);
+			exit(1);
 		}
+		sem_post(args->ate_check);
 		if (args->deaths)
 			break ;
-		i = 0;
-		while (args->nb_t_eat != -1 && i < args->nbr_phil
-			&& philo[i].eat_count >= args->nb_t_eat)
-			i ++;
-		if (i >= args->nbr_phil)
-			args->tummy_full ++;
+		usleep(100);
+		if (args->nb_t_eat != -1 && philo->eat_count >= args->nb_t_eat)
+			break ;
 	}
+	return (NULL);
 }
 
-void	*phil_proc(void *void_philosopher)
+void	*phil_proc(void *void_phil)
 {
-	int		i;
 	t_philo	*philo;
 	t_args	*args;
 
-	i = 0;
-	philo = (t_philo *)void_philosopher;
+	philo = (t_philo *)void_phil;
 	args = philo->args;
+	philo->t_death = ft_get_time();
+	pthread_create(&philo->death, NULL, death_check, void_phil);
 	if (philo->phil_id % 2)
 		usleep(15000);
 	while (!args->deaths)
 	{
 		eat_action(philo);
-		if (args->tummy_full)
+		if (args->nb_t_eat != -1 && philo->eat_count >= args->nb_t_eat)
 			break ;
 		ft_print_phil(args, philo->phil_id, 'S');
 		eat_sleep_think(args->t_to_slp, args);
 		ft_print_phil(args, philo->phil_id, 'T');
-		i ++;
 	}
+	pthread_join(philo->death, NULL);
+	if (args->deaths != 0)
+		exit(1);
+	exit (0);
 	return (NULL);
 }

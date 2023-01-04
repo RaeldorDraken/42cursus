@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/12/18 18:33:49 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:45:22 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ void	death_check(t_args *args, t_philo *philo)
 	}
 }
 
-void	*phil_proc(void *void_philosopher)
+void	*phil_proc(void *void_phil)
 {
 	int		i;
 	t_philo	*philo;
 	t_args	*args;
 
 	i = 0;
-	philo = (t_philo *)void_philosopher;
+	philo = (t_philo *)void_phil;
 	args = philo->args;
 	if (philo->phil_id % 2)
 		usleep(15000);

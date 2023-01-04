@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:55:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/02 11:49:25 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:26:38 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	end_program(int errno)
 		write(2, "Error: Arguments are invalid\n", 29);
 	else if (errno == 3)
 		write(2, "Error: No Semaphores avaiable\n", 27);
+	else if (errno == 4)
+		write(2, "Error: Encountered a problem creating processes\n", 27);
 	printf("%s%s%s", s[0], s[1], s[2]);
 	exit(errno);
 }
@@ -48,7 +50,7 @@ void	check_input(int ac, char **av)
 	}
 }
 
-void	philo_looping(t_args *args)
+int	philo_looping(t_args *args)
 {
 	long int	d_time;
 	long int	i;
@@ -59,13 +61,17 @@ void	philo_looping(t_args *args)
 	d_time = ft_set_delta_time(args);
 	while (i < args->nbr_phil)
 	{
-		if (pthread_create(&(philo[i].thread_id), NULL, phil_proc, &(philo[i])))
-			return ;
+		phil[i].prc_id = fork();
+		if (phil[i].prc_id < 0)
+			return (1);
+		else if (phili[i].prc_id == 0)
+			phil_proc(&(phil[i]));
 		philo[i].t_death = ft_get_time();
 		i ++;
 	}
 	death_check(args, args->philos);
 	end_loop(args, philo);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -81,6 +87,7 @@ int	main(int ac, char **av)
 	resv = initialize_structures(&args, av, ac);
 	if (resv)
 		end_program(resv);
-	philo_looping(&args);
+	if (philo_looping(&args) == 1)
+		end_program(4);
 	return (0);
 }
