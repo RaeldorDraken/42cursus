@@ -52,25 +52,22 @@ void	check_input(int ac, char **av)
 
 int	philo_looping(t_args *args)
 {
-	long int	d_time;
 	long int	i;
-	t_philo		*philo;
+	t_philo		*phil;
 
 	i = 0;
-	philo = args->philos;
-	d_time = ft_set_delta_time(args);
+	phil = args->philos;
 	while (i < args->nbr_phil)
 	{
 		phil[i].prc_id = fork();
 		if (phil[i].prc_id < 0)
 			return (1);
-		else if (phili[i].prc_id == 0)
+		else if (phil[i].prc_id == 0)
 			phil_proc(&(phil[i]));
-		philo[i].t_death = ft_get_time();
+		phil[i].t_death = ft_get_time();
 		i ++;
 	}
-	death_check(args, args->philos);
-	end_loop(args, philo);
+	end_loop(args);
 	return (0);
 }
 

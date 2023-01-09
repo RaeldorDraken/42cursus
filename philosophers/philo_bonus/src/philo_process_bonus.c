@@ -17,30 +17,30 @@ void	eat_action(t_philo *philo)
 	t_args	*args;
 
 	args = philo->args;
-	pthread_mutex_lock(&args->forks[philo->l_fork]);
+	sem_wait(args->forks);
 	ft_print_phil(args, philo->phil_id, 'F');
-	pthread_mutex_lock(&args->forks[philo->r_fork]);
+	sem_wait(args->forks);
 	ft_print_phil(args, philo->phil_id, 'F');
-	pthread_mutex_lock(&args->ate_chk);
+	sem_wait(args->ate_chk);
 	ft_print_phil(args, philo->phil_id, 'E');
 	philo->t_death = ft_get_time();
-	pthread_mutex_unlock(&args->ate_chk);
+	sem_post(args->ate_chk);
 	eat_sleep_think(args->t_to_eat, args);
 	philo->eat_count ++;
-	pthread_mutex_unlock(&args->forks[philo->l_fork]);
-	pthread_mutex_unlock(&args->forks[philo->r_fork]);
+	sem_post(args->forks);
+	sem_post(args->forks);
 }
 
-void	end_loop(t_args *args, t_philo *philo)
+void	end_loop(t_args *args)
 {
 	int	i;
 	int	pwt;
-	
+
 	i = -1;
 	while (++i < args->nbr_phil)
 	{
 		waitpid(-1, &pwt, 0);
-		if(ret != 0)
+		if (pwt != 0)
 		{
 			i = -1;
 			while (++i < args->nbr_phil)
@@ -48,7 +48,7 @@ void	end_loop(t_args *args, t_philo *philo)
 			break ;
 		}
 	}
-	sem_close(args->ate_check);
+	sem_close(args->ate_chk);
 	sem_close(args->forks);
 	sem_close(args->print);
 	sem_unlink("ph_forks");
@@ -63,9 +63,9 @@ void	*death_check(void *void_phil)
 
 	phil = (t_philo *)void_phil;
 	args = phil->args;
-	while (true)
+	while (1)
 	{
-		sem_mait(args->ate->check);
+		sem_wait(args->ate_chk);
 		if (ft_time_dif(phil->t_death, ft_get_time()) > args->t_to_die)
 		{
 			ft_print_phil(args, phil->phil_id, 'D');
@@ -73,11 +73,11 @@ void	*death_check(void *void_phil)
 			sem_wait(args->print);
 			exit(1);
 		}
-		sem_post(args->ate_check);
+		sem_post(args->ate_chk);
 		if (args->deaths)
 			break ;
-		usleep(100);
-		if (args->nb_t_eat != -1 && philo->eat_count >= args->nb_t_eat)
+		usleep(1000);
+		if (args->nb_t_eat != -1 && phil->eat_count >= args->nb_t_eat)
 			break ;
 	}
 	return (NULL);

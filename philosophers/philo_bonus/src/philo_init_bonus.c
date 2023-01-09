@@ -34,10 +34,10 @@ int	start_semaphore(t_args *args)
 	sem_unlink("ph_forks");
 	sem_unlink("ph_print");
 	sem_unlink("ph_ate");
-	args->ate_check = sem_open("ph_ate", O_CREAT, S_IRWXU, rules->nbr_phil);
-	args->forks = sem_open("ph_forks", O_CREAT, S_IRWXU, rules->nbr_phil);
-	args->print = sem_open("ph_print", O_CREAT, S_IRWXU, rules->nbr_phil);
-	if (rules->fork <= 0 || rules->print <= 0 || rules->ate_check <= 0)
+	args->ate_chk = sem_open("ph_ate", O_CREAT, S_IRWXU, args->nbr_phil);
+	args->forks = sem_open("ph_forks", O_CREAT, S_IRWXU, args->nbr_phil);
+	args->print = sem_open("ph_print", O_CREAT, S_IRWXU, args->nbr_phil);
+	if (args->forks == NULL || args->print == NULL || args->ate_chk == NULL)
 		return (1);
 	return (0);
 }

@@ -33,7 +33,7 @@ void	ft_print_phil(t_args *a, long int pnum, char action)
 	long int	time;
 
 	time = ft_time_dif(a->s_timer, ft_get_time());
-	pthread_mutex_lock(&a->printing);
+	sem_wait(a->print);
 	if (!a->deaths)
 	{
 		if (action == 'F')
@@ -47,5 +47,5 @@ void	ft_print_phil(t_args *a, long int pnum, char action)
 		else if (action == 'D')
 			printf("%ld %ld died\n", time, pnum);
 	}
-	pthread_mutex_unlock(&a->printing);
+	sem_post(a->print);
 }

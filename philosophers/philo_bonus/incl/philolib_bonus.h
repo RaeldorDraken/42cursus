@@ -18,6 +18,7 @@
 # include<stdlib.h>
 # include<unistd.h>
 # include<sys/time.h>
+# include<fcntl.h>
 # include<pthread.h>
 # include<sys/wait.h>
 # include<signal.h>
@@ -48,7 +49,7 @@ typedef struct s_args
 	long int		timer;
 	int				deaths;
 	int				tummy_full;
-	sem_t			*ate_check;
+	sem_t			*ate_chk;
 	sem_t			*forks;
 	sem_t			*print;
 	t_philo			philos[255];
@@ -58,7 +59,7 @@ void		eat_sleep_think(long int time, t_args *args);
 void		ft_print_phil(t_args *a, long int pnum, char action);
 void		*phil_proc(void *void_phil);
 void		init_philos(t_args *args);
-void		end_loop(t_args *args, t_philo *philo);
+void		end_loop(t_args *args);
 void		*death_check(void *void_phil);
 int			ft_isdigit(int c);
 int			convert_input(int ac, char **av, t_args *args);
