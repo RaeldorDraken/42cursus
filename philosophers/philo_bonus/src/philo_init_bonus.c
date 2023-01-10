@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:05:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/02 12:49:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:17:53 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	convert_input(int ac, char **av, t_args *args)
 		args->nb_t_eat = ft_atol(av[5]);
 	else
 		args->nb_t_eat = -1;
-	if (args->nbr_phil < 2 || args->t_to_die < 0 || args->t_to_eat < 0
+	if (args->nbr_phil < 1 || args->t_to_die < 0 || args->t_to_eat < 0
 		|| args->t_to_slp < 0 || (ac == 6 && args->nb_t_eat < 0)
 		|| args->nbr_phil > 255)
 		return (1);

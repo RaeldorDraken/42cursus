@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/04 11:45:22 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:41:00 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	end_loop(t_args *args, t_philo *philo)
 	int	i;
 
 	i = -1;
-	while (++i < args->nbr_phil)
+	while (++i < args->nbr_phil && args->nbr_phil > 1)
 		pthread_join(philo[i].thread_id, NULL);
 	i = -1;
 	while (++i < args->nbr_phil)
