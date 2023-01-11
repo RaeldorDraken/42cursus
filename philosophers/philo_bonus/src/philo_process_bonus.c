@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/10 10:49:44 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:10:14 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,16 @@ void	*death_check(void *void_phil)
 		sem_wait(args->ate_chk);
 		if (ft_time_dif(phil->t_death, ft_get_time()) > args->t_to_die)
 		{
+			sem_wait(args->print);
 			ft_print_phil(args, phil->phil_id, 'D');
 			args->deaths ++;
-			sem_wait(args->print);
+			sem_post(args->print);
 			exit(1);
 		}
 		sem_post(args->ate_chk);
 		if (args->deaths)
 			break ;
-		usleep(100);
+		usleep(1000);
 		if (args->nb_t_eat != -1 && phil->eat_count >= args->nb_t_eat)
 			break ;
 	}
