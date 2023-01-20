@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/11 11:10:14 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:15:15 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,18 @@ void	end_loop(t_args *args)
 		waitpid(-1, &pwt, 0);
 		if (pwt != 0)
 		{
-			i = -1;
-			while (++i < args->nbr_phil)
+			if (args->nbr_phil == 1)
 				kill(args->philos[i].prc_id, 15);
+			else
+			{
+				i = -1;
+				while (++i < args->nbr_phil)
+					kill(args->philos[i].prc_id, 15);
+			}
 			break ;
 		}
 	}
+	//too many lines
 	sem_close(args->ate_chk);
 	sem_close(args->forks);
 	sem_close(args->print);
