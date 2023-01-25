@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:55:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/20 12:07:01 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/25 10:21:53 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int	main(int ac, char **av)
 		end_program(resv);
 	if (philo_looping(&args) == 1)
 		end_program(4);
+	usleep(900000);
 	return (0);
 }

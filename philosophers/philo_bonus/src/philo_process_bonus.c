@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/20 12:15:15 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/25 10:17:54 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,17 @@ void	end_loop(t_args *args)
 	int	pwt;
 
 	i = -1;
-	while (++i < args->nbr_phil)
+	while (++i < args->nbr_phil && args->nbr_phil > 1)
 	{
 		waitpid(-1, &pwt, 0);
 		if (pwt != 0)
 		{
-			if (args->nbr_phil == 1)
+			i = -1;
+			while (++i < args->nbr_phil)
 				kill(args->philos[i].prc_id, 15);
-			else
-			{
-				i = -1;
-				while (++i < args->nbr_phil)
-					kill(args->philos[i].prc_id, 15);
-			}
 			break ;
 		}
 	}
-	//too many lines
 	sem_close(args->ate_chk);
 	sem_close(args->forks);
 	sem_close(args->print);
@@ -74,10 +68,8 @@ void	*death_check(void *void_phil)
 		sem_wait(args->ate_chk);
 		if (ft_time_dif(phil->t_death, ft_get_time()) > args->t_to_die)
 		{
-			sem_wait(args->print);
 			ft_print_phil(args, phil->phil_id, 'D');
 			args->deaths ++;
-			sem_post(args->print);
 			exit(1);
 		}
 		sem_post(args->ate_chk);
