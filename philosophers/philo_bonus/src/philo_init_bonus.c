@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 19:05:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/20 11:22:38 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/25 10:48:45 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	start_semaphore(t_args *args)
 	sem_unlink("ph_ate");
 	args->ate_chk = sem_open("ph_ate", O_CREAT, S_IRWXU, args->nbr_phil);
 	args->forks = sem_open("ph_forks", O_CREAT, S_IRWXU, args->nbr_phil);
-	args->print = sem_open("ph_print", O_CREAT, S_IRWXU, args->nbr_phil);
+	args->print = sem_open("ph_print", O_CREAT, S_IRWXU, 1);
 	if (args->forks == NULL || args->print == NULL || args->ate_chk == NULL)
 		return (1);
 	return (0);
