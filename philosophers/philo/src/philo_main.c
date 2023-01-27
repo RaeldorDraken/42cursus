@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 10:55:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/10 11:38:00 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/27 11:10:26 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ void	end_program(int errno)
 	else if (errno == 3)
 		write(2, "Error: Mutex uninitialized\n", 27);
 	printf("%s%s%s", s[0], s[1], s[2]);
-	exit(errno);
 }
 
-void	check_input(int ac, char **av)
+int	check_input(int ac, char **av)
 {
 	int	i;
 	int	j;
@@ -43,9 +42,13 @@ void	check_input(int ac, char **av)
 		while (av[i][++j] != '\0')
 		{
 			if (!ft_isdigit(av[i][j]))
+			{
 				end_program(2);
+				return (2);
+			}
 		}
 	}
+	return (0);
 }
 
 void	philo_looping(t_args *args)
@@ -76,11 +79,19 @@ int	main(int ac, char **av)
 	args.s_timer = ft_get_time();
 	args.timer = ft_get_time();
 	if (ac < 5 || ac > 6)
+	{
 		end_program(1);
-	check_input(ac, av);
+		return (1);
+	}
+	resv = check_input(ac, av);
+	if (resv)
+		return (resv);
 	resv = initialize_structures(&args, av, ac);
 	if (resv)
+	{
 		end_program(resv);
+		return (resv);
+	}
 	philo_looping(&args);
 	return (0);
 }
