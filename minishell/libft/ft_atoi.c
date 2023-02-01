@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_latoi.c                                           :+:      :+:    :+:  */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:17:03 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/31 10:30:53 by eros-gir         ###   ########.fr       */
+/*   Updated: 2022/08/02 16:12:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include<limits.h>
 #include<stdio.h>
 
-long int	ft_latoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
 	int			len;
 	int			sign;
@@ -37,5 +37,7 @@ long int	ft_latoi(const char *nptr)
 		len++;
 	}
 	result = result * sign;
-	return (result);
+	if (result > INT_MAX || result < INT_MIN)
+		return (0);
+	return ((int)result);
 }

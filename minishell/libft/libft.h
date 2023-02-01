@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:54:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/31 10:30:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/30 11:39:36 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int			ft_atoi(const char *nptr);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 int			ft_lstsize(t_list *lst);
 
-long int	ft_latoi(const char *nptr);
+long int	ft_atol(const char *nptr);
 
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);

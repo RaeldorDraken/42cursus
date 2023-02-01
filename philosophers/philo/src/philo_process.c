@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/10 11:41:00 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/01/30 12:20:56 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ void	end_loop(t_args *args, t_philo *philo)
 	int	i;
 
 	i = -1;
-	while (++i < args->nbr_phil && args->nbr_phil > 1)
+	while (++i < args->nbr_phil)
+	{
+		pthread_mutex_unlock(&args->forks[philo[i].l_fork]);
+		pthread_mutex_unlock(&args->forks[philo[i].r_fork]);
 		pthread_join(philo[i].thread_id, NULL);
+	}
 	i = -1;
 	while (++i < args->nbr_phil)
 		pthread_mutex_destroy(&args->forks[i]);
