@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/02/14 11:19:18 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/02/16 12:08:27 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include<stdio.h>
 # include<readline/readline.h>
 # include<readline/history.h>
-# include <fcntl.h>
+# include<fcntl.h>
 # include<sys/wait.h>
 # include<sys/stat.h>
 # include<sys/ioctl.h>
@@ -27,5 +27,10 @@
 # include<term.h>
 
 # include"../libft/libft.h"
+
+typedef struct s_vars
+{
+	char	*prompt;
+}	t_vars;
 
 #endif
