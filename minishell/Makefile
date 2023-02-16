@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2023/02/14 10:49:35 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/02/16 12:18:29 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFTDIR = ./libft/
 OBJ = $(SRC:.c=.o)
 
 GC = gcc
-FLAGS = -g -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror -lreadline
 
 %.o: %.c $(HDR)
 	@$(GC) $(FLAGS) -o $@ -c $<
