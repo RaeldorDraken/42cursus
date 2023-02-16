@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:53:23 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/01/25 10:48:24 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/02/16 11:05:19 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	*death_check(void *void_phil)
 		sem_post(args->ate_chk);
 		if (args->deaths)
 			break ;
-		usleep(1000);
+		usleep(500);
 		if (args->nb_t_eat != -1 && phil->eat_count >= args->nb_t_eat)
 			break ;
 	}
