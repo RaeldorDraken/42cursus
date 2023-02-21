@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
+#    By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2023/02/16 12:18:29 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/02/21 11:05:10 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,12 @@ LIBFTDIR = ./libft/
 
 OBJ = $(SRC:.c=.o)
 
-GC = gcc
-FLAGS = -g -Wall -Wextra -Werror -lreadline
+GC = gcc 
+CFLAGS = -g -Wall -Wextra -Werror
+LFLAGS = -L $(LIBFTDIR) -lft -lreadline
 
 %.o: %.c $(HDR)
-	@$(GC) $(FLAGS) -o $@ -c $<
+	@$(GC) $(CFLAGS) -o $@ -c $<
 
 all: make_lib $(NAME)
 
@@ -39,7 +40,7 @@ make_lib:
 
 $(NAME): $(OBJ) $(HDR) libft/libft.a
 	@echo "$(C_YELLOW)make minishell...$(C_END)"
-	@$(GC) $(FLAGS) -o $(NAME) $(OBJ) -L $(LIBFTDIR) -lft
+	@$(GC) $(CFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 clean:
