@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/02/21 10:56:38 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/02/21 11:12:55 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,16 @@ void	ignore_signals(void)
 
 void	set_vars(t_vars *vars, char *input)
 {
-//	if (vars->prompt != NULL)
-//		free (vars->prompt);
 	vars->prompt = ft_calloc(ft_strlen(input) + 1, 1);
 	vars->inputline = NULL;
 	ft_strlcpy(vars->prompt, input, ft_strlen(input));
+}
+
+void	clear_memory(t_vars *vars)
+{
+	free (vars->prompt);
+	if (vars->inputline != NULL)
+		free (vars->inputline);
 }
 
 int	main(void)
@@ -42,13 +47,11 @@ int	main(void)
 	while (looping)
 	{
 		looping = 0;
-		if (vars.inputline == NULL)
-			vars.inputline = readline(vars.prompt);
-		else
+		vars.inputline = readline(vars.prompt);
+		if (vars.inputline != NULL)
 			vars.inputlen = ft_strlen(vars.inputline);
 		if (vars.inputlen <= 0)
 			looping = 1;
 	}
-//	if (feof(stdin))
-//		exit (0);
+	clear_memory(&vars);
 }
