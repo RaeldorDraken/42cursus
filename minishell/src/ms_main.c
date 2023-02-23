@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: raeldor <raeldor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/02/21 11:12:55 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/02/23 11:07:39 by raeldor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,39 @@
 
 //Global variable
 
-
-void	ignore_signals(void)
+void	msh_ignore_signals(void)
 {
 	signal(SIGINT, SIG_IGN);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	set_vars(t_vars *vars, char *input)
+void	msh_set_vars(t_vars *vars, char *input)
 {
 	vars->prompt = ft_calloc(ft_strlen(input) + 1, 1);
 	vars->inputline = NULL;
 	ft_strlcpy(vars->prompt, input, ft_strlen(input));
 }
 
-void	clear_memory(t_vars *vars)
+void	msh_clear_memory(t_vars *vars)
 {
 	free (vars->prompt);
 	if (vars->inputline != NULL)
 		free (vars->inputline);
+}
+
+int	msh_getting_commands(t_vars *vars)
+{
+	char *exitcomm;
+
+	exitcomm = "quit";
+	if (ft_strncmp(vars->inputline, exitcomm, 4))
+	{
+		printf("%s: %d\n", vars->inputline, vars->inputlen); //debug line
+		printf("%s: %ld\n", exitcomm, ft_strlen(exitcomm)); //debug line
+		return (0);
+	}
+	return (1);
 }
 
 int	main(void)
@@ -42,16 +55,17 @@ int	main(void)
 	int		looping;
 
 	looping = 1;
-	ignore_signals();
-	set_vars(&vars, "raeldor %%");
+	msh_ignore_signals();
+	msh_set_vars(&vars, "raeldor %%");
 	while (looping)
 	{
 		looping = 0;
+		printf("%s: %d\n", vars.inputline, vars.inputlen); //debug line
 		vars.inputline = readline(vars.prompt);
 		if (vars.inputline != NULL)
 			vars.inputlen = ft_strlen(vars.inputline);
-		if (vars.inputlen <= 0)
+		if (msh_getting_commands(&vars))
 			looping = 1;
 	}
-	clear_memory(&vars);
+	msh_clear_memory(&vars);
 }

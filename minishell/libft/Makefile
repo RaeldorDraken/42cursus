@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
+#    By: raeldor <raeldor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:00:26 by eros-gir          #+#    #+#              #
-#    Updated: 2023/02/14 10:37:03 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/02/23 10:56:49 by raeldor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ ft_memcpy.c ft_split.c ft_strlen.c ft_tolower.c ft_isascii.c \
 ft_memmove.c ft_strchr.c ft_strmapi.c ft_toupper.c ft_joinloc.c \
 ft_strrcmp.c ft_strrev.c  ft_lstlast.c ft_lstnew.c \
 ft_lstsize.c  ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
-ft_lstdelone.c ft_lstiter.c ft_atol.c
+ft_lstdelone.c ft_lstiter.c ft_atol.c 
 
 OBJ = $(SRC:.c=.o)
 
