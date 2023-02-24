@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/02/21 11:08:14 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:22:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ typedef struct s_vars
 	char	*prompt;
 	char	*inputline;
 	int		inputlen;
+	int		sigbool;
 }	t_vars;
+
+size_t	msh_maxvalue(size_t first, size_t second);
 
 #endif

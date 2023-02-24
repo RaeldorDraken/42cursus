@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ms_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: raeldor <raeldor@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/02/23 11:07:39 by raeldor          ###   ########.fr       */
+/*   Updated: 2023/02/24 13:12:48 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/mslib.h"
 
 //Global variable
+void	(*msh_sigint_handler)(int);
 
-void	msh_ignore_signals(void)
+void	msh_ignore_signals(t_vars *vars)
 {
-	signal(SIGINT, SIG_IGN);
+	vars->sigbool = 1;
+	msh_sigint_handler = signal(SIGINT, SIG_IGN);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
@@ -37,15 +39,12 @@ void	msh_clear_memory(t_vars *vars)
 
 int	msh_getting_commands(t_vars *vars)
 {
-	char *exitcomm;
+	char	*exitcomm;
 
-	exitcomm = "quit";
-	if (ft_strncmp(vars->inputline, exitcomm, 4))
-	{
-		printf("%s: %d\n", vars->inputline, vars->inputlen); //debug line
-		printf("%s: %ld\n", exitcomm, ft_strlen(exitcomm)); //debug line
+	exitcomm = "exit";
+	if (!ft_strncmp(vars->inputline, exitcomm,
+			msh_maxvalue(vars->inputlen, ft_strlen(exitcomm))))
 		return (0);
-	}
 	return (1);
 }
 
@@ -55,17 +54,25 @@ int	main(void)
 	int		looping;
 
 	looping = 1;
-	msh_ignore_signals();
-	msh_set_vars(&vars, "raeldor %%");
+	msh_ignore_signals(&vars);
+	msh_set_vars(&vars, "msh %  ");
 	while (looping)
 	{
 		looping = 0;
-		printf("%s: %d\n", vars.inputline, vars.inputlen); //debug line
+		//printf("%s: %d\n", vars.inputline, vars.inputlen); //debug line
 		vars.inputline = readline(vars.prompt);
 		if (vars.inputline != NULL)
+		{
+			if (vars.inputline[0] == '\0')
+			{
+				free(vars.inputline);
+				printf("");
+			}
 			vars.inputlen = ft_strlen(vars.inputline);
-		if (msh_getting_commands(&vars))
-			looping = 1;
+		}
+		else
+			exit(0);
+		looping = msh_getting_commands(&vars);
 	}
 	msh_clear_memory(&vars);
 }
