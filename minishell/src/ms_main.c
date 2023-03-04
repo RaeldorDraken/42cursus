@@ -6,14 +6,14 @@
 /*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/04 10:55:21 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/04 11:37:20 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/mslib.h"
 
 //Global variable
-void	(*msh_sigint_handler)(int);
+void	(*msh_sigint_handler)(int i);
 
 void	msh_ignore_signals(t_vars *vars)
 {
@@ -63,7 +63,6 @@ int	main(void)
 		vars.inputline = readline(vars.prompt);
 		if (vars.inputline != NULL)
 		{
-			looping = msh_getting_commands(&vars);
 			if (vars.inputline[0] == '\0')
 			{
 				free(vars.inputline);
@@ -73,6 +72,7 @@ int	main(void)
 		}
 		else
 			break ;
+		looping = msh_getting_commands(&vars);
 	}
 	msh_clear_memory(&vars);
 }

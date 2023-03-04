@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/02/24 12:22:01 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/04 11:50:46 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,10 @@ typedef struct s_vars
 }	t_vars;
 
 size_t	msh_maxvalue(size_t first, size_t second);
+size_t	msh_strnum(const char *s, char c);
+
+void	msh_set_lex(size_t *len, size_t *num, int *quotes);
+
+int		msh_check_quotes(char c);
 
 #endif
