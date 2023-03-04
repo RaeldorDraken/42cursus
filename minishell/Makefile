@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2023/02/24 12:21:04 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/03/04 13:30:52 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ C_END=\033[0m
 
 NAME = minishell
 
-SRC = ./src/ms_main.c ./src/ms_utils.c
+SRC = ./src/ms_main.c ./src/ms_utils.c ./src/ms_lexer.c
 
 HDR = ./incl/mslib.h ./libft/libft.h
 
@@ -36,23 +36,23 @@ all: make_lib $(NAME)
 
 make_lib:
 	@echo "$(C_YELLOW)make libft...$(C_END)"
-	@make -C $(LIBFTDIR)
+	make -C $(LIBFTDIR)
 
 $(NAME): $(OBJ) $(HDR) libft/libft.a
 	@echo "$(C_YELLOW)make minishell...$(C_END)"
-	@$(GC) $(CFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
+	$(GC) $(CFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 clean:
 	@echo "$(C_RED)cleaning *.o$(C_END)"
-	@make clean -s -C $(LIBFTDIR)
-	@rm -f $(OBJ)
+	make clean -s -C $(LIBFTDIR)
+	rm -f $(OBJ)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 fclean: clean
 	@echo "$(C_RED)cleaning executable$(C_END)"
-	@make fclean -s -C $(LIBFTDIR)
-	@rm -f $(NAME)
+	make fclean -s -C $(LIBFTDIR)
+	rm -f $(NAME)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 re: fclean all

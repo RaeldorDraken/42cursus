@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 11:18:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/04 11:51:03 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/04 12:07:16 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,30 +94,30 @@ char	*msh_getquotes(const char *s, char c, int qt)
 	return (msh_strset(s, c));
 }
 
-char	**msh_split(const char *s, char c, t_vars *vars, int quotes)
+char	**msh_split(char c, t_vars *vars, int quotes)
 {
 	char	**strings;
 	size_t	n;
 	size_t	strn;
+	int		i;
 
 	n = 0;
-	strn = msh_strnum(s, c);
+	i = -1;
+	strn = msh_strnum(vars->inputline, c);
 	strings = ft_calloc(sizeof(char **), strn + 1);
 	if (!strings)
 		return (0);
 	while (n < strn)
 	{
-		quotes = msh_check_quotes(*s);
+		quotes = msh_check_quotes(vars->inputline[++i]);
 		if (quotes != 3)
 		{
-			while (*s == c || *s == '\'' || *s == '\"')
-			{
-				quotes = msh_check_quotes(*s);
-				s++;
-			}
+			while (vars->inputline[++i] == c || vars->inputline[i] == '\''
+					|| vars->inputline[i] == '\"')
+				quotes = msh_check_quotes(vars->inputline[i]);
 		}
-		strings[n] = msh_getquotes(s, c, quotes);
-		s += ft_strlen(strings[n++]);
+		strings[n] = msh_getquotes(vars->inputline, c, quotes);
+		vars->inputline += ft_strlen(strings[n++]);
 	}
 	return (strings);
 }
