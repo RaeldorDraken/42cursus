@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_psplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
+/*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:19:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/07/05 11:54:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/07 10:14:41 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ char	**ft_psplit(const char *s, char c, t_pipex *pobj, int quotes)
 		}
 		strings[n] = ft_pgetset(s, c, quotes);
 		ft_string_error(strings, n, pobj);
+		printf ("%zu: %s\n", n, strings[n]);
 		s += ft_strlen(strings[n++]);
 	}
 	return (strings);
