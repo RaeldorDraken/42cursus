@@ -6,7 +6,7 @@
 /*   By: raeldor <raeldor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 11:18:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/18 00:14:43 by raeldor          ###   ########.fr       */
+/*   Updated: 2023/03/18 00:18:50 by raeldor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,25 +134,27 @@ char	**msh_split(char c, t_vars *vars, int quotes)
 	char	**strings;
 	size_t	n;
 	size_t	strn;
-	int		i;
+	size_t	i;
 
 	n = 0;
-	i = -1;
+	i = 0;
 	strn = msh_strnum(vars->inputline, c);
 	strings = ft_calloc(sizeof(char **), strn + 1);
 	if (!strings)
 		return (0);
 	while (n < strn)
 	{
-		quotes = msh_check_quotes(vars->inputline[++i]);
+		quotes = msh_check_quotes(vars->inputline[i]);
 		if (quotes != 3)
 		{
 			while (vars->inputline[++i] == c || vars->inputline[i] == '\''
-				|| vars->inputline[i] == '\"')
+					|| vars->inputline[i] == '\"')
 				quotes = msh_check_quotes(vars->inputline[i]);
 		}
-		strings[n] = msh_getquotes(vars->inputline, c, quotes);
-		vars->inputline += ft_strlen(strings[n++]);
+		strings[n] = msh_getquotes((vars->inputline + i), c, quotes);
+		i += ft_strlen(strings[n++]);
 	}
+	if (vars->inputline != NULL)
+		free (vars->inputline);
 	return (strings);
 }

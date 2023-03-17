@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/04 11:37:20 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:59:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void	msh_set_vars(t_vars *vars, char *input)
 
 void	msh_clear_memory(t_vars *vars)
 {
+	int	i;
+
+	i = -1;
 	free (vars->prompt);
 	if (vars->inputline != NULL)
 		free (vars->inputline);
@@ -40,11 +43,31 @@ void	msh_clear_memory(t_vars *vars)
 int	msh_getting_commands(t_vars *vars)
 {
 	char	*exitcomm;
+	int		i;
 
 	exitcomm = "exit";
+	i = 0;
 	if (!ft_strncmp(vars->inputline, exitcomm,
 			msh_maxvalue(vars->inputlen, ft_strlen(exitcomm))))
 		return (0);
+	else
+	{
+		if (vars->inputline[0] != '\0')
+		{
+			vars->inputcomm = msh_split(' ', vars, 0);
+			while (vars->inputcomm[i] != NULL)
+			{
+				printf("%d: %s\n", i, vars->inputcomm[i]);
+				if (vars->inputcomm[i] != NULL)
+					free (vars->inputcomm[i++]);
+			}
+		}
+		else if (vars->inputcomm != NULL)
+		{
+			free (vars->inputcomm);
+			vars->inputcomm = NULL;
+		}
+	}
 	return (1);
 }
 
