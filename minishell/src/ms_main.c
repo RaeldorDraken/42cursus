@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/18 00:22:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:54:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	msh_set_vars(t_vars *vars, char *input)
 
 void	msh_clear_memory(t_vars *vars)
 {
-	int	i;
-
-	i = -1;
 	free (vars->prompt);
 	if (vars->inputline != NULL)
 		free (vars->inputline);
@@ -89,7 +86,6 @@ int	main(void)
 			if (vars.inputline[0] == '\0')
 			{
 				free(vars.inputline);
-				printf("");
 			}
 			vars.inputlen = ft_strlen(vars.inputline);
 		}
