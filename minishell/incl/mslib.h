@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mslib.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/07 09:52:05 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:19:40 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	msh_set_lex(size_t *len, size_t *num, int *quotes);
 
 int		msh_check_quotes(char c);
 
-char	**msh_split(char c, t_vars *vars, int quotes);
+char	**msh_split(char c, t_vars *vars, int quotes, size_t n);
 
 #endif

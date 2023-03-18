@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/18 15:54:52 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:19:45 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	msh_getting_commands(t_vars *vars)
 	{
 		if (vars->inputline[0] != '\0')
 		{
-			vars->inputcomm = msh_split(' ', vars, 0);
+			vars->inputcomm = msh_split(' ', vars, 0, 0);
 			while (vars->inputcomm[i] != NULL)
 			{
 				printf("%d: %s\n", i, vars->inputcomm[i]);

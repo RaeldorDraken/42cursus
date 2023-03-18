@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 11:18:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/18 16:12:27 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:20:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,12 @@ char	*msh_getquotes(const char *s, char c, int qt)
 	return (msh_strset(s, c));
 }
 
-char	**msh_split(char c, t_vars *vars, int quotes)
+char	**msh_split(char c, t_vars *vars, int quotes, size_t n)
 {
 	char	**strings;
-	size_t	n;
 	size_t	strn;
-	size_t	i;
+	int		i;
 
-	n = 0;
 	i = 0;
 	strn = msh_strnum(vars->inputline, c);
 	strings = ft_calloc(sizeof(char **), strn + 1);
@@ -114,10 +112,7 @@ char	**msh_split(char c, t_vars *vars, int quotes)
 		{
 			while (vars->inputline[i] == c || vars->inputline[i] == '\''
 				|| vars->inputline[i] == '\"')
-			{
-				quotes = msh_check_quotes(vars->inputline[i]);
-				i ++;
-			}
+				quotes = msh_check_quotes(vars->inputline[i++]);
 		}
 		strings[n] = msh_getquotes((vars->inputline + i), c, quotes);
 		i += ft_strlen(strings[n++]);
