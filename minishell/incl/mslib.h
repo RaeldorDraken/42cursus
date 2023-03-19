@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/18 16:19:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/19 11:06:17 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include<stdio.h>
 # include<readline/readline.h>
+# include<readline/history.h>
 # include<fcntl.h>
 # include<sys/wait.h>
 # include<sys/stat.h>

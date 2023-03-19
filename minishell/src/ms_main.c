@@ -6,19 +6,29 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/18 16:19:45 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/19 11:05:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/mslib.h"
 
 //Global variable
-void	(*msh_sigint_handler)(int i);
+
+void	msh_sigint_handler(int sig)
+{
+	 if (sig != 0)
+    {
+        printf("\n");
+        rl_on_new_line();
+        rl_replace_line("", 0);
+        rl_redisplay();
+    }
+}
 
 void	msh_ignore_signals(t_vars *vars)
 {
 	vars->sigbool = 1;
-	msh_sigint_handler = signal(SIGINT, SIG_IGN);
+	signal(SIGINT, msh_sigint_handler);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
@@ -88,6 +98,7 @@ int	main(void)
 				free(vars.inputline);
 			}
 			vars.inputlen = ft_strlen(vars.inputline);
+			add_history(vars.inputline);
 		}
 		else
 			break ;
