@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2023/03/18 00:22:26 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/03/21 10:47:11 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,11 @@ OBJ = $(SRC:.c=.o)
 GC = gcc 
 CFLAGS = -g -Wall -Wextra -Werror
 LFLAGS = -L $(LIBFTDIR) -lft -lreadline
+LDFLAGS		= -L/Users/$(USER)/.brew/opt/readline/lib
+CPPFLAGS	= -I/Users/$(USER)/.brew/opt/readline/include
 
 %.o: %.c $(HDR)
-	@$(GC) $(CFLAGS) -o $@ -c $<
+	@$(GC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 all: make_lib $(NAME)
 
@@ -40,7 +42,7 @@ make_lib:
 
 $(NAME): $(OBJ) $(HDR) libft/libft.a
 	@echo "$(C_YELLOW)make minishell...$(C_END)"
-	$(GC) $(CFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
+	$(GC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJ) $(LFLAGS)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 clean:

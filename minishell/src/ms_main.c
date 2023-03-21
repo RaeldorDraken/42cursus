@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/19 11:05:58 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/21 11:02:08 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 void	msh_sigint_handler(int sig)
 {
-	 if (sig != 0)
-    {
-        printf("\n");
-        rl_on_new_line();
-        rl_replace_line("", 0);
-        rl_redisplay();
-    }
+	if (sig != 0)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 }
 
 void	msh_ignore_signals(t_vars *vars)
@@ -69,7 +69,7 @@ int	msh_getting_commands(t_vars *vars)
 					free (vars->inputcomm[i++]);
 			}
 		}
-		else if (vars->inputcomm != NULL)
+		if (vars->inputcomm != NULL)
 		{
 			free (vars->inputcomm);
 			vars->inputcomm = NULL;
