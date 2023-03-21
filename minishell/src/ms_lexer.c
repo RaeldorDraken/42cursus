@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 11:18:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/21 11:00:12 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:25:23 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*msh_getquotes(const char *s, char c, int qt)
 		return (msh_script(s));
 	return (msh_strset(s, c));
 }
-
+/*
 char	**msh_split(char c, t_vars *vars, int quotes, size_t n)
 {
 	char	**strings;
@@ -120,4 +120,14 @@ char	**msh_split(char c, t_vars *vars, int quotes, size_t n)
 	if (vars->inputline != NULL)
 		free (vars->inputline);
 	return (strings);
+}
+*/
+char	**msh_split(char c, t_vars *vars, int quote, size_t n)
+{
+	char	**strings;
+	size_t	strn;
+	int		i;
+
+	i = 0;
+	
 }
