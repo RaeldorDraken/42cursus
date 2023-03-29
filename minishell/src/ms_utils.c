@@ -6,32 +6,42 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:06:58 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/18 00:22:22 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:15:31 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/mslib.h"
 
-void	msh_set_lex(size_t *len, size_t *num, int *quotes)
+void	msh_count_quotes(t_vars *vars)
 {
-	*len = 0;
-	*num = 0;
-	*quotes = 0;
+	int	len;
+
+	len = -1;
+	while (vars->inputline[++len])
+	{
+		if (vars->inputline[len] == '\'')
+			vars->s_quotes ++;
+		else if (vars->inputline[len] == '\"')
+			vars->d_quotes ++;
+	}
 }
 
-size_t	add_numb(int quotes)
-{
-	if (quotes <= 0)
-		return (1);
-	return (0);
-}
-
-int	msh_check_quotes(char c)
+int	msh_check_quotes(t_vars *vars, char c)
 {
 	if (c == '\'')
-		return (1);
+	{
+		if (vars->s_quotes % 2 == 0)
+			return (1);
+		else
+			return (0);
+	}
 	else if (c == '\"')
-		return (2);
+	{
+		if (vars->s_quotes % 2 == 0)
+			return (2);
+		else
+			return (0);
+	}
 	else if (c == '.')
 		return (3);
 	return (0);
@@ -41,24 +51,18 @@ size_t	msh_strnum(const char *s, char c)
 {	
 	size_t	len;
 	size_t	numb;
-	int		quotes;
 
-	msh_set_lex(&len, &numb, &quotes);
+	len = 0;
+	numb = 0;
 	while (s[len])
 	{
-		while (s[len] == c || ((s[len] == '\'' || s[len] == '\"')
-				&& s[len - 1] != '\\'))
-		{
-			if ((s[len] == '\'' || s[len] == '\"') && s[len - 1] != '\\')
-				numb += add_numb(quotes++);
+		while (s[len] && s[len] == c)
 			len++;
-		}
-		if (s[len] && (s[len] != c && quotes <= 0))
-			numb++;
-		while (s[len] != 0 && s[len] != c)
+		numb++;
+		while (s[len] && s[len] != c)
 		{
-			if ((s[len] == '\'' || s[len] == '\"') && s[len - 1] != '\\')
-				quotes --;
+			if ((s[len] == '\'' || s[len] == '\"'))
+				numb++;
 			len++;
 		}
 	}

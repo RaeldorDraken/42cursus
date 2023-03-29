@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 11:18:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/21 12:25:23 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:24:05 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,12 +122,34 @@ char	**msh_split(char c, t_vars *vars, int quotes, size_t n)
 	return (strings);
 }
 */
-char	**msh_split(char c, t_vars *vars, int quote, size_t n)
+
+char	**msh_split(char c, t_vars *vars, size_t n)
 {
 	char	**strings;
 	size_t	strn;
 	int		i;
+	int		quote;
 
 	i = 0;
-	
+	quote = 0;
+	strn = msh_strnum(vars->inputline, c);
+	strings = ft_calloc(sizeof(char **), strn + 1);
+	msh_count_quotes(vars);
+	if (!strings)
+		return (0);
+	while (n < strn)
+	{
+		quote = msh_check_quotes(vars, vars->inputline[i]);
+		if (quote != 3)
+		{
+			while (vars->inputline[i] == c || vars->inputline[i] == '\''
+				|| vars->inputline[i] == '\"')
+				quote = msh_check_quotes(vars, vars->inputline[i++]);
+		}
+		strings[n] = msh_getquotes((vars->inputline + i), c, quote);
+		i += ft_strlen(strings[n++]);
+	}
+	if (vars->inputline != NULL)
+		free (vars->inputline);
+	return (strings);
 }

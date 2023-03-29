@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/21 11:02:08 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:03:40 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ void	msh_ignore_signals(t_vars *vars)
 	signal(SIGQUIT, SIG_IGN);
 }
 
+
 void	msh_set_vars(t_vars *vars, char *input)
 {
 	vars->prompt = ft_calloc(ft_strlen(input) + 1, 1);
 	vars->inputline = NULL;
+	vars->s_quotes = 0;
+	vars->d_quotes = 0;
 	ft_strlcpy(vars->prompt, input, ft_strlen(input));
 }
 
@@ -61,7 +64,7 @@ int	msh_getting_commands(t_vars *vars)
 	{
 		if (vars->inputline[0] != '\0')
 		{
-			vars->inputcomm = msh_split(' ', vars, 0, 0);
+			vars->inputcomm = msh_split(' ', vars, 0);
 			while (vars->inputcomm[i] != NULL)
 			{
 				printf("%d: %s\n", i, vars->inputcomm[i]);
