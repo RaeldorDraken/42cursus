@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 11:18:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/29 12:24:05 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/03 10:08:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*msh_strset2(const char *s, char c)
 	len2 = 0;
 	while (s[len] != c && (s[len - 1] == '\\' && s[len] == c) && s[len++])
 		len2++;
-	sr = ft_calloc(sizeof(char), len + 1);
+	sr = ft_calloc(sizeof(char), len + 2);
 	if (!sr)
 		return (0);
 	len = 0;
