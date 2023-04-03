@@ -6,11 +6,18 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:06:58 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/29 12:15:31 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:53:40 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/mslib.h"
+
+char	**msh_setsplit(int *quote, size_t *strn, t_vars *vars, char c)
+{
+	quote = 0;
+	*strn = msh_strnum(vars->inputline, c);
+	return (ft_calloc(sizeof(char **), *(strn) + 1));
+}
 
 void	msh_count_quotes(t_vars *vars)
 {
@@ -28,19 +35,13 @@ void	msh_count_quotes(t_vars *vars)
 
 int	msh_check_quotes(t_vars *vars, char c)
 {
-	if (c == '\'')
+	if (c == '\'' && vars->s_quotes % 2 == 0)
 	{
-		if (vars->s_quotes % 2 == 0)
-			return (1);
-		else
-			return (0);
+		return (1);
 	}
-	else if (c == '\"')
+	else if (c == '\"' && vars->d_quotes % 2 == 0)
 	{
-		if (vars->s_quotes % 2 == 0)
-			return (2);
-		else
-			return (0);
+		return (2);
 	}
 	else if (c == '.')
 		return (3);

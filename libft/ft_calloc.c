@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 18:59:59 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/04/07 11:18:21 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:06:00 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	mem = malloc(len + 1);
 	if (!mem)
 		return (NULL);
-	ft_bzero(mem, len);
+	ft_bzero(mem, len + 1);
 	return (mem);
 }
