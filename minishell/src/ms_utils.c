@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:06:58 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/03 11:53:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/03 14:31:11 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**msh_setsplit(int *quote, size_t *strn, t_vars *vars, char c)
 {
-	quote = 0;
+	*quote = 0;
 	*strn = msh_strnum(vars->inputline, c);
 	return (ft_calloc(sizeof(char **), *(strn) + 1));
 }
