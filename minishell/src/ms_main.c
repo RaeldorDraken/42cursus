@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/03 11:55:29 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/07 10:46:30 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	msh_set_vars(t_vars *vars, char *input)
 {
 	vars->prompt = ft_calloc(ft_strlen(input) + 1, 1);
 	vars->inputline = NULL;
-	vars->s_quotes = 0;
-	vars->d_quotes = 0;
 	ft_strlcpy(vars->prompt, input, ft_strlen(input));
 }
 

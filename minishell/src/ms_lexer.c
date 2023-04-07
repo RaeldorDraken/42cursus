@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 11:18:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/03 11:54:40 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:06:51 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*msh_script(const char *s)
 	return (sr);
 }
 
-char	*msh_strset2(const char *s, char c)
+char	*msh_strset2(const char *s, int i)
 {
 	char	*sr;
 	size_t	len;
@@ -48,14 +48,8 @@ char	*msh_strset2(const char *s, char c)
 	if (!sr)
 		return (0);
 	len = 0;
-	while (s[len])
-	{
-		if (s[len] == c && s[len - 1] != '\\')
-			break ;
-		else if (s[len] == c && s[len - 1] == '\\')
-			len2 --;
+	while (s[len] && len <= (size_t)i)
 		sr[len2++] = s[len++];
-	}
 	len2 ++;
 	sr[len2] = '\0';
 	return (sr);
@@ -84,11 +78,9 @@ char	*msh_strset(const char *s, char c)
 
 char	*msh_getquotes(const char *s, char c, int qt)
 {
-	if (qt == 1)
-		return (msh_strset2(s, '\''));
-	else if (qt == 2)
-		return (msh_strset2(s, '\"'));
-	else if (qt == 3)
+	if (qt > 0)
+		return (msh_strset2(s, qt));
+	else if (qt == -1)
 		return (msh_script(s));
 	return (msh_strset(s, c));
 }
@@ -129,22 +121,22 @@ char	**msh_split(char c, t_vars *vars, size_t n, int i)
 	size_t	strn;
 
 	strings = msh_setsplit(&quote, &strn, vars, c);
-	msh_count_quotes(vars);
 	if (!strings)
 		return (0);
 	while (n < strn)
 	{
-		quote = msh_check_quotes(vars, vars->inputline[i]);
-		if (quote != 3)
+		quote = msh_check_quotes(vars, vars->inputline[i], i);
+		if (quote != -1)
 		{
 			while (vars->inputline[i] == c
 				|| vars->inputline[i] == '\'' || vars->inputline[i] == '\"')
 			{
 				if (quote == 0)
-					quote = msh_check_quotes(vars, vars->inputline[i]);
+					quote = msh_check_quotes(vars, vars->inputline[i], i);
 				i ++;
 			}
 		}
+		if (quote > 0) i --;
 		strings[n] = msh_getquotes((vars->inputline + i), c, quote);
 		i += ft_strlen(strings[n++]);
 	}

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/03 12:04:50 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/07 10:46:55 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,12 @@ typedef struct s_vars
 	char	**inputcomm;
 	int		inputlen;
 	int		sigbool;
-	int		s_quotes;
-	int		d_quotes;
 }	t_vars;
 
 size_t	msh_maxvalue(size_t first, size_t second);
 size_t	msh_strnum(const char *s, char c);
 
-void	msh_count_quotes(t_vars *vars);
-
-int		msh_check_quotes(t_vars *vars, char c);
+int		msh_check_quotes(t_vars *vars, char c, int i);
 int		msh_getting_commands(t_vars *vars);
 
 char	**msh_split(char c, t_vars *vars, size_t n, int i);

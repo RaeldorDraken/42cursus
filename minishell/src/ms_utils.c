@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:06:58 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/03 14:31:11 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:01:54 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,24 @@ char	**msh_setsplit(int *quote, size_t *strn, t_vars *vars, char c)
 	return (ft_calloc(sizeof(char **), *(strn) + 1));
 }
 
-void	msh_count_quotes(t_vars *vars)
+int	msh_check_quotes(t_vars *vars, char c, int i)
 {
-	int	len;
+	int oi;
 
-	len = -1;
-	while (vars->inputline[++len])
+	oi = i;
+	while (vars->inputline[++i] != 0)
 	{
-		if (vars->inputline[len] == '\'')
-			vars->s_quotes ++;
-		else if (vars->inputline[len] == '\"')
-			vars->d_quotes ++;
+		if (c == '\'' && vars->inputline[i] == c)
+		{
+			return (i - oi);
+		}
+		else if (c == '\"' && vars->inputline[i] == c)
+		{
+			return (i - oi);
+		}
+		else if (c == '.')
+			return (-1);
 	}
-}
-
-int	msh_check_quotes(t_vars *vars, char c)
-{
-	if (c == '\'' && vars->s_quotes % 2 == 0)
-	{
-		return (1);
-	}
-	else if (c == '\"' && vars->d_quotes % 2 == 0)
-	{
-		return (2);
-	}
-	else if (c == '.')
-		return (3);
 	return (0);
 }
 
