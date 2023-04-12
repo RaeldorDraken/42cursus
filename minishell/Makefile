@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/02 14:48:15 by eros-gir          #+#    #+#              #
-#    Updated: 2023/04/07 11:53:17 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/04/12 10:45:10 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ C_END=\033[0m
 
 NAME = minishell
 
-SRC = ./src/ms_main.c ./src/ms_utils.c ./src/ms_parser.c ./src/ms_utils2.c
+SRC = ./src/ms_main.c ./src/ms_utils.c ./src/ms_parser.c ./src/ms_commands1.c
 
 HDR = ./incl/mslib.h ./libft/libft.h
 
