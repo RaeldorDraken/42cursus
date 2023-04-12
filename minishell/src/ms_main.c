@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/07 10:46:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:04:03 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,21 @@ void	msh_ignore_signals(t_vars *vars)
 void	msh_set_vars(t_vars *vars, char *input)
 {
 	vars->prompt = ft_calloc(ft_strlen(input) + 1, 1);
-	vars->inputline = NULL;
+	vars->inpli = NULL;
 	ft_strlcpy(vars->prompt, input, ft_strlen(input));
+	msh_acptd_comm(vars);
 }
 
 void	msh_clear_memory(t_vars *vars)
 {
 	free (vars->prompt);
-	if (vars->inputline != NULL)
-		free (vars->inputline);
+	if (vars->inpli != NULL)
+		free (vars->inpli);
+	if (vars->accomm != NULL)
+		free (vars->accomm);
 }
 
-//printf("%s: %d\n", vars.inputline, vars.inputlen); //debug line
+//printf("%s: %d\n", vars.inpli, vars.inplen); //debug line
 int	main(void)
 {
 	t_vars	vars;
@@ -59,19 +62,21 @@ int	main(void)
 	while (looping)
 	{
 		looping = 0;
-		vars.inputline = readline(vars.prompt);
-		if (vars.inputline != NULL)
+		vars.inpli = readline(vars.prompt);
+		if (vars.inpli != NULL)
 		{
-			if (vars.inputline[0] == '\0')
+			if (vars.inpli[0] == '\0')
 			{
-				free(vars.inputline);
+				free(vars.inpli);
 			}
-			vars.inputlen = ft_strlen(vars.inputline);
-			add_history(vars.inputline);
+			vars.inplen = ft_strlen(vars.inpli);
+			add_history(vars.inpli);
 		}
 		else
 			break ;
 		looping = msh_getting_commands(&vars);
+		msh_free_commands(&vars);
 	}
 	msh_clear_memory(&vars);
 }
+

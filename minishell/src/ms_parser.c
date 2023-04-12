@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 11:18:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/07 11:53:43 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:03:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,24 +92,24 @@ char	**msh_split(char c, t_vars *vars, int quotes, size_t n)
 	int		i;
 
 	i = 0;
-	strn = msh_strnum(vars->inputline, c);
+	strn = msh_strnum(vars->inpli, c);
 	strings = ft_calloc(sizeof(char **), strn + 1);
 	if (!strings)
 		return (0);
 	while (n < strn)
 	{
-		quotes = msh_check_quotes(vars->inputline[i]);
+		quotes = msh_check_quotes(vars->inpli[i]);
 		if (quotes != 3)
 		{
-			while (vars->inputline[i] == c || vars->inputline[i] == '\''
-				|| vars->inputline[i] == '\"')
-				quotes = msh_check_quotes(vars->inputline[i++]);
+			while (vars->inpli[i] == c || vars->inpli[i] == '\''
+				|| vars->inpli[i] == '\"')
+				quotes = msh_check_quotes(vars->inpli[i++]);
 		}
-		strings[n] = msh_getquotes((vars->inputline + i), c, quotes);
+		strings[n] = msh_getquotes((vars->inpli + i), c, quotes);
 		i += ft_strlen(strings[n++]);
 	}
-	if (vars->inputline != NULL)
-		free (vars->inputline);
+	if (vars->inpli != NULL)
+		free (vars->inpli);
 	return (strings);
 }
 */
@@ -123,21 +123,21 @@ char	**msh_split(char c, t_vars *vars, size_t n, int i)
 	strings = msh_setsplit(&quote, &strn, vars, c);
 	if (!strings)
 		return (0);
-	while (n < strn && i < vars->inputlen)
+	while (n < strn && i < vars->inplen)
 	{
-		quote = msh_check_quotes(vars, vars->inputline[i], i);
+		quote = msh_check_quotes(vars, vars->inpli[i], i);
 		if (quote != -1)
 		{
-			while (vars->inputline[i] == c
-				|| vars->inputline[i] == '\'' || vars->inputline[i] == '\"')
+			while (vars->inpli[i] == c
+				|| vars->inpli[i] == '\'' || vars->inpli[i] == '\"')
 			{
-				quote = msh_check_quotes(vars, vars->inputline[i], i);
+				quote = msh_check_quotes(vars, vars->inpli[i], i);
 				i ++;
 			}
 		}
-		if (vars->inputline[i - 1] == '\'' || vars->inputline[i - 1] == '\"')
+		if (i > 0 && (vars->inpli[i - 1] == '\'' || vars->inpli[i - 1] == '\"'))
 			i --;
-		strings[n] = msh_getquotes((vars->inputline + i), c, quote);
+		strings[n] = msh_getquotes((vars->inpli + i), c, quote);
 		i += ft_strlen(strings[n++]);
 	}
 	return (strings);
