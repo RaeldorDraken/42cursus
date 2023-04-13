@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/12 13:04:03 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/13 10:59:26 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,24 @@ void	msh_sigint_handler(int sig)
 	}
 }
 
-void	msh_ignore_signals(t_vars *vars)
+void	msh_ignore_signals(t_vars *vars, int ac, char **av)
 {
+	if (ac > 1 || av[1] != NULL)
+	{
+		printf("ERROR: the program does not take any arguments!");
+		exit(1);
+	}
 	vars->sigbool = 1;
 	signal(SIGINT, msh_sigint_handler);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	msh_set_vars(t_vars *vars, char *input)
+void	msh_set_vars(t_vars *vars, char *input, char **envp)
 {
 	vars->prompt = ft_calloc(ft_strlen(input) + 1, 1);
 	vars->inpli = NULL;
+	vars->envar = envp;
 	ft_strlcpy(vars->prompt, input, ft_strlen(input));
 	msh_acptd_comm(vars);
 }
@@ -46,19 +52,22 @@ void	msh_clear_memory(t_vars *vars)
 	free (vars->prompt);
 	if (vars->inpli != NULL)
 		free (vars->inpli);
-	if (vars->accomm != NULL)
-		free (vars->accomm);
+	if (vars->btins != NULL)
+		free (vars->btins);
+	if (vars->tokens != NULL)
+		free (vars->tokens);
+	exit(0);
 }
 
 //printf("%s: %d\n", vars.inpli, vars.inplen); //debug line
-int	main(void)
+int	main(int ac, char **av, char **envp)
 {
 	t_vars	vars;
 	int		looping;
 
 	looping = 1;
-	msh_ignore_signals(&vars);
-	msh_set_vars(&vars, "msh %  ");
+	msh_ignore_signals(&vars, ac, av);
+	msh_set_vars(&vars, "msh %  ", envp);
 	while (looping)
 	{
 		looping = 0;

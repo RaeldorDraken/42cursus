@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/12 13:05:08 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/13 10:57:45 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ typedef struct s_vars
 	char	*prompt;
 	char	*inpli;
 	char	**inpcomm;
-	char	**accomm;
+	char	**btins;
+	char	**tokens;
+	char	**envar;
 	int		inplen;
 	int		sigbool;
 }	t_vars;

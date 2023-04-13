@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:55:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/12 13:04:06 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/04/13 12:09:08 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	msh_acptd_comm(t_vars *vars)
 {
-	int	i;
-
-	i = 0;
-	vars->accomm = ft_calloc(sizeof(char **), 8);
-	vars->accomm[0] = "echo";
-	vars->accomm[1] = "cd";
-	vars->accomm[2] = "pwd";
-	vars->accomm[3] = "export";
-	vars->accomm[4] = "unset";
-	vars->accomm[5] = "env";
-	vars->accomm[6] = "exit";
-	vars->accomm[7] = NULL;
-	while (vars->accomm[i] != NULL)
-	{
-		printf("%d: %s\n", i, vars->accomm[i]);
-		i ++;
-	}
+	vars->btins = ft_calloc(sizeof(char **), 8);
+	vars->tokens = ft_calloc(sizeof(char **), 7);
+	vars->btins[0] = "echo";
+	vars->btins[1] = "cd";
+	vars->btins[2] = "pwd";
+	vars->btins[3] = "export";
+	vars->btins[4] = "unset";
+	vars->btins[5] = "env";
+	vars->btins[6] = "exit";
+	vars->btins[7] = NULL;
+	vars->tokens[0] = "|";
+	vars->tokens[1] = "$";
+	vars->tokens[2] = "<";
+	vars->tokens[3] = ">";
+	vars->tokens[4] = "<<";
+	vars->tokens[5] = ">>";
+	vars->tokens[6] = NULL;
 }
 
 void	msh_free_commands(t_vars *vars)
@@ -52,9 +52,18 @@ void	msh_free_commands(t_vars *vars)
 
 int	msh_getting_commands2(t_vars *vars)
 {
-	if (!ft_strncmp(vars->inpcomm[0], vars->accomm[6],
-			ft_strlen(vars->accomm[6])))
+	int	i;
+
+	i = 0;
+	if (!ft_strncmp(vars->inpcomm[0], vars->btins[6],
+			ft_strlen(vars->btins[6])))
 		return (0);
+	if (!ft_strncmp(vars->inpcomm[0], vars->btins[5],
+			ft_strlen(vars->btins[6])))
+	{
+		while (vars->envar[i] != NULL)
+			printf("%s\n", vars->envar[i++]);
+	}
 	return (1);
 }
 
