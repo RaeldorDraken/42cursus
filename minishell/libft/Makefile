@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/10 12:00:26 by eros-gir          #+#    #+#              #
-#    Updated: 2023/03/18 00:22:34 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/04/17 10:35:26 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ ft_memcpy.c ft_split.c ft_strlen.c ft_tolower.c ft_isascii.c \
 ft_memmove.c ft_strchr.c ft_strmapi.c ft_toupper.c ft_joinloc.c \
 ft_strrcmp.c ft_strrev.c  ft_lstlast.c ft_lstnew.c \
 ft_lstsize.c  ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
-ft_lstdelone.c ft_lstiter.c ft_atol.c 
+ft_lstdelone.c ft_lstiter.c ft_atol.c ft_strcmp.c
 
 OBJ = $(SRC:.c=.o)
 
