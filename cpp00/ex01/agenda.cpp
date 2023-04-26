@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   agenda.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/23 21:34:37 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/26 11:14:45 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/04/26 10:30:57 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/04/26 11:42:10 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<iostream>
+#include"agenda.h"
+#include"agenda.class.hpp"
 
-int	main(int ac, char** av) 
+int	main(void)
 {
-	if (ac <= 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-	}
-	else
-	{
-		for (int i = 1; av[i]; i++)
-		{
-			for (int j = 0; av[i][j]; j++)
-			{
-				std::cout << (char)std::toupper(av[i][j]);
-			}
-		}
-		std::cout << std::endl;
-	}
-	return (0);
+	char 	buff[512];
+	Test	instance;
+	std::cout << "agenda:" << std::endl;
+	std::cin >> buff;
+	std::cout << "You entered : [" << buff << "]" << std::endl;
+	
+	return(0);
 }
