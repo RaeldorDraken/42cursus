@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/23 21:27:03 by eros-gir          #+#    #+#              #
-#    Updated: 2023/04/23 21:41:22 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/04/26 10:22:31 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS = megaphone.cpp
 
 all:$(NAME)
 
-$(NAME): 
+$(NAME): $(SRCS)
 	@echo "$(C_YELLOW)make megaphone...$(C_END)"
 	@$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
