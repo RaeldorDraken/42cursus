@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:30:57 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/26 12:24:53 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/01 11:02:43 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(void)
 {
 	char 	buff[512];
-	Test	instance;
+//	Test	instance;
 	PhoneBook	phonebook;
 	
 	std::cout << "* MY AMAZING PHONEBOOK *" << std::endl;
@@ -27,6 +27,5 @@ int	main(void)
 	{
 		phonebook.ADD();
 	}
-	
 	return(0);
 }

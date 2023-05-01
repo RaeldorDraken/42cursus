@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_psplit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eros-gir <eros-gir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:19:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/03/07 10:14:41 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:55:14 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ char	**ft_psplit(const char *s, char c, t_pipex *pobj, int quotes)
 	n = 0;
 	strn = ft_pstrnum(s, c);
 	strings = ft_calloc(sizeof(char **), strn + 1);
-	if (!strings)
-		return (0);
 	while (n < strn)
 	{
 		quotes = ft_check_quotes(*s);

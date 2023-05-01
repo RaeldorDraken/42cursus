@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:55:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/17 11:22:31 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/01 10:55:30 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	msh_getting_commands2(t_vars *vars, int i)
 		if (!ft_strncmp(vars->inpcomm[0], vars->btins[i], maxval))
 			break ;
 	}
-
 	if (vars->btins[i] == NULL)
 	{
 		printf("%s: command not found: %s\n", vars->prompt, vars->inpcomm[0]);
