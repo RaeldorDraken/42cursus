@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/26 10:29:58 by eros-gir          #+#    #+#              #
-#    Updated: 2023/04/26 11:42:42 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/05/01 13:12:54 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ NAME = agenda
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = agenda.cpp agenda.class.cpp
+SRCS = Agenda.cpp AgendaClass.cpp
 
-HDRS = agenda.class.hpp agenda.h
+HDRS = AgendaClass.hpp Agenda.h
 
 all:$(NAME)
 
