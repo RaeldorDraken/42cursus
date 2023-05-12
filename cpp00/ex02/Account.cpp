@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:43:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/08 11:26:43 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:43:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,31 @@ Account::~Account(void)
 
 int	Account::getNbAccounts(void)
 {
-	return(0);
+	return(_nbAccounts);
 }
 
 int Account::getTotalAmount(void)
 {
-	return(0);
+	return(_totalAmount);
 }
 
 int Account::getNbDeposits(void)
 {
-	return(0);
+	return(_totalNbDeposits);
 }
 
 int Account::getNbWithdrawals(void)
 {
-	return(0);
+	return(_totalNbWithdrawals);
 }
 
 void Account::displayAccountsInfos(void)
 {
 	_displayTimestamp();
-	std::cout << "accounts:" << _nbAccounts << ";";
-	std::cout << "total:" << _totalAmount << ";";
-	std::cout << "deposits:" << _totalNbDeposits << ";";
-	std::cout << "withdrawals:" << _totalNbWithdrawals << std::endl;
+	std::cout << "accounts:" << getNbAccounts() << ";";
+	std::cout << "total:" << getTotalAmount() << ";";
+	std::cout << "deposits:" << getNbDeposits() << ";";
+	std::cout << "withdrawals:" << getNbWithdrawals() << std::endl;
 	return;
 }
 
