@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 11:23:38 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/06/09 10:53:59 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:32:05 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	char	*sr;
 
 	lo = start;
-	maxlo = ft_strlen(s);
 	lr = 0;
-	if (!s || maxlo <= lo)
+	maxlo = ft_strlen(s);
+	if (maxlo <= lo || !s || !len)
 		return (ft_strdup(""));
-	if (len >= maxlo)
+	if (len > maxlo)
 		len = maxlo;
 	sr = ft_calloc(sizeof(char), len + 1);
 	if (!sr)
