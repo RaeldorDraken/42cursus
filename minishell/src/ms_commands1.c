@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:55:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/01 10:55:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/15 12:18:41 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,21 @@ void	msh_free_commands(t_vars *vars)
 	}
 }
 
+void	msh_getting_commands3(t_vars *vars, int maxval)
+{
+	char	*tmp;
+
+	if (!ft_strncmp(vars->inpcomm[0], vars->btins[0], maxval))
+	{
+		tmp = msh_echo(vars);
+		printf("%s", tmp);
+		free (tmp);
+	}
+}
+
 int	msh_getting_commands2(t_vars *vars, int i)
 {
-	int	maxval;
+	int		maxval;
 
 	maxval = ft_strlen(vars->inpcomm[0]);
 	while (vars->btins[++i] != NULL)
@@ -65,14 +77,15 @@ int	msh_getting_commands2(t_vars *vars, int i)
 		printf("%s: command not found: %s\n", vars->prompt, vars->inpcomm[0]);
 		return (1);
 	}
-	if (!ft_strncmp(vars->inpcomm[0], vars->btins[6], maxval))
-		return (0);
+	msh_getting_commands3(vars, maxval);
 	if (!ft_strncmp(vars->inpcomm[0], vars->btins[5], maxval))
 	{
 		i = -1;
 		while (vars->envar[++i] != NULL)
 			printf("%s\n", vars->envar[i]);
 	}
+	if (!ft_strncmp(vars->inpcomm[0], vars->btins[6], maxval))
+		return (0);
 	return (1);
 }
 
