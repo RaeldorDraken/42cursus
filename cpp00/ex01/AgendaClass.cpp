@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:39:40 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/01 13:53:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:15:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,23 @@ void	PhoneBook::ADD(PhoneBook *phonebook)
 	}
 	std::cout << "First Name: ";
 	std::cin >> input;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	phonebook->contact[phonebook->_index].first_name = input;
 	std::cout << "Last Name: ";
 	std::cin >> input;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	phonebook->contact[phonebook->_index].last_name = input;
 	std::cout << "Nickname: ";
 	std::cin >> input;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	phonebook->contact[phonebook->_index].nickname = input;
 	std::cout << "Phone Number: ";
 	std::cin >> input;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	phonebook->contact[phonebook->_index].phone_number = input;
 	std::cout << "Darkest Secret: ";
 	std::cin >> input;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	phonebook->contact[phonebook->_index].darkest_secret = input;
 	return;
 }
@@ -75,18 +80,19 @@ void	PhoneBook::SEARCH(PhoneBook *phonebook)
 	std::cout << "Select an index: ";
 	std::cin >> index;
 	index--;
-	if (index > 7 || index < 0)
+	switch (index)
 	{
-		std::cout << "Invalid index" << std::endl;
-		return;
-	}
-	else
-	{
-		std::cout << "First Name: " << phonebook->contact[index].first_name << std::endl;
-		std::cout << "Last Name: " << phonebook->contact[index].last_name << std::endl;
-		std::cout << "Nickname: " << phonebook->contact[index].nickname << std::endl;
-		std::cout << "Phone Number: " << phonebook->contact[index].phone_number << std::endl;
-		std::cout << "Darkest Secret: " << phonebook->contact[index].darkest_secret << std::endl; 
+		default:
+			std::cout << "Invalid index" << std::endl;
+			std::cin.clear();
+			break;
+		case 0:	case 1:	case 2:	case 3:	case 4:	case 5:	case 6:	case 7:
+			std::cout << "First Name: " << phonebook->contact[index].first_name << std::endl;
+			std::cout << "Last Name: " << phonebook->contact[index].last_name << std::endl;
+			std::cout << "Nickname: " << phonebook->contact[index].nickname << std::endl;
+			std::cout << "Phone Number: " << phonebook->contact[index].phone_number << std::endl;
+			std::cout << "Darkest Secret: " << phonebook->contact[index].darkest_secret << std::endl;
+			break;
 	}
 	return;
 }
