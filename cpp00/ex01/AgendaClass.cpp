@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:39:40 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/17 11:46:13 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/17 11:49:03 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	PhoneBook::ADD(PhoneBook *phonebook)
 	phonebook->contact[phonebook->_index].first_name = input;
 	std::cout << "Last Name: ";
 	std::cin >> input;
-
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	phonebook->contact[phonebook->_index].last_name = input;
 	std::cout << "Nickname: ";
 	std::cin >> input;
