@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:39:40 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/17 11:49:03 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:35:11 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,44 @@ PhoneBook::~PhoneBook(void)
 
 void	PhoneBook::ADD(PhoneBook *phonebook)
 {
-	char	input[512];
+	std::string input;
+	std::string buff;
+
 	phonebook->_index++;
 	if (phonebook->_index > 7)
 	{
 		std::cout << "Phonebook is full" << std::endl;
 		std::cout << "Do you want to replace the first entry?" << std::endl;
 		std::cin >> input;
-		if (!std::strcmp(input, "yes") || !std::strcmp(input, "y"))	phonebook->_index = 0;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		if (input == "yes" || input == "y")	
+			phonebook->_index = 0;
 		else return;
 	}
 	std::cout << "First Name: ";
 	std::cin >> input;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(std::cin, buff);
+	input += buff;
 	phonebook->contact[phonebook->_index].first_name = input;
 	std::cout << "Last Name: ";
 	std::cin >> input;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(std::cin, buff);
+	input += buff;
 	phonebook->contact[phonebook->_index].last_name = input;
 	std::cout << "Nickname: ";
 	std::cin >> input;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(std::cin, buff);
+	input += buff;
 	phonebook->contact[phonebook->_index].nickname = input;
 	std::cout << "Phone Number: ";
 	std::cin >> input;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(std::cin, buff);
+	input += buff;
 	phonebook->contact[phonebook->_index].phone_number = input;
 	std::cout << "Darkest Secret: ";
 	std::cin >> input;
-	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(std::cin, buff);
+	input += buff;
 	phonebook->contact[phonebook->_index].darkest_secret = input;
 	return;
 }
