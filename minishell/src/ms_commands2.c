@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:33:12 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/15 12:17:24 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:28:02 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	msh_echo_init(t_vars *vars, int i, int *flag)
 	{
 		if (vars->inpcomm[i][1] == 'n')
 			*flag = 1;
+		else
+			break ;
 		i++;
 	}
 	return (i);
@@ -33,14 +35,13 @@ char	*msh_echo(t_vars *vars)
 	i = 1;
 	flag = 0;
 	echor = ft_strdup("");
+	i = msh_echo_init(vars, i, &flag);
 	while (vars->inpcomm[i])
 	{
-		i = msh_echo_init(vars, i, &flag);
 		j = 0;
 		while (j != -1 && vars->tokens[j])
 		{
-			if (!ft_strncmp(vars->inpcomm[i], vars->tokens[j],
-					ft_strlen(vars->tokens[j])))
+			if (!ft_strcmp(vars->inpcomm[i], vars->tokens[j]))
 				j = -1;
 			else
 				j ++;
@@ -48,10 +49,11 @@ char	*msh_echo(t_vars *vars)
 		if (j == -1)
 			break ;
 		echor = ft_joinloc(echor, ft_strdup(vars->inpcomm[i]));
-		echor = ft_joinloc(echor, ft_strdup(" "));
+		if (vars->inpcomm[i + 1])
+			echor = ft_joinloc(echor, ft_strdup(" "));
 		i++;
 	}
-	if (flag == 0)
+	if (flag != 1)
 		echor = ft_joinloc(echor, ft_strdup("\n"));
 	return (echor);
 }
