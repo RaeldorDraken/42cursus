@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/15 12:10:47 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 09:42:43 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		msh_getting_commands(t_vars *vars);
 char	**msh_split(char c, t_vars *vars, size_t n, int i);
 char	**msh_setsplit(int *quote, size_t *strn, t_vars *vars, char c);
 
-char	*msh_echo(t_vars *vars);
+char	*msh_echo(t_vars *vars, int i, int j, int flag);
 
 void	msh_acptd_comm(t_vars *vars);
 void	msh_free_commands(t_vars *vars);

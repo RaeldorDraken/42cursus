@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:55:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/15 12:18:41 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 09:42:33 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	msh_getting_commands3(t_vars *vars, int maxval)
 
 	if (!ft_strncmp(vars->inpcomm[0], vars->btins[0], maxval))
 	{
-		tmp = msh_echo(vars);
+		tmp = msh_echo(vars, 1, 0, 0);
 		printf("%s", tmp);
 		free (tmp);
 	}

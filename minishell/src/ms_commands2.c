@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 10:33:12 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/18 12:28:02 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 09:43:20 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,10 @@ int	msh_echo_init(t_vars *vars, int i, int *flag)
 	return (i);
 }
 
-char	*msh_echo(t_vars *vars)
+char	*msh_echo(t_vars *vars, int i, int j, int flag)
 {
 	char	*echor;
-	int		i;
-	int		j;
-	int		flag;
 
-	i = 1;
-	flag = 0;
 	echor = ft_strdup("");
 	i = msh_echo_init(vars, i, &flag);
 	while (vars->inpcomm[i])
