@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:55:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 09:42:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 11:53:59 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,20 @@ int	msh_getting_commands2(t_vars *vars, int i)
 	return (1);
 }
 
-int	msh_getting_commands(t_vars *vars)
+//funcion va en otro archivo
+int	msh_getting_envp_commands(t_vars *vars, char **envp)
+{
+
+	msh_getpath(vars, envp);
+	if (msh_cmd_execute(vars, envp))
+	{
+		return (1);
+	}
+	return (0);
+}
+//funcion va en otro archivo
+
+int	msh_getting_commands(t_vars *vars, char **envp)
 {
 	int	i;
 
@@ -102,9 +115,12 @@ int	msh_getting_commands(t_vars *vars)
 			free (vars->inpli);
 			vars->inpli = NULL;
 		}
-		while (vars->inpcomm[++i] != NULL)
-			printf("%d: %s\n", i, vars->inpcomm[i]);
+//		while (vars->inpcomm[++i] != NULL)
+//			printf("%d: %s\n", i, vars->inpcomm[i]);
 	}
+//	printf("%s", envp[0]);
+	if (msh_getting_envp_commands(vars, envp))
+		return (1);
 	if (!msh_getting_commands2(vars, -1))
 		return (0);
 	return (1);

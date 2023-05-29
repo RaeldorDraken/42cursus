@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 10:54:44 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/17 10:35:15 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 11:04:46 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		ft_lstclear(t_list **lst, void (*del)(int *));
 void		ft_lstiter(t_list *lst, void (*f)(int *));
 void		ft_lstiter_put(t_list *lst);
 
+int			ft_arrsize(char **arr);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);

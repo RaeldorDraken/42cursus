@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 09:42:43 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 10:51:55 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,28 @@ typedef struct s_vars
 	char	**envar;
 	int		inplen;
 	int		sigbool;
+	char	**paths;
+	char	**cmd_buffer;
 }	t_vars;
 
 size_t	msh_maxvalue(size_t first, size_t second);
 size_t	msh_strnum(const char *s, char c);
 
 int		msh_check_quotes(t_vars *vars, char c, int i);
-int		msh_getting_commands(t_vars *vars);
+int		msh_getting_commands(t_vars *vars, char **envp);
+int		msh_cmd_execute(t_vars *vars, char **envp);
 
 char	**msh_split(char c, t_vars *vars, size_t n, int i);
 char	**msh_setsplit(int *quote, size_t *strn, t_vars *vars, char c);
+char	**msh_get_cmds(t_vars *vars, int i);
+
 
 char	*msh_echo(t_vars *vars, int i, int j, int flag);
+char	*msh_getpath_cmd(t_vars *vars, char *cmd);
+char	*msh_getpath_line(char **envp);
 
 void	msh_acptd_comm(t_vars *vars);
 void	msh_free_commands(t_vars *vars);
+void	msh_getpath(t_vars *vars, char **envp);
 
 #endif

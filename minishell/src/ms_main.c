@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/01 10:55:35 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 10:56:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	main(int ac, char **av, char **envp)
 		}
 		else
 			break ;
-		looping = msh_getting_commands(&vars);
+		looping = msh_getting_commands(&vars, envp);
 		msh_free_commands(&vars);
 	}
 	msh_clear_memory(&vars);
