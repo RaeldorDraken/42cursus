@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:55:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 11:53:59 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:12:59 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,10 @@ int	msh_getting_commands2(t_vars *vars, int i)
 //funcion va en otro archivo
 int	msh_getting_envp_commands(t_vars *vars, char **envp)
 {
-
+	write(1, "enters\n", 7);
 	msh_getpath(vars, envp);
 	if (msh_cmd_execute(vars, envp))
-	{
 		return (1);
-	}
 	return (0);
 }
 //funcion va en otro archivo
@@ -120,7 +118,10 @@ int	msh_getting_commands(t_vars *vars, char **envp)
 	}
 //	printf("%s", envp[0]);
 	if (msh_getting_envp_commands(vars, envp))
+	{
+		write(1, "sucecess on envp commands\n", 26);
 		return (1);
+	}
 	if (!msh_getting_commands2(vars, -1))
 		return (0);
 	return (1);
