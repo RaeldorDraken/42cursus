@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 09:53:24 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 11:59:35 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/05/29 12:01:55 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ int	msh_cmd_execute(t_vars *vars, char **envp)
 		vars->cmd_buffer = NULL;
 	}
 	vars->cmd_buffer = msh_get_cmds(vars, 0); //cambiar 0 por una forma de comprobar si va despues de un token
-	printf("%s/n", vars->cmd_buffer[0]);
 	cmd = msh_getpath_cmd(vars, vars->cmd_buffer[0]);
-	printf("%s/n", cmd);
 	if (cmd && vars->cmd_buffer[0])
 	{
 		execve(cmd, vars->cmd_buffer, envp);
@@ -95,7 +93,6 @@ int	msh_cmd_execute(t_vars *vars, char **envp)
 	//	cmd_error(vars->cmd_buffer);
 		return (0);
 	}
-	printf("%s/n", envp[0]);
 }
 
 char	**msh_get_cmds(t_vars *vars, int i)
