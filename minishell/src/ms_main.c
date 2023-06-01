@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 10:56:34 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/06/01 10:30:48 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,19 @@ void	msh_ignore_signals(t_vars *vars, int ac, char **av)
 	signal(SIGQUIT, SIG_IGN);
 }
 
+//if sigexec == -1 is unset
+//if sigexec == 0 is set to error
+//if sigexec == 1 is set to success
 void	msh_set_vars(t_vars *vars, char *input, char **envp)
 {
 	vars->prompt = ft_calloc(ft_strlen(input) + 1, 1);
 	vars->inpli = NULL;
 	vars->envar = envp;
+	vars->sigexec = -1;
 	ft_strlcpy(vars->prompt, input, ft_strlen(input));
 	msh_acptd_comm(vars);
 }
 
-void	msh_clear_memory(t_vars *vars)
-{
-	free (vars->prompt);
-	if (vars->inpli != NULL)
-		free (vars->inpli);
-	if (vars->btins != NULL)
-		free (vars->btins);
-	if (vars->tokens != NULL)
-		free (vars->tokens);
-	exit(0);
-}
-
-//printf("%s: %d\n", vars.inpli, vars.inplen); //debug line
 int	main(int ac, char **av, char **envp)
 {
 	t_vars	vars;

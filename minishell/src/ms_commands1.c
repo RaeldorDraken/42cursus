@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:55:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 12:12:59 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/06/01 11:36:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	msh_getting_commands3(t_vars *vars, int maxval)
 	}
 }
 
-int	msh_getting_commands2(t_vars *vars, int i)
+int	msh_getting_commands2(t_vars *vars, int i, char **envp)
 {
 	int		maxval;
 
@@ -74,7 +74,8 @@ int	msh_getting_commands2(t_vars *vars, int i)
 	}
 	if (vars->btins[i] == NULL)
 	{
-		printf("%s: command not found: %s\n", vars->prompt, vars->inpcomm[0]);
+		msh_getting_envp_commands(vars, envp);
+		vars->sigexec = 0;
 		return (1);
 	}
 	msh_getting_commands3(vars, maxval);
@@ -92,11 +93,10 @@ int	msh_getting_commands2(t_vars *vars, int i)
 //funcion va en otro archivo
 int	msh_getting_envp_commands(t_vars *vars, char **envp)
 {
-	write(1, "enters\n", 7);
 	msh_getpath(vars, envp);
-	if (msh_cmd_execute(vars, envp))
-		return (1);
-	return (0);
+	msh_cmd_execute(vars, envp, NULL);
+	msh_clearpath(vars);
+	return (vars->sigexec);
 }
 //funcion va en otro archivo
 
@@ -113,16 +113,9 @@ int	msh_getting_commands(t_vars *vars, char **envp)
 			free (vars->inpli);
 			vars->inpli = NULL;
 		}
-//		while (vars->inpcomm[++i] != NULL)
-//			printf("%d: %s\n", i, vars->inpcomm[i]);
 	}
-//	printf("%s", envp[0]);
-	if (msh_getting_envp_commands(vars, envp))
-	{
-		write(1, "sucecess on envp commands\n", 26);
-		return (1);
-	}
-	if (!msh_getting_commands2(vars, -1))
+	if (!msh_getting_commands2(vars, -1, envp))
 		return (0);
+	vars->sigexec = -1;
 	return (1);
 }

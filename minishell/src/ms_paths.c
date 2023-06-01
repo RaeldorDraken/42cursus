@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 09:53:24 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 12:16:12 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/06/01 11:34:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	msh_getpath(t_vars *vars, char **envp)
 	path_line = ft_substr(path_line, 5, i);
 	i = -1;
 	vars->paths = ft_split(path_line, ':');
+	free(path_line);
 }
 
 char	*msh_getpath_cmd(t_vars *vars, char *cmd)
@@ -60,40 +61,41 @@ char	*msh_getpath_cmd(t_vars *vars, char *cmd)
 		path_cmd = NULL;
 		i++;
 	}
+	if (path_cmd == NULL)
+	{
+		printf("msh: %s: command not found\n", cmd);
+		return (NULL);
+	}
 	return (path_cmd);
 }
 
-int	msh_cmd_execute(t_vars *vars, char **envp)
+int	msh_cmd_execute(t_vars *vars, char **envp, char *cmd)
 {
-	char	*cmd;
-	int		i;
+	pid_t	exec_pid;
 
-	cmd = NULL;
 	if (vars->cmd_buffer != NULL)
 	{
-		i = -1;
-		while (vars->cmd_buffer[++i] && vars->cmd_buffer[i] != NULL)
-		{
-			free(vars->cmd_buffer[i]);
-		}
 		free(vars->cmd_buffer);
 		vars->cmd_buffer = NULL;
 	}
 	vars->cmd_buffer = msh_get_cmds(vars, 0); //cambiar 0 por una forma de comprobar si va despues de un token
 	cmd = msh_getpath_cmd(vars, vars->cmd_buffer[0]);
-	if (cmd && vars->cmd_buffer[0])
+	exec_pid = fork();
+	if (exec_pid == 0)
 	{
-		execve(cmd, vars->cmd_buffer, envp); //here it exits the program i need to put a fork before this
-			write(1, "Printing stuff to check where it breaks\n", 41);
-		free(cmd);
-		return (1);
+		if (cmd != NULL && vars->cmd_buffer[0])
+		{
+			printf("cmd: %s\n", cmd);
+			vars->sigexec = 1;
+			execve(cmd, vars->cmd_buffer, envp);
+		}
+		else
+			vars->sigexec = 0;
 	}
 	else
-	{
-		free(cmd);
-	//	cmd_error(vars->cmd_buffer);
-		return (0);
-	}
+		waitpid(exec_pid, NULL, 0);
+	free(cmd);
+	return (vars->sigexec);
 }
 
 char	**msh_get_cmds(t_vars *vars, int i)
@@ -124,5 +126,3 @@ char	**msh_get_cmds(t_vars *vars, int i)
 	cmds[k] = NULL;
 	return (cmds);
 }
-
-//write(1, "Printing stuff to check where it breaks/n", 41);
