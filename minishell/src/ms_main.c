@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/06/01 10:30:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:54:17 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,33 @@ void	msh_set_vars(t_vars *vars, char *input, char **envp)
 	msh_acptd_comm(vars);
 }
 
+int g_return_status;
+
 int	main(int ac, char **av, char **envp)
 {
 	t_vars	vars;
 	int		looping;
 
+
 	looping = 1;
-	msh_ignore_signals(&vars, ac, av);
+	g_return_status = 0;
+	//msh_ignore_signals(&vars, ac, av);    //Comentar cuando testing
 	msh_set_vars(&vars, "msh %  ", envp);
+
+	// Testing mode
+	//Test 1: Got to /minishel_tester  and do bash test.sh
+	//Test 2: Desde raiz: python3 -m minishell_test
+	//https://github.com/thallard/minishell_tester
+	//https://github.com/cacharle/minishell_test
+	if (ac >= 3 && !ft_strncmp(av[1], "-c", 3))
+	{
+		vars.inpli = av[2];
+		vars.inplen = ft_strlen(vars.inpli);
+		msh_getting_commands(&vars, envp);
+		exit(g_return_status);
+	}	
+	//End tesyting mode
+	
 	while (looping)
 	{
 		looping = 0;
