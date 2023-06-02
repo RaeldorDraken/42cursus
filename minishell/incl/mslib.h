@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:06:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/06/01 20:57:29 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/06/02 10:34:09 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ typedef struct s_separator {
 	char	*separator;
 	char 	*prev_token;
 	char	*next_token;
-} t_separator;
+}	t_separator;
 
 typedef struct s_cmd {
 	int     index;
 	char	*cmd;
 	int     is_separator;
-	t_cmd	*next;	
-} t_cmd;
+	//t_cmd	*next;	
+}	t_cmd;
 
 typedef struct s_vars
 {
