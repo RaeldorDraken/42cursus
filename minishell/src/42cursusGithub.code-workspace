@@ -4,7 +4,10 @@
 			"path": "../.."
 		},
 		{
-			"path": "../../../minishellProject42"
+			"path": "../../../minishell-42-github"
+		},
+		{
+			"path": "../../../oldMinishellGit"
 		}
 	],
 	"settings": {
