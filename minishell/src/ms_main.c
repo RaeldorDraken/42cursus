@@ -6,85 +6,65 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 10:05:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 10:56:34 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/07/30 17:18:31 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../incl/mslib.h"
+#include "../incl/mslib.h"
 
 //Global variable
+int	g_return_status;
 
-void	msh_sigint_handler(int sig)
+void	msh_set_init(t_vars *vars, char **envp)
 {
-	if (sig != 0)
+	msh_set_vars(vars, "msh %  ");
+	msh_store_env_own_vars(vars, envp);
+}
+
+int	msh_readline(t_vars *vars, int ac, char **av)
+{
+	msh_ignore_signals(vars, ac, av);
+	vars->inpli = readline(vars->prompt);
+	if (vars->inpli == NULL)
+		return (0);
+	return (1);
+}
+
+int	msh_check_inputline(t_vars *vars)
+{
+	if (vars->inpli[0] == '\0')
 	{
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
+		msh_free_memory_dynamic(vars, 2);
+		return (0);
 	}
+	return (1);
 }
 
-void	msh_ignore_signals(t_vars *vars, int ac, char **av)
-{
-	if (ac > 1 || av[1] != NULL)
-	{
-		printf("ERROR: the program does not take any arguments!");
-		exit(1);
-	}
-	vars->sigbool = 1;
-	signal(SIGINT, msh_sigint_handler);
-	signal(SIGTSTP, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-}
-
-void	msh_set_vars(t_vars *vars, char *input, char **envp)
-{
-	vars->prompt = ft_calloc(ft_strlen(input) + 1, 1);
-	vars->inpli = NULL;
-	vars->envar = envp;
-	ft_strlcpy(vars->prompt, input, ft_strlen(input));
-	msh_acptd_comm(vars);
-}
-
-void	msh_clear_memory(t_vars *vars)
-{
-	free (vars->prompt);
-	if (vars->inpli != NULL)
-		free (vars->inpli);
-	if (vars->btins != NULL)
-		free (vars->btins);
-	if (vars->tokens != NULL)
-		free (vars->tokens);
-	exit(0);
-}
-
-//printf("%s: %d\n", vars.inpli, vars.inplen); //debug line
+//leaks check use "system("leaks minishell");" at the end before final return
 int	main(int ac, char **av, char **envp)
 {
 	t_vars	vars;
-	int		looping;
 
-	looping = 1;
-	msh_ignore_signals(&vars, ac, av);
-	msh_set_vars(&vars, "msh %  ", envp);
-	while (looping)
+	msh_set_init(&vars, envp);
+	while (vars.looping)
 	{
-		looping = 0;
-		vars.inpli = readline(vars.prompt);
-		if (vars.inpli != NULL)
+		if (msh_readline(&vars, ac, av))
 		{
-			if (vars.inpli[0] == '\0')
-			{
-				free(vars.inpli);
-			}
-			vars.inplen = ft_strlen(vars.inpli);
+			if (!msh_check_inputline(&vars))
+				continue ;
 			add_history(vars.inpli);
+			vars.input = msh_sanitize_input(vars.inpli);
+			if (vars.input == NULL)
+				continue ;
+			vars.cmd = msh_tokenize(&vars);
+			if (!msh_check_errors_syntax(&vars))
+				continue ;
+			msh_execute_main(&vars);
 		}
 		else
-			break ;
-		looping = msh_getting_commands(&vars, envp);
-		msh_free_commands(&vars);
+			vars.looping = 0;
 	}
-	msh_clear_memory(&vars);
+	ft_putendl_fd("exit", 1);
+	msh_free_memory_dynamic(&vars, 3);
+	return (g_return_status);
 }

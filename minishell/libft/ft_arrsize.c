@@ -6,11 +6,11 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:02:56 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/29 11:03:25 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:55:04 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 int	ft_arrsize(char **arr)
 {

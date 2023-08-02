@@ -6,11 +6,11 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 12:12:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2022/03/10 16:37:22 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/07/24 20:54:43 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
@@ -28,7 +28,7 @@ void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 		while (l < n)
 		{
 			d[l] = s[l];
-				l++;
+			l++;
 		}
 	}
 	return (dst);
