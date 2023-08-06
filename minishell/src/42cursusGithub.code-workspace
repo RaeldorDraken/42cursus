@@ -1,7 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "../../../minishell-42-github"
+			"path": "../.."
+		},
+		{
+			"path": "../../../42cursusCampus"
 		}
 	]
 }
