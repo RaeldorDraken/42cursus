@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:32:16 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/05/01 13:15:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:37:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ class Contact
 	public:
 		Contact(void);
 		~Contact(void);
+	private:
 		std::string	first_name;
 		std::string	last_name;
 		std::string	nickname;

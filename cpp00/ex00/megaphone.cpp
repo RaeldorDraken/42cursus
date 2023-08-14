@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 21:34:37 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/04/26 11:14:45 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/08/14 20:36:29 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int ac, char** av)
 			{
 				std::cout << (char)std::toupper(av[i][j]);
 			}
+			if (av[i + 1]) std::cout << " ";
 		}
 		std::cout << std::endl;
 	}
