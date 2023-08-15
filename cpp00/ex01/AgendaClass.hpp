@@ -6,19 +6,31 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:32:16 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/08/14 20:37:37 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:24:56 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AGENDA_CLASS_HPP
 # define AGENDA_CLASS_HPP
-# include"Agenda.h"
+
+# include <iostream>
+# include <string>
 
 class Contact
 {
 	public:
 		Contact(void);
 		~Contact(void);
+		int		SetFirstName(std::string str);
+		std::string	GetFirstName(void);
+		int			SetLastName(std::string str);
+		std::string	GetLastName(void);
+		int			SetNickname(std::string str);
+		std::string	GetNickname(void);
+		int			SetPhoneNumber(std::string str);
+		std::string	GetPhoneNumber(void);
+		int			SetDarkestSecret(std::string str);
+		std::string	GetDarkestSecret(void);
 	private:
 		std::string	first_name;
 		std::string	last_name;
