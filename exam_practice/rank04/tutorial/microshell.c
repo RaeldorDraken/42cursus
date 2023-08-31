@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 19:00:49 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/08/31 18:22:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/08/31 18:31:38 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_putstr_fd2(char *str, char *arg)
 	while (*str)
 		write(2, str++, 1);
 	if (arg)
-		while(*arg)
+		while (*arg)
 			write(2, arg++, 1);
 	write(2, "\n", 1);
 	return (1);
