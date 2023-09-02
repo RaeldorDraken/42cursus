@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 19:00:49 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/08/31 18:31:38 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/09/02 16:50:45 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/09/02 17:59:22 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,95 +14,85 @@
 #include <sys/wait.h>
 #include <string.h>
 
-/*not needed in exam, but necessary if you want to use this tester:
-https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh*/
-// #ifdef TEST_SH
-// # define TEST		1
-// #else
-// # define TEST		0
-// #endif
-
-int	ft_putstr_fd2(char *str, char *arg)
+int	print_err(char *str, char *arg)
 {
 	while (*str)
 		write(2, str++, 1);
 	if (arg)
+	{
 		while (*arg)
 			write(2, arg++, 1);
+	}
 	write(2, "\n", 1);
 	return (1);
 }
 
-int ft_execute(char *argv[], int i, int tmp_fd, char *env[])
+int	execution(char **argv, int i, int old_fd, char **envp)
 {
-	//overwrite ; or | or NULL with NULL to use the array as input for execve.
-	//we are here in the child so it has no impact in the parent process.
 	argv[i] = NULL;
-	dup2(tmp_fd, STDIN_FILENO);
-	close(tmp_fd);
-	execve(argv[0], argv, env);
-	return (ft_putstr_fd2("error: cannot execute ", argv[0]));
+	dup2(old_fd, STDIN_FILENO);
+	close(old_fd);
+	execve(argv[0], argv, envp);
+	return (print_err("error: cannot execute ", argv[0]));
 }
 
-int	main(int argc, char *argv[], char *env[])
+int	main(int argc, char **argv, char **envp)
 {
 	int	i;
-	int fd[2];
-	int tmp_fd;
-	(void)argc;	// is needed in exam, because the exam tester compiles with -Wall -Wextra -Werror
+	int	pipe_fd[2];
+	int	old_fd;
 
 	i = 0;
-	tmp_fd = dup(STDIN_FILENO);
-	while (argv[i] && argv[i + 1]) //check if the end is reached
+	old_fd = dup(STDIN_FILENO);
+	if (argc <= 1)
+		return (0);
+	while (argv[i] && argv[i + 1])
 	{
-		argv = &argv[i + 1];	//the new argv start after the ; or |
+		argv = &argv[i + 1];
 		i = 0;
-		//count until we have all informations to execute the next child;
 		while (argv[i] && strcmp(argv[i], ";") && strcmp(argv[i], "|"))
 			i++;
-		if (strcmp(argv[0], "cd") == 0) //cd
+		if (strcmp(argv[0], "cd") == 0)
 		{
 			if (i != 2)
-				ft_putstr_fd2("error: cd: bad arguments", NULL);
+				print_err("error: cd: bad arguments", NULL);
 			else if (chdir(argv[1]) != 0)
-				ft_putstr_fd2("error: cd: cannot change directory to ", argv[1]	);
+				print_err("error: cd: cannot change directory to ", argv[i]);
 		}
-		else if (i != 0 && (argv[i] == NULL || strcmp(argv[i], ";") == 0)) //exec in stdout
+		else if (i != 0 && (argv[i] == NULL || strcmp(argv[i], ";") == 0))
 		{
-			if ( fork() == 0)
+			if (fork() == 0)
 			{
-				if (ft_execute(argv, i, tmp_fd, env))
+				if (execution(argv, i, old_fd, envp))
 					return (1);
 			}
 			else
 			{
-				close(tmp_fd);
-				while(waitpid(-1, NULL, WUNTRACED) != -1)
+				close(old_fd);
+				while (waitpid(-1, NULL, WUNTRACED) != -1)
 					;
-				tmp_fd = dup(STDIN_FILENO);
+				old_fd = dup(STDIN_FILENO);
 			}
 		}
-		else if(i != 0 && strcmp(argv[i], "|") == 0) //pipe
+		else if (i != 0 && strcmp(argv[i], "|") == 0)
 		{
-			pipe(fd);
-			if ( fork() == 0)
+			pipe(pipe_fd);
+			if (fork() == 0)
 			{
-				dup2(fd[1], STDOUT_FILENO);
-				close(fd[0]);
-				close(fd[1]);
-				if (ft_execute(argv, i, tmp_fd, env))
+				dup2(pipe_fd[1], STDOUT_FILENO);
+				close(pipe_fd[0]);
+				close(pipe_fd[1]);
+				if (execution(argv, i, old_fd, envp))
 					return (1);
 			}
 			else
 			{
-				close(fd[1]);
-				close(tmp_fd);
-				tmp_fd = fd[0];
+				close(pipe_fd[1]);
+				close(old_fd);
+				old_fd = pipe_fd[0];
 			}
 		}
 	}
-	close(tmp_fd);
-	// if (TEST)		// not needed in exam, but necessary if you want to use this tester:
-	// 	while (1);	// https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh
+	close(old_fd);
 	return (0);
 }
