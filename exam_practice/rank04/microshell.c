@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:50:45 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/09/02 17:59:22 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/09/02 19:30:39 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	main(int argc, char **argv, char **envp)
 		if (strcmp(argv[0], "cd") == 0)
 		{
 			if (i != 2)
-				print_err("error: cd: bad arguments", NULL);
+				return (print_err("error: cd: bad arguments", NULL));
 			else if (chdir(argv[1]) != 0)
-				print_err("error: cd: cannot change directory to ", argv[i]);
+				return (print_err("error: cd: cannot change directory to ", argv[i]));
 		}
 		else if (i != 0 && (argv[i] == NULL || strcmp(argv[i], ";") == 0))
 		{
