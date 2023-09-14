@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 15:45:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/09/02 18:03:04 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/06/10 15:45:10 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/09/09 20:59:27 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int	main(void)
+Zombie::Zombie()
+{}
+
+Zombie::Zombie(std::string _name)
 {
-	Zombie	*zombie;
+	this->name = _name;
+	std::cout << "The zombie named "<< this->name << " has risen" << std::endl;
+}
 
-	zombie = newZombie("ero-gir");
-	zombie->announce();
-	delete zombie;
-	randomChump("eros-gir2");
+Zombie::~Zombie(void)
+{
+	std::cout << "The zombie named "<< this->name << " has died" << std::endl;
+}
 
-	return (0);
+void	Zombie::announce(void)
+{
+	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

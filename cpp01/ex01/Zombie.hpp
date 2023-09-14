@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 15:45:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/09/02 18:03:04 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/06/10 15:45:13 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/09/09 20:59:30 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
-int	main(void)
+# include <iostream>
+# include <string>
+
+class Zombie 
 {
-	Zombie	*zombie;
+	public:
+		Zombie();
+		Zombie(std::string _name);
+		~Zombie(void);
+		void			announce(void);
+		int				setName(std::string _name);
+		std::string		getName(void);
+	private:
+		std::string	name;
+};
 
-	zombie = newZombie("ero-gir");
-	zombie->announce();
-	delete zombie;
-	randomChump("eros-gir2");
+Zombie* zombieHorde(int N, std::string name);
 
-	return (0);
-}
+#endif
