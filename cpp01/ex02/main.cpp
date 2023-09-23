@@ -5,25 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 15:45:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/09/23 18:37:34 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/09/23 18:46:03 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/09/23 18:49:44 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+# include <iostream>
+# include <string>
 
-int	main(void)
+int main(void)
 {
-	Zombie	*zombie;
-	int		N = 5;
-	std::string name = "Pepito";
+	std::string str = "HI THIS IS BRAIN";
+	std::string *ptr = &str;
+	std::string &ref = str;
 
-	zombie = zombieHorde(N, name);
-	for (int i = 0; i < N; i++)
-	{
-		std::cout << "Zombie " << i << " name: ";
-		zombie[i].announce();
-	}
-	delete [] zombie;
+	std::cout << "str: " << &str << std::endl;
+	std::cout << "ptr: " << ptr << std::endl;
+	std::cout << "ref: " << &ref << std::endl;
+	std::cout << "str: " << str << std::endl;
+	std::cout << "ptr: " << *ptr << std::endl;
+	std::cout << "ref: " << ref << std::endl;
 	return (0);
 }

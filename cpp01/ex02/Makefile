@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/09/23 18:40:51 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/09/23 18:45:51 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,18 +15,17 @@ C_RED=\033[0;31m
 C_YELLOW=\033[0;33m
 C_END=\033[0m
 
-NAME = BraiiiiiiinnnzzzZ
+NAME = HiThisIsBrain
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
-HDRS = Zombie.hpp
+SRCS = main.cpp
 
 all:$(NAME)
 
-$(NAME): $(SRCS) $(HDRS)
-	@echo "$(C_YELLOW)make BraiiiiiiinnnzzzZ...$(C_END)"
+$(NAME): $(SRCS)
+	@echo "$(C_YELLOW)make HI THIS IS BRAIN$(C_END)"
 	@$(CC) $(FLAGS) $(SRCS) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
 
