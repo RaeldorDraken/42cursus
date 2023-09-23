@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:50:45 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/09/17 19:47:17 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:26:32 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ int	main(int argc, char **argv, char **envp)
 {
 	int	i;
 	int	pipe_fd[2];
-	int	tmp_fd;
+	int	old_fd;
+	(void)argc;
 
 	(void)argc;
 	i = 0;
-	tmp_fd = dup(STDIN_FILENO);
+	old_fd = dup(STDIN_FILENO);
 	while (argv[i] && argv[i + 1])
 	{
 		argv = &argv[i + 1];
