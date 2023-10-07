@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/09/23 18:40:34 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/07 17:21:39 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,3 +41,5 @@ fclean:
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 re: fclean all
+
+PHONY: all clean fclean re
