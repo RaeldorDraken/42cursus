@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 18:00:16 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/07 18:16:11 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/08 19:14:46 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,22 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 
-int	find_replace(std::string filename, std::string s1, std::string s2);
+class StringReplace
+{
+	public:
+		StringReplace();
+		~StringReplace();
+		int	find_replace(std::string filename, std::string s1, std::string s2);
+
+	private:
+		std::string	_filename;
+		std::string	_s1;
+		std::string	_s2;
+		std::string _tempfile;
+		std::string line;
+		void set_internal_vars(std::string filename, std::string s1, std::string s2);
+};
 
 #endif
