@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:54:28 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/09 12:06:16 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/10 11:36:38 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 # include <iostream>
 # include <string>
+
+typedef enum	e_level
+{
+	DEBUG,
+	INFO,
+	WARNING,
+	ERROR
+}	t_level;
 
 class Harl {
 	public:
