@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:11:06 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/14 14:47:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/14 15:04:27 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(const Fixed &src);
-		Fixed(const int value);
+		Fixed &operator=(const Fixed &rhs);
 		~Fixed();
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);

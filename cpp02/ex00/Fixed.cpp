@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:11:22 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/14 14:47:58 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/14 15:05:23 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ Fixed::Fixed(const Fixed &src)
 	*this = src;
 }
 
-Fixed::Fixed(const int value)
+Fixed &Fixed::operator=(const Fixed &rhs)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_fixed_point_value = value << this->_fractional_bits;
+	if (this != &rhs)
+		this->_fixed_point_value = rhs.getRawBits();
+	return (*this);
 }
 
 Fixed::~Fixed()
