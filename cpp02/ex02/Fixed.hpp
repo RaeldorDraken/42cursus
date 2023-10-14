@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:11:06 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/14 17:21:32 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/14 17:21:07 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,30 @@ class Fixed
 		Fixed(const int value);
 		Fixed(const float value);
 		~Fixed();
+		Fixed &operator=(const Fixed &rhs);
 
-		Fixed 	&operator=(const Fixed &rhs);
-		
+		bool operator>(const Fixed &rhs);
+		bool operator<(const Fixed &rhs);
+		bool operator>=(const Fixed &rhs);
+		bool operator<=(const Fixed &rhs);
+		bool operator==(const Fixed &rhs);
+		bool operator!=(const Fixed &rhs);
+
+		Fixed operator+(const Fixed &rhs);
+		Fixed operator-(const Fixed &rhs);
+		Fixed operator*(const Fixed &rhs);
+		Fixed operator/(const Fixed &rhs);
+
+		Fixed operator++(void);
+		Fixed operator--(void);
+		Fixed operator++(int);
+		Fixed operator--(int);
+
+		static Fixed &min(Fixed &a, Fixed &b);
+		static Fixed &max(Fixed &a, Fixed &b);
+		static const Fixed &min(Fixed const &a, Fixed const &b);
+		static const Fixed &max(Fixed const &a, Fixed const &b);
+
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 		float	toFloat(void) const;
