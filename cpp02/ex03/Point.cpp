@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:39:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/14 18:39:11 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:43:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ Point &Point::operator=(const Point &rhs)
 
 void	Point::setX(const float x)
 {
-	this->setX(x);
+	this->_x.setRawBits(x);
 }
 
 void	Point::setY(const float y)
 {
-	this->setY(y);
+	this->_y = y;
 }
 
 float	Point::getX() const
