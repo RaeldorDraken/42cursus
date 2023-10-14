@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:11:22 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/14 15:05:23 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/14 16:48:54 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ Fixed::Fixed(const Fixed &src)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
+}
+
+Fixed::Fixed(const float value)
+{
+	std::cout << "Float constructor called" << std::endl;
+	this->_fixed_point_value = roundf(value * (1 << this->_fractional_bits));
+}
+
+Fixed::Fixed(const int value)
+{
+	std::cout << "Int constructor called" << std::endl;
+	this->_fixed_point_value = value << this->_fractional_bits;
 }
 
 Fixed &Fixed::operator=(const Fixed &rhs)
@@ -47,4 +59,20 @@ void	Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
 	this->_fixed_point_value = raw;
+}
+
+float	Fixed::toFloat(void) const
+{
+	return ((float)this->_fixed_point_value / (float)(1 << this->_fractional_bits));
+}
+
+int		Fixed::toInt(void) const
+{
+	return (this->_fixed_point_value >> this->_fractional_bits);
+}
+
+std::ostream &operator<<(std::ostream &output, const Fixed &rhs)
+{
+	output << rhs.toFloat();
+	return (output);
 }
