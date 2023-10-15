@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:39:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/15 12:22:55 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/15 17:38:41 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ Point::Point() : _x(0), _y(0)
 {
 }
 
-Point::Point(const Point &src)
+Point::Point(const Point &src) : _x(src.getX()), _y(src.getY())
 {
 	*this = src;
+}
+
+Point::Point(const float x, const float y) : _x(Fixed(x)), _y(Fixed(y))
+{
 }
 
 Point::Point(const Fixed x, const Fixed y) : _x(x), _y(y)
@@ -49,4 +53,12 @@ Fixed const	&Point::getX() const
 Fixed const	&Point::getY() const
 {
 	return (_y);
+}
+
+//Non Member functions
+
+std::ostream &operator<<(std::ostream &output, const Point &rhs)
+{
+	output << "Point(" << rhs.getX() << ", " << rhs.getY() << ")";
+	return (output);
 }

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:39:40 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/15 12:36:55 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/15 17:39:21 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	bool b1, b2, b3;
 
-	b1 = ((point.getX() - a.getX()) * (b.getY() - a.getY()) - (point.getY() - a.getY()) * (b.getX() - a.getX())) < 0.0f;
-	b2 = ((point.getX() - b.getX()) * (c.getY() - b.getY()) - (point.getY() - b.getY()) * (c.getX() - b.getX())) < 0.0f;
-	b3 = ((point.getX() - c.getX()) * (a.getY() - c.getY()) - (point.getY() - c.getY()) * (a.getX() - c.getX())) < 0.0f;
+	Fixed px = point.getX();
+    Fixed py = point.getY();
+    Fixed ax = a.getX();
+    Fixed ay = a.getY();
+    Fixed bx = b.getX();
+    Fixed by = b.getY();
+    Fixed cx = c.getX();
+    Fixed cy = c.getY();
 
-	if ((b1 == b2) && (b2 == b3))
-		return (true);
-	return (false);
+	b1 = ((px - ax) * (by - ay) - (bx - ax) * (py - ay)) < 0;
+	b2 = ((px - bx) * (cy - by) - (cx - bx) * (py - by)) < 0;
+	b3 = ((px - cx) * (ay - cy) - (ax - cx) * (py - cy)) < 0;	
+
+	return ((b1 == b2) && (b2 == b3));
 }

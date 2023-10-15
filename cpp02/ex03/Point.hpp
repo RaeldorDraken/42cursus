@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:39:28 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/15 12:33:46 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/15 17:38:35 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class Point
 	public:
 		Point();
 		Point(const Point &src);
+		Point(const float x, const float y);
 		Point(const Fixed x, const Fixed y);
 		~Point();
 		
@@ -31,6 +32,8 @@ class Point
 		Fixed const _x;
 		Fixed const _y;
 }	;
+
+std::ostream &operator<<(std::ostream &output, const Point &rhs);
 
 bool bsp(Point const a, Point const b, Point const c, Point const point);
 

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:11:22 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/14 17:34:16 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/15 15:26:02 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 //Constructors and destructor
 
-Fixed::Fixed()
+Fixed::Fixed() : _fixed_point_value(0)
 {
-	this->_fixed_point_value = 0;
 }
 
 Fixed::Fixed(const Fixed &src)
