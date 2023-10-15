@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 17:39:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/14 18:43:01 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/15 12:22:55 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@ Point::Point() : _x(0), _y(0)
 {
 }
 
-Point::Point(const Point &src) : _x(src._x), _y(src._y)
+Point::Point(const Point &src)
 {
-}
-
-Point::Point(const float x, const float y) : _x(x), _y(y)
-{
+	*this = src;
 }
 
 Point::Point(const Fixed x, const Fixed y) : _x(x), _y(y)
@@ -36,44 +33,20 @@ Point::~Point()
 
 //Operators
 
-Point &Point::operator=(const Point &rhs)
+Point &Point::operator=(const Point &rfs)
 {
-	const float tmpx = rhs.getX();
-	const float tmpy = rhs.getY();
-
-	this->setX(tmpx);
-	this->setY(tmpy);
+	(void)rfs;
 	return (*this);
 }
 
 //Getters and setters
 
-void	Point::setX(const float x)
+Fixed const	&Point::getX() const
 {
-	this->_x.setRawBits(x);
+	return (_x);
 }
 
-void	Point::setY(const float y)
+Fixed const	&Point::getY() const
 {
-	this->_y = y;
-}
-
-float	Point::getX() const
-{
-	return (this->_x.toFloat());
-}
-
-float	Point::getY() const
-{
-	return (this->_y.toFloat());
-}
-
-Fixed	Point::getFixedX() const
-{
-	return (this->_x);
-}
-
-Fixed	Point::getFixedY() const
-{
-	return (this->_y);
+	return (_y);
 }
