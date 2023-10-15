@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/15 18:24:20 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/15 19:45:13 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ C_END=\033[0m
 NAME = andOpen
 
 CC = c++
-FLAGS = -Wall -Wextra -Werror -Wno-implicit-fallthrough -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp Fixed.cpp
 HDRS = Fixed.hpp
