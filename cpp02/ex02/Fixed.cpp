@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:11:22 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/15 15:26:02 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:50:55 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,7 +179,13 @@ float	Fixed::toFloat(void) const
 
 int		Fixed::toInt(void) const
 {
-	return (this->_fixed_point_value >> this->_fractional_bits);
+	int result;
+	
+	if (this->_fixed_point_value >= 0)
+		result = (this->_fixed_point_value >> _fractional_bits);
+	else
+    	result = (this->_fixed_point_value >> _fractional_bits) + 1;
+    return result;
 }
 
 std::ostream &operator<<(std::ostream &output, const Fixed &rhs)
