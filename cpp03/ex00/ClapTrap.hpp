@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:03 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/17 20:18:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/17 21:18:25 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ class ClapTrap
 {
 	private:
 		std::string	_name;
-		int	_hp = 10;
-		int	_ep = 10;
-		int	_atk = 0;
+		int	_hp;
+		int	_ep;
+		int	_atk;
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
@@ -35,4 +35,9 @@ class ClapTrap
 		int	getHp(void) const;
 		int	getEp(void) const;
 		int	getAtk(void) const;
+		
+		void	setName(std::string name);
+		void	setHp(int hp);
+		void	setEp(int ep);
+		void	setAtk(int atk);
 };
