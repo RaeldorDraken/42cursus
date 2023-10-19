@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:15 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 22:22:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/19 22:25:09 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,12 @@ void	ClapTrap::attack(std::string const &target, int type)
 		case SCAVTRAP:
 			nameType = "ScavTrap";
 			break;
+		case FRAGTRAP:
+			nameType = "FragTrap";
+			break;
 		default:
-		{
 			std::cout << "Invalid type" << std::endl;
 			return;
-		}
 	}
 	if (this->_hp <= 0)
 	{
@@ -104,6 +105,9 @@ void	ClapTrap::beRepaired(unsigned int amount, int type)
 			maxHp = 10;
 			break;
 		case SCAVTRAP:
+			maxHp = 100;
+			break;
+		case FRAGTRAP:
 			maxHp = 100;
 			break;
 		default:

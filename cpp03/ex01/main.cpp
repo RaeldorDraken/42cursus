@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:06:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 21:46:44 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/19 22:22:57 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 	beta.takeDamage(alpha.getAtk());
 	std::cout << alpha.getName() << " EP: " << alpha.getEp() << std::endl;
 	std::cout << beta.getName() << " HP: " << beta.getHp() << std::endl;
-	beta.beRepaired(5);
+	beta.beRepaired(5, CLAPTRAP);
 	std::cout << beta.getName() << " HP: " << beta.getHp() << std::endl;
 	alpha.guardGate();
 

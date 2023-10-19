@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 21:25:19 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 21:53:48 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/10/19 21:50:43 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/10/19 22:19:33 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class FragTrap : public ClapTrap
 {
 	public:
-		ScavTrap(void);
-		ScavTrap(std::string name);
-		ScavTrap(ScavTrap const &src);
-		~ScavTrap(void);
-		ScavTrap	&operator=(ScavTrap const &rhs);
+		FragTrap(void);
+		FragTrap(std::string name);
+		FragTrap(FragTrap const &src);
+		~FragTrap(void);
+		FragTrap	&operator=(FragTrap const &rhs);
 
-		void	guardGate(void);
+		void	highFivesGuys(void);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:03 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 22:21:56 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/19 22:23:44 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 typedef enum e_type	{
 	NONE,
 	CLAPTRAP,
-	SCAVTRAP
+	SCAVTRAP,
+	FRAGTRAP
 }	t_type;
 
 class ClapTrap
