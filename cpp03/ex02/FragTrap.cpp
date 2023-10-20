@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:50:35 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 22:18:52 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:26:46 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,30 @@ FragTrap	&FragTrap::operator=(FragTrap const &rhs)
 
 	std::cout << "FragTrap assignation operator called" << std::endl;
 	return (*this);
+}
+
+void	FragTrap::attack(std::string const	&target)
+{
+		std::string nameType = "FragTrap";
+
+	if (this->_hp <= 0)
+	{
+		std::cout << nameType << this->_name;
+		std::cout << " is dead!" << std::endl;
+	}
+	else if (this->_ep > 0)
+	{
+		this->_ep -= 1;
+		std::cout << nameType << this->_name;
+		std::cout << " attacks " << target;
+		std::cout << ", causing " << this->_atk;
+		std::cout << " points of damage!" << std::endl;
+	}
+	else
+	{
+		std::cout << nameType << this->_name;
+		std::cout << " has no more energy!" << std::endl;
+	}
 }
 
 void	FragTrap::highFivesGuys(void)

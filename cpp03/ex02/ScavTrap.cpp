@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:25:22 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 21:32:47 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:24:31 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,28 @@ void	ScavTrap::guardGate(void)
 {
 	std::cout << "ScavTrap " << this->getName();
 	std::cout << " has enterred in Gate keeper mode" << std::endl;
+}
+
+void	ScavTrap::attack(std::string const	&target)
+{
+		std::string nameType = "ScavTrap";
+
+	if (this->_hp <= 0)
+	{
+		std::cout << nameType << this->_name;
+		std::cout << " is dead!" << std::endl;
+	}
+	else if (this->_ep > 0)
+	{
+		this->_ep -= 1;
+		std::cout << nameType << this->_name;
+		std::cout << " attacks " << target;
+		std::cout << ", causing " << this->_atk;
+		std::cout << " points of damage!" << std::endl;
+	}
+	else
+	{
+		std::cout << nameType << this->_name;
+		std::cout << " has no more energy!" << std::endl;
+	}
 }

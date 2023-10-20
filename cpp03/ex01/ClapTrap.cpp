@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:15 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 22:22:30 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:19:41 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,10 @@ ClapTrap	&ClapTrap::operator=(ClapTrap const &rhs)
 	return (*this);
 }
 
-void	ClapTrap::attack(std::string const &target, int type)
+void	ClapTrap::attack(std::string const &target)
 {
 	std::string nameType = "ClapTrap";
-	switch (type)
-	{
-		case CLAPTRAP:
-			nameType = "ClapTrap";
-			break;
-		case SCAVTRAP:
-			nameType = "ScavTrap";
-			break;
-		default:
-		{
-			std::cout << "Invalid type" << std::endl;
-			return;
-		}
-	}
+
 	if (this->_hp <= 0)
 	{
 		std::cout << nameType << this->_name;
@@ -95,21 +82,10 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	}
 }
 
-void	ClapTrap::beRepaired(unsigned int amount, int type)
+void	ClapTrap::beRepaired(unsigned int amount)
 {
 	int maxHp = 10;
-	switch (type)
-	{
-		case CLAPTRAP:
-			maxHp = 10;
-			break;
-		case SCAVTRAP:
-			maxHp = 100;
-			break;
-		default:
-			std::cout << "Invalid type" << std::endl;
-			return;
-	}
+	
 	if (this->_hp <= 0)
 	{
 		std::cout << "ClapTrap " << this->_name;

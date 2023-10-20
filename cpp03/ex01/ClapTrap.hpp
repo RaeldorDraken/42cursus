@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:03 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 22:21:56 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:20:27 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 typedef enum e_type	{
 	NONE,
 	CLAPTRAP,
-	SCAVTRAP
+	SCAVTRAP,
+	FRAGTRAP
 }	t_type;
 
 class ClapTrap
@@ -33,9 +34,9 @@ class ClapTrap
 		~ClapTrap();
 		ClapTrap &operator=(ClapTrap const &rhs);
 
-		void	attack(std::string const &target, int type);
+		void	attack(std::string const &target);
 		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount, int type);
+		void	beRepaired(unsigned int amount);
 
 		std::string	getName(void) const;
 		int	getHp(void) const;

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:03 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/19 22:23:44 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:20:10 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ class ClapTrap
 		~ClapTrap();
 		ClapTrap &operator=(ClapTrap const &rhs);
 
-		void	attack(std::string const &target, int type);
+		void	attack(std::string const &target);
 		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount, int type);
+		void	beRepaired(unsigned int amount);
 
 		std::string	getName(void) const;
 		int	getHp(void) const;
