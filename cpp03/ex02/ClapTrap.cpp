@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:15 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/20 11:19:41 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/21 21:14:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ClapTrap::attack(std::string const &target)
 	else if (this->_ep > 0)
 	{
 		this->_ep -= 1;
-		std::cout << nameType << this->_name;
+		std::cout<< nameType << " " << this->_name;
 		std::cout << " attacks " << target;
 		std::cout << ", causing " << this->_atk;
 		std::cout << " points of damage!" << std::endl;

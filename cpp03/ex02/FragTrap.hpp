@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:50:43 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/20 11:26:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/21 21:07:43 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ class FragTrap : public ClapTrap
 		FragTrap	&operator=(FragTrap const &rhs);
 
 		void	highFivesGuys(void);
-		void	attack(std::string const &target);
 };
 
 #endif
