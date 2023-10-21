@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:03 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/20 11:20:10 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:45:54 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class ClapTrap
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
+		ClapTrap(int hp, int ep, int atk, std::string name);
 		ClapTrap(ClapTrap const &src);
 		~ClapTrap();
 		ClapTrap &operator=(ClapTrap const &rhs);

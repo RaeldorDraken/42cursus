@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:07:15 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/20 11:19:41 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/21 16:45:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ ClapTrap::ClapTrap(void) : _name("ClapTrap"), _hp(10), _ep(10), _atk(0)
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _ep(10), _atk(0)
+{
+	std::cout << "ClapTrap constructor called" << std::endl;
+}
+
+ClapTrap::ClapTrap(int hp, int ep, int atk, std::string name) : _name(name), _hp(hp), _ep(ep), _atk(atk)
 {
 	std::cout << "ClapTrap constructor called" << std::endl;
 }

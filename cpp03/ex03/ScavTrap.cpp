@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:25:22 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/20 11:24:31 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/21 17:16:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 ScavTrap::ScavTrap(void) : ClapTrap("ScavTrap")
 {
+	this->setHp(100);
+	this->setEp(50);
+	this->setAtk(20);
 	std::cout << "ScavTrap default constructor called" << std::endl;
 }
 
@@ -74,4 +77,19 @@ void	ScavTrap::attack(std::string const	&target)
 		std::cout << nameType << this->_name;
 		std::cout << " has no more energy!" << std::endl;
 	}
+}
+
+int		ScavTrap::getScHP(void) const
+{
+	return (100);
+}
+
+int		ScavTrap::getScEP(void) const
+{
+	return (50);
+}
+
+int		ScavTrap::getScAtk(void) const
+{
+	return (20);
 }
