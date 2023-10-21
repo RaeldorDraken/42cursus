@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 21:50:43 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/21 17:13:09 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/21 21:12:31 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@ class FragTrap : virtual public ClapTrap
 		FragTrap	&operator=(FragTrap const &rhs);
 
 		void	highFivesGuys(void);
-		void	attack(std::string const &target);
 
 		int		getFrHP(void) const;
 		int		getFrEP(void) const;
 		int		getFrAtk(void) const;
-
 };
 
 #endif
