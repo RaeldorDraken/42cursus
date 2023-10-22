@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/21 18:09:55 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/22 15:57:13 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,17 @@ NAME = polymorph
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Animal.cpp
-HDRS = Animal.hpp
+SRCS =	./srcs/main.cpp \
+		./srcs/Animal.cpp \
+		./srcs/Dog.cpp \
+		./srcs/Cat.cpp \
+		./srcs/WrongAnimal.cpp \
+		./srcs/WrongCat.cpp
+HDRS =	.incl/Animal.hpp \
+		./incl/Dog.hpp \
+		./incl/Cat.hpp \
+		./incl/WrongAnimal.hpp \
+		./incl/WrongCat.hpp
 
 all:$(NAME)
 
