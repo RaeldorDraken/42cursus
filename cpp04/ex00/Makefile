@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/22 15:57:13 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/23 11:06:58 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS =	./srcs/main.cpp \
 		./srcs/Cat.cpp \
 		./srcs/WrongAnimal.cpp \
 		./srcs/WrongCat.cpp
-HDRS =	.incl/Animal.hpp \
+HDRS =	./incl/polymorph.h \
+		./incl/Animal.hpp \
 		./incl/Dog.hpp \
 		./incl/Cat.hpp \
 		./incl/WrongAnimal.hpp \
