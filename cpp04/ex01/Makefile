@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/21 18:10:46 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/23 23:27:22 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,15 @@ NAME = onFire
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Animal.cpp
-HDRS = Animal.hpp
+SRCS =	main.cpp \
+		Animal.cpp \
+		Dog.cpp \
+		Cat.cpp \
+		Brain.cpp
+HDRS =	Animal.hpp \
+		Dog.hpp \
+		Cat.hpp \
+		Brain.hpp
 
 all:$(NAME)
 
