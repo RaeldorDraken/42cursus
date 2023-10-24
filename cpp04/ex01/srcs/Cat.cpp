@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:50:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/24 00:04:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:30:08 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,16 @@
 
 Cat::Cat(void) : Animal("Cat")
 {
+	std::ostringstream oss;
+	std::string str;
+
 	_brain = new Brain();
+	for (int i = 0; i < 100; i++)
+	{
+		oss << "Cat idea num " << i << std::endl;
+		str = oss.str();
+		_brain->setIdea(i, str);
+	}
 	std::cout << "Cat Default constructor called for " << this->getType() << std::endl;
 }
 
@@ -41,4 +50,9 @@ Cat &Cat::operator=(Cat const &rhs)
 void	Cat::makeSound(void) const
 {
 	std::cout << this->getType() << ": purr" << std::endl;
+}
+
+Brain	*Cat::getBrain(void) const
+{
+	return (_brain);
 }

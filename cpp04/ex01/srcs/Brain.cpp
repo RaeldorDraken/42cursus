@@ -6,11 +6,11 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:26:28 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/23 23:55:20 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:51:22 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
+#include "../incl/Brain.hpp"
 
 Brain::Brain(void)
 {
@@ -50,4 +50,6 @@ int	Brain::setIdea(int i, std::string idea)
 	if (i < 0 || i > 99)
 		return (1);
 	this->ideas[i] = idea;
+
+	return (0);
 }

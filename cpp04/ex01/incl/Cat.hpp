@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:54:33 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/23 23:24:12 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:29:16 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CAT_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Cat : public Animal
 {
@@ -27,6 +28,7 @@ class Cat : public Animal
 		Cat &operator=(Cat const &rhs);
 
 		void	makeSound(void) const;
+		Brain	*getBrain(void) const;
 };
 
 #endif

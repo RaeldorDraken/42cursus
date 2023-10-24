@@ -6,14 +6,14 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:57:58 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/23 23:25:55 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:30:26 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WRONGCAT_HPP
 # define WRONGCAT_HPP
 
-# include "WrongAnimal.hpp"
+# include"WrongAnimal.hpp"
 
 class WrongCat : public WrongAnimal
 {

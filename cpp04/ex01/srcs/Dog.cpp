@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:54:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/24 00:15:45 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:30:03 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 Dog::Dog(void) : Animal("Dog")
 {
-	std::cout << "Dog constructor called for " << this->getType() << std::endl;
+	std::ostringstream oss;
+	std::string str;
+
 	_brain = new Brain();
 	for (int i = 0; i < 100; i++)
-		_brain->setIdea(i, "Dog idea num " + std::to_string(i));
+	{
+		oss << "Dog idea num " << i << std::endl;
+		str = oss.str();
+		_brain->setIdea(i, str);
+	}
+	std::cout << "Dog constructor called for " << this->getType() << std::endl;
 }
 
 Dog::Dog(Dog const &src) : Animal(src.getType())
@@ -43,4 +50,9 @@ Dog &Dog::operator=(Dog const &rhs)
 void	Dog::makeSound(void) const
 {
 	std::cout << this->getType() << ": Woof woof Awoooooooooooo! wan!" << std::endl;
+}
+
+Brain	*Dog::getBrain(void) const
+{
+	return (_brain);
 }

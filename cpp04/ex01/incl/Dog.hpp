@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:54:19 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/23 23:24:21 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:30:15 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DOG_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog : public Animal
 {
@@ -27,6 +28,7 @@ class Dog : public Animal
 		Dog &operator=(Dog const &rhs);
 
 		void	makeSound(void) const;
+		Brain	*getBrain(void) const;
 };
 
 #endif

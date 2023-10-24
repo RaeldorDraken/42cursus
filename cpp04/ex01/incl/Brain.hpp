@@ -6,14 +6,14 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:16:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/23 23:55:23 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/24 22:30:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BRAIN_HPP
 # define BRAIN_HPP
 
-# include <iostream>
+# include"polymorph.h"
 
 class Brain 
 {
