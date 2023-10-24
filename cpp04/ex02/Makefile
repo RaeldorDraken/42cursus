@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/21 18:11:08 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/24 22:49:37 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,24 +20,35 @@ NAME = abstract
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Animal.cpp
-HDRS = Animal.hpp
+SRCS =	./srcs/main.cpp \
+		./srcs/AAnimal.cpp \
+		./srcs/Dog.cpp \
+		./srcs/Cat.cpp \
+		./srcs/Brain.cpp
+HDRS =	./incl/polymorph.h \
+		./incl/AAnimal.hpp \
+		./incl/Dog.hpp \
+		./incl/Cat.hpp \
+		./incl/Brain.hpp
+
+OBJ = $(SRCS:.cpp=.o)
+DEP = $(SRCS:.cpp=.d)
 
 all:$(NAME)
 
-$(NAME): $(SRCS) $(HDRS)
+$(NAME): $(OBJ) $(HDRS) Makefile
 	@echo "$(C_YELLOW)make Abstract class$(C_END)"
-	@$(CC) $(FLAGS) $(SRCS) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
 
 clean:
 	@echo "$(C_RED)cleaning executable$(C_END)"
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(OBJ) $(DEP)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 fclean:
 	@echo "$(C_RED)cleaning executable$(C_END)"
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(OBJ) $(DEP)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 re: fclean all
