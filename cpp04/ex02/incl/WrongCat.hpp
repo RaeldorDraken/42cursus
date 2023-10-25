@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 15:54:33 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/25 09:47:47 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/10/22 15:57:58 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/10/23 11:16:19 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-# include "AAnimal.hpp"
-# include "Brain.hpp"
+# include "WrongAnimal.hpp"
 
-class Cat : public AAnimal
+class WrongCat : public WrongAnimal
 {
-	private:
-		Brain	*_brain;
 	public:
-		Cat();
-		Cat(Cat const &src);
-		~Cat();
+		WrongCat();
+		WrongCat(WrongCat const &src);
+		~WrongCat();
 
-		Cat &operator=(Cat const &rhs);
+		WrongCat &operator=(WrongCat const &rhs);
 
 		void	makeSound(void) const;
-		Brain	*getBrain(void) const;
 };
 
 #endif

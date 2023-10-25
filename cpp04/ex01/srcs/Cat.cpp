@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 10:50:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/24 13:30:08 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:05:20 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ Cat::Cat(void) : Animal("Cat")
 	_brain = new Brain();
 	for (int i = 0; i < 100; i++)
 	{
-		oss << "Cat idea num " << i << std::endl;
+		oss << "Cat idea num " << i;
 		str = oss.str();
 		_brain->setIdea(i, str);
+		oss.str("");
 	}
 	std::cout << "Cat Default constructor called for " << this->getType() << std::endl;
 }

@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/24 22:49:37 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/25 09:33:23 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,15 @@ SRCS =	./srcs/main.cpp \
 		./srcs/AAnimal.cpp \
 		./srcs/Dog.cpp \
 		./srcs/Cat.cpp \
+		./srcs/WrongAnimal.cpp \
+		./srcs/WrongCat.cpp \
 		./srcs/Brain.cpp
 HDRS =	./incl/polymorph.h \
 		./incl/AAnimal.hpp \
 		./incl/Dog.hpp \
 		./incl/Cat.hpp \
+		./incl/WrongAnimal.hpp \
+		./incl/WrongCat.hpp \
 		./incl/Brain.hpp
 
 OBJ = $(SRCS:.cpp=.o)

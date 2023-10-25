@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:54:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/24 13:30:03 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:05:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ Dog::Dog(void) : Animal("Dog")
 	_brain = new Brain();
 	for (int i = 0; i < 100; i++)
 	{
-		oss << "Dog idea num " << i << std::endl;
+		oss << "Dog idea num " << i;
 		str = oss.str();
 		_brain->setIdea(i, str);
+		oss.str("");
 	}
 	std::cout << "Dog constructor called for " << this->getType() << std::endl;
 }

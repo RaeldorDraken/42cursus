@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 23:16:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/24 22:30:01 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/25 09:32:08 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Brain
 		Brain	&operator=(Brain const &rhs);
 
 		std::string	getIdea(int i) const;
-		int		setIdea(int i, std::string idea);
+		int			setIdea(int i, std::string idea);
 };
 
 #endif

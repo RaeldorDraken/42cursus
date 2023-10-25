@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/22 15:53:48 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/25 10:04:44 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/10/22 15:57:49 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/10/23 11:27:19 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
-# include"polymorph.h"
-# include"Brain.hpp"
+# include <iostream>
 
-class Animal
+class	WrongAnimal
 {
 	protected:
-		std::string _type;
+		std::string	_type;
 	public:
-		Animal();
-		Animal(std::string type);
-		Animal(Animal const &src);
-		virtual ~Animal();
+		WrongAnimal();
+		WrongAnimal(std::string type);
+		WrongAnimal(WrongAnimal const &src);
+		virtual ~WrongAnimal();
 
-		Animal &operator=(Animal const &rhs);
-
-		std::string		getType(void) const;
-		void			setType(std::string type);
+		WrongAnimal &operator=(WrongAnimal const &rhs);
 
 		virtual void	makeSound(void) const;
-		virtual Brain	*getBrain(void) const = 0;
+
+		std::string	getType(void) const;
+		void		setType(std::string type);
 };
 
-std::ostream &operator<<(std::ostream &out, Animal const &rhs);
+std::ostream &operator<<(std::ostream &out, WrongAnimal const &rhs);
 
 #endif

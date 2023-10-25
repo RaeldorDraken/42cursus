@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 15:53:39 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/24 23:01:43 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:04:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ AAnimal::AAnimal(AAnimal const &src) : _type(src._type)
 AAnimal::~AAnimal(void)
 {
 	std::cout << "Animal Destructor called for " << this->getType() << std::endl;
-}
-
-AAnimal& AAnimal::getInstance(void)
-{
-    static AAnimal instance;
-    return instance;
 }
 
 AAnimal &AAnimal::operator=(AAnimal const &rhs)
