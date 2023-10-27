@@ -1,45 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/25 10:21:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:30:51 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/10/27 10:54:26 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/10/27 11:28:04 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/AMateria.hpp"
+#include"../incl/Cure.hpp"
 
-AMateria::AMateria(void) : _type("default")
+Cure::Cure(void) : AMateria("cure")
 {
 }
 
-AMateria::AMateria(std::string const & type) : _type(type)
+Cure::Cure(Cure const & src) : AMateria(src)
 {
 }
 
-AMateria::AMateria(AMateria const & src)
-{
-	*this = src;
-}
-
-AMateria::~AMateria(void)
+Cure::~Cure(void)
 {
 }
 
-std::string const &	AMateria::getType(void) const
+Cure &	Cure::operator=(Cure const & rhs)
 {
-	return this->_type;
+	if (this != &rhs)
+		this->_type = rhs._type;
+	return *this;
 }
 
-void	AMateria::use(ICharacter& target)
+AMateria*	Cure::clone(void) const
 {
-	(void)target;
+	return new Cure(*this);
 }
 
-std::string const &	AMateria::getTrash(void) const
+void		Cure::use(ICharacter& target)
 {
-	return this->_trash;
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

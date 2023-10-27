@@ -6,8 +6,8 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:21:42 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/25 10:21:47 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:28:28 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ICharacter.hpp"
+#include "../incl/ICharacter.hpp"

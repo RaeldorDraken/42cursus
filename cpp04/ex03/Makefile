@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/21 18:11:42 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/27 11:07:43 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,21 @@ NAME = intNrecap
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp Animal.cpp
-HDRS = Animal.hpp
+SRCS =	./srcs/main.cpp \
+		./srcs/AMateria.cpp \
+		./srcs/Character.cpp \
+		./srcs/ICharacter.cpp \
+		./srcs/Cure.cpp \
+		./srcs/Ice.cpp \
+		./srcs/MateriaSource.cpp \
+		./srcs/IMateriaSource.cpp
+HDRS =	./incl/AMateria.hpp \
+		./incl/Character.hpp \
+		./incl/ICharacter.hpp \
+		./incl/Cure.hpp \
+		./incl/Ice.hpp \
+		./incl/MateriaSource.hpp \
+		./incl/IMateriaSource.hpp
 
 all:$(NAME)
 

@@ -6,19 +6,19 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 22:42:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/26 22:43:03 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:31:49 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
-#include	<iostream>
-#include	<iomanip>
-#include	"AMateria.hpp"
-#include	"IMateriaSource.hpp"
-#include	"ICharacter.hpp"
-#include	"Ice.hpp"
-#include	"Cure.hpp"
+#include<iostream>
+#include<iomanip>
+#include"../incl/AMateria.hpp"
+#include"../incl/MateriaSource.hpp"
+#include"../incl/Character.hpp"
+#include"../incl/Ice.hpp"
+#include"../incl/Cure.hpp"
 
 #define FILL		40
 #define C_DEFAULT	"\033[0m"
@@ -92,66 +92,66 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "3. Creating Character \"vilma\" and \"oktorok\"", C_GREEN, C_YELLOW );
-	Character* vilma = new Character("vilma");
-	vilma->printMaterias();
+	print_title( "3. Creating Character \"rynn\" and \"raeldor\"", C_GREEN, C_YELLOW );
+	Character* rynn = new Character("rynn");
+	rynn->printMaterias();
 	std::cout << std::endl;
 
-	Character* oktorok = new Character("oktorok");
-	oktorok->printMaterias();
+	Character* raeldor = new Character("raeldor");
+	raeldor->printMaterias();
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "4. \"vilma\" trying to equip 5 materias and \"oktorok\" one materia", C_GREEN, C_YELLOW );
-	vilma->equip(NULL);
+	print_title( "4. \"rynn\" trying to equip 5 materias and \"raeldor\" one materia", C_GREEN, C_YELLOW );
+	rynn->equip(NULL);
 
 	AMateria* tmp;
 	tmp = src->createMateria("ice");
-	vilma->equip(tmp);
+	rynn->equip(tmp);
 	tmp = src->createMateria("ice");
-	vilma->equip(tmp);
+	rynn->equip(tmp);
 	tmp = src->createMateria("cure");
-	vilma->equip(tmp);
+	rynn->equip(tmp);
 	tmp = src->createMateria("cure");
-	vilma->equip(tmp);
+	rynn->equip(tmp);
 	tmp = src->createMateria("ice");
-	vilma->equip(tmp);
+	rynn->equip(tmp);
 
 	std::cout << std::endl;
-	vilma->printMaterias();
+	rynn->printMaterias();
 
 	std::cout << std::endl;
 	tmp = src->createMateria("ice");
-	oktorok->equip(tmp);
+	raeldor->equip(tmp);
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "5. Testing Character Assignation overload \"vilma = oktorok\" for deep copy and changed vilma afterwards", C_GREEN, C_YELLOW );
-	*oktorok = *vilma;
+	print_title( "5. Testing Character Assignation overload \"rynn = raeldor\" for deep copy and changed rynn afterwards", C_GREEN, C_YELLOW );
+	*raeldor = *rynn;
 
-	vilma->unequip(0);
-	std::cout << "VILMA" << std::endl;
-	vilma->printMaterias();
+	rynn->unequip(0);
+	std::cout << "RYNN" << std::endl;
+	rynn->printMaterias();
 	std::cout << std::endl;
 
-	std::cout << "OKTOROK" << std::endl;
-	oktorok->printMaterias();
+	std::cout << "RAELDOR" << std::endl;
+	raeldor->printMaterias();
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "6. Testing character copy constructor for deep copy \"stardust = Character(vilma)\" and changed vilma afterwards", C_GREEN, C_YELLOW );
+	print_title( "6. Testing character copy constructor for deep copy \"stardust = Character(rynn)\" and changed rynn afterwards", C_GREEN, C_YELLOW );
 
-	vilma->printMaterias();
-	Character* stardust = new Character(*vilma);
+	rynn->printMaterias();
+	Character* stardust = new Character(*rynn);
     stardust->printMaterias();
 
 	tmp = src->createMateria("ice");
-	vilma->equip(tmp);
-	std::cout << "VILMA" << std::endl;
-	vilma->printMaterias();
+	rynn->equip(tmp);
+	std::cout << "RYNN" << std::endl;
+	rynn->printMaterias();
 	std::cout << std::endl;
 
 	std::cout << "STARDUST" << std::endl;
@@ -162,20 +162,20 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "7. \"vilma\" using all equiped materias on \"oktorok\" ", C_GREEN, C_YELLOW );
-	vilma->use(0, *oktorok);
-	vilma->use(1, *oktorok);
-	vilma->use(2, *oktorok);
-	vilma->use(3, *oktorok);
-	vilma->use(10, *oktorok);
-	vilma->use(-1, *oktorok);
+	print_title( "7. \"rynn\" using all equiped materias on \"raeldor\" ", C_GREEN, C_YELLOW );
+	rynn->use(0, *raeldor);
+	rynn->use(1, *raeldor);
+	rynn->use(2, *raeldor);
+	rynn->use(3, *raeldor);
+	rynn->use(10, *raeldor);
+	rynn->use(-1, *raeldor);
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "8. \"vilma\" trying to use unequiped materias on \"oktorok\" ", C_GREEN, C_YELLOW );
-	vilma->unequip(0);
-	vilma->use(0, *oktorok);
+	print_title( "8. \"rynn\" trying to use unequiped materias on \"raeldor\" ", C_GREEN, C_YELLOW );
+	rynn->unequip(0);
+	rynn->use(0, *raeldor);
 
 	std::cout << std::endl;
 
@@ -216,7 +216,7 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "11. Deleting \"vilma\", \"oktorok\", \"stardust\" and \"lucifer\"", C_RED, C_YELLOW );
+	print_title( "11. Deleting \"rynn\", \"raeldor\", \"stardust\" and \"lucifer\"", C_RED, C_YELLOW );
 
 	print_title( "11 -> TEST", C_RED, C_YELLOW );
 	delete test;
@@ -232,16 +232,16 @@ int main( void )
 	delete stardust;
 	std::cout << std::endl;
 
-	print_title( "11 -> OKTOROK", C_RED, C_YELLOW );
-	oktorok->printMaterias();
-	oktorok->printTrash();
-	delete oktorok;
+	print_title( "11 -> RAELDOR", C_RED, C_YELLOW );
+	raeldor->printMaterias();
+	raeldor->printTrash();
+	delete raeldor;
 	std::cout << std::endl;
 
-	print_title( "11 -> VILMA", C_RED, C_YELLOW );
-	vilma->printMaterias();
-	vilma->printTrash();
-	delete vilma;
+	print_title( "11 -> RYNN", C_RED, C_YELLOW );
+	rynn->printMaterias();
+	rynn->printTrash();
+	delete rynn;
 	std::cout << std::endl;
 
 	print_title( "11 -> SRC", C_RED, C_YELLOW );
