@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:26:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:28:57 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/27 13:32:56 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 MateriaSource::MateriaSource(void)
 {
+	std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_materia[i] = NULL;
 }
 
 MateriaSource::MateriaSource(MateriaSource const & src)
 {
+	std::cout << "MateriaSource copy constructor called" << std::endl;
 	*this = src;
 }
 
 MateriaSource::~MateriaSource(void)
 {
+	std::cout << "MateriaSource destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_materia[i])

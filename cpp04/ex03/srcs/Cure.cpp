@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:54:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:28:04 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/27 13:30:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 Cure::Cure(void) : AMateria("cure")
 {
+	std::cout << "Cure constructor called" << std::endl;
 }
 
 Cure::Cure(Cure const & src) : AMateria(src)
 {
+	std::cout << "Cure copy constructor called" << std::endl;
 }
 
 Cure::~Cure(void)
 {
+	std::cout << "Cure destructor called" << std::endl;
 }
 
 Cure &	Cure::operator=(Cure const & rhs)

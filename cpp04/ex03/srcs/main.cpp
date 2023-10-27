@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 22:42:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:31:49 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:49:05 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ int main( void )
 	tmp = src->createMateria("ice");
 	raeldor->equip(tmp);
 	std::cout << std::endl;
+	raeldor->printMaterias();
+	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
 
@@ -142,11 +144,12 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "6. Testing character copy constructor for deep copy \"stardust = Character(rynn)\" and changed rynn afterwards", C_GREEN, C_YELLOW );
+	print_title( "6. Testing character copy constructor for deep copy \"kthani = Character(rynn)\" and changed rynn afterwards", C_GREEN, C_YELLOW );
 
 	rynn->printMaterias();
-	Character* stardust = new Character(*rynn);
-    stardust->printMaterias();
+	
+	Character* kthani = new Character(*rynn);
+    kthani->printMaterias();
 
 	tmp = src->createMateria("ice");
 	rynn->equip(tmp);
@@ -154,8 +157,8 @@ int main( void )
 	rynn->printMaterias();
 	std::cout << std::endl;
 
-	std::cout << "STARDUST" << std::endl;
-    stardust->printMaterias();
+	std::cout << "KTHANI" << std::endl;
+    kthani->printMaterias();
 
 
 	std::cout << std::endl;
@@ -181,24 +184,24 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "9. New character \"lucifer\" equipping and unequipping materias", C_GREEN, C_YELLOW );
-	ICharacter* lucifer = new Character("lucifer");
+	print_title( "9. New character \"natsya\" equipping and unequipping materias", C_GREEN, C_YELLOW );
+	ICharacter* natsya = new Character("natsya");
 	AMateria *cure = new Cure;
 	AMateria *ice = new Ice;
 
-	lucifer->equip(cure);
-	lucifer->equip(ice);
-	lucifer->equip(cure);
-	lucifer->equip(ice);
-	lucifer->unequip(0);
-	lucifer->unequip(1);
-	lucifer->unequip(2);
-	lucifer->unequip(3);
-	lucifer->equip(cure);
-	lucifer->equip(ice);
+	natsya->equip(cure);
+	natsya->equip(ice);
+	natsya->equip(cure);
+	natsya->equip(ice);
+	natsya->unequip(0);
+	natsya->unequip(1);
+	natsya->unequip(2);
+	natsya->unequip(3);
+	natsya->equip(cure);
+	natsya->equip(ice);
 
-	lucifer->printMaterias();
-	lucifer->printTrash();
+	natsya->printMaterias();
+	natsya->printTrash();
 
 	std::cout << std::endl;
 
@@ -216,20 +219,20 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "11. Deleting \"rynn\", \"raeldor\", \"stardust\" and \"lucifer\"", C_RED, C_YELLOW );
+	print_title( "11. Deleting \"rynn\", \"raeldor\", \"kthani\" and \"natsya\"", C_RED, C_YELLOW );
 
 	print_title( "11 -> TEST", C_RED, C_YELLOW );
 	delete test;
 	std::cout << std::endl;
 
-	print_title( "11 -> LUCIFER", C_RED, C_YELLOW );
-	delete lucifer;
+	print_title( "11 -> NATSYA", C_RED, C_YELLOW );
+	delete natsya;
 	std::cout << std::endl;
 
-	print_title( "11 -> STARDUST", C_RED, C_YELLOW );
-	stardust->printMaterias();
-	stardust->printTrash();
-	delete stardust;
+	print_title( "11 -> KTHANI", C_RED, C_YELLOW );
+	kthani->printMaterias();
+	kthani->printTrash();
+	delete kthani;
 	std::cout << std::endl;
 
 	print_title( "11 -> RAELDOR", C_RED, C_YELLOW );

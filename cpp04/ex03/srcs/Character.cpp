@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:01:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:28:02 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/27 13:30:19 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,32 @@
 
 Character::Character(void) : _name("default")
 {
+	std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
 }
 
 Character::Character(std::string const & name) : _name(name)
 {
+	std::cout << "Character _name constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
 }
 
-Character::Character(Character const & src)
+Character::Character(Character const & src) : _name(src._name), _nbMateria(src._nbMateria)
 {
-	*this = src;
+	std::cout << "Character copy constructor called" << std::endl;
+	for ( int i = 0; i < 4; i++ )
+	{
+		this->_inventory[ i ] = NULL;
+		if ( src._inventory[ i ] != NULL )
+			this->_inventory[ i ] = src._inventory[ i ]->clone();
+	}
 }
 
 Character::~Character(void)
 {
+	std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_inventory[i])
@@ -42,7 +51,6 @@ Character &Character::operator=(Character const & rhs)
 {
 	if (this != &rhs)
 	{
-		this->_name = rhs._name;
 		for (int i = 0; i < 4; i++)
 		{
 			if (this->_inventory[i])
