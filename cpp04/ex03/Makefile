@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/27 11:07:43 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/27 11:35:39 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,21 +36,24 @@ HDRS =	./incl/AMateria.hpp \
 		./incl/MateriaSource.hpp \
 		./incl/IMateriaSource.hpp
 
+OBJ = $(SRCS:.cpp=.o)
+DEP = $(SRCS:.cpp=.d)
+
 all:$(NAME)
 
-$(NAME): $(SRCS) $(HDRS)
+$(NAME): $(OBJ) $(HDRS)
 	@echo "$(C_YELLOW)make Interface & recap$(C_END)"
-	@$(CC) $(FLAGS) $(SRCS) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
 
 clean:
-	@echo "$(C_RED)cleaning executable$(C_END)"
-	@rm -rf $(NAME)
+	@echo "$(C_RED)cleaning obj and dep$(C_END)"
+	@rm -rf $(OBJ) $(DEP)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 fclean:
 	@echo "$(C_RED)cleaning executable$(C_END)"
-	@rm -rf $(NAME)
+	@rm -rf $(NAME) $(OBJ) $(DEP)
 	@echo "$(C_GREEN)FINISHED!$(C_END)"
 
 re: fclean all
