@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:21:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 13:29:53 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:03:06 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,4 @@ std::string const &	AMateria::getType(void) const
 void	AMateria::use(ICharacter& target)
 {
 	(void)target;
-}
-
-std::string const &	AMateria::getTrash(void) const
-{
-	return this->_trash;
 }

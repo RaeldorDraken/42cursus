@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:59:53 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:27:20 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:07:39 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include<iomanip>
 # include"AMateria.hpp"
 # include"ICharacter.hpp"
+# include"Floor.hpp"
 
 class Character : public ICharacter
 {
@@ -24,9 +25,10 @@ class Character : public ICharacter
 		std::string	_name;
 		AMateria	*_inventory[4];
 		int			_nbMateria;
+		Floor		*_trash;
 	public:
 		Character(void);
-		Character(std::string const & name);
+		Character(std::string const & name, Floor *trash);
 		Character(Character const & src);
 		virtual ~Character( void );
 

@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/27 11:35:39 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/28 11:13:17 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,18 @@ SRCS =	./srcs/main.cpp \
 		./srcs/Cure.cpp \
 		./srcs/Ice.cpp \
 		./srcs/MateriaSource.cpp \
-		./srcs/IMateriaSource.cpp
+		./srcs/IMateriaSource.cpp \
+		./srcs/AMateriaFloor.cpp \
+		./srcs/Floor.cpp
 HDRS =	./incl/AMateria.hpp \
 		./incl/Character.hpp \
 		./incl/ICharacter.hpp \
 		./incl/Cure.hpp \
 		./incl/Ice.hpp \
 		./incl/MateriaSource.hpp \
-		./incl/IMateriaSource.hpp
+		./incl/IMateriaSource.hpp \
+		./incl/AMateriaFloor.hpp \
+		./incl/Floor.hpp
 
 OBJ = $(SRCS:.cpp=.o)
 DEP = $(SRCS:.cpp=.d)

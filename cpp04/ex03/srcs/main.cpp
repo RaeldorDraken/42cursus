@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 22:42:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:49:05 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:12:17 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int main( void )
 {
 	print_title( "1. Creating MateriaSource", C_GREEN, C_YELLOW );
 	IMateriaSource* src = new MateriaSource();
+	Floor *trash = new Floor();
 	std::cout << std::endl;
 	std::cout << std::endl;
 
@@ -93,11 +94,11 @@ int main( void )
 // ------------------------------------------------------------------------------------ //
 
 	print_title( "3. Creating Character \"rynn\" and \"raeldor\"", C_GREEN, C_YELLOW );
-	Character* rynn = new Character("rynn");
+	Character* rynn = new Character("rynn", trash);
 	rynn->printMaterias();
 	std::cout << std::endl;
 
-	Character* raeldor = new Character("raeldor");
+	Character* raeldor = new Character("raeldor", trash);
 	raeldor->printMaterias();
 	std::cout << std::endl;
 
@@ -185,7 +186,7 @@ int main( void )
 // ------------------------------------------------------------------------------------ //
 
 	print_title( "9. New character \"natsya\" equipping and unequipping materias", C_GREEN, C_YELLOW );
-	ICharacter* natsya = new Character("natsya");
+	ICharacter* natsya = new Character("natsya", trash);
 	AMateria *cure = new Cure;
 	AMateria *ice = new Ice;
 
@@ -209,7 +210,7 @@ int main( void )
 
 	print_title( "10. Testing if unequiped materia is freed", C_GREEN, C_YELLOW );
 
-	ICharacter* test = new Character("test");
+	ICharacter* test = new Character("test", trash);
 
 	tmp = src->createMateria("ice");
 	test->equip(tmp);
