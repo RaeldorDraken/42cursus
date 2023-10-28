@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 11:01:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 11:18:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:49:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@ Floor::Floor(void) : _first(NULL), _last(NULL), _nbMateria(0)
 Floor::Floor(Floor const & src) : _first(NULL), _last(NULL), _nbMateria(0)
 {
 	std::cout << "Floor copy constructor called" << std::endl;
+	if (src._first != NULL)
+	{
+		AMateriaFloor	*tmp = src._first;
+
+		while (tmp != NULL)
+		{
+			this->addMateria(tmp->getMateria());
+			tmp = tmp->getNext();
+		}
+	}
 	*this = src;
 }
 
@@ -105,7 +115,28 @@ AMateriaFloor	*Floor::getLast(void) const
 	return (this->_last);
 }
 
-int				Floor::getNbMateria(void) const
+int		Floor::getNbMateria(void) const
 {
 	return (this->_nbMateria);
+}
+
+void	Floor::printFloor(void) const
+{
+	AMateriaFloor	*tmp;
+	int				i = 0;
+	
+	std::cout << "Trash: ";
+	if (this->_first != NULL)
+	{
+		tmp = this->getFirst();
+		while (tmp)
+		{
+			std::cout << tmp->getMateria()->getType() << " ";
+			tmp = tmp->getNext();
+			i++;
+		}
+	}
+	else
+		std::cout << "NULL" << std::endl;
+	std::cout << std::endl;
 }

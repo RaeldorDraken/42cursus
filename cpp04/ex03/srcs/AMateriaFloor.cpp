@@ -6,23 +6,23 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 10:59:51 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 11:19:08 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:00:23 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/AMateriaFloor.hpp"
 
-AMateriaFloor::AMateriaFloor(void) : _next(NULL), _prev(NULL), _materia(NULL), _erase(false)
+AMateriaFloor::AMateriaFloor(void) : _next(NULL), _prev(NULL), _materia(NULL)
 {
 	std::cout << "AMateriaFloor default constructor called" << std::endl;
 }
 
-AMateriaFloor::AMateriaFloor(AMateria *materia) : _next(NULL), _prev(NULL), _materia(materia), _erase(false)
+AMateriaFloor::AMateriaFloor(AMateria *materia) : _next(NULL), _prev(NULL), _materia(materia)
 {
 	std::cout << "AMateriaFloor _materia constructor called" << std::endl;
 }
 
-AMateriaFloor::AMateriaFloor(AMateriaFloor const & src) : _next(NULL), _prev(NULL), _materia(NULL), _erase(false)
+AMateriaFloor::AMateriaFloor(AMateriaFloor const & src) : _next(NULL), _prev(NULL), _materia(NULL)
 {
 	std::cout << "AMateriaFloor copy constructor called" << std::endl;
 	*this = src;
@@ -30,6 +30,9 @@ AMateriaFloor::AMateriaFloor(AMateriaFloor const & src) : _next(NULL), _prev(NUL
 
 AMateriaFloor::~AMateriaFloor(void)
 {
+	AMateria *tmp = this->_materia;
+	if (tmp != NULL)
+		delete tmp;
 	std::cout << "AMateriaFloor destructor called" << std::endl;
 }
 
@@ -40,7 +43,6 @@ AMateriaFloor &AMateriaFloor::operator=(AMateriaFloor const & rhs)
 		this->_next = rhs._next;
 		this->_prev = rhs._prev;
 		this->_materia = rhs._materia;
-		this->_erase = rhs._erase;
 	}
 	return (*this);
 }
@@ -68,9 +70,4 @@ void	AMateriaFloor::setNext(AMateriaFloor *next)
 void	AMateriaFloor::setPrev(AMateriaFloor *prev)
 {
 	this->_prev = prev;
-}
-
-void	AMateriaFloor::setErase(bool erase)
-{
-	this->_erase = erase;
 }

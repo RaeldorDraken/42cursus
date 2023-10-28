@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 10:55:00 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 10:57:52 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:57:58 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class AMateriaFloor
 		AMateriaFloor	*_next;
 		AMateriaFloor	*_prev;
 		AMateria		*_materia;
-		bool			_erase;
 	public:
 		AMateriaFloor(void);
 		AMateriaFloor(AMateria *materia);
@@ -38,7 +37,6 @@ class AMateriaFloor
 
 		void			setNext(AMateriaFloor *next);
 		void			setPrev(AMateriaFloor *prev);
-		void			setErase(bool erase);
 };
 
 #endif

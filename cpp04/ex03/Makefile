@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/28 11:13:17 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/28 16:48:22 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ C_END=\033[0m
 NAME = intNrecap
 
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 
 SRCS =	./srcs/main.cpp \
 		./srcs/AMateria.cpp \
@@ -45,7 +45,7 @@ DEP = $(SRCS:.cpp=.d)
 
 all:$(NAME)
 
-$(NAME): $(OBJ) $(HDRS)
+$(NAME): $(OBJ) $(HDRS) Makefile
 	@echo "$(C_YELLOW)make Interface & recap$(C_END)"
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"

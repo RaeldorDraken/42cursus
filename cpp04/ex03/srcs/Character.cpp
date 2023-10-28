@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:01:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 11:16:01 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:50:18 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ Character::Character(void) : _name("default"), _trash(NULL)
 	std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
-	if (this->_trash == NULL)
-		this->_trash = new Floor();
 }
 
 Character::Character(std::string const & name, Floor *trash) : _name(name), _trash(trash)
@@ -34,7 +32,7 @@ Character::Character(Character const & src) : _name(src._name), _nbMateria(src._
 	for ( int i = 0; i < 4; i++ )
 	{
 		this->_inventory[ i ] = NULL;
-		if ( src._inventory[ i ] != NULL )
+		if (src._inventory[ i ] != NULL)
 			this->_inventory[ i ] = src._inventory[ i ]->clone();
 	}
 }
@@ -78,20 +76,27 @@ void	Character::equip(AMateria* m)
 		{
 			if (this->_inventory[i] == NULL)
 			{
+				std::cout << "Equiping " << m->getType() << std::endl;
 				this->_inventory[i] = m;
 				this->_nbMateria++;
 				break ;
 			}
 		}
 	}
+	else if (m == NULL)
+		std::cout << "Character trying to equip NULL materia" << std::endl;
 	else
-		std::cout << "Inventory is full or materia is NULL" << std::endl;
+	{
+		std::cout << "Character trying to equip more than 4 materias" << std::endl;
+		this->_trash->addMateria(m);
+	}
 }
 
 void	Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < 4 && this->_inventory[idx])
 	{
+		std::cout << "Unequiping " << this->_inventory[idx]->getType() << std::endl;
 		this->_trash->addMateria(this->_inventory[idx]);
 		this->_inventory[idx] = NULL;
 		this->_nbMateria--;
@@ -117,24 +122,4 @@ void	Character::printMaterias(void)
 			std::cout << "NULL ";
 	}
 	std::cout << std::endl;
-}
-
-void	Character::printTrash(void)
-{
-	AMateriaFloor	*tmp;
-	int				i = 0;
-
-	std::cout << "Trash: ";
-	if (this->_trash)
-	{
-		tmp = this->_trash->getFirst();
-		while (tmp)
-		{
-			std::cout << tmp->getMateria()->getType() << " ";
-			tmp = tmp->getNext();
-			i++;
-		}
-	}
-	else
-		std::cout << "NULL" << std::endl;
 }

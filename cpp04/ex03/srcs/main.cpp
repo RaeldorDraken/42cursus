@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 22:42:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 11:12:17 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:49:54 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ int main( void )
 	raeldor->printMaterias();
 	std::cout << std::endl;
 
+	trash->printFloor();
+
 // ------------------------------------------------------------------------------------ //
 
 	print_title( "5. Testing Character Assignation overload \"rynn = raeldor\" for deep copy and changed rynn afterwards", C_GREEN, C_YELLOW );
@@ -190,6 +192,7 @@ int main( void )
 	AMateria *cure = new Cure;
 	AMateria *ice = new Ice;
 
+	natsya->printMaterias();
 	natsya->equip(cure);
 	natsya->equip(ice);
 	natsya->equip(cure);
@@ -202,7 +205,7 @@ int main( void )
 	natsya->equip(ice);
 
 	natsya->printMaterias();
-	natsya->printTrash();
+	trash->printFloor();
 
 	std::cout << std::endl;
 
@@ -232,24 +235,25 @@ int main( void )
 
 	print_title( "11 -> KTHANI", C_RED, C_YELLOW );
 	kthani->printMaterias();
-	kthani->printTrash();
 	delete kthani;
 	std::cout << std::endl;
 
 	print_title( "11 -> RAELDOR", C_RED, C_YELLOW );
 	raeldor->printMaterias();
-	raeldor->printTrash();
 	delete raeldor;
 	std::cout << std::endl;
 
 	print_title( "11 -> RYNN", C_RED, C_YELLOW );
 	rynn->printMaterias();
-	rynn->printTrash();
 	delete rynn;
 	std::cout << std::endl;
 
 	print_title( "11 -> SRC", C_RED, C_YELLOW );
 	delete src;
+
+	print_title( "11 -> TRASH", C_RED, C_YELLOW );
+	trash->printFloor();
+	delete trash;
 
 	return (0);
 }

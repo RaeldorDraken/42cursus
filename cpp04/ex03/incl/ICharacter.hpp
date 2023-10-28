@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:18:01 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:30:20 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 16:50:36 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class ICharacter
 
 		//testing functions
 		virtual void printMaterias(void) = 0;
-		virtual void printTrash(void) = 0;
 };
 
 #endif
