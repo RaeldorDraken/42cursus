@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 10:52:00 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 16:45:43 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:10:34 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Floor
 		Floor(Floor const & src);
 		~Floor(void);
 
-		Floor &	operator=(Floor const & rhs);
+		Floor &operator=(Floor const & rhs);
 
 		void			addMateria(AMateria *materia);
 		void			delMateria(AMateriaFloor *materia);

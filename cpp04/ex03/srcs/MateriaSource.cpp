@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:26:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 13:32:56 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:14:27 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ MateriaSource &MateriaSource::operator=(MateriaSource const & rhs)
 		{
 			if (this->_materia[i])
 				delete this->_materia[i];
-			this->_materia[i] = rhs._materia[i]->clone();
+			this->_materia[i] = NULL;
+			if (rhs._materia[i] != NULL)
+				this->_materia[i] = rhs._materia[i]->clone();
 		}
 	}
 	return *this;

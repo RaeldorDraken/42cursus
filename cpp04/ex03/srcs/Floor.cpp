@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 11:01:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 16:49:34 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:27:37 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,9 @@ void	Floor::printFloor(void) const
 {
 	AMateriaFloor	*tmp;
 	int				i = 0;
-	
-	std::cout << "Trash: ";
+
+
+	std::cout << std::endl << "Floor: ";
 	if (this->_first != NULL)
 	{
 		tmp = this->getFirst();
@@ -137,6 +138,6 @@ void	Floor::printFloor(void) const
 		}
 	}
 	else
-		std::cout << "NULL" << std::endl;
+		std::cout << "NULL";
 	std::cout << std::endl;
 }

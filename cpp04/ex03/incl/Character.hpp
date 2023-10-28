@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:59:53 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 16:49:45 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:10:29 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class Character : public ICharacter
 		Character(Character const & src);
 		virtual ~Character( void );
 
-		Character &	operator=(Character const & rhs);
+		Character &operator=(Character const & rhs);
 
 		virtual std::string const &	getName(void) const;
 		virtual void				equip (AMateria* m);

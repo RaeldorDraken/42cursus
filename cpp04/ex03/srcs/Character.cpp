@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:01:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 16:50:18 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:23:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ Character::Character(void) : _name("default"), _trash(NULL)
 	std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
+	this->_nbMateria = 0;
 }
 
 Character::Character(std::string const & name, Floor *trash) : _name(name), _trash(trash)
@@ -24,6 +25,7 @@ Character::Character(std::string const & name, Floor *trash) : _name(name), _tra
 	std::cout << "Character _name constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->_inventory[i] = NULL;
+	this->_nbMateria = 0;
 }
 
 Character::Character(Character const & src) : _name(src._name), _nbMateria(src._nbMateria), _trash(src._trash)
@@ -34,6 +36,7 @@ Character::Character(Character const & src) : _name(src._name), _nbMateria(src._
 		this->_inventory[ i ] = NULL;
 		if (src._inventory[ i ] != NULL)
 			this->_inventory[ i ] = src._inventory[ i ]->clone();
+		this->_nbMateria++;
 	}
 }
 
@@ -44,6 +47,7 @@ Character::~Character(void)
 	{
 		if (this->_inventory[i])
 			delete this->_inventory[i];
+		this->_inventory[i] = NULL;
 	}
 }
 

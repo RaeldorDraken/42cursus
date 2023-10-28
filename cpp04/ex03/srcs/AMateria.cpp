@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:21:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 11:03:06 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:09:48 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ AMateria::AMateria(AMateria const & src) : _type(src._type)
 AMateria::~AMateria(void)
 {
 	std::cout << "AMateria destructor called" << std::endl;
+}
+
+AMateria &AMateria::operator=(AMateria const & rhs)
+{
+	if (this != &rhs)
+		this->_type = rhs._type;
+	return (*this);
 }
 
 std::string const &	AMateria::getType(void) const

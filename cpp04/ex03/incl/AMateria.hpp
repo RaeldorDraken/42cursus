@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:17:18 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 11:03:11 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:10:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ class AMateria
 		AMateria(std::string const & type);
 		AMateria(AMateria const & src);
 		virtual ~AMateria(void);
+
+		AMateria &operator=(AMateria const & rhs);
+		
 		std::string const &getType() const; //Returns the materia type
 		
 		virtual AMateria* clone() const = 0;

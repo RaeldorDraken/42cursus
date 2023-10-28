@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 22:42:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 16:49:54 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:25:53 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ int main( void )
 
 	std::cout << "RAELDOR" << std::endl;
 	raeldor->printMaterias();
+
+	trash->printFloor();
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
@@ -163,7 +165,7 @@ int main( void )
 	std::cout << "KTHANI" << std::endl;
     kthani->printMaterias();
 
-
+	trash->printFloor();
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
@@ -183,6 +185,7 @@ int main( void )
 	rynn->unequip(0);
 	rynn->use(0, *raeldor);
 
+	trash->printFloor();
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
@@ -197,6 +200,7 @@ int main( void )
 	natsya->equip(ice);
 	natsya->equip(cure);
 	natsya->equip(ice);
+	natsya->printMaterias();
 	natsya->unequip(0);
 	natsya->unequip(1);
 	natsya->unequip(2);
@@ -219,6 +223,7 @@ int main( void )
 	test->equip(tmp);
    	test->unequip(0);
 
+	trash->printFloor();
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
@@ -248,12 +253,12 @@ int main( void )
 	delete rynn;
 	std::cout << std::endl;
 
-	print_title( "11 -> SRC", C_RED, C_YELLOW );
-	delete src;
-
-	print_title( "11 -> TRASH", C_RED, C_YELLOW );
+	print_title( "11 -> FLOOR", C_RED, C_YELLOW );
 	trash->printFloor();
 	delete trash;
+
+	print_title( "11 -> SRC", C_RED, C_YELLOW );
+	delete src;
 
 	return (0);
 }

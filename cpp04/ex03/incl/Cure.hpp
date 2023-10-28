@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:46:40 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/27 11:09:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:10:38 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Cure : public AMateria
 		Cure(Cure const & src);
 		virtual ~Cure(void);
 
-		Cure &	operator=(Cure const & rhs);
+		Cure &operator=(Cure const & rhs);
 
 		virtual AMateria*	clone(void) const;
 		virtual void		use(ICharacter& target);

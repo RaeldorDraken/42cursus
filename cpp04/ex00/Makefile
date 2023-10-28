@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 15:41:23 by eros-gir          #+#    #+#              #
-#    Updated: 2023/10/27 11:36:39 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/10/28 17:02:56 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ DEP = $(SRCS:.cpp=.d)
 
 all:$(NAME)
 
-$(NAME): $(OBJ) $(HDRS)
+$(NAME): $(OBJ) $(HDRS) Makefile
 	@echo "$(C_YELLOW)make Polymorphism$(C_END)"
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
