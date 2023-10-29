@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 22:42:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 17:25:53 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 11:41:59 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ int main( void )
 
 	Character* raeldor = new Character("raeldor", trash);
 	raeldor->printMaterias();
+	std::cout << std::endl;
+
+	trash->printFloor();
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
@@ -228,7 +231,11 @@ int main( void )
 
 // ------------------------------------------------------------------------------------ //
 
-	print_title( "11. Deleting \"rynn\", \"raeldor\", \"kthani\" and \"natsya\"", C_RED, C_YELLOW );
+	print_title( "11. Deleting \"floor\", \"rynn\", \"raeldor\", \"kthani\" and \"natsya\"", C_RED, C_YELLOW );
+
+	print_title( "11 -> FLOOR", C_RED, C_YELLOW );
+	trash->printFloor();
+	delete trash;
 
 	print_title( "11 -> TEST", C_RED, C_YELLOW );
 	delete test;
@@ -252,10 +259,6 @@ int main( void )
 	rynn->printMaterias();
 	delete rynn;
 	std::cout << std::endl;
-
-	print_title( "11 -> FLOOR", C_RED, C_YELLOW );
-	trash->printFloor();
-	delete trash;
 
 	print_title( "11 -> SRC", C_RED, C_YELLOW );
 	delete src;

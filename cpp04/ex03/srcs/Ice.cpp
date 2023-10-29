@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:48:34 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 17:20:53 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 11:38:31 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ Ice::Ice(void) : AMateria("ice")
 
 Ice::Ice(Ice const & src) : AMateria(src)
 {
+	this->_type = src._type;
+	this->_isEquiped = false;
 	std::cout << "Ice copy constructor called" << std::endl;
 }
 
@@ -40,7 +42,7 @@ AMateria	*Ice::clone(void) const
 	return new Ice(*this);
 }
 
-void		Ice::use(ICharacter& target)
+void	Ice::use(ICharacter& target)
 {
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }

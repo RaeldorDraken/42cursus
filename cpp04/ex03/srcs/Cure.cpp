@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:54:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 17:20:43 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 11:40:17 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ Cure::Cure(void) : AMateria("cure")
 
 Cure::Cure(Cure const &src) : AMateria(src)
 {
+	this->_type = src._type;
+	this->_isEquiped = false;
 	std::cout << "Cure copy constructor called" << std::endl;
 }
 
@@ -40,7 +42,7 @@ AMateria	*Cure::clone(void) const
 	return new Cure(*this);
 }
 
-void		Cure::use(ICharacter &target)
+void	Cure::use(ICharacter &target)
 {
 	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

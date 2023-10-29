@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:26:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 17:14:27 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 11:10:04 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 MateriaSource::MateriaSource(void)
 {
 	std::cout << "MateriaSource default constructor called" << std::endl;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < MAX_MATERIA; i++)
 		this->_materia[i] = NULL;
 }
 
@@ -28,7 +28,7 @@ MateriaSource::MateriaSource(MateriaSource const & src)
 MateriaSource::~MateriaSource(void)
 {
 	std::cout << "MateriaSource destructor called" << std::endl;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < MAX_MATERIA; i++)
 	{
 		if (this->_materia[i])
 			delete this->_materia[i];
@@ -39,7 +39,7 @@ MateriaSource &MateriaSource::operator=(MateriaSource const & rhs)
 {
 	if (this != &rhs)
 	{
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < MAX_MATERIA; i++)
 		{
 			if (this->_materia[i])
 				delete this->_materia[i];
@@ -53,7 +53,7 @@ MateriaSource &MateriaSource::operator=(MateriaSource const & rhs)
 
 void	MateriaSource::learnMateria(AMateria* m)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < MAX_MATERIA; i++)
 	{
 		if (!this->_materia[i])
 		{
@@ -65,7 +65,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 
 AMateria*	MateriaSource::createMateria(std::string const & type)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < MAX_MATERIA; i++)
 	{
 		if (this->_materia[i] && this->_materia[i]->getType() == type)
 			return this->_materia[i]->clone();

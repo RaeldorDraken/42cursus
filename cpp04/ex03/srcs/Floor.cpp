@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 11:01:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 17:27:37 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 12:07:12 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,17 @@ void	Floor::eraseMateria(void)
 {
 	AMateriaFloor	*tmp;
 
-	while (this->_first != NULL)
+	while (_nbMateria > 0 && this->_first != NULL)
 	{
 		tmp = this->_first;
-		this->_first = this->_first->getNext();
+		if (this->_first->getNext() != NULL)
+			this->_first = this->_first->getNext();
+		else
+			this->_first = NULL;
 		delete tmp;
+		_nbMateria--;
 	}
+	this->_first = NULL;
 	this->_last = NULL;
 	this->_nbMateria = 0;
 }
@@ -118,6 +123,19 @@ AMateriaFloor	*Floor::getLast(void) const
 int		Floor::getNbMateria(void) const
 {
 	return (this->_nbMateria);
+}
+
+AMateriaFloor	*Floor::getMateria(int idx) const
+{
+	AMateriaFloor	*tmp = this->_first;
+	int				i = 0;
+
+	while (tmp != NULL && i < idx)
+	{
+		tmp = tmp->getNext();
+		i++;
+	}
+	return (tmp);
 }
 
 void	Floor::printFloor(void) const

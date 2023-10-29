@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:01:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 17:23:52 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 12:08:40 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,13 @@ std::string const &	Character::getName(void) const
 
 void	Character::equip(AMateria* m)
 {
-	if (this->_nbMateria < 4 && m)
+	int j = 0;
+
+	if (m != NULL && m->getIsEquiped() == true)
+		std::cout << "Character trying to equip already equipped materia" << std::endl;
+	else if (m == NULL)
+		std::cout << "Character trying to equip NULL materia" << std::endl;
+	else if (this->_nbMateria < 4 && m)
 	{
 		for (int i = 0; i < 4; i++)
 		{
@@ -82,13 +88,14 @@ void	Character::equip(AMateria* m)
 			{
 				std::cout << "Equiping " << m->getType() << std::endl;
 				this->_inventory[i] = m;
+				m->setIsEquiped(true);
+				while (j < this->_trash->getNbMateria())
+					this->_trash->delMateria(this->_trash->getMateria(j++));
 				this->_nbMateria++;
 				break ;
 			}
 		}
 	}
-	else if (m == NULL)
-		std::cout << "Character trying to equip NULL materia" << std::endl;
 	else
 	{
 		std::cout << "Character trying to equip more than 4 materias" << std::endl;
@@ -102,6 +109,7 @@ void	Character::unequip(int idx)
 	{
 		std::cout << "Unequiping " << this->_inventory[idx]->getType() << std::endl;
 		this->_trash->addMateria(this->_inventory[idx]);
+		this->_inventory[idx]->setIsEquiped(false);
 		this->_inventory[idx] = NULL;
 		this->_nbMateria--;
 	}
