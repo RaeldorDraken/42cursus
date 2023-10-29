@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 10:59:51 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 11:21:07 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:24:25 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ AMateriaFloor::~AMateriaFloor(void)
 	std::cout << "AMateriaFloor destructor called" << std::endl;
 }
 
-AMateriaFloor &AMateriaFloor::operator=(AMateriaFloor const & rhs)
+AMateriaFloor &AMateriaFloor::operator=(AMateriaFloor const &rhs)
 {
 	if (this != &rhs)
 	{

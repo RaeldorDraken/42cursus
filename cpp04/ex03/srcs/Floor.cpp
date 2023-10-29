@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 11:01:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 12:07:12 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:20:33 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,9 @@ int		Floor::getNbMateria(void) const
 AMateriaFloor	*Floor::getMateria(int idx) const
 {
 	AMateriaFloor	*tmp = this->_first;
-	int				i = 0;
+	int	i = 0;
 
-	while (tmp != NULL && i < idx)
+	while (tmp != NULL && tmp->getNext() != NULL && i < idx)
 	{
 		tmp = tmp->getNext();
 		i++;

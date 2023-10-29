@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 10:55:00 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/28 16:57:58 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:24:08 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ class AMateriaFloor
 		AMateriaFloor(AMateriaFloor const & src);
 		~AMateriaFloor(void);
 
-		AMateriaFloor &	operator=(AMateriaFloor const & rhs);
+		AMateriaFloor	&operator=(AMateriaFloor const &rhs);
+		bool 			operator==(AMateriaFloor const rhs);
 
 		AMateriaFloor	*getNext(void) const;
 		AMateriaFloor	*getPrev(void) const;

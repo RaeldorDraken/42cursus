@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:17:18 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 11:49:04 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 15:28:39 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ class AMateria
 	protected:
 		std::string	_type;
 		bool	_isEquiped;
+		bool	_isBroken;
 	public:
 		AMateria(void );
 		AMateria(std::string const & type);
 		AMateria(AMateria const & src);
 		virtual ~AMateria(void);
 
-		AMateria &operator=(AMateria const & rhs);
+		AMateria &operator=(AMateria const &rhs);
 		
 		std::string const &getType() const; //Returns the materia type
 		
@@ -38,6 +39,8 @@ class AMateria
 		virtual void use(ICharacter& target);
 		bool getIsEquiped(void) const;
 		void setIsEquiped(bool equip);
+		bool getIsBroken(void) const;
+		void setIsBroken(bool broken);
 };
 
 #endif
