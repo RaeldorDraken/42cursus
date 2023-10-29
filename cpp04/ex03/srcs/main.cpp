@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 22:42:27 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 11:41:59 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/29 21:58:56 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int main( void )
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-
 	print_title( "3. Creating Character \"rynn\" and \"raeldor\"", C_GREEN, C_YELLOW );
 	Character* rynn = new Character("rynn", trash);
 	rynn->printMaterias();
@@ -106,7 +105,6 @@ int main( void )
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-
 	print_title( "4. \"rynn\" trying to equip 5 materias and \"raeldor\" one materia", C_GREEN, C_YELLOW );
 	rynn->equip(NULL);
 
@@ -135,7 +133,6 @@ int main( void )
 	trash->printFloor();
 
 // ------------------------------------------------------------------------------------ //
-
 	print_title( "5. Testing Character Assignation overload \"rynn = raeldor\" for deep copy and changed rynn afterwards", C_GREEN, C_YELLOW );
 	*raeldor = *rynn;
 
@@ -151,7 +148,6 @@ int main( void )
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-
 	print_title( "6. Testing character copy constructor for deep copy \"kthani = Character(rynn)\" and changed rynn afterwards", C_GREEN, C_YELLOW );
 
 	rynn->printMaterias();
@@ -171,8 +167,7 @@ int main( void )
 	trash->printFloor();
 	std::cout << std::endl;
 
-// ------------------------------------------------------------------------------------ //
-
+// ------------------------------------------------------------------------------------ 
 	print_title( "7. \"rynn\" using all equiped materias on \"raeldor\" ", C_GREEN, C_YELLOW );
 	rynn->use(0, *raeldor);
 	rynn->use(1, *raeldor);
@@ -192,7 +187,6 @@ int main( void )
 	std::cout << std::endl;
 
 // ------------------------------------------------------------------------------------ //
-
 	print_title( "9. New character \"natsya\" equipping and unequipping materias", C_GREEN, C_YELLOW );
 	ICharacter* natsya = new Character("natsya", trash);
 	AMateria *cure = new Cure;
