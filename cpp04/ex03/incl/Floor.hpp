@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 10:52:00 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 12:05:29 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:19:47 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ class Floor
 		AMateriaFloor	*getLast(void) const;
 		AMateriaFloor	*getMateria(int idx) const;
 		int				getNbMateria(void) const;
+		int				getMateriaIdx(AMateria *materia) const;
+		void			removeMateriaFloor(int idx);
 		
 		void			printFloor(void) const;
 };

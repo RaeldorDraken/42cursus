@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:01:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 15:32:07 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:19:48 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,22 @@ void	Character::equip(AMateria* m)
 
 	if (m != NULL && m->getIsEquiped() == true)
 		std::cout << "Character trying to equip already equipped materia" << std::endl;
-	else if (m != NULL && m->getIsBroken() == true)
-		std::cout << "Character trying to equip broken materia on the floor" << std::endl;
+	else if (m != NULL && m->getIsFloor() == true)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (this->_inventory[i] == NULL)
+			{
+				std::cout << "Equiping " << m->getType() << std::endl;
+				this->_trash->removeMateriaFloor(this->_trash->getMateriaIdx(m));
+				this->_inventory[i] = m;
+				m->setIsEquiped(true);
+				m->setIsFloor(false);
+				this->_nbMateria++;
+				break ;
+			}
+		}
+	}
 	else if (m == NULL)
 		std::cout << "Character trying to equip NULL materia" << std::endl;
 	else if (this->_nbMateria < 4 && m)
@@ -110,7 +124,7 @@ void	Character::unequip(int idx)
 		std::cout << "Unequiping " << this->_inventory[idx]->getType() << std::endl;
 		this->_trash->addMateria(this->_inventory[idx]);
 		this->_inventory[idx]->setIsEquiped(false);
-		this->_inventory[idx]->setIsBroken(true);
+		this->_inventory[idx]->setIsFloor(true);
 		this->_inventory[idx] = NULL;
 		this->_nbMateria--;
 	}

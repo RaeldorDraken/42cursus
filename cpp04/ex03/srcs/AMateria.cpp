@@ -6,23 +6,23 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 10:21:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 15:32:34 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:17:45 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/AMateria.hpp"
 
-AMateria::AMateria(void) : _type("default"), _isEquiped(false), _isBroken(false)
+AMateria::AMateria(void) : _type("default"), _isEquiped(false), _isFloor(false), _isDelete(false)
 {
 	std::cout << "AMateria default constructor called" << std::endl;
 }
 
-AMateria::AMateria(std::string const & type) : _type(type), _isEquiped(false), _isBroken(false)
+AMateria::AMateria(std::string const & type) : _type(type), _isEquiped(false), _isFloor(false), _isDelete(false)
 {
 	std::cout << "AMateria _type constructor called" << std::endl;
 }
 
-AMateria::AMateria(AMateria const & src) : _type(src._type), _isEquiped(src._isEquiped), _isBroken(src._isBroken)
+AMateria::AMateria(AMateria const & src) : _type(src._type), _isEquiped(src._isEquiped), _isFloor(src._isFloor), _isDelete(src._isDelete)
 {
 	std::cout << "AMateria copy constructor called" << std::endl;
 	*this = src;
@@ -39,7 +39,7 @@ AMateria &AMateria::operator=(AMateria const &rhs)
 	{
 		this->_type = rhs._type;
 		this->_isEquiped = rhs._isEquiped;
-		this->_isBroken = rhs._isBroken;
+		this->_isFloor = rhs._isFloor;
 	}
 	return (*this);
 }
@@ -64,12 +64,22 @@ void	AMateria::setIsEquiped(bool equip)
 	this->_isEquiped = equip;
 }
 
-bool	AMateria::getIsBroken(void) const
+bool	AMateria::getIsFloor(void) const
 {
-	return this->_isBroken;
+	return this->_isFloor;
 }
 
-void	AMateria::setIsBroken(bool broken)
+void	AMateria::setIsFloor(bool broken)
 {
-	this->_isBroken = broken;
+	this->_isFloor = broken;
+}
+
+void	AMateria::setIsDelete(bool del)
+{
+	this->_isDelete = del;
+}
+
+bool	AMateria::getIsDelete(void) const
+{
+	return this->_isDelete;
 }

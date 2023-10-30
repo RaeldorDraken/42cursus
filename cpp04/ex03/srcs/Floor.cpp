@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 11:01:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 15:20:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:17:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	Floor::eraseMateria(void)
 	while (_nbMateria > 0 && this->_first != NULL)
 	{
 		tmp = this->_first;
+		tmp->getMateria()->setIsDelete(true);
 		if (this->_first->getNext() != NULL)
 			this->_first = this->_first->getNext();
 		else
@@ -125,6 +126,21 @@ int		Floor::getNbMateria(void) const
 	return (this->_nbMateria);
 }
 
+void	Floor::removeMateriaFloor(int idx)
+{
+	AMateriaFloor	*tmp = this->_first;
+	int	i = 0;
+
+	while (tmp != NULL && tmp->getNext() != NULL && i < idx)
+	{
+		tmp = tmp->getNext();
+		i++;
+	}
+	if (tmp != NULL)
+		this->delMateria(tmp);
+	this->_nbMateria--;
+}
+
 AMateriaFloor	*Floor::getMateria(int idx) const
 {
 	AMateriaFloor	*tmp = this->_first;
@@ -136,6 +152,21 @@ AMateriaFloor	*Floor::getMateria(int idx) const
 		i++;
 	}
 	return (tmp);
+}
+
+int	Floor::getMateriaIdx(AMateria *materia) const
+{
+	AMateriaFloor	*tmp = this->_first;
+	int	i = 0;
+
+	while (tmp != NULL && tmp->getNext() != NULL && tmp->getMateria() != materia)
+	{
+		tmp = tmp->getNext();
+		i++;
+	}
+	if (tmp != NULL && tmp->getMateria() == materia)
+		return (i);
+	return (-1);
 }
 
 void	Floor::printFloor(void) const
