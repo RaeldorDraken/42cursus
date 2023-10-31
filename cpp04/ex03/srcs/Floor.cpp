@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 11:01:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/30 13:17:52 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:07:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Floor::Floor(void) : _first(NULL), _last(NULL), _nbMateria(0)
 	std::cout << "Floor default constructor called" << std::endl;
 }
 
-Floor::Floor(Floor const & src) : _first(NULL), _last(NULL), _nbMateria(0)
+Floor::Floor(Floor const & src) : _first(NULL), _last(NULL), _nbMateria(src._nbMateria)
 {
 	std::cout << "Floor copy constructor called" << std::endl;
 	if (src._first != NULL)
@@ -36,6 +36,7 @@ Floor::Floor(Floor const & src) : _first(NULL), _last(NULL), _nbMateria(0)
 Floor::~Floor(void)
 {
 	std::cout << "Floor destructor called" << std::endl;
+	std::cout << "nbMateria: " << this->_nbMateria << std::endl;
 	this->eraseMateria();
 }
 
@@ -52,6 +53,12 @@ Floor &Floor::operator=(Floor const & rhs)
 
 void	Floor::addMateria(AMateria *materia)
 {
+	for (int i = 0; i < this->_nbMateria; i++)
+	{
+		if (this->getMateria(i)->getMateria() == materia)
+			return ;
+	}
+
 	AMateriaFloor	*newMateria = new AMateriaFloor(materia);
 
 	if (this->_first == NULL)
@@ -65,7 +72,7 @@ void	Floor::addMateria(AMateria *materia)
 		newMateria->setPrev(this->_last);
 		this->_last = newMateria;
 	}
-	this->_nbMateria++;
+	_nbMateria = countMateria();
 }
 
 void	Floor::delMateria(AMateriaFloor *materia)
@@ -88,14 +95,14 @@ void	Floor::delMateria(AMateriaFloor *materia)
 		materia->getNext()->setPrev(materia->getPrev());
 	}
 	delete materia;
-	this->_nbMateria--;
+	_nbMateria = countMateria();
 }
 
 void	Floor::eraseMateria(void)
 {
 	AMateriaFloor	*tmp;
 
-	while (_nbMateria > 0 && this->_first != NULL)
+	while (_nbMateria > 0)
 	{
 		tmp = this->_first;
 		tmp->getMateria()->setIsDelete(true);
@@ -107,7 +114,6 @@ void	Floor::eraseMateria(void)
 		_nbMateria--;
 	}
 	this->_first = NULL;
-	this->_last = NULL;
 	this->_nbMateria = 0;
 }
 
@@ -124,6 +130,19 @@ AMateriaFloor	*Floor::getLast(void) const
 int		Floor::getNbMateria(void) const
 {
 	return (this->_nbMateria);
+}
+
+int		Floor::countMateria(void) const
+{
+	AMateriaFloor	*tmp = this->_first;
+	int	i = 0;
+
+	while (tmp != NULL)
+	{
+		tmp = tmp->getNext();
+		i++;
+	}
+	return (i);
 }
 
 void	Floor::removeMateriaFloor(int idx)

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:01:31 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/30 13:19:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:24:53 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	Character::equip(AMateria* m)
 				std::cout << "Equiping " << m->getType() << std::endl;
 				this->_inventory[i] = m;
 				m->setIsEquiped(true);
+				m->setIsDelete(false);
 				this->_nbMateria++;
 				break ;
 			}

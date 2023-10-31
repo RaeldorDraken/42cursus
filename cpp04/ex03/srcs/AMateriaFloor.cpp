@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 10:59:51 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/30 13:18:29 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:44:51 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ AMateriaFloor::AMateriaFloor(AMateriaFloor const & src) : _next(NULL), _prev(NUL
 
 AMateriaFloor::~AMateriaFloor(void)
 {
-	if (this->_materia && this->_materia->getIsDelete() == true)
-		delete _materia;
+	if (this->_materia)
+		if (this->_materia->getIsDelete() == true)
+			delete _materia;
 	std::cout << "AMateriaFloor destructor called" << std::endl;
 }
 

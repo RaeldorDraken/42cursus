@@ -6,22 +6,31 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:26:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/29 22:04:05 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/10/31 10:36:47 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../incl/MateriaSource.hpp"
 
-MateriaSource::MateriaSource(void)
+MateriaSource::MateriaSource(void) : _count(0)
 {
 	std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < MAX_MATERIA; i++)
 		this->_materia[i] = NULL;
 }
 
-MateriaSource::MateriaSource(MateriaSource const & src)
+MateriaSource::MateriaSource(MateriaSource const & src) : _count(src._count)
 {
 	std::cout << "MateriaSource copy constructor called" << std::endl;
+	int	i = 0;
+
+	while (i < MAX_MATERIA)
+	{
+		this->_materia[i] = NULL;
+		if (src._materia[i] != NULL)
+			this->_materia[i] = src._materia[i]->clone();
+		i++;
+	}
 	*this = src;
 }
 
