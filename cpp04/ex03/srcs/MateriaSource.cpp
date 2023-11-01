@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:26:29 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/10/31 10:36:47 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:56:14 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ MateriaSource::MateriaSource(MateriaSource const & src) : _count(src._count)
 
 MateriaSource::~MateriaSource(void)
 {
-	int i = 0;
 	std::cout << "MateriaSource destructor called" << std::endl;
-	for ( i; i < MAX_MATERIA; i++)
+	for (int i = 0; i < MAX_MATERIA; i++)
 	{
 		if (this->_materia[i])
 			delete this->_materia[i];
