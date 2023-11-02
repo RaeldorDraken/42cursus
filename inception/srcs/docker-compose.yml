@@ -1,0 +1,60 @@
+version: '3.5'
+
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/eros-gir/Desktop/Inception/srcs/wordpress
+      o: bind
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      device: /Users/eros-gir/Desktop/Inception/srcs/mariadb
+      o: bind
+
+networks:
+  inception:
+    name: inception
+
+services:
+  nginx:
+    image: nginx:42
+    container_name: nginx
+    build: ./requirements/nginx/.
+    restart: always
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    env_file:
+      - .env
+  wordpress:
+    image: wordpress:42
+    container_name: wordpress
+    build: ./requirements/wordpress/.
+    restart: always
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    env_file:
+      - .env
+  mariadb:
+    image: mariadb:42
+    container_name: mariadb
+    build: ./requirements/mariadb/.
+    restart: always
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - inception
+    env_file:
+      - .env
