@@ -6,14 +6,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /Users/eros-gir/Desktop/Inception/srcs/wordpress
+      device: ~/Desktop/Inception/srcs/wordpress
       o: bind
   mariadb:
     name: mariadb
     driver: local
     driver_opts:
       type: none
-      device: /Users/eros-gir/Desktop/Inception/srcs/mariadb
+      device: ~/Desktop/Inception/srcs/mariadb
       o: bind
 
 networks:
@@ -24,7 +24,7 @@ services:
   nginx:
     image: nginx:42
     container_name: nginx
-    build: ./requirements/nginx/.
+    build: ./nginx/.
     restart: always
     ports:
       - "443:443"
@@ -37,7 +37,7 @@ services:
   wordpress:
     image: wordpress:42
     container_name: wordpress
-    build: ./requirements/wordpress/.
+    build: ./wordpress/.
     restart: always
     depends_on:
       - mariadb
@@ -50,7 +50,7 @@ services:
   mariadb:
     image: mariadb:42
     container_name: mariadb
-    build: ./requirements/mariadb/.
+    build: ./mariadb/.
     restart: always
     volumes:
       - mariadb:/var/lib/mysql
