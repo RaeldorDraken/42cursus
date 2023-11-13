@@ -6,18 +6,18 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 10:40:20 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/13 10:40:23 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/11/13 11:20:22 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 all:
-	@docker compose -f ./scrs/docker-compose.yml up -d --build
+	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
-	@docker compose -f ./scrs/docker-compose.yml down
+	@docker compose -f ./srcs/docker-compose.yml down
 
 re:
-	@docker compose -f scrs/docker-compose.yml up -d --build
+	@docker compose -f srcs/docker-compose.yml up -d --build
 
 clean:
 	@docker stop $$(docker ps -qa);\

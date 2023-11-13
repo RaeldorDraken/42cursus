@@ -15,3 +15,12 @@ $>	sudo vim /etc/hosts
 para editarlo y anyadir esta linea:
 
 127.0.0.1	eros-gir
+
+antes de hacer funcionar hacer "make" para inicar el docker se ha de hacer esto:
+
+sudo usermod -aG docker $USER
+newgrp docker
+id -nG
+sudo service docker restart
+
+compila pero no funciona, he de mirar que pasa
