@@ -1,8 +1,7 @@
-version: '3'
-
 services:
   nginx:
     container_name: nginx
+    image: nginx
     build: ./req/nginx
     ports:
       - 443:443
@@ -14,6 +13,7 @@ services:
 
   mariadb:
     container_name: mariadb
+    image: mariadb
     build: ./req/mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
@@ -25,11 +25,10 @@ services:
 
   wordpress:
     container_name: wordpress
+    image: wordpress
     depends_on:
       - mariadb
-    build:
-      context: ./req/wordpress
-      dockerfile: Dockerfile
+    build: ./req/wordpress
     restart: always
     env_file:
       - .env
@@ -54,4 +53,5 @@ volumes:
 
 networks:
   network:
+    name: network
     driver: bridge

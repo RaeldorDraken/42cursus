@@ -1,19 +1,12 @@
-FROM debian:buster
+FROM debian:bullseye
 
-RUN apt-get update && apt-get -y install \
-	wget \
+EXPOSE 9000
+
+RUN apt-get update && apt-get install -y \
 	curl \
-	bash \
-	php \
-	php-cgi \
-	php-mysql \
-	php-fpm \
-	php-pdo \
-	php-gd php-cli \
-	php-mbstring \
-	redis \
-	php-redis \
-	&& rm -rf /var/lib/apt/lists/*
+	mariadb-client \
+	php7.4-fpm \
+	php7.4-mysqli
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
   && chmod +x wp-cli.phar \
@@ -21,14 +14,14 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 
-RUN mkdir /run/php
+RUN mkdir -p /run/php
+RUN chmod 777 /run/php
 
 COPY ./create_wordpress.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/create_wordpress.sh
-ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]
 
 WORKDIR /var/www/html/
 
-EXPOSE 9000
+ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]
 
 CMD ["/usr/sbin/php-fpm7.3", "-F"]
