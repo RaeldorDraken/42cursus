@@ -23,3 +23,5 @@ RUN chmod +x /usr/local/bin/create_wordpress.sh
 WORKDIR /var/www/html/
 
 ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]
+
+CMD ["/usr/sbin/php-fpm7.3", "-F"]
