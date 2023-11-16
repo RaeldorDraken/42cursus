@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 10:40:20 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/15 10:27:05 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/11/16 10:45:47 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,5 +31,7 @@ clean: down
 	-@docker volume prune --all --force
 	-@docker volume rm $$(docker volume ls -q)
 	sudo rm -rf $(DATA_DIRECTORIES)
+
+fclean: clean
 
 .PHONY: all re down clean create-directories
