@@ -24,4 +24,4 @@ WORKDIR /var/www/html/
 
 ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]
 
-CMD ["/usr/sbin/php-fpm7.3", "-F"]
+#CMD ["/usr/sbin/php-fpm7.3", "-F"]
