@@ -6,13 +6,13 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 11:54:03 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/18 00:36:55 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/11/18 17:01:43 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:bullseye
+FROM debian:10.11
 
-RUN apt-get Update
+RUN apt-get update
 RUN apt-get install -y nginx openssl
 
 EXPOSE 443

@@ -6,11 +6,11 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 00:27:19 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/18 00:27:54 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/11/18 17:01:30 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:bullseye
+FROM debian:10.11
 
 RUN apt-get update && apt-get -y install \
     curl \
