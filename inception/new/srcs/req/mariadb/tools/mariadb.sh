@@ -1,7 +1,7 @@
 #!/bin/bash
 service mysql start
 
-if [ ! -d /var/lib/mysql/${MYSQL_DATABASE} ];
+if [ ! -d /var/lib/mysql/${MYSQL_DATABASE} ]
 then
 	mysql -u ${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} -e "CREATE DATABASE $MYSQL_DATABASE;"
 	mysql -e "CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'"
