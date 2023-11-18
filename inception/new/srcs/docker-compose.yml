@@ -55,4 +55,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/eros-gir/data/mariadb
+      device: /home/eros-gir/data/mysql
