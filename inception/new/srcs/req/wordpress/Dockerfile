@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Dockerfile                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/18 00:27:19 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/18 20:36:40 by eros-gir         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 FROM debian:10.11
 
 RUN apt-get update && apt-get -y install curl php7.3-fpm php7.3-mysqli mariadb-client
@@ -28,4 +16,4 @@ EXPOSE 9000
 
 WORKDIR /var/www/html/
 
-ENTRYPOINT ["/usr/local/bin/wp.sh"]
+ENTRYPOINT [ "/usr/local/bin/wp.sh" ]
