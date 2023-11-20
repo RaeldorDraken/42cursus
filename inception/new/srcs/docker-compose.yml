@@ -1,6 +1,6 @@
 networks:
-    gemartinnet:
-        name: gemartinnet
+    eros-girnet:
+        name: eros-girnet
         driver: bridge
 
 services:
@@ -14,7 +14,7 @@ services:
          - wordpress_data:/var/www/html
         restart: always
         networks:
-         - gemartinnet
+         - eros-girnet
 
 
     mariadb:
@@ -26,7 +26,7 @@ services:
           - mariadb_data:/var/lib/mysql
          restart: always
          networks:
-          - gemartinnet
+          - eros-girnet
          env_file:
           - .env
 
@@ -40,7 +40,7 @@ services:
          - wordpress_data:/var/www/html
         restart: always
         networks:
-         - gemartinnet
+         - eros-girnet
         env_file:
           - .env
 

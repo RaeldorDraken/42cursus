@@ -23,4 +23,4 @@ newgrp docker
 id -nG
 sudo service docker restart
 
-compila pero no funciona, he de mirar que pasa
+La pagina se muestra pero con errores y tarda en cargar
