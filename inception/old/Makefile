@@ -5,25 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/02 09:48:29 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/07 11:07:54 by eros-gir         ###   ########.fr        #
+#    Created: 2023/11/19 10:35:21 by eros-gir          #+#    #+#              #
+#    Updated: 2023/11/19 10:36:56 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-all: up
-
-up:
-#aqui toca poner cosas para crear las carpetas de los containers
-	docker-compose up -f ./srcs/docker-compose.yml up -d
+all:
+	@mkdir -p /home/eros-gir/data/mysql /home/eros-gir/data/wordpress
+	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
-	docker-compose down -f ./srcs/docker-compose.yml down
+	@docker compose -f ./srcs/docker-compose.yml down
 
-stop:
-	docker-compose stop -f ./srcs/docker-compose.yml stop
+clean:
+	@docker stop $$(docker ps -qa)
+	@docker system prune --all --force
+	@docker volume prune --all --force
+	@docker volume rm $$(docker volume ls -q)
+	@docker network rm eros-girnet
+	@sudo rm -rf /home/eros-gir/data
 
-start:
-	docker-compose start -f ./srcs/docker-compose.yml start
-
-status:
-	docker ps
+.PHONY: all down clean

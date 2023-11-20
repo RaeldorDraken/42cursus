@@ -1,60 +1,60 @@
-version: '3.5'
-
-volumes:
-  wordpress:
-    name: wordpress
-    driver: local
-    driver_opts:
-      type: none
-      device: ~/Desktop/Inception/srcs/wordpress
-      o: bind
-  mariadb:
-    name: mariadb
-    driver: local
-    driver_opts:
-      type: none
-      device: ~/Desktop/Inception/srcs/mariadb
-      o: bind
-
 networks:
-  inception:
-    name: inception
+    eros-girnet:
+        name: eros-girnet
+        driver: bridge
 
 services:
-  nginx:
-    image: nginx:42
-    container_name: nginx
-    build: ./nginx/.
-    restart: always
-    ports:
-      - "443:443"
-    volumes:
-      - wordpress:/var/www/html
-    networks:
-      - inception
-    env_file:
-      - .env
-  wordpress:
-    image: wordpress:42
-    container_name: wordpress
-    build: ./wordpress/.
-    restart: always
-    depends_on:
-      - mariadb
-    volumes:
-      - wordpress:/var/www/html
-    networks:
-      - inception
-    env_file:
-      - .env
-  mariadb:
-    image: mariadb:42
-    container_name: mariadb
-    build: ./mariadb/.
-    restart: always
-    volumes:
-      - mariadb:/var/lib/mysql
-    networks:
-      - inception
-    env_file:
-      - .env
+    nginx:
+        container_name: nginx
+        build: ./req/nginx
+        image: nginx
+        ports:
+         - 443:443
+        volumes:
+         - wordpress_data:/var/www/html
+        restart: always
+        networks:
+         - eros-girnet
+
+
+    mariadb:
+         container_name: mariadb
+         build:
+            context: ./req/mariadb
+         image: mariadb
+         volumes:
+          - mariadb_data:/var/lib/mysql
+         restart: always
+         networks:
+          - eros-girnet
+         env_file:
+          - .env
+
+    wordpress:
+        container_name: wordpress
+        build: ./req/wordpress
+        image: wordpress
+        depends_on:
+         - mariadb
+        volumes:
+         - wordpress_data:/var/www/html
+        restart: always
+        networks:
+         - eros-girnet
+        env_file:
+          - .env
+
+volumes:
+    mariadb_data:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/eros-gir/data/mysql
+            o: bind
+
+    wordpress_data:
+        driver: local
+        driver_opts:
+            type: none
+            device: /home/eros-gir/data/wordpress
+            o: bind
