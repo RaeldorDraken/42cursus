@@ -23,6 +23,6 @@ clean: down
 	@docker system prune --all --force
 	@docker volume prune --all --force
 	@sudo rm -rf /home/eros-gir/data
-	@docker network rm gemartinnet
+	@docker network rm eros-girnet
 
 .PHONY: all down clean
