@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 23:49:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/20 23:51:39 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/11/15 10:38:51 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/11/20 23:48:36 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"PresidentialPardonForm.hpp"
+#include "Form.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm("default", 25, 5), _target("default")
+int	main(void)
 {
-	return ;
+	
 }
-
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
-{
-	return ;
-}
-
