@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 22:47:41 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/21 22:47:54 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/11/21 22:44:59 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/11/21 22:50:31 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTMYREQUESTFORM_HPP
+# define ROBOTMYREQUESTFORM_HPP
 
 # include <iostream>
+# include <string>
 # include "AForm.hpp"
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string		_target;
-		ShrubberyCreationForm(void);
+		RobotomyRequestForm(void);
 	public:
-		ShrubberyCreationForm(std::string target);
-		ShrubberyCreationForm(ShrubberyCreationForm const &src);
-		virtual ~ShrubberyCreationForm(void);
-		ShrubberyCreationForm	&operator=(ShrubberyCreationForm const &rhs);
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(RobotomyRequestForm const &src);
+		virtual ~RobotomyRequestForm(void);
+		RobotomyRequestForm	&operator=(RobotomyRequestForm const &rhs);
 		std::string			getTarget(void) const;
 		void				setTarget(std::string target);
 };

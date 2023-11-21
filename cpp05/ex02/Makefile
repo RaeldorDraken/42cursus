@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 10:40:05 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/21 12:01:41 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/11/21 22:44:55 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,14 @@ FLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 SRCS =	./Bureaucrat.cpp \
 		./AForm.cpp \
 		./PresidentialPardonForm.cpp \
+		./RobotomyRequestForm.cpp \
+		./ShrubberyCreationForm.cpp \
 		./main.cpp
 HDRS =	./Bureaucrat.hpp \
 		./AForm.hpp \
-		./PresidentialPardonForm.hpp
+		./PresidentialPardonForm.hpp \
+		./RobotomyRequestForm.hpp \
+		./ShrubberyCreationForm.hpp
 
 OBJ = $(SRCS:.cpp=.o)
 DEP = $(SRCS:.cpp=.d)
