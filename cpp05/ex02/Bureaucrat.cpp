@@ -6,11 +6,12 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:36:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/15 10:53:56 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:00:56 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("default"), _grade(150)
 {
@@ -71,6 +72,34 @@ void	Bureaucrat::decrementGrade(void)
 		throw Bureaucrat::GradeTooLowException();
 	else
 		this->_grade++;
+	return ;
+}
+
+void	Bureaucrat::signForm(AForm &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << this->_name << " signs " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->_name << " cannot sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+	return ;
+}
+
+void	Bureaucrat::executeForm(AForm &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->_name << " executes " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->_name << " cannot execute " << form.getName() << " because " << e.what() << std::endl;
+	}
 	return ;
 }
 

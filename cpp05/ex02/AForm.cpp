@@ -6,11 +6,12 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 23:34:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/20 23:47:47 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:01:21 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 AForm::AForm(void) : _name("default"), _signed(false), _gradeSign(150), _gradeExec(150)
 {
@@ -73,6 +74,17 @@ void	AForm::beSigned(Bureaucrat const &bureaucrat)
 	return ;
 }
 
+const void	AForm::execute(Bureaucrat const &executor) const
+{
+	if (executor.getGrade() > this->_gradeExec)
+		throw AForm::GradeTooLowException();
+	else if (!this->_signed)
+		throw AForm::FormNotSignedException();
+	//else
+	//	this->action();
+	return ;
+}
+
 const char	*AForm::GradeTooHighException::what() const throw()
 {
 	return ("Grade too high");
@@ -81,6 +93,11 @@ const char	*AForm::GradeTooHighException::what() const throw()
 const char	*AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade too low");
+}
+
+const char	*AForm::FormNotSignedException::what() const throw()
+{
+	return ("Form not signed");
 }
 
 std::ostream	&operator<<(std::ostream &o, AForm const &rhs)

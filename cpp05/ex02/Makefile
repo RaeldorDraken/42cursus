@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 10:40:05 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/20 23:29:36 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/11/21 12:01:41 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,16 +15,18 @@ C_RED=\033[0;31m
 C_YELLOW=\033[0;33m
 C_END=\033[0m
 
-NAME = Form
+NAME = 28B
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 SRCS =	./Bureaucrat.cpp \
-		./Form.cpp \
+		./AForm.cpp \
+		./PresidentialPardonForm.cpp \
 		./main.cpp
 HDRS =	./Bureaucrat.hpp \
-		./Form.hpp
+		./AForm.hpp \
+		./PresidentialPardonForm.hpp
 
 OBJ = $(SRCS:.cpp=.o)
 DEP = $(SRCS:.cpp=.d)

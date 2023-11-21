@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 23:49:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/20 23:51:39 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:45:19 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,3 +22,37 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Pres
 	return ;
 }
 
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : AForm("PresidentialPardonForm", 25, 5), _target(src._target)
+{
+	return ;
+}
+
+PresidentialPardonForm::~PresidentialPardonForm(void)
+{
+	return ;
+}
+
+PresidentialPardonForm	&PresidentialPardonForm::operator=(PresidentialPardonForm &rhs)
+{
+	if (this != &rhs)
+		this->_target = rhs._target;
+	AForm::operator=(rhs);
+	return (*this);
+}
+
+std::ostream	&operator<<(std::ostream &o, PresidentialPardonForm const &rhs)
+{
+	o << rhs.getName() << " form, grade required to sign it: " << rhs.getGradeSign() << ", grade required to execute it: " << rhs.getGradeExec() << ", is signed: " << rhs.getSigned() << std::endl;
+	return (o);
+}
+
+std::string	PresidentialPardonForm::getTarget(void)
+{
+	return (this->_target);
+}
+
+void	PresidentialPardonForm::setTarget(std::string target)
+{
+	this->_target = target;
+	return ;
+}

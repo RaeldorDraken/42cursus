@@ -16,13 +16,15 @@
 # include <iostream>
 # include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class AForm
 {
 	public:
 		AForm(void);
 		AForm(std::string name, int gradeSign, int gradeExec);
 		AForm(AForm const &src);
-		~AForm(void);
+		virtual ~AForm(void);
 
 		AForm		&operator=(AForm const &rhs);
 
@@ -31,6 +33,7 @@ class AForm
 		int					getGradeExec(void) const;
 		bool				getSigned(void) const;
 		void				beSigned(Bureaucrat const &bureaucrat);
+		const void			execute(Bureaucrat const &executor) const;
 
 		class GradeTooHighException : public std::exception
 		{
@@ -39,6 +42,12 @@ class AForm
 		};
 
 		class GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char	*what() const throw();
+		};
+
+		class FormNotSignedException : public std::exception
 		{
 			public:
 				virtual const char	*what() const throw();
