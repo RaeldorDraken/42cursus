@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:38:51 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/21 23:02:48 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:48:50 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ int	main(void)
 	b->signForm(*rrf);
 	b3->executeForm(*rrf);
 	b2->executeForm(*rrf);
+	b->executeForm(*rrf);
+	b->executeForm(*rrf);
+	b->executeForm(*rrf);
 	b->executeForm(*rrf);
 
 	std::cout << "------------------" << std::endl;

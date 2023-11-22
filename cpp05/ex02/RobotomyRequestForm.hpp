@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 22:44:59 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/21 22:50:31 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:44:59 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include <cstdlib>
 # include "AForm.hpp"
 
 class RobotomyRequestForm : public AForm
@@ -27,8 +28,9 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm(RobotomyRequestForm const &src);
 		virtual ~RobotomyRequestForm(void);
 		RobotomyRequestForm	&operator=(RobotomyRequestForm const &rhs);
-		std::string			getTarget(void) const;
-		void				setTarget(std::string target);
+		std::string	getTarget(void) const;
+		void		setTarget(std::string target);
+		void		action(void) const;
 };
 
 #endif

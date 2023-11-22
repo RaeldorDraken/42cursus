@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 23:49:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/21 11:45:19 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:45:33 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,11 @@ std::string	PresidentialPardonForm::getTarget(void)
 void	PresidentialPardonForm::setTarget(std::string target)
 {
 	this->_target = target;
+	return ;
+}
+
+void	PresidentialPardonForm::action(void) const
+{
+	std::cout << this->_target << " has been pardoned by Zafod Beeblebrox." << std::endl;
 	return ;
 }

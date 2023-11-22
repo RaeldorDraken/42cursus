@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 23:34:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/21 23:02:09 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:43:17 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ const void	AForm::execute(Bureaucrat const &executor) const
 		throw AForm::GradeTooLowException();
 	else if (!this->_signed)
 		throw AForm::FormNotSignedException();
-	//else
-	//	this->action();
+	else
+		this->action();
 	return ;
 }
 

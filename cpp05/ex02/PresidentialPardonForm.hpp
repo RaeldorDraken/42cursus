@@ -28,6 +28,7 @@ class PresidentialPardonForm : public AForm
 
 		std::string	getTarget(void);
 		void		setTarget(std::string target);
+		void		action(void) const;
 	private:
 		std::string	_target;
 };
