@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:36:36 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/21 12:00:56 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:51:22 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	Bureaucrat::executeForm(AForm &form)
 {
 	try
 	{
-		form.execute(*this);
 		std::cout << this->_name << " executes " << form.getName() << std::endl;
+		form.execute(*this);
 	}
 	catch (std::exception &e)
 	{
