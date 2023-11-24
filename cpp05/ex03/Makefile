@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 10:40:05 by eros-gir          #+#    #+#              #
-#    Updated: 2023/11/22 09:52:21 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/11/24 16:40:06 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ DEP = $(SRCS:.cpp=.d)
 all:$(NAME)
 
 $(NAME): $(OBJ) $(HDRS) Makefile
-	@echo "$(C_YELLOW)make Bureaucrat$(C_END)"
+	@echo "$(C_YELLOW)make CoffeeMachine$(C_END)"
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
 
