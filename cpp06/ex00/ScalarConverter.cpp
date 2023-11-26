@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:40:48 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/24 17:41:12 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:01:52 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ bool	ScalarConverter::isInt(std::string input)
 
 bool	ScalarConverter::isFloat(std::string input)
 {
-	if (input.length() == 1 && isdigit(input[0]))
+	if (input[input.length() - 1] == 'f')
+		input.erase(input.length() - 1);
+	else
+		return (false);
+	if (input.length() == 2 && isdigit(input[0]) && input[1] == 'f')
 		return (true);
 	if (input.length() > 1 && (isdigit(input[0]) || input[0] == '-'))
 	{
@@ -96,6 +100,13 @@ bool	ScalarConverter::isInf(std::string input)
 	return (false);
 }
 
+bool	ScalarConverter::isInff(std::string input)
+{
+	if (input == "inff" || input == "+inff" || input == "-inff" || input == "nanf")
+		return (true);
+	return (false);
+}
+
 void	ScalarConverter::printChar(char c)
 {
 	if (isprint(c))
@@ -104,7 +115,7 @@ void	ScalarConverter::printChar(char c)
 		std::cout << "char: Non displayable" << std::endl;
 }
 
-void ScalarConverter::printInt(int n)
+void ScalarConverter::printInt(long int n)
 {
 	if (n > std::numeric_limits<int>::max() 
 	|| n < std::numeric_limits<int>::min())
@@ -135,22 +146,36 @@ void ScalarConverter::printDouble(double d)
 	}
 }
 
+void	ScalarConverter::printInff(std::string input)
+{
+	if (input == "inff" || input == "+inff")
+	{
+		std::cout << "float: " << std::fixed 
+		<< std::setprecision(1) << std::numeric_limits<float>::infinity() << std::endl;
+	}
+	else if (input == "-inff")
+	{
+		std::cout << "float: " << std::fixed 
+		<< std::setprecision(1) << -std::numeric_limits<float>::infinity() << std::endl;
+	}
+	else if (input == "nanf")
+		std::cout << "float: nanf" << std::endl;
+}
+
 void	ScalarConverter::printInf(std::string input)
 {
 	if (input == "inf" || input == "+inf")
 	{
-		std::cout << "float: " << std::fixed 
-		<< std::setprecision(1) << std::numeric_limits<float>::infinity() 
-		<< "f" << std::endl;
+		std::cout << "double: " << std::fixed 
+		<< std::setprecision(1) << std::numeric_limits<double>::infinity() << std::endl;
 	}
 	else if (input == "-inf")
 	{
-		std::cout << "float: " << std::fixed 
-		<< std::setprecision(1) << -std::numeric_limits<float>::infinity() 
-		<< "f" << std::endl;
+		std::cout << "double: " << std::fixed 
+		<< std::setprecision(1) << -std::numeric_limits<double>::infinity() << std::endl;
 	}
 	else if (input == "nan")
-		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
 }
 
 void	ScalarConverter::convert(std::string input)
@@ -158,11 +183,13 @@ void	ScalarConverter::convert(std::string input)
 	if (isChar(input))
 		printChar(input[0]);
 	else if (isInt(input))
-		printInt(atoi(input.c_str()));
+		printInt(atol(input.c_str()));
 	else if (isFloat(input))
 		printFloat(atof(input.c_str()));
 	else if (isDouble(input))
 		printDouble(strtod(input.c_str(), NULL));
+	else if (isInff(input))
+		printInff(input);
 	else if (isInf(input))
 		printInf(input);
 	else
