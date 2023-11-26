@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 17:14:15 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/26 17:20:11 by eros-gir         ###   ########.fr       */
+/*   Created: 2023/11/26 17:19:46 by eros-gir          #+#    #+#             */
+/*   Updated: 2023/11/26 17:20:00 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-# define SERIALIZER_HPP
+#ifndef DATA_HPP
+# define DATA_HPP
 
-#include "Data.hpp"
+# include <iostream>
+# include <sstream>
+# include <string>
+# include <limits>
+# include <iomanip>
+# include <cmath>
 
-class Serializer
+struct Data
 {
-	public:
-		static uintptr_t	serialize(Data* ptr);
-		static Data*		deserialize(uintptr_t raw);
-
-	private:
-		Serializer(void);
-		Serializer(Serializer const &src);
-		~Serializer(void);
-
-		Serializer	&operator=(Serializer const &rhs);
+	std::string	s1;
+	int			n;
+	std::string	s2;
 };
 
 #endif
