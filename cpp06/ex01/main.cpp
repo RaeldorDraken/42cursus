@@ -6,10 +6,37 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:40:20 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/26 17:15:28 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:17:51 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		main(int argc, char **argv)
+#include "Serializer.hpp"
+
+int main(void)
 {
+	Data *data;
+	Data *data2;
+
+	int n = 42;
+	uintptr_t raw;
+
+	data = new Data;
+	data->c = n;
+	data->n = n;
+	data->p = &n;
+
+	std::cout << "Data before: " << data << std::endl;
+	std::cout << "\tchar: " << data->c << std::endl;
+	std::cout << "\tint: " << data->n << std::endl;
+	std::cout << "\tint*: " << data->p << std::endl;
+
+	raw = Serializer::serialize(data);
+	data2 = Serializer::deserialize(raw);
+
+	std::cout << "Data after: " << data2 << std::endl;
+	std::cout << "\tchar: " << data2->c << std::endl;
+	std::cout << "\tint: " << data2->n << std::endl;
+	std::cout << "\tint*: " << data2->p << std::endl;
+
+	return (0);
 }

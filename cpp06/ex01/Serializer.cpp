@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 17:15:02 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/26 17:15:45 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:01:42 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,14 @@ Serializer	&Serializer::operator=(Serializer const &rhs)
 {
 	(void)rhs;
 	return (*this);
+}
+
+uintptr_t	Serializer::serialize(Data* ptr)
+{
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
+
+Data*		Serializer::deserialize(uintptr_t raw)
+{
+	return (reinterpret_cast<Data*>(raw));
 }
