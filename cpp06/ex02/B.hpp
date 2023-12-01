@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:45:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/29 19:45:32 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:22:01 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include "Base.hpp"
 
 class B : public Base
-{
-	public:
-		virtual ~B(void);
-};
+{};
 
 #endif
