@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:40:20 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/01 11:33:27 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:37:04 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int main(void)
 	std::cout << "randomize seed" << std::endl;
 	srand(time(NULL));
 	Base *p = generate();
+	std::cout << "ptr: ";
 	identify(p);
+	std::cout << "ref: ";
 	identify(*p);
 	std::cout << std::endl;
 
@@ -57,7 +59,9 @@ int main(void)
 	std::cout << "randomize seed" << std::endl;
 	srand(time(NULL) + time(NULL));
 	Base *p2 = generate();
+	std::cout << "ptr: ";
 	identify(p2);
+	std::cout << "ref: ";
 	identify(*p2);
 	std::cout << std::endl;
 
@@ -65,7 +69,9 @@ int main(void)
 	std::cout << "randomize seed" << std::endl;
 	srand(time(NULL) + time(NULL) + time(NULL));
 	Base *p3 = generate();
+	std::cout << "ptr: ";
 	identify(p3);
+	std::cout << "ref: ";
 	identify(*p3);
 	std::cout << std::endl;
 

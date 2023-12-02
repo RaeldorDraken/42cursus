@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:40:20 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/11/29 19:17:51 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:31:59 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ int main(void)
 	std::cout << "\tint*: " << data->p << std::endl;
 
 	raw = Serializer::serialize(data);
+
+	std::cout << std::endl << "Raw data: " << raw << std::endl << std::endl;
+
 	data2 = Serializer::deserialize(raw);
 
 	std::cout << "Data after: " << data2 << std::endl;
