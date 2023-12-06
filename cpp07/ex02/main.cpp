@@ -6,12 +6,12 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:18:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/06 17:30:15 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:40:42 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <Array.hpp>
+#include "Array.hpp"
 
 #define MAX_VAL 750
 int main(int, char**)
