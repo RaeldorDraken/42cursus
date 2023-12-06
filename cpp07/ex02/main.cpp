@@ -6,28 +6,60 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:18:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/05 10:10:56 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:30:15 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Array.hpp"
+#include <iostream>
+#include <Array.hpp>
 
-int main(void)
+#define MAX_VAL 750
+int main(int, char**)
 {
-	Array<int>	a(5);
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
 
-	for (unsigned int i = 0; i < a.size(); i++)
-		a[i] = i;
-	for (unsigned int i = 0; i < a.size(); i++)
-		std::cout << a[i] << std::endl;
-	try
-	{
-		a[5] = 5;
-	}
-	catch (std::exception &e)
-	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
-	return (0);
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;
 }
