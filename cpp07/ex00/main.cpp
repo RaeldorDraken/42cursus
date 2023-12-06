@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:18:14 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/05 09:38:08 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:13:02 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int main(void)
 	int b = 3;
 
 	std::cout << "\ta = " << a << " b = " << b << std::endl;
-	swap(a, b);
+	::swap(a, b);
 	std::cout << "\ta = " << a << " b = " << b << std::endl;
-	std::cout << "\tmin(a, b) = " << min(a, b) << std::endl;
-	std::cout << "\tmax(a, b) = " << max(a, b) << std::endl;
+	std::cout << "\tmin(a, b) = " << ::min(a, b) << std::endl;
+	std::cout << "\tmax(a, b) = " << ::max(a, b) << std::endl;
 
 	std::cout << std::endl;
 

@@ -14,7 +14,7 @@ $>	sudo vim /etc/hosts
 
 para editarlo y anyadir esta linea:
 
-127.0.0.1	eros-gir
+127.0.0.1	eros-gir.42.fr
 
 antes de hacer funcionar hacer "make" para inicar el docker se ha de hacer esto:
 
@@ -22,5 +22,3 @@ sudo usermod -aG docker $USER
 newgrp docker
 id -nG
 sudo service docker restart
-
-La pagina se muestra pero con errores y tarda en cargar
