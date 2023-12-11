@@ -6,10 +6,10 @@ class Warlock
 		std::string	name;
 		std::string	title;
 	public:
-		std::string	const &getName() const;
-		std::string	const &getTitle() const;
+		std::string const	&getName(void) const;
+		std::string const	&getTitle(void) const;
 		void	setTitle(std::string const &_title);
-		void	introduce() const;
+		void	introduce(void) const;
 		Warlock(std::string const &_name, std::string const &_title);
-		~Warlock();
-} ;
+		~Warlock(void);
+};

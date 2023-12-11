@@ -1,4 +1,9 @@
 #pragma once
+
+#ifndef ASPELL_HPP
+#define ASSPELL_HPP
+
+#include<string>
 #include<iostream>
 #include"ATarget.hpp"
 
@@ -10,10 +15,14 @@ class ASpell
 		std::string	name;
 		std::string	effects;
 	public:
-		std::string const getName();
-		std::string const getEffects();
-		virtual ASpell *clone() = 0;
+		std::string const	getName(void) const;
+		std::string const	getEffects(void) const;
+		virtual ASpell	*clone(void) const = 0;
 		void	launch(ATarget const &tango) const;
-		ASpell(std::string _name, std::string _effect);
-		virtual ~ASpell();
+		ASpell(std::string const _name, std::string const _effects);
+		ASpell(ASpell const &src);
+		virtual ~ASpell(void);
+		ASpell &operator=(ASpell const &rhs);
 };
+
+#endif

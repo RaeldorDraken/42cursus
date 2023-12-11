@@ -1,12 +1,19 @@
-#include"ASpell.cpp"
-#include"ATarget.cpp"
+#include "Warlock.hpp"
+#include "Dummy.hpp"
+#include "Fwoosh.hpp"
 
-int	main()
+int main()
 {
-	spell = new ASpell("ice", "chills");
-	target = new ATarget("dummy");
+  Warlock richard("Richard", "the Titled");
 
-	spell.launch(target);
+  Dummy bob;
+  Fwoosh* fwoosh = new Fwoosh();
 
-	return 0;
+  richard.learnSpell(fwoosh);
+
+  richard.introduce();
+  richard.launchSpell("Fwoosh", bob);
+
+  richard.forgetSpell("Fwoosh");
+  richard.launchSpell("Fwoosh", bob);
 }

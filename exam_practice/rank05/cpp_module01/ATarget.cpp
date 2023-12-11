@@ -1,27 +1,31 @@
 #include"ATarget.hpp"
 
-ATarget::ATarget(std::string _type) : type(_type)
+ATarget::ATarget(std::string const _type) : type(_type)
 {}
 
-ATarget::~ATarget()
+ATarget::ATarget(ATarget const &src)
+{
+	*this = src;
+}
+
+ATarget::~ATarget(void)
 {}
 
-std::string const &ATarget::getType() const
+std::string const &ATarget::getType(void) const
 {
 	return(this->type);
 }
 
-ATarget	*ATarget::clone()
-{
-	return(this);
-}
-
-std::string const	ASpell::getName()
-{
-	return(this->name);
-}
-
-void	ATarget::getHitBySpell(ASpell &src)
+void	ATarget::getHitBySpell(ASpell const &src) const
 {
 	std::cout << this->type << " has been " << src.getEffects() << "!\n";
+}
+
+ATarget &ATarget::operator=(ATarget const &rhs)
+{
+	if (this != &rhs)
+	{
+		this->type = rhs.getType();
+	}
+	return (*this);
 }
