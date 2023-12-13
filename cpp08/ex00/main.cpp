@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 10:54:13 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/12 11:03:15 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/13 09:17:25 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Not found" << std::endl;
+		std::cout << ": Not found" << std::endl;
 	}
 	return (0);
 }
