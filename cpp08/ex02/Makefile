@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 10:40:05 by eros-gir          #+#    #+#              #
-#    Updated: 2023/12/09 16:29:51 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/12/13 09:32:29 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,32 +17,51 @@ C_END=\033[0m
 
 NAME = MutatedAbomination
 
+#########
+RM = rm -f
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CFLAGS = -Werror -Wextra -Wall -std=c++98 #-g -fsanitize=address
+#########
 
-SRCS =	./main.cpp \
-		./MutantStack.tpp
-HDRS =	./MutantStack.hpp
-OBJ = $(SRCS:.cpp=.o)
-DEP = $(SRCS:.cpp=.d)
+#########
+FILES = main
 
-all:$(NAME)
+SRC = $(addsuffix .cpp, $(FILES))
 
-$(NAME): $(OBJ) $(HDRS) Makefile
-	@echo "$(C_YELLOW)make Mutated Abomination$(C_END)"
-	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+vpath %.cpp 
+#########
+
+#########
+OBJ = $(SRC:.cpp=.o)
+DEP = $(addsuffix .d, $(basename $(OBJ)))
+#########
+
+#########
+%.o: %.cpp 
+	@${CC} $(CFLAGS) -MMD -c $< -o $@
+
+all:
+	@$(MAKE) $(NAME)
+
+$(NAME):: $(OBJ)
+	@echo "$(C_YELLOW)make $(NAME)$(C_END)"
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
 
 clean:
 	@echo "$(C_RED)cleaning obj and dep$(C_END)"
-	@rm -rf $(OBJ) $(DEP)
-	@echo "$(C_GREEN)FINISHED!$(C_END)"
+	@$(RM) $(OBJ) $(DEP)
+	@echo "$(C_GREEN)FINISHED$(C_END)"
 
-fclean:
+
+fclean: clean
 	@echo "$(C_RED)cleaning executable$(C_END)"
-	@rm -rf $(NAME) $(OBJ) $(DEP)
-	@echo "$(C_GREEN)FINISHED!$(C_END)"
+	@$(RM) $(NAME)
+	@echo "$(C_GREEN)FINISHED$(C_END)"
 
-re: fclean all
+re:	fclean all
 
-PHONY: all clean fclean re
+.PHONY: all clean fclean re
+
+-include $(DEP)
+#########
