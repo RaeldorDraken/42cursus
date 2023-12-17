@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 10:40:05 by eros-gir          #+#    #+#              #
-#    Updated: 2023/12/14 10:10:51 by eros-gir         ###   ########.fr        #
+#    Updated: 2023/12/17 21:48:49 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ RM = rm -f
 CC = c++
 CFLAGS = -Werror -Wextra -Wall -std=c++98 -g -fsanitize=address
 
-FILES = main
+FILES = main BitcoinExchange
 
 SRC = $(addsuffix .cpp, $(FILES))
 

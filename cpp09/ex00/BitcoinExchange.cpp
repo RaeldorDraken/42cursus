@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:11:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/16 18:26:09 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/17 21:49:57 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ BitcoinExchange::~BitcoinExchange(void)
 
 BitcoinExchange	&BitcoinExchange::operator=(BitcoinExchange const &rhs)
 {
+	(void)rhs;
 	return (*this);
 }
 
@@ -89,4 +90,15 @@ bool BitcoinExchange::getBTC(const std::map<std::string, float> &data, std::stri
 
 	std::cout << std::fixed << std::setprecision(2) << data.at(date) << " at " << time << std::endl;
 	return false;
+}
+
+void BitcoinExchange::btc(std::string fd) 
+{
+	std::map<std::string, float> data;
+
+	if (getCSV(data))
+		throw std::runtime_error("Error parsing CSV file.");
+
+	if (getBTC(data, fd))
+		throw std::runtime_error("Error getting BTC value.");
 }
