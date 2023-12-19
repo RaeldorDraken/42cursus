@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:11:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/19 10:20:49 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/19 11:18:21 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ BitcoinExchange	&BitcoinExchange::operator=(BitcoinExchange const &rhs)
 	return (*this);
 }
 
-void BitcoinExchange::parseDate(std::string &date) 
+void BitcoinExchange::parseDate(std::string &date)
 {
-	std::string year = date.substr(0, 4);
-	std::string month = date.substr(5, 2);
-	std::string day = date.substr(8, 2);
+	size_t yearEnd = date.find('-');
+	size_t monthEnd = date.find('-', yearEnd + 1);
+
+	std::string year = date.substr(0, yearEnd);
+	std::string month = date.substr(yearEnd + 1, monthEnd - yearEnd - 1);
+	std::string day = date.substr(monthEnd + 1);
 
 	date = year + month + day;
 }
@@ -83,71 +86,77 @@ bool BitcoinExchange::getCSV(std::map<std::string, float> &data)
 
 bool BitcoinExchange::getBTC(const std::map<std::string, float> &data, std::string fd) 
 {
-    std::ifstream file(fd.c_str());
-    if (!file.is_open())
-    {
-        std::string error = "BTC file ";
-        error.append(fd);
-        error.append(" could not be opened.");
-        throw std::runtime_error(error);
-        return true;
-    }
+	std::ifstream file(fd.c_str());
+	if (!file.is_open())
+	{
+		std::string error = "BTC file ";
+		error.append(fd);
+		error.append(" could not be opened.");
+		throw std::runtime_error(error);
+		return true;
+	}
 
-    float fvalue = 0;
-    std::string line;
-    int linecount = 0;
+	float fvalue = 0;
+	std::string line;
+	int linecount = 1;
+	bool isFirstLine = true;
+	std::string prevDate;
 
-    while (std::getline(file, line))
-    {
-        std::istringstream linestream(line);
-        std::string date;
-        std::string value;
+	while (std::getline(file, line))
+	{
+		if (isFirstLine)
+		{
+			isFirstLine = false;
+			continue;
+		}
 
-        if (std::getline(linestream, date, '|') && std::getline(linestream, value))
-        {
-            try
-            {
-                date = date.substr(0, 10);
-                try
-                {
-                    value = value.substr(1, value.length());
-                    for (int i = 0; i < static_cast<int>(value.length()); i++)
-                        if (!std::isdigit(value[i]) && value[i] != '.' && value[i] != '-')
-                            throw std::invalid_argument("Error: invalid number");
-                    fvalue = std::atof(value.c_str());
-                }
-                catch (const std::exception &e)
-                {
-                    throw std::invalid_argument("Error: invalid number.");
-                    return true;
-                }
+		std::istringstream linestream(line);
+		std::string date;
+		std::string value;
 
-                parseDate(date);
+		if (std::getline(linestream, date, '|') && std::getline(linestream, value))
+		{
+			try
+			{
+				date = date.substr(0, 10);
+				value = value.substr(1);
 
-                if (data.find(date) != data.end())
-                {
-                    std::map<std::string, float>::const_iterator it = data.lower_bound(date);
-                    if (it == data.begin() || (it != data.end() && it->first != date))
-                        --it;
+				std::istringstream valueStream(value);
+				valueStream >> fvalue;
+				if (fvalue <= 0)
+					throw std::invalid_argument(": Error: not a positive number.");
 
-                    std::cout << date << " => " << fvalue << " = " << it->second * fvalue << std::endl;
-                }
-            }
-            catch (const std::exception &e)
-            {
-                if (linecount > 0)
-                    std::cout << e.what() << std::endl;
-            }
-            linecount++;
-        }
-        else
-        {
-            std::cout << "Error: date " << line << " is invalid." << std::endl;
-        }
-    }
+				parseDate(date);
 
-    file.close();
-    return false;
+				std::map<std::string, float>::const_iterator it = data.lower_bound(date);
+
+				if (it != data.begin())
+				{
+					--it;
+					std::cout << date.substr(0, 4) << "-" << date.substr(4, 2) << "-" << date.substr(6, 2) << " => " << fvalue << " = " << it->second * fvalue << std::endl;
+				}
+				else if (!prevDate.empty())
+				{
+					std::cout << date.substr(0, 4) << "-" << date.substr(4, 2) << "-" << date.substr(6, 2) << " => " << fvalue << " = " << data.at(prevDate) * fvalue << std::endl;
+				}
+
+				prevDate = date;
+			}
+			catch (const std::exception &e)
+			{
+				std::cout << "Error on line " << linecount << ": " << e.what() << std::endl;
+			}
+		}
+		else
+		{
+			std::cout << "Error: bad input on line " << linecount << " => " << line << std::endl;
+		}
+
+		linecount++;
+	}
+
+	file.close();
+	return false;
 }
 
 void BitcoinExchange::btc(std::string file) 
