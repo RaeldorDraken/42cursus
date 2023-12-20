@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:11:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/19 11:18:21 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/20 10:14:17 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ bool BitcoinExchange::getBTC(const std::map<std::string, float> &data, std::stri
 	std::ifstream file(fd.c_str());
 	if (!file.is_open())
 	{
-		std::string error = "BTC file ";
-		error.append(fd);
-		error.append(" could not be opened.");
-		throw std::runtime_error(error);
+		throw std::runtime_error("Error: could not open file.");
 		return true;
 	}
 
@@ -124,7 +121,7 @@ bool BitcoinExchange::getBTC(const std::map<std::string, float> &data, std::stri
 				std::istringstream valueStream(value);
 				valueStream >> fvalue;
 				if (fvalue <= 0)
-					throw std::invalid_argument(": Error: not a positive number.");
+					throw std::invalid_argument("Error: not a positive number.");
 
 				parseDate(date);
 
@@ -133,7 +130,11 @@ bool BitcoinExchange::getBTC(const std::map<std::string, float> &data, std::stri
 				if (it != data.begin())
 				{
 					--it;
-					std::cout << date.substr(0, 4) << "-" << date.substr(4, 2) << "-" << date.substr(6, 2) << " => " << fvalue << " = " << it->second * fvalue << std::endl;
+					float result = fvalue * it->second;
+					if (result > INT_MAX)
+						throw std::invalid_argument("Error: Value too high.");
+					else
+						std::cout << date.substr(0, 4) << "-" << date.substr(4, 2) << "-" << date.substr(6, 2) << " => " << fvalue << " = " << result << std::endl;
 				}
 				else if (!prevDate.empty())
 				{
@@ -144,12 +145,12 @@ bool BitcoinExchange::getBTC(const std::map<std::string, float> &data, std::stri
 			}
 			catch (const std::exception &e)
 			{
-				std::cout << "Error on line " << linecount << ": " << e.what() << std::endl;
+				std::cout << e.what() << std::endl;
 			}
 		}
 		else
 		{
-			std::cout << "Error: bad input on line " << linecount << " => " << line << std::endl;
+			std::cout << "Error: bad input" << " => " << line << std::endl;
 		}
 
 		linecount++;

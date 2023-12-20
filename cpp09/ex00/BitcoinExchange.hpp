@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:11:38 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/19 10:52:44 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/20 10:04:15 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iomanip>
 # include <map>
+# include <climits>
 # include <iostream>
 # include <fstream>
 # include <sstream>
