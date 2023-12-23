@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:19:59 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/21 11:26:18 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/23 18:29:50 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int		RPN::calculate(char op)
 	_stack.pop();
 	
 	int	i = 0;
-	std::string sign[4] = {"-","+","*","/"};
+	char sign[4] = {'-','+','*','/'};
 
-	while (sign[i][0] != op)
+	while (sign[i] != op)
 		i++;
 	switch(i)
 	{
