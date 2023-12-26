@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:35:34 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/23 20:05:28 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/26 12:14:12 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 # define PMERGEME_HPP
 
 # include <iostream>
+# include <iomanip>
 # include <string>
 # include <vector>
 # include <deque>
 # include <stdexcept>
 # include <climits>
 # include <algorithm>
-# include <chrono>
-# include <unordered_set>
+# include <ctime>
+# include <set>
 
 class PmergeMe
 {
 	public:
-		static void		mergeMe(std::string const *argv);
+		static void		mergeMe(std::string const *argv, size_t size);
 	private:
 		PmergeMe(void);
 		PmergeMe(PmergeMe const &src);

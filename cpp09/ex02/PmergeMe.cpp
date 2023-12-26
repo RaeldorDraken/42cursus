@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:35:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/23 20:09:20 by eros-gir         ###   ########.fr       */
+/*   Updated: 2023/12/26 12:22:28 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	PmergeMe::printVector(std::vector<int> const &vec)
 
 void	PmergeMe::checkRepeat(std::vector<int> const &vec)
 {
-	std::unordered_set<int>	set;
+	std::set<int>	set;
 	for (std::vector<int>::const_iterator it = vec.begin(); it != vec.end(); it++)
 	{
 		if (set.find(*it) != set.end())
@@ -143,40 +143,55 @@ void	PmergeMe::mergeSortDeque(std::deque<int> &deq, int start, int end)
 	}
 }
 
-void PmergeMe::mergeMe(const std::string* argv)
+void PmergeMe::mergeMe(const std::string* argv, size_t argc)
 {
-    std::vector<int> vec;
-    std::deque<int> deq;
-    int nb;
-    int i;
+	std::vector<int> vec;
+	std::deque<int> deq;
+	int nb;
+	size_t i;
 
-    for (i = 1; i < 100000; i++)
-    {
-        nb = std::stoi(argv[i]);
-        vec.push_back(nb);
-        deq.push_back(nb);
-    }
+	for (i = 1; i < argc; i++)
+	{
+		nb = std::atoi(argv[i].c_str());
+		vec.push_back(nb);
+		deq.push_back(nb);
+	}
 
-    try
-    {
-        checkRepeat(vec);
+	std::cout << "Before sorting:" << std::endl;
+	printVector(vec);
+	printDeque(deq);
+	std::cout << std::endl;
 
-        typedef std::chrono::high_resolution_clock Clock;
+	try
+	{
+		checkRepeat(vec);
 
-        Clock::time_point start = Clock::now();
-        mergeSortVector(vec, 0, vec.size() - 1);
-        Clock::time_point end = Clock::now();
-        std::chrono::duration<double> elapsed = end - start;
-        std::cout << "Vector: " << elapsed.count() << "s" << std::endl;
+		std::clock_t start = std::clock();
 
-        start = Clock::now();
-        mergeSortDeque(deq, 0, deq.size() - 1);
-        end = Clock::now();
-        elapsed = end - start;
-        std::cout << "Deque: " << elapsed.count() << "s" << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+		mergeSortVector(vec, 0, vec.size() - 1);
+		std::cout << "After sorting:" << std::endl;
+		printVector(vec);
+
+		std::clock_t end = std::clock();
+
+		double vectorTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+
+		start = std::clock();
+
+		mergeSortDeque(deq, 0, deq.size() - 1);
+		printDeque(deq);
+		std::cout << std::endl;
+
+		end = std::clock();
+		//print timers
+        std::cout << std::fixed << std::setprecision(8);
+		std::cout << "Time elapsed processing " << argc << " elements: " << std::endl;
+        std::cout << "Vector: " << vectorTime << "s" << std::endl;
+		double dequeTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+		std::cout << "Deque: " << dequeTime << "s" << std::endl;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
