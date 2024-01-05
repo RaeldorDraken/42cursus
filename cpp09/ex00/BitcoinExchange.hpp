@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:11:38 by eros-gir          #+#    #+#             */
-/*   Updated: 2024/01/05 15:30:00 by eros-gir         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:13:46 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <climits>
 # include <cfloat>
 # include <cstdlib>
+# include <iomanip>
 
 
 class	BitcoinExchange
