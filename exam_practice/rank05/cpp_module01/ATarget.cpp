@@ -24,8 +24,6 @@ void	ATarget::getHitBySpell(ASpell const &src) const
 ATarget &ATarget::operator=(ATarget const &rhs)
 {
 	if (this != &rhs)
-	{
 		this->type = rhs.getType();
-	}
 	return (*this);
 }

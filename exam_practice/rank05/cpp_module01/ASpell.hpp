@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef ASPELL_HPP
 #define ASSPELL_HPP
 

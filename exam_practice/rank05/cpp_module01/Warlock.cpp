@@ -48,7 +48,5 @@ void	Warlock::forgetSpell(std::string spellName)
 void	Warlock::launchSpell(std::string spellName, ATarget const &target)
 {
 	if (this->spellList.find(spellName) != this->spellList.end())
-	{
-	this->spellList.find(spellName)->second->launch(target);
-	}
+		this->spellList.find(spellName)->second->launch(target);
 }
