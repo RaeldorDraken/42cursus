@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:11:38 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/20 10:04:15 by eros-gir         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:30:00 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ class	BitcoinExchange
 
 		static bool	getCSV(std::map<std::string, float> &data);
 		static bool	getBTC(const std::map<std::string, float> &data, std::string fd);
-		static void	parseDate(std::string &date);
+		static bool	parseDate(std::string &date);
 };
 #endif

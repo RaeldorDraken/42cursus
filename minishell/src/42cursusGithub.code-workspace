@@ -75,7 +75,12 @@
 			"vector": "cpp",
 			"deque": "cpp",
 			"fstream": "cpp",
-			"stack": "cpp"
+			"stack": "cpp",
+			"__tree": "cpp",
+			"csignal": "cpp",
+			"map": "cpp",
+			"set": "cpp",
+			"unordered_set": "cpp"
 		}
 	}
 }

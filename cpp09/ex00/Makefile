@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 10:40:05 by eros-gir          #+#    #+#              #
-#    Updated: 2023/12/23 22:44:52 by eros-gir         ###   ########.fr        #
+#    Updated: 2024/01/05 15:03:49 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ DEP = $(addsuffix .d, $(basename $(OBJ)))
 all:
 	@$(MAKE) $(NAME)
 
-$(NAME):: $(OBJ)
+$(NAME):: $(OBJ) Makefile
 	@echo "$(C_YELLOW)make $(NAME)$(C_END)"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
