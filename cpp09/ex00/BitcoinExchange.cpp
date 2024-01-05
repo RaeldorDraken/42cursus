@@ -6,11 +6,12 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:11:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2024/01/05 15:49:33 by eros-gir         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:42:08 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include <iomanip>
 
 BitcoinExchange::BitcoinExchange(void)
 {
@@ -140,7 +141,10 @@ bool BitcoinExchange::getBTC(const std::map<std::string, float> &data, std::stri
 				if (result > INT_MAX)
 					throw std::invalid_argument("Error: Value too high.");
 				else
+				{
+				//	std::cout << std::setprecision(2) << std::fixed;
 					std::cout << date.substr(0, 4) << "-" << date.substr(4, 2) << "-" << date.substr(6, 2) << " => " << fvalue << " = " << result << std::endl;
+				}
 			}
 			catch (const std::exception &e)
 			{

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:35:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/26 12:22:28 by eros-gir         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:21:13 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,6 @@ void	PmergeMe::printVector(std::vector<int> const &vec)
 	for (std::vector<int>::const_iterator it = vec.begin(); it != vec.end(); it++)
 		std::cout << *it << " ";
 	std::cout << std::endl;
-}
-
-void	PmergeMe::checkRepeat(std::vector<int> const &vec)
-{
-	std::set<int>	set;
-	for (std::vector<int>::const_iterator it = vec.begin(); it != vec.end(); it++)
-	{
-		if (set.find(*it) != set.end())
-			throw std::invalid_argument("Repeated numbers!");
-		set.insert(*it);
-	}
 }
 
 void	PmergeMe::mergeAuxVector(std::vector<int> &vec, int start, int mid, int end)
@@ -164,8 +153,6 @@ void PmergeMe::mergeMe(const std::string* argv, size_t argc)
 
 	try
 	{
-		checkRepeat(vec);
-
 		std::clock_t start = std::clock();
 
 		mergeSortVector(vec, 0, vec.size() - 1);

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:35:34 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/26 12:14:12 by eros-gir         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:21:00 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ class PmergeMe
 
 		static void printDeque(std::deque<int> const &deq);
 		static void printVector(std::vector<int> const &vec);
-		static void checkRepeat(std::vector<int> const &vec);
 		static void mergeAuxVector(std::vector<int> &vec, int start, int mid, int end);
 		static void mergeSortVector(std::vector<int> &vec, int start, int end);
 		static void mergeAuxDeque(std::deque<int> &deq, int start, int mid, int end);

@@ -6,7 +6,7 @@
 #    By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 10:40:05 by eros-gir          #+#    #+#              #
-#    Updated: 2024/01/05 15:03:49 by eros-gir         ###   ########.fr        #
+#    Updated: 2024/01/05 17:20:56 by eros-gir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ all:
 
 $(NAME):: $(OBJ) Makefile
 	@echo "$(C_YELLOW)make $(NAME)$(C_END)"
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(C_GREEN)Completed...$(C_END)"
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:19:59 by eros-gir          #+#    #+#             */
-/*   Updated: 2023/12/23 18:29:50 by eros-gir         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:00:43 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int		RPN::calculate(char op)
 		case 2: {
 			double safe = (static_cast<double>(b) * static_cast<double>(a));
 			if (safe > INT_MAX || safe < INT_MIN)
+			{
+				std::cout << "Result number is too big or too small!" << std::endl;
 				throw std::invalid_argument("Result number is too big or too small!");
+			}
 			return (b * a); }
 		case 3: {
 			if (a == 0)
@@ -78,7 +81,9 @@ void	RPN::parsing(std::string const &str)
 		if (tmp.length() == 1 && !isdigit(tmp[0]))
 		{
 			if (_stack.size() < 2)
+			{
 				throw std::exception();
+			}
 			_stack.push(calculate(tmp[0]));
 		}
 		else
@@ -88,7 +93,10 @@ void	RPN::parsing(std::string const &str)
 		}
 	}
 	if (_stack.size() != 1)
+	{
+		std::cout << "Error: Unexpected operation 2" << std::endl;
 		throw std::exception();
+	}
 }
 
 int		RPN::rpn(std::string const &str)
