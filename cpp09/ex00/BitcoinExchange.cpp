@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 10:11:26 by eros-gir          #+#    #+#             */
-/*   Updated: 2024/01/05 19:32:11 by eros-gir         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:10:20 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ bool BitcoinExchange::getBTC(const std::map<std::string, float> &data, std::stri
 					throw std::invalid_argument("Error: Value too high.");
 				else
 				{
-					std::cout << std::setprecision(2);
+					std::cout << std::fixed << std::setprecision(2);
 					std::cout << date.substr(0, 4) << "-" << date.substr(4, 2) << "-" << date.substr(6, 2) << " => " << fvalue << " = " << result << std::endl;
 				}
 			}
