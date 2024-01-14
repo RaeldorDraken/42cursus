@@ -6,7 +6,7 @@
 /*   By: eros-gir <eros-gir@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:35:17 by eros-gir          #+#    #+#             */
-/*   Updated: 2024/01/05 18:21:13 by eros-gir         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:10:08 by eros-gir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void PmergeMe::mergeMe(const std::string* argv, size_t argc)
 	int nb;
 	size_t i;
 
-	for (i = 1; i < argc; i++)
+	for (i = 0; i < argc; i++)
 	{
 		nb = std::atoi(argv[i].c_str());
 		vec.push_back(nb);
