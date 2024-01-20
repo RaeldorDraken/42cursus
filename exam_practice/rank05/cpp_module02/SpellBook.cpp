@@ -3,17 +3,6 @@
 SpellBook::SpellBook(void) : _spells()
 {}
 
-SpellBook::SpellBook(const SpellBook &src)
-{
-	(void)src;
-}
-
-SpellBook	&SpellBook::operator=(const SpellBook &src)
-{
-	(void) src;
-	return (*this);
-}
-
 SpellBook::~SpellBook(void)
 {
 	std::map<std::string, ASpell *>::iterator it;

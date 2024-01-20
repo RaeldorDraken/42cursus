@@ -3,18 +3,6 @@
 TargetGenerator::TargetGenerator(void) : _targets()
 {}
 
-TargetGenerator::TargetGenerator(const TargetGenerator &src)
-{
-	(void)src;
-}
-
-TargetGenerator &TargetGenerator::operator=(const TargetGenerator &src)
-{
-	(void)src;
-	return (*this);
-}
-
-
 TargetGenerator::~TargetGenerator(void)
 {
 	std::map<std::string, ATarget *>::iterator it;

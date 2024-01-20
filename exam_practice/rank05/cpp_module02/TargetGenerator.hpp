@@ -15,9 +15,6 @@ class TargetGenerator
 		ATarget *createTarget(const std::string &targetName);
 	private:
 		std::map<std::string, ATarget *> _targets;
-
-		TargetGenerator(const TargetGenerator &src);
-		TargetGenerator &operator=(const TargetGenerator &src);
 };
 
 #endif
