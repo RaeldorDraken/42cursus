@@ -1,5 +1,5 @@
 #ifndef ASPELL_HPP
-#define ASSPELL_HPP
+#define ASPELL_HPP
 
 #include<string>
 #include<iostream>

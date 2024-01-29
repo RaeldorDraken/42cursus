@@ -1,5 +1,3 @@
-#pragma once
-
 #ifndef ATARGET_HPP
 #define ATARGET_HPP
 

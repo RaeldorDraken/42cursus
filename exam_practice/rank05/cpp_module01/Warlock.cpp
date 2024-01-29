@@ -40,7 +40,7 @@ void	Warlock::forgetSpell(std::string spellName)
 {
 	if (this->spellList.find(spellName) != this->spellList.end())
 	{
-		delete this->spellList.find(spellName)->second;
+		delete this->spellList[spellName];
 		this->spellList.erase(this->spellList.find(spellName));
 	}
 }
