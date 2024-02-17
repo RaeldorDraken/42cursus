@@ -43,6 +43,9 @@ void Warlock::forgetSpell(std::string spellName)
 
 void Warlock::launchSpell(std::string spellName, ATarget const &target)
 {
+	ATarget *dummy = NULL;
+	if (&target == dummy)
+		return ;
 	ASpell *temp = this->_spell.createSpell(spellName);
 	if (temp != NULL)
 		temp->launch(target);
