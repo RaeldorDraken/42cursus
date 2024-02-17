@@ -1,30 +1,26 @@
 #include"SpellBook.hpp"
 
-SpellBook::SpellBook(void) : _spells()
+SpellBook::SpellBook(void) : list()
 {}
 
 SpellBook::~SpellBook(void)
-{
-	std::map<std::string, ASpell *>::iterator it;
-	for (it = this->_spells.begin(); it != this->_spells.end(); ++it)
-		delete it->second;
-}
+{}
 
 void	SpellBook::learnSpell(ASpell *spell)
 {
-	this->_spells[spell->getName()] = spell->clone();
+	this->list[spell->getName()] = spell->clone();
 }
 
-void	SpellBook::forgetSpell(const std::string &spellName)
+void	SpellBook::forgetSpell(const std::string &_name)
 {
-	if (this->_spells.find(spellName) != this->_spells.end())
-		delete this->_spells[spellName];
-	this->_spells.erase(spellName);
+	if (this->list.find(_name) != this->list.end())
+		delete this->list[_name];
+	this->list.erase(_name);
 }
 
-ASpell *SpellBook::createSpell(const std::string &spellName)
+ASpell *SpellBook::createSpell(const std::string &_name)
 {
-	if (this->_spells.find(spellName) != this->_spells.end())
-		return (this->_spells[spellName]);
+	if (this->list.find(_name) != this->list.end())
+		return (this->list[_name]);
 	return (NULL);
 }
