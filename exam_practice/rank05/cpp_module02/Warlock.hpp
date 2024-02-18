@@ -9,20 +9,20 @@
 
 class Warlock
 {
-	private:
-		std::string name;
-		std::string title;
-		SpellBook	_spell;
 	public:
+		Warlock(std::string const &_name, std::string const &_title);
+		~Warlock(void);
 		std::string const	&getName(void) const;
 		std::string const	&getTitle(void) const;
 		void	setTitle(std::string const &_title);
 		void	introduce(void) const;
 		void	learnSpell(ASpell *spell);
-		void	forgetSpell(std::string spellName);
-		void	launchSpell(std::string spell, ATarget const &target);
-		Warlock(std::string const &_name, std::string const &_title);
-		~Warlock(void);
+		void	forgetSpell(std::string _name);
+		void	launchSpell(std::string _name, ATarget const &target);
+	private:
+		std::string name;
+		std::string title;
+		SpellBook	spellBook;
 };
 
 #endif

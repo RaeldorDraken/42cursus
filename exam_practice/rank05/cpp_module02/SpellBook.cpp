@@ -8,7 +8,8 @@ SpellBook::~SpellBook(void)
 
 void	SpellBook::learnSpell(ASpell *spell)
 {
-	this->list[spell->getName()] = spell->clone();
+	if (spell)
+		this->list[spell->getName()] = spell->clone();
 }
 
 void	SpellBook::forgetSpell(const std::string &_name)

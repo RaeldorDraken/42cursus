@@ -3,22 +3,22 @@
 
 #include<string>
 #include<iostream>
-#include"ASpell.hpp"
+#include "ASpell.hpp"
 
 class ASpell;
 
 class ATarget
 {
-	protected:
-		std::string type;
 	public:
-		std::string const &getType(void) const;
-		virtual ATarget *clone(void) const = 0;
-		void	getHitBySpell(ASpell const &src) const;
-		ATarget(std::string const _type);
+		ATarget(std::string const &_type);
 		ATarget(ATarget const &src);
 		virtual ~ATarget(void);
 		ATarget &operator=(ATarget const &rhs);
+		std::string const &getType(void) const;
+		virtual ATarget *clone(void) const = 0;
+		void	getHitBySpell(ASpell const &src) const;
+	protected:
+		std::string type;
 };
 
 #endif

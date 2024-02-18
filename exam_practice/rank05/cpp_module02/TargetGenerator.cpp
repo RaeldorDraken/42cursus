@@ -8,7 +8,8 @@ TargetGenerator::~TargetGenerator(void)
 
 void TargetGenerator::learnTargetType(ATarget *target)
 {
-	this->list[target->getType()] = target->clone();
+	if (target)
+		this->list[target->getType()] = target->clone();
 }
 
 void TargetGenerator::forgetTargetType(const std::string &targetName)

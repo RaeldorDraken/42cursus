@@ -19,7 +19,7 @@ int main()
 
 	richard.learnSpell(fireball);
 
-	ATarget* wall = tarGen.createTarget("garbage");
+	ATarget* wall = tarGen.createTarget("Inconspicuous Red-brick Wall");
 
 	richard.introduce();
 	richard.launchSpell("Polymorph", *wall);

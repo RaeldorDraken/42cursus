@@ -1,6 +1,6 @@
 #include"ASpell.hpp"
 
-ASpell::ASpell(std::string const _name, std::string const _effects) : name(_name), effects(_effects)
+ASpell::ASpell(std::string const &_name, std::string const &_effects) : name(_name), effects(_effects)
 {
 
 }
@@ -12,12 +12,12 @@ ASpell::ASpell(ASpell const &src)
 
 ASpell::~ASpell(void) {}
 
-std::string const	ASpell::getName(void) const
+std::string const	&ASpell::getName(void) const
 {
 	return(this->name);
 }
 
-std::string const	ASpell::getEffects(void) const
+std::string const	&ASpell::getEffects(void) const
 {
 	return(this->effects);
 }
