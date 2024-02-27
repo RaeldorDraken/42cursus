@@ -1,7 +1,6 @@
 #ifndef SPELLBOOK_HPP
 #define SPELLBOOK_HPP
 
-#include<iostream>
 #include<map>
 #include"ASpell.hpp"
 

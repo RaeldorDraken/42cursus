@@ -4,7 +4,14 @@ TargetGenerator::TargetGenerator(void) : list()
 {}
 
 TargetGenerator::~TargetGenerator(void)
-{}
+{
+	std::map<std::string, ATarget *>::iterator it;
+	std::map<std::string, ATarget *>::iterator it_end = list.end();
+
+	for (it = list.begin(); it != it_end; it++)
+		delete it->second;
+	list.clear();
+}
 
 void TargetGenerator::learnTargetType(ATarget *target)
 {

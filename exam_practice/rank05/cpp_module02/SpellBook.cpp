@@ -4,7 +4,14 @@ SpellBook::SpellBook(void) : list()
 {}
 
 SpellBook::~SpellBook(void)
-{}
+{
+	std::map<std::string, ASpell *>::iterator it;
+	std::map<std::string, ASpell *>::iterator it_end = list.end();
+
+	for (it = list.begin(); it != it_end; it++)
+		delete it->second;
+	list.clear();
+}
 
 void	SpellBook::learnSpell(ASpell *spell)
 {
