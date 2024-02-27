@@ -3,4 +3,4 @@ This repository is for the first 42Barcelona cursus from 2022. For me to have ac
 
 Updated the repo, you can check the rest of the repositories.
 
-[ft_libft]((https://github.com/RaeldorDraken/ft_libft)https://github.com/RaeldorDraken/ft_libft)
+[ft_libft](https://github.com/RaeldorDraken/ft_libft)https://github.com/RaeldorDraken/ft_libft)
