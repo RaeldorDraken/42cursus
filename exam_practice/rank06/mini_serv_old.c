@@ -9,40 +9,40 @@
 #include <stdlib.h>
 #include <strings.h>
 
-void	putstr(char *str, int fd)
+void putstr(char *str, int fd)
 {
 	write(fd, str, strlen(str));
 	exit(1);
 }
 
-void	sendall(char *buffer, int serverfd, int clientfd, int fd_size)
+void sendall(char *buffer, int serverfd, int clienfd, int fd_size)
 {
 	for (int i = 0; i <= fd_size; i++)
-		if (i != serverfd && i != clientfd)
+		if (i != serverfd && i != clienfd)
 			send(i, buffer, strlen(buffer), 0);
 }
 
-int	main(int ac, char **av)
+int main(int argc, char **argv)
 {
-	int	serverfd, clientfd, fd_size, readed, db[65535] = {0}, limit = 0;
-	struct sockaddr_in	servaddr;
-	fd_set	old_fd, new_fd;
-	char	buffer[200000], buffer2[150000];
+	int serverfd, clientfd, fd_size, readed, db[65535] = {0}, limit = 0;
+	struct sockaddr_in servaddr;
+	fd_set old_fd, new_fd;
+	char buffer[200000], buffer2[150000];
 
-	if (ac != 2)
+	if (argc != 2)
 		putstr("Wrong number of arguments\n", 2);
-	serverfd = socket(AF_INET, SOCK_STREAM, 0);
+	serverfd = socket(AF_INET, SOCK_STREAM, 0); 
 	if (serverfd == -1)
 		putstr("Fatal error\n", 2);
-	bzero(&servaddr, sizeof(servaddr));
-	servaddr.sin_family = AF_INET;
+	bzero(&servaddr, sizeof(servaddr)); 
+	servaddr.sin_family = AF_INET; 
 	servaddr.sin_addr.s_addr = htonl(2130706433);
-	servaddr.sin_port = htons(atoi(av[1]));
+	servaddr.sin_port = htons(atoi(argv[1])); 
 	if ((bind(serverfd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) != 0)
 		putstr("Fatal error\n", 2);
 	if (listen(serverfd, 10) != 0)
 		putstr("Fatal error\n", 2);
-	FD_ZERO(&old_fd);
+    FD_ZERO(&old_fd);
 	FD_ZERO(&new_fd);
 	FD_SET(serverfd, &new_fd);
 	fd_size = serverfd;
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 			{
 				if ((clientfd = accept(serverfd, NULL, NULL)) < 0)
 					putstr("Fatal error\n", 2);
-				if (clientfd < fd_size)
+				if (clientfd > fd_size)
 					fd_size = clientfd;
 				db[clientfd] = limit++;
 				FD_SET(clientfd, &new_fd);
