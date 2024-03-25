@@ -1,16 +1,15 @@
-#include<errno.h>
-#include<string.h>
-#include<unistd.h>
-#include<netdb.h>
-#include<sys/socket.h>
-#include<netinet/in.h>
-#include<stdlib.h>
-#include<stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <sys/select.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 int		max_client = 2000;
 int		client[2000] = {-1};
-int		ipAddr;
 char	*message[2000];
 fd_set	cur, cur_write, cur_read;
 
@@ -27,7 +26,7 @@ void	ft_send(int fd, char *str)
 			send(i, str, strlen(str), 0);
 }
 
-int		ft_recieve(char **buf, char **msg)
+int	extract_message(char **buf, char **msg)
 {
 	char	*newbuf;
 	int		i;
@@ -54,7 +53,7 @@ int		ft_recieve(char **buf, char **msg)
 	return (0);
 }
 
-char	*ft_strjoin(char *buf, char *add)
+char	*str_join(char *buf, char *add)
 {
 	char	*newbuf;
 	int		len;
@@ -74,38 +73,43 @@ char	*ft_strjoin(char *buf, char *add)
 	return (newbuf);
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		write (2, "Wrong number of arguments\n", 26);
+		write(2, "Wrong number of arguments\n", 26);
 		exit(1);
 	}
-	int	sockfd;
-	struct sockaddr_in	servaddr;
+	int		sockfd; //remember remove all but sockfd
+	struct	sockaddr_in servaddr; //remember remove all but servaddr
 
-	sockfd = socket(AF_INET, SOCK_STREAM, 0);
+	// socket create and verification 
+	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
 	if (sockfd == -1)
 		ft_error();
-	bzero(&servaddr, sizeof(servaddr));
-	servaddr.sin_family = AF_INET;
-	servaddr.sin_addr.s_addr = htonl(2130706433); //remember this is 127.0.0.1
-	servaddr.sin_port = htons(atoi(av[1]));
+	bzero(&servaddr, sizeof(servaddr)); 
+	// assign IP, PORT 
+	servaddr.sin_family = AF_INET; 
+	servaddr.sin_addr.s_addr = htonl(2130706433); //127.0.0.1
+	servaddr.sin_port = htons(atoi(av[1]));	//change htons argument to av[1]
+	// Binding newly created socket to given IP and verification 
 	if ((bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) != 0)
 		ft_error();
-	if (listen(sockfd, 128) != 0)
+	if (listen(sockfd, 128) != 0) // remember change 10 to 128
 		ft_error();
+
+	//start new code
 	FD_SET(sockfd, &cur);
 	int	max = sockfd;
-	int	i = 0;
-	while (1)
+	int	index = 0;
+	while(1)
 	{
 		cur_read = cur_write = cur;
 		if (select(max + 1, &cur_read, &cur_write, NULL, NULL) < 0)
 			continue ;
 		for (int fd = 0; fd <= max; fd++)
 		{
-			if (FD_ISSET(fd, &cur_read))
+			if(FD_ISSET(fd,&cur_read))
 			{
 				if (fd == sockfd)
 				{
@@ -113,12 +117,12 @@ int		main(int ac, char **av)
 					if (newClient <= 0)
 						continue ;
 					FD_SET(newClient, &cur);
-					client[newClient] = i++;
+					client[newClient] = index++;
 					message[newClient] = calloc(1, 1);
 					if (newClient > max)
 						max = newClient;
 					char	str[100];
-					sprintf(str, "server: client %d just arrived\n", i-1);
+					sprintf(str, "server: client %d just arrived\n", index - 1);
 					ft_send(newClient, str);
 				}
 				else
@@ -128,7 +132,7 @@ int		main(int ac, char **av)
 					if (lent <= 0)
 					{
 						FD_CLR(fd, &cur);
-						char	str[100];
+						char str[100];
 						sprintf(str, "server: client %d just left\n", client[fd]);
 						ft_send(fd, str);
 						client[fd] = -1;
@@ -137,9 +141,9 @@ int		main(int ac, char **av)
 					else
 					{
 						buffer[lent] = 0;
-						message[fd] = ft_strjoin(message[fd], buffer);
+						message[fd] = str_join(message[fd], buffer);
 						char	*tmp;
-						while (ft_recieve(&message[fd], &tmp))
+						while (extract_message(&message[fd], &tmp))
 						{
 							char	str[strlen(tmp) + 100];
 							sprintf(str, "client %d: %s", client[fd], tmp);
@@ -151,4 +155,3 @@ int		main(int ac, char **av)
 		}
 	}
 }
-
