@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <netinet/in.h>
+#include <sys/socket.h>
+#include <sys/select.h>
 
 int max_fd = 0; // ? Maximum file descriptor
 int g_id = 0; // ? Global ID for clients
