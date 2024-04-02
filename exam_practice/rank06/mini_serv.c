@@ -86,17 +86,17 @@ int	main(int ac, char **av)
 	// socket create and verification 
 	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
 	if (sockfd == -1)
-		ft_error();
+		ft_error(); // remember to change old code to ft_error
 	bzero(&servaddr, sizeof(servaddr)); 
 	// assign IP, PORT 
 	servaddr.sin_family = AF_INET; 
 	servaddr.sin_addr.s_addr = htonl(2130706433); //127.0.0.1
-	servaddr.sin_port = htons(atoi(av[1]));	//change htons argument to av[1]
+	servaddr.sin_port = htons(atoi(av[1]));	//change htons argument to atoi(av[1])
 	// Binding newly created socket to given IP and verification 
 	if ((bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) != 0)
-		ft_error();
+		ft_error(); // remember to change old code to ft_error
 	if (listen(sockfd, 128) != 0) // remember change 10 to 128
-		ft_error();
+		ft_error(); // remember to change old code to ft_error
 
 	//start new code
 	FD_SET(sockfd, &cur);
