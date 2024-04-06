@@ -1,5 +1,4 @@
-#ifndef SPELLBOOK_HPP
-#define SPELLBOOK_HPP
+#pragma once
 
 #include<map>
 #include"ASpell.hpp"
@@ -16,5 +15,3 @@ class SpellBook
 	private:
 		std::map<std::string, ASpell*> list;
 };
-
-#endif

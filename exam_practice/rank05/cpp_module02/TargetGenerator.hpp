@@ -1,5 +1,4 @@
-#ifndef TARGETGENERATOR_HPP
-#define TARGETGENERATOR_HPP
+#pragma once
 
 #include<map>
 #include"ATarget.hpp"
@@ -16,5 +15,3 @@ class TargetGenerator
 	private:
 		std::map<std::string, ATarget*> list;
 };
-
-#endif
