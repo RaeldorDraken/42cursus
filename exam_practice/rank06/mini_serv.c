@@ -13,9 +13,12 @@ int		client[2000] = {-1};
 char	*message[2000];
 fd_set	cur, cur_write, cur_read;
 
-void	ft_error()
+void	ft_error(int type)
 {
-	write(2, "Fatal error\n", 12);
+	if (type == 0)
+		write(2, "Wrong number of arguments\n", 26);
+	else
+		write(2, "Fatal error\n", 12);
 	exit(1);
 }
 
@@ -76,17 +79,14 @@ char	*str_join(char *buf, char *add)
 int	main(int ac, char **av)
 {
 	if (ac != 2)
-	{
-		write(2, "Wrong number of arguments\n", 26);
-		exit(1);
-	}
+		ft_error(0);
 	int		sockfd; //remember remove all but sockfd
 	struct	sockaddr_in servaddr; //remember remove all but servaddr
 
 	// socket create and verification 
 	sockfd = socket(AF_INET, SOCK_STREAM, 0); 
 	if (sockfd == -1)
-		ft_error(); // remember to change old code to ft_error
+		ft_error(1); // remember to change old code to ft_error
 	bzero(&servaddr, sizeof(servaddr)); 
 	// assign IP, PORT 
 	servaddr.sin_family = AF_INET; 
@@ -94,22 +94,22 @@ int	main(int ac, char **av)
 	servaddr.sin_port = htons(atoi(av[1]));	//change htons argument to atoi(av[1])
 	// Binding newly created socket to given IP and verification 
 	if ((bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr))) != 0)
-		ft_error(); // remember to change old code to ft_error
+		ft_error(1); // remember to change old code to ft_error
 	if (listen(sockfd, 128) != 0) // remember change 10 to 128
-		ft_error(); // remember to change old code to ft_error
+		ft_error(1); // remember to change old code to ft_error
 
 	//start new code
 	FD_SET(sockfd, &cur);
 	int	max = sockfd;
 	int	index = 0;
-	while(1)
+	while (1)
 	{
 		cur_read = cur_write = cur;
 		if (select(max + 1, &cur_read, &cur_write, NULL, NULL) < 0)
 			continue ;
 		for (int fd = 0; fd <= max; fd++)
 		{
-			if(FD_ISSET(fd,&cur_read))
+			if(FD_ISSET(fd, &cur_read))
 			{
 				if (fd == sockfd)
 				{
